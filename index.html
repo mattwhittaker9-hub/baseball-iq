@@ -37,7 +37,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── BOTTOM NAV (mobile) ─── */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#071520;border-top:1px solid #162840;z-index:100;padding:6px 0 env(safe-area-inset-bottom,0)}.bottom-nav.bnav-visible{display:block}
 .bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
-.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
 .bnav-btn.active{color:#c8102e}
 .bnav-icon{font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;height:42px}
 
@@ -434,7 +434,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .cd-progress-wrap{margin-top:8px}
 .cd-progress-bar{height:3px;background:#0a1828;border-radius:2px;overflow:hidden}
 .cd-progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;background:linear-gradient(90deg,#1a5adc,#3ecf82)}
-.cd-activity{position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:20px}
+.cd-activity{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:20px;margin-top:4px}
 .cd-activity.active{background:rgba(62,207,130,0.15);color:#3ecf82}
 .cd-activity.new{background:rgba(232,192,96,0.15);color:#e8c060}
 .cd-activity.recent{background:rgba(138,170,74,0.15);color:#8aaa4a}
@@ -3081,7 +3081,7 @@ async function loadLeaderboard(){
   const{data,error}=await q;
   if(error||!data){el.innerHTML='<div class="lb-empty">Could not load leaderboard</div>';return;}
   if(!data.length){el.innerHTML='<div class="lb-empty">No scores yet — be the first!</div>';return;}
-  const header=`<div class="lb-header"><span>#</span><span>Player</span><span>Score</span><span>IQ</span><span>🔥</span><span>Games</span></div>`;
+  const header=`<div class="lb-header"><span>#</span><span>Player</span><span style="text-align:right">Score</span><span style="text-align:right">IQ</span><span style="text-align:right">🔥</span><span style="text-align:right">Games</span></div>`;
   const rows=data.map((r,i)=>{
     const rankClass=i===0?'gold':i===1?'silver':i===2?'bronze':'';
     const isMe=currentUser&&r.username===currentUser.username;
@@ -5315,9 +5315,11 @@ async function loadCoachDashboard() {
     var drillBtn = p.is_coach ? '' : '<button class="cd-expand-btn" style="margin-left:6px;color:#3a8a3a" data-dpid="'+drillPanelId+'" onclick="toggleDrillPanel(this.dataset.dpid)">Drill 📋</button>';
     var editBtn = p.is_coach ? '' : '<button class="cd-expand-btn" data-pid="'+posId+'" onclick="handleTogglePos(this)">Edit Position ✎</button>';
     return '<div class="cd-player-card'+(isTop?' top-player':'')+'">'+
-      '<div class="cd-activity '+actClass+'">'+actLabel+'</div>'+
       '<div class="cd-player-row">'+
-        '<div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+
+        '<div>'+
+          '<div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+
+          '<div class="cd-activity '+actClass+'">'+actLabel+'</div>'+
+        '</div>'+
         drillBadge+
         '<div style="text-align:right">'+
           '<div class="cd-player-iq" style="color:'+rating.color+'">'+iq.toLocaleString()+'</div>'+
