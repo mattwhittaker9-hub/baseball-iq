@@ -24,7 +24,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── TOP NAV (desktop) ─── */
 .top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:10px 0}
 .nav-logo{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#fff}
-.nav-logo em{color:#c8102e;font-style:normal}
+.nav-logo em{color:#3ecf82;font-style:normal}
 .nav-left{display:flex;gap:6px}
 .nav-btn{background:transparent;border:1px solid #1a3050;border-radius:5px;padding:8px 16px;font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:700;color:#4a6a88;text-transform:uppercase;letter-spacing:1px;transition:all 0.2s}
 .nav-btn:hover{border-color:#3a5a78;color:#a0c0d8}
@@ -131,6 +131,23 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-result-sub{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px}
 .gc-explanation{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;margin-bottom:12px;font-family:'Barlow',sans-serif}
 /* gc-statcast retired — replaced by gc-spotlight */
+
+/* ─── PRO SPOTLIGHT CARD ─── */
+.gc-spotlight{margin-top:14px;border-radius:13px;padding:12px 14px;background:linear-gradient(135deg,#040f1c,#071520);border:1px solid rgba(62,207,130,0.2);position:relative;overflow:hidden}
+.gc-spotlight::before{content:'';position:absolute;right:-10px;top:-10px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
+.gc-spotlight.history{border-color:rgba(232,192,96,0.2);background:linear-gradient(135deg,#0f0c04,#150e06)}
+.gc-spotlight.history::before{background:radial-gradient(circle,rgba(232,192,96,0.06),transparent 70%)}
+.gc-spotlight.fan{border-color:rgba(55,138,221,0.2);background:linear-gradient(135deg,#04080f,#060f1a)}
+.gc-spotlight.fan::before{background:radial-gradient(circle,rgba(55,138,221,0.06),transparent 70%)}
+.gc-sp-type{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3ecf82;margin-bottom:6px}
+.gc-spotlight.history .gc-sp-type{color:#e8c060}
+.gc-spotlight.fan .gc-sp-type{color:#378add}
+.gc-sp-top{display:flex;align-items:baseline;gap:10px;margin-bottom:3px}
+.gc-sp-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;line-height:1}
+.gc-sp-stat{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3ecf82;letter-spacing:0.5px}
+.gc-spotlight.history .gc-sp-stat{color:#e8c060}
+.gc-spotlight.fan .gc-sp-stat{color:#378add}
+.gc-sp-body{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;font-family:'Barlow',sans-serif;margin-top:2px}
 .gc-next{width:100%;background:#c8102e;border:none;border-radius:12px;padding:14px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all 0.15s}
 .gc-next:active{transform:scale(0.98)}
 .gc-swipe-hint{position:absolute;bottom:calc(env(safe-area-inset-bottom,16px)+10px);left:0;right:0;text-align:center;font-family:Barlow Condensed,sans-serif;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1.5px;text-transform:uppercase;animation:hintPulse 2.5s ease-in-out infinite}
@@ -470,7 +487,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── DAILY CHALLENGE CARD ─── */
 .dc-hero{background:linear-gradient(135deg,#0a1628 0%,#0d2040 100%);border:1px solid #1a3050;border-radius:16px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden}
-.dc-hero::before{content:'';position:absolute;left:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
+.dc-hero::before{content:'';position:absolute;left:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.05),transparent 70%);pointer-events:none}
 .dc-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3a5a78;margin-bottom:10px}
 .dc-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:2px}
 .dc-sub{font-size:12px;color:#4a6a88;margin-bottom:12px}
@@ -538,9 +555,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── IQ HERO ─── */
 .iq-hero{background:linear-gradient(135deg,#0a1628 0%,#0d1e35 100%);border:1px solid #1a3050;border-radius:16px;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
-.iq-hero::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,0.08),transparent 70%);pointer-events:none}
+.iq-hero::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
 .iq-hero-left{display:flex;flex-direction:column}
-.iq-hero-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3a5a78;margin-bottom:2px;font-family:'Barlow Condensed',sans-serif}
+.iq-hero-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3ecf82;margin-bottom:2px;font-family:'Barlow Condensed',sans-serif}
 .iq-hero-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;line-height:1;letter-spacing:-1px;color:#fff;transition:color 0.4s}
 .iq-hero-rating{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;transition:color 0.4s}
 .iq-hero-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
@@ -1054,8 +1071,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <button class="play-btn" id="start-btn" onclick="startGame()">
     ⚾ &nbsp;<span id="play-btn-text">Quick Game</span>
   </button>
-  <button class="play-btn" onclick="showScreen('s-train')" style="background:linear-gradient(135deg,#0a2040,#071828);border:1px solid #1a3a5a;box-shadow:none;margin-top:-8px">
-    🎯 &nbsp;Train by Position
+  <button class="play-btn" onclick="startGame()" style="margin-top:-8px;background:linear-gradient(135deg,#0a2040,#071828);border:1px solid #1a3a5a;box-shadow:none">
+    ⚾ &nbsp;Quick Game — All Positions
   </button>
 
   <!-- Coach Team Message Banner -->
@@ -1078,7 +1095,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
     <div class="hfr-card" onclick="showScreen('s-train')">
-      <div class="hfr-icon">🎯</div>
+      <div class="hfr-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="26" height="26"><rect width="28" height="28" rx="6" fill="#0a2818"/><g transform="translate(14,14) rotate(45)"><rect x="-8" y="-8" width="16" height="16" fill="none" stroke="#3ecf82" stroke-width="1.8" rx="1"/><circle cx="-8" cy="0" r="1.8" fill="#fff"/><circle cx="0" cy="-8" r="1.8" fill="#fff"/><circle cx="8" cy="0" r="1.8" fill="#fff"/><circle cx="0" cy="8" r="2.2" fill="#fff"/></g><circle cx="14" cy="14" r="2" fill="#8B4523"/></svg></div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
