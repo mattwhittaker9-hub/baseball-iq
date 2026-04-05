@@ -45,9 +45,10 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
 /* ─── STADIUM AUTH ─── */
-#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;display:flex;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
+#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
 #s-auth::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(1,2,8,0.45) 0%,rgba(1,2,8,0.08) 30%,rgba(1,2,8,0.30) 65%,rgba(1,2,8,0.82) 100%);z-index:0;pointer-events:none}
 #s-auth>*{position:relative;z-index:1}
+#s-auth.active{display:flex}
 .stadium-glow{position:absolute;top:0;width:100%;height:40%;background:radial-gradient(circle at 18% 4%,rgba(255,235,120,0.10),transparent 50%),radial-gradient(circle at 82% 4%,rgba(255,235,120,0.10),transparent 50%);z-index:2;pointer-events:none}
 .light-towers{display:none}.tower-flare{display:none}.field-view{display:none}
 .auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:44px 24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto}
@@ -3632,11 +3633,7 @@ document.getElementById('register-btn').addEventListener('click',async()=>{
   const{data:authData,error:authError}=await sb.auth.signUp({email,password,options:{data:{username:u}}});
   if(authError){setMsg('register-msg','err',authError.message);btn.disabled=false;btn.textContent='Create Account →';return;}
   const{data:profileData,error:profileError}=await sb.from('players').insert([{
-    user_id:authData.user.id,
-    username:u,
-    age:isMom?0:a,
-    age_group:'Player',
-    league:'Unaffiliated'
+    user_id:authData.user.id,username:u,age:isMom?0:a,age_group:'Player',league:'Unaffiliated'
   }]).select();
   if(profileError){setMsg('register-msg','err','Profile error: '+profileError.message);btn.disabled=false;btn.textContent='Create Account →';return;}
   currentUser={...profileData[0],email};
@@ -4425,7 +4422,6 @@ function cancelChallenge(){
 var obSlide = 0;
 
 function showOnboard(){
-  // Must deactivate auth screen first — it sits at z-index:999 above the onboard screen
   document.getElementById('s-auth').classList.remove('active');
   document.body.style.overflow='';
   document.getElementById('s-onboard').classList.add('active');
