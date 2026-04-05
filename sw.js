@@ -1,11 +1,11 @@
-const CACHE_NAME = 'baseball-iq-v8';
+const CACHE_NAME = 'baseball-iq-v9';
 const STATIC_ASSETS = [
-  '/background.jpg',
+  '/manifest.json',
   'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap',
   'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'
 ];
 
-// Install — cache only heavy static assets (NOT index.html)
+// Install — cache static assets only (NOT index.html)
 self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
@@ -29,13 +29,13 @@ self.addEventListener('activate', event => {
 });
 
 // Fetch strategy:
-// - index.html: NETWORK-FIRST (always get latest, fall back to cache offline)
-// - Supabase API: NETWORK-ONLY
-// - Everything else: CACHE-FIRST
+//   - HTML / navigation → NETWORK-FIRST (always get latest app)
+//   - Supabase API       → NETWORK-ONLY
+//   - Images / fonts     → CACHE-FIRST (stable assets)
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Network-only for Supabase
+  // Supabase — network only
   if (url.hostname.includes('supabase.co')) {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
@@ -43,8 +43,9 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Network-first for HTML pages (so deploys take effect immediately)
-  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
+  // HTML / navigation — network-first so updates land immediately
+  if (event.request.mode === 'navigate' ||
+      event.request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(event.request).then(response => {
         const clone = response.clone();
@@ -55,7 +56,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Cache-first for everything else (images, fonts, JS)
+  // Everything else (images, fonts, JS) — cache-first
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
