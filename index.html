@@ -39,22 +39,25 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
 .bnav-btn.active{color:#c8102e}
-.bnav-icon{font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;height:24px}
+.bnav-icon{font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;height:42px}
 
 /* ── ICON SPRITE SYSTEM (icons.png 2816×1536, 4×2 grid) ── */
-.icon-sprite{width:32px;height:32px;background-image:url('icons.png');background-size:128px 70px;background-repeat:no-repeat;flex-shrink:0}
+/* ── ICON SPRITE SYSTEM ── */
+.icon-sprite{width:40px;height:40px;background-image:url('icons.png');background-size:160px 87px;background-repeat:no-repeat;flex-shrink:0}
 .icon-home{background-position:0 0}
-.icon-board{background-position:-32px 0}
-.icon-team{background-position:-64px 0}
-.icon-stats{background-position:-96px 0}
-.icon-rules{background-position:0 -35px}
-.icon-battle{background-position:-32px -35px}
-.icon-pro{background-position:-64px -35px}
-.icon-train{background-position:-96px -35px}
-.icon-sprite.icon-hfr{width:48px;height:48px;background-size:192px 105px}
-.icon-hfr.icon-rules{background-position:0 -53px}
-.icon-hfr.icon-battle{background-position:-48px -53px}
-.icon-hfr.icon-train{background-position:-144px -53px}
+.icon-board{background-position:-40px 0}
+.icon-team{background-position:-80px 0}
+.icon-stats{background-position:-120px 0}
+.icon-rules{background-position:0 -44px}
+.icon-battle{background-position:-40px -44px}
+.icon-pro{background-position:-80px -44px}
+.icon-train{background-position:-120px -44px}
+.icon-sprite.icon-hfr{width:60px;height:60px;background-size:240px 131px}
+.icon-hfr.icon-rules{background-position:0 -66px}
+.icon-hfr.icon-battle{background-position:-60px -66px}
+.icon-hfr.icon-train{background-position:-180px -66px}
+.hfr-card .icon-sprite{background-color:#0c1828}
+.bnav-btn .icon-sprite{background-color:#071520}
 .bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
 
 /* ─── AUTH ─── */
@@ -498,7 +501,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .hqp-pill.on{background:#0a1e30;border-color:#c8102e;color:#f08090}
 .hqp-pill:active{opacity:0.7}
 
-.home-feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;margin-top:18px}
+.home-feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;margin-top:20px}
 
 /* ─── PLAY BUTTON ─── */
 /* play-btn defined below */
@@ -544,12 +547,15 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── SCREEN CONSISTENCY ─── */
 .screen-header{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a5a78;margin-bottom:12px;padding-top:4px}
 
-.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:14px;padding:20px 8px 16px;text-align:center;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(0,0,0,0.35)}
 .hfr-card:active{transform:scale(0.96);background:#102030}
-.hfr-card:hover{border-color:#1e3a5a;box-shadow:0 4px 16px rgba(0,0,0,0.4);transform:translateY(-1px)}
+.hfr-card:hover{border-color:#1e3a5a;box-shadow:0 6px 24px rgba(0,0,0,0.45);transform:translateY(-2px)}
+.hfr-card.hfr-train{border-top:2px solid #3ecf82;box-shadow:0 4px 16px rgba(62,207,130,0.1)}
+.hfr-card.hfr-chief{border-top:2px solid #5aabdc;box-shadow:0 4px 16px rgba(90,171,220,0.1)}
+.hfr-card.hfr-battle{border-top:2px solid #c8102e;box-shadow:0 4px 16px rgba(200,16,46,0.1)}
 .hfr-icon{font-size:22px;line-height:1}
-.hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
-.hfr-sub{font-size:10px;color:#3a5a78;font-family:system-ui,sans-serif}
+.hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
+.hfr-sub{font-size:10px;color:#4a7a98;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
 
 /* ─── POSITION TRAINING SCREEN ─── */
 .pt-section-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:#3a5a78;letter-spacing:2.5px;text-transform:uppercase;margin:10px 0 6px}
@@ -1127,9 +1133,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <button class="play-btn" id="start-btn" onclick="startGame()">
     ⚾ &nbsp;<span id="play-btn-text">Quick Game</span>
   </button>
-  <button class="play-btn" onclick="showScreen('s-train')" style="margin-top:-8px;background:linear-gradient(135deg,#0a2040,#071828);border:1px solid #1a3a5a;box-shadow:0 4px 20px rgba(26,58,90,0.5),0 1px 0 rgba(255,255,255,0.06) inset">
-    🧤 &nbsp;TRAIN BY POSITION
-  </button>
 
   <!-- Coach Team Message Banner -->
   <div id="coach-msg-banner" style="display:none;background:#0a1828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:10px">
@@ -1150,17 +1153,17 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
-    <div class="hfr-card" onclick="showScreen('s-train')">
+    <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
       <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
-    <div class="hfr-card" onclick="showScreen('s-rules')">
+    <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
       <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
-      <div class="hfr-name">Rules</div>
-      <div class="hfr-sub">AI lookup</div>
+      <div class="hfr-name">Crew Chief</div>
+      <div class="hfr-sub">Check the book</div>
     </div>
-    <div class="hfr-card" onclick="showScreen('s-challenge')">
+    <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
       <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
       <div class="hfr-name">Battle</div>
       <div class="hfr-sub">Head-to-head</div>
@@ -2050,7 +2053,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <!-- ─── RULES REFERENCE SCREEN ─── -->
 <div id="s-rules" class="screen">
   <div class="section-hdr">
-    <h2>📋 Rules Reference</h2>
+    <h2>📋 Crew Chief</h2>
     <p>Ask any baseball rules question</p>
   </div>
 
