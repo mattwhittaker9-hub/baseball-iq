@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Baseball IQ — Daily Training</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,12 +17,12 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}
 body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:72px}
-.app{max-width:680px;margin:0 auto;padding:16px 14px 80px}
+.app{max-width:680px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px 80px}
 .screen{display:none}.screen.active{display:block;min-height:300px}
 button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── TOP NAV (desktop) ─── */
-.top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:10px 0}
+.top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:env(safe-area-inset-top,10px) 0 10px}
 .nav-logo{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#fff}
 .nav-logo em{color:#3ecf82;font-style:normal}
 .nav-left{display:flex;gap:6px}
@@ -45,13 +45,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
 /* ─── STADIUM AUTH ─── */
-#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
+#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;justify-content:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
 #s-auth::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(1,2,8,0.45) 0%,rgba(1,2,8,0.08) 30%,rgba(1,2,8,0.30) 65%,rgba(1,2,8,0.82) 100%);z-index:0;pointer-events:none}
 #s-auth>*{position:relative;z-index:1}
 #s-auth.active{display:flex}
 .stadium-glow{position:absolute;top:0;width:100%;height:40%;background:radial-gradient(circle at 18% 4%,rgba(255,235,120,0.10),transparent 50%),radial-gradient(circle at 82% 4%,rgba(255,235,120,0.10),transparent 50%);z-index:2;pointer-events:none}
 .light-towers{display:none}.tower-flare{display:none}.field-view{display:none}
-.auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:44px 24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto}
+.auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:16px 24px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto}
 .brand-group{margin-bottom:18px}
 .pre-title{font-family:'Barlow Condensed',sans-serif;color:var(--electric-green);font-size:11px;letter-spacing:3px;font-weight:700;text-transform:uppercase}
 .brand-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:0.85;margin:6px 0}
@@ -2383,8 +2383,13 @@ function showCardFeedback(ok,q,prefix=''){
   const hint=document.getElementById(pfx+'gc-hint');
   const panel=document.getElementById(pfx+'gc-panel');
   if(icon){icon.textContent=ok?'✅':'❌';icon.className='gc-result-icon '+(ok?'ok':'bad');}
-  if(title) title.textContent=ok?"That's the play!":'Not quite...';
-  if(sub) sub.textContent=ok?'Correct read':'Wrong read';
+  const correctTitles=["That's the play!","You read it right!","Smart baseball!","Textbook!","Big brain move!","Called it!","That's the read!","Heads up ball!","Baseball IQ!","On the money!","Dialed in!","No doubt!","Exactly right!","That's why you're here!","You got this!"];
+  const correctSubs=["Correct read","Smart play","Good instincts","Knew it","That's the game","Pro move","Well played","Eyes up","That's IQ"];
+  const wrongTitles=["Not quite...","Back to the drawing board","Think it through","Almost...","Not this time","Study up!","Good guess, wrong play","Swing and a miss","Learn from it","Close, but no cigar","Rethink that one","Not the right call","Missed it","Check the explanation","Tough call"];
+  const wrongSubs=["Wrong read","Tough call","Keep working","Review it","Almost had it","Study the play","Next time","Don't give up"];
+  const pick=(arr)=>arr[Math.floor(Math.random()*arr.length)];
+  if(title) title.textContent=ok?pick(correctTitles):pick(wrongTitles);
+  if(sub) sub.textContent=ok?pick(correctSubs):pick(wrongSubs);
   if(expl) expl.textContent=q.explanation||'';
   // Spotlight — always show, pick best match for this question
   try {
