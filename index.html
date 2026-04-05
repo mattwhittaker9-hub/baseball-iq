@@ -749,6 +749,39 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .ob-btn:active{transform:scale(0.98)}
 .ob-skip{background:none;border:none;color:#3a5a78;font-size:13px;cursor:pointer;font-family:system-ui,sans-serif;padding:4px}
 
+/* ── ELITE ONBOARDING ── */
+#s-onboard{background:linear-gradient(160deg,#030e1a 0%,#06111f 60%,#040c18 100%)}
+.ob-slide{justify-content:center;padding:40px 28px 28px}
+.ob-hero-badge{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;color:#3a5a78;text-transform:uppercase;margin-bottom:8px}
+.ob-big-logo{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:2px;line-height:1;margin-bottom:14px}
+.ob-big-logo span{color:#3ecf82}
+.ob-tagline{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:32px;font-family:'Barlow',sans-serif}
+.ob-stat-row{display:flex;align-items:center;gap:0;margin-bottom:36px;width:100%;max-width:320px;background:#071520;border:1px solid #1a3050;border-radius:14px;padding:16px 0;justify-content:space-around}
+.ob-stat{text-align:center;flex:1}
+.ob-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#3ecf82;line-height:1}
+.ob-stat-lbl{font-size:10px;color:#3a5a78;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+.ob-stat-div{width:1px;height:32px;background:#1a3050}
+/* Position Picker */
+.ob-pos-header{margin-bottom:20px;width:100%}
+.ob-pos-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ob-pos-sub{font-size:13px;color:rgba(255,255,255,0.45);font-family:'Barlow',sans-serif}
+.ob-pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:340px;margin-bottom:0}
+.ob-pos-card{background:#0a1828;border:1.5px solid #1a3050;border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent}
+.ob-pos-card:active{transform:scale(0.95)}
+.ob-pos-card.selected{background:#041f0e;border-color:#3ecf82;box-shadow:0 0 16px rgba(62,207,130,0.2)}
+.ob-pos-card.ob-pos-all{border-style:dashed;border-color:#2a4a68}
+.ob-pos-card.ob-pos-all.selected{border-style:solid;border-color:#3ecf82}
+.ob-pos-abbr{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;line-height:1;margin-bottom:2px}
+.ob-pos-card.selected .ob-pos-abbr{color:#3ecf82}
+.ob-pos-name{font-size:9px;color:#3a5a78;text-transform:uppercase;letter-spacing:0.5px}
+.ob-pos-card.selected .ob-pos-name{color:rgba(62,207,130,0.7)}
+/* Slide 3 */
+.ob-fp-diamond{margin-bottom:20px;opacity:0.9}
+.ob-fp-pos{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:20px;font-family:'Barlow',sans-serif;max-width:300px}
+.ob-fp-tip{background:#071520;border:1px solid #1a3050;border-radius:12px;padding:14px 16px;margin-bottom:24px;width:100%;max-width:320px;text-align:left}
+.ob-fp-tip-row{font-size:13px;color:rgba(255,255,255,0.6);padding:3px 0;font-family:'Barlow',sans-serif}
+.ob-btn-red{background:linear-gradient(135deg,#c8102e,#a00020) !important;box-shadow:0 4px 20px rgba(200,16,46,0.35) !important;color:#fff !important}
+
 /* ═══════════════════════════════════════════
    DAILY END SCREEN
 ═══════════════════════════════════════════ */
@@ -1095,7 +1128,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
     <div class="hfr-card" onclick="showScreen('s-train')">
-      <div class="hfr-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="26" height="26"><rect width="28" height="28" rx="6" fill="#0a2818"/><g transform="translate(14,14) rotate(45)"><rect x="-8" y="-8" width="16" height="16" fill="none" stroke="#3ecf82" stroke-width="1.8" rx="1"/><circle cx="-8" cy="0" r="1.8" fill="#fff"/><circle cx="0" cy="-8" r="1.8" fill="#fff"/><circle cx="8" cy="0" r="1.8" fill="#fff"/><circle cx="0" cy="8" r="2.2" fill="#fff"/></g><circle cx="14" cy="14" r="2" fill="#8B4523"/></svg></div>
+      <div class="hfr-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="26" height="26"><rect width="28" height="28" rx="6" fill="#0a2818"/><polygon points="14,3 25,14 14,25 3,14" fill="none" stroke="#3ecf82" stroke-width="1.8"/><circle cx="14" cy="3" r="1.8" fill="#fff"/><circle cx="25" cy="14" r="1.8" fill="#fff"/><circle cx="14" cy="25" r="2.2" fill="#fff"/><circle cx="3" cy="14" r="1.8" fill="#fff"/><circle cx="14" cy="14" r="1.8" fill="#8B4523"/></svg></div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
@@ -1789,89 +1822,81 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <div id="s-onboard">
   <div class="ob-slides" id="ob-slides">
 
-    <!-- SLIDE 1: Welcome -->
+    <!-- SLIDE 1: The Hook -->
     <div class="ob-slide">
-      <div class="ob-icon">⚾</div>
-      <div class="ob-title">Welcome to<br><span>Baseball IQ</span></div>
-      <div class="ob-body">The only app that trains your <strong>situational baseball brain</strong> — not just stats, not just rules, but real in-game decisions that separate good players from great ones.</div>
-      <div class="ob-cards-preview">
-        <div class="ob-card-mini">
-          <div class="ob-card-val">497</div>
-          <div class="ob-card-lbl">Questions</div>
-        </div>
-        <div class="ob-card-mini">
-          <div class="ob-card-val">5</div>
-          <div class="ob-card-lbl">Positions</div>
-        </div>
-        <div class="ob-card-mini">
-          <div class="ob-card-val">3</div>
-          <div class="ob-card-lbl">Levels</div>
-        </div>
+      <div class="ob-hero-badge">WELCOME TO</div>
+      <div class="ob-big-logo">BASEBALL <span>IQ</span></div>
+      <div class="ob-tagline">Real situations. Real decisions.<br>Train the brain that wins games.</div>
+      <div class="ob-stat-row">
+        <div class="ob-stat"><div class="ob-stat-val">1,011</div><div class="ob-stat-lbl">Situations</div></div>
+        <div class="ob-stat-div"></div>
+        <div class="ob-stat"><div class="ob-stat-val">11</div><div class="ob-stat-lbl">Positions</div></div>
+        <div class="ob-stat-div"></div>
+        <div class="ob-stat"><div class="ob-stat-val">Free</div><div class="ob-stat-lbl">Always</div></div>
       </div>
       <div class="ob-dots">
         <div class="ob-dot active" id="dot-0"></div>
         <div class="ob-dot" id="dot-1"></div>
         <div class="ob-dot" id="dot-2"></div>
       </div>
-      <button class="ob-btn" onclick="obNext()">Let's Go →</button>
-      <button class="ob-skip" onclick="finishOnboard()">Skip intro</button>
+      <button class="ob-btn" onclick="obNext()">LET'S GO →</button>
+      <button class="ob-skip" onclick="finishOnboard()">Skip</button>
     </div>
 
-    <!-- SLIDE 2: How it works -->
+    <!-- SLIDE 2: Position Picker -->
     <div class="ob-slide">
-      <div class="ob-icon">🧠</div>
-      <div class="ob-title">Train Your<br><span>Baseball Mind</span></div>
-      <div class="ob-feature-list">
-        <div class="ob-feature">
-          <div class="ob-feature-icon">⚡</div>
-          <div class="ob-feature-text">
-            <strong>Daily Challenge</strong>
-            Same 5 questions for everyone. Resets at midnight. Build your streak.
-          </div>
-        </div>
-        <div class="ob-feature">
-          <div class="ob-feature-icon">⚾</div>
-          <div class="ob-feature-text">
-            <strong>Quick Game</strong>
-            12 questions, any position, any difficulty. Tap an answer, see the Statcast data.
-          </div>
-        </div>
-        <div class="ob-feature">
-          <div class="ob-feature-icon">⚔️</div>
-          <div class="ob-feature-text">
-            <strong>Head-to-Head Battle</strong>
-            Challenge a teammate. Same questions, live. Speed earns bonus points.
-          </div>
-        </div>
-        <div class="ob-feature">
-          <div class="ob-feature-icon">🏆</div>
-          <div class="ob-feature-text">
-            <strong>Global Leaderboard</strong>
-            Compete by age group. Prove your IQ is elite.
-          </div>
-        </div>
+      <div class="ob-pos-header">
+        <div class="ob-pos-title">WHERE DO YOU PLAY?</div>
+        <div class="ob-pos-sub">Pick your position — we'll tailor your training</div>
       </div>
-      <div class="ob-dots">
+      <div class="ob-pos-grid">
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Pitcher')"><div class="ob-pos-abbr">P</div><div class="ob-pos-name">Pitcher</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Catcher')"><div class="ob-pos-abbr">C</div><div class="ob-pos-name">Catcher</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'First Baseman')"><div class="ob-pos-abbr">1B</div><div class="ob-pos-name">First Base</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Second Baseman')"><div class="ob-pos-abbr">2B</div><div class="ob-pos-name">Second Base</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Shortstop')"><div class="ob-pos-abbr">SS</div><div class="ob-pos-name">Shortstop</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Third Baseman')"><div class="ob-pos-abbr">3B</div><div class="ob-pos-name">Third Base</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Left Fielder')"><div class="ob-pos-abbr">LF</div><div class="ob-pos-name">Left Field</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Center Fielder')"><div class="ob-pos-abbr">CF</div><div class="ob-pos-name">Center Field</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Right Fielder')"><div class="ob-pos-abbr">RF</div><div class="ob-pos-name">Right Field</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Hitter')"><div class="ob-pos-abbr">HIT</div><div class="ob-pos-name">Hitter</div></div>
+        <div class="ob-pos-card" onclick="obSelectPos(this,'Baserunner')"><div class="ob-pos-abbr">BR</div><div class="ob-pos-name">Baserunner</div></div>
+        <div class="ob-pos-card ob-pos-all" onclick="obSelectPos(this,'')"><div class="ob-pos-abbr">ALL</div><div class="ob-pos-name">All Positions</div></div>
+      </div>
+      <div class="ob-dots" style="margin-top:16px">
         <div class="ob-dot" id="dot-0b"></div>
         <div class="ob-dot active" id="dot-1b"></div>
         <div class="ob-dot" id="dot-2b"></div>
       </div>
-      <button class="ob-btn" onclick="obNext()">Got It →</button>
-      <button class="ob-skip" onclick="finishOnboard()">Skip intro</button>
+      <button class="ob-btn" id="ob-pos-btn" onclick="obNext()">NEXT →</button>
+      <button class="ob-skip" onclick="obSelectPos(null,'');obNext()">Skip — show me everything</button>
     </div>
 
-    <!-- SLIDE 3: First play -->
+    <!-- SLIDE 3: First Pitch -->
     <div class="ob-slide">
-      <div class="ob-icon">🎯</div>
-      <div class="ob-title">Ready for Your<br><span>First Situation?</span></div>
-      <div class="ob-body">Every question puts you <strong>in the game</strong> — real scenarios, real decisions. Tap the right answer and learn why with MLB Statcast data.</div>
-      <div class="ob-badge">⭐ Tip: Do the Daily Challenge every day to build your streak</div>
+      <div class="ob-fp-diamond">
+        <svg viewBox="0 0 100 100" width="90" height="90">
+          <polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="#1a3a5a" stroke-width="2"/>
+          <circle cx="50" cy="8" r="5" fill="#fff" opacity="0.9"/>
+          <circle cx="92" cy="50" r="5" fill="#fff" opacity="0.9"/>
+          <circle cx="50" cy="92" r="6" fill="#fff" opacity="0.9"/>
+          <circle cx="8" cy="50" r="5" fill="#fff" opacity="0.9"/>
+          <circle cx="50" cy="50" r="4" fill="#8B4523"/>
+        </svg>
+      </div>
+      <div class="ob-title" id="ob-fp-title">YOUR FIRST<br><span>SITUATION IS READY</span></div>
+      <div class="ob-fp-pos" id="ob-fp-pos">Tap an answer. Learn why it's right or wrong.<br>Every question makes you a smarter player.</div>
+      <div class="ob-fp-tip">
+        <div class="ob-fp-tip-row">📅 Daily Challenge = build your streak</div>
+        <div class="ob-fp-tip-row">🏆 Top the leaderboard = bragging rights</div>
+        <div class="ob-fp-tip-row">🎖️ Unlock badges as your IQ climbs</div>
+      </div>
       <div class="ob-dots">
         <div class="ob-dot" id="dot-0c"></div>
         <div class="ob-dot" id="dot-1c"></div>
         <div class="ob-dot active" id="dot-2c"></div>
       </div>
-      <button class="ob-btn" onclick="finishOnboard()">Take the Field ⚾</button>
+      <button class="ob-btn ob-btn-red" onclick="finishOnboard()">TAKE THE FIELD ⚾</button>
     </div>
 
   </div>
@@ -1989,7 +2014,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <div class="pt-pips" id="pt-pips-Baserunner"></div>
     </div>
     <div class="pt-card baserunner" data-pos="Hitter" onclick="startPositionDrill('Hitter')">
-      <div style="font-size:32px;line-height:1;margin:0 auto 4px">🪵</div>
+      <div class="pt-icon-sprite" style="font-size:32px;line-height:1;margin:0 auto 4px;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="34" height="34"><g transform="rotate(-40,20,20)"><rect x="18.5" y="4" width="3" height="12" rx="1.5" fill="#8B4523"/><ellipse cx="20" cy="18" rx="6" ry="5" fill="#8B4523"/><ellipse cx="20" cy="22" rx="7" ry="5.5" fill="#9B5533"/><ellipse cx="20" cy="26" rx="7.5" ry="5" fill="#9B5533"/><ellipse cx="20" cy="30" rx="6.5" ry="4" fill="#8B4523"/><rect x="17.5" y="32" width="5" height="5" rx="2.5" fill="#6B3010"/></g></svg></div>
       <div class="pt-name">Hitter</div>
       <div class="pt-count" id="pt-count-Hitter">— Qs</div>
       <div class="pt-pips" id="pt-pips-Hitter"></div>
@@ -2224,7 +2249,7 @@ function getCatLabel(q){
     'Center Fielder':'🎯 Center Field',
     'Right Fielder': '💪 Right Field',
     'Baserunner':    '💨 Baserunner',
-    'Hitter':        '🏏 Hitter'
+    'Hitter':        '⚾ Hitter'
   };
   if(q.position && posEmoji[q.position]) return posEmoji[q.position];
   // Fallback to category if no position
@@ -2427,9 +2452,9 @@ async function startGame(){
   document.querySelector('.play-btn').disabled=true;
   const diffs=getDifficultyForUser();
   try{
-    // Check if player has a position assignment from coach
+    // Check if player has a position assignment from coach OR their own fav_position from onboarding
     var weightedPool = null;
-    if(cat==='all' && currentUser && currentUser.primary_position) {
+    if(cat==='all' && currentUser && (currentUser.primary_position || currentUser.fav_position)) {
       weightedPool = await buildWeightedPool(diffs);
     }
     if(weightedPool && weightedPool.length >= TOTAL_QS) {
@@ -4712,13 +4737,32 @@ function cancelChallenge(){
 
 // ── ONBOARDING ──────────────────────────────────────────────────────────────
 var obSlide = 0;
+var obSelectedPos = null;
 
 function showOnboard(){
   document.getElementById('s-auth').classList.remove('active');
   document.body.style.overflow='';
   document.getElementById('s-onboard').classList.add('active');
   obSlide=0;
+  obSelectedPos=null;
   obUpdateSlide();
+}
+
+function obSelectPos(el, pos){
+  obSelectedPos = pos;
+  // Highlight selected card
+  document.querySelectorAll('.ob-pos-card').forEach(function(c){ c.classList.remove('selected'); });
+  if(el) el.classList.add('selected');
+  // Update slide 3 title
+  var fpTitle = document.getElementById('ob-fp-title');
+  var fpPos = document.getElementById('ob-fp-pos');
+  if(fpTitle){
+    if(pos) {
+      fpTitle.innerHTML = 'YOUR FIRST<br><span>' + pos.toUpperCase() + ' DRILL</span>';
+    } else {
+      fpTitle.innerHTML = 'YOUR FIRST<br><span>SITUATION IS READY</span>';
+    }
+  }
 }
 
 function obNext(){
@@ -4728,22 +4772,33 @@ function obNext(){
 
 function obUpdateSlide(){
   document.getElementById('ob-slides').style.transform = 'translateX(-'+obSlide*33.333+'%)';
-  // Update all dot sets
   [0,1,2].forEach(function(i){
-    var d0=document.getElementById('dot-'+i);
-    var d1=document.getElementById('dot-'+i+'b');
-    var d2=document.getElementById('dot-'+i+'c');
-    if(d0) d0.className='ob-dot'+(i===obSlide?' active':'');
-    if(d1) d1.className='ob-dot'+(i===obSlide?' active':'');
-    if(d2) d2.className='ob-dot'+(i===obSlide?' active':'');
+    ['dot-'+i,'dot-'+i+'b','dot-'+i+'c'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) el.className='ob-dot'+(i===obSlide?' active':'');
+    });
   });
 }
 
 function finishOnboard(){
   document.getElementById('s-onboard').classList.remove('active');
   localStorage.setItem('biq_onboarded','1');
-  // Start daily challenge directly to give them a first win
+  // Save position preference to Supabase if they picked one
+  if(obSelectedPos && currentUser){
+    currentUser.fav_position = obSelectedPos;
+    localStorage.setItem('biq_user', JSON.stringify(currentUser));
+    sb.from('players').update({fav_position: obSelectedPos}).eq('user_id', currentUser.user_id).then(function(){});
+  }
+  // Launch first game immediately — position drill if they picked one, quick game otherwise
+  initNav();
   showScreen('s-home');
+  setTimeout(function(){
+    if(obSelectedPos) {
+      startPositionDrill(obSelectedPos);
+    } else {
+      startGame();
+    }
+  }, 400);
 }
 
 function isNewUser(){
@@ -5403,9 +5458,11 @@ async function savePosition(username, panelId) {
 // Build question pool based on player's position profile
 async function buildWeightedPool(diffs) {
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
-  var primaryPos = currentUser.primary_position;
+  // Coach-assigned position takes priority; fall back to player's own fav_position
+  var primaryPos = currentUser.primary_position || currentUser.fav_position;
   var secondaryPos = currentUser.secondary_position;
-  var mixMode = currentUser.position_mix || 'blended';
+  // Coach assignments use their configured mix; self-selected positions use 'personal' (60% primary)
+  var mixMode = currentUser.primary_position ? (currentUser.position_mix || 'blended') : 'personal';
 
   if(!primaryPos) return null; // no assignment, fall through to normal game
 
@@ -5435,6 +5492,7 @@ async function buildWeightedPool(diffs) {
   // blended = "Balanced":    50% primary, 30% baserunner, 20% other  
   // general = "Full Team":   25% primary, 40% baserunner, 35% other
   var ratios = {
+    personal:  {primary:7, secondary:0, baserunner:3, general:2},
     focused:  {primary:8, secondary:0, baserunner:3, general:1},
     blended:  {primary:6, secondary:1, baserunner:4, general:1},
     general:  {primary:3, secondary:0, baserunner:5, general:4}
