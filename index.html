@@ -464,7 +464,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .home-feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;margin-top:18px}
 
 /* ─── PLAY BUTTON ─── */
-.play-btn{width:100%;background:linear-gradient(135deg,#c8102e 0%,#a00c25 100%);border:none;border-radius:14px;padding:17px;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:14px;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(200,16,46,0.30)}
+/* play-btn defined below */
 .play-btn:active{transform:scale(0.98);box-shadow:0 2px 10px rgba(200,16,46,0.20)}
 .play-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 
@@ -483,7 +483,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .dc-countdown{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px}
 .dc-body{margin-bottom:12px}
 .dc-title span{color:#3ecf82}
-.dc-btn{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:11px;padding:14px 18px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:center;margin-bottom:10px;transition:all 0.15s;box-shadow:0 4px 16px rgba(200,16,46,0.25);display:block;width:100%}
+/* dc-btn defined below */
 .dc-btn:active{transform:scale(0.98);box-shadow:none}
 .dc-team-rank{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.04);border-radius:8px;padding:8px 10px;margin-top:6px}
 .dc-done{margin-bottom:8px}
@@ -576,6 +576,16 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .rdot:active{transform:scale(0.92)}
 .review-hint{text-align:center;font-size:11px;color:#3a5a78;margin-top:6px;font-family:system-ui,sans-serif}
 
+/* ─── POSITION TRAINING REDESIGN ─── */
+.train-all-card{background:linear-gradient(135deg,#c8102e 0%,#8a0a1e 100%);border-radius:16px;padding:18px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.15s;box-shadow:0 4px 20px rgba(200,16,46,0.25);position:relative;overflow:hidden}
+.train-all-card::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.train-all-card:active{transform:scale(0.98)}
+.train-all-left{display:flex;flex-direction:column}
+.train-all-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:3px}
+.train-all-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;line-height:1}
+.train-all-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px}
+.train-all-icon{font-size:42px;line-height:1;position:relative;z-index:1}
+
 /* ─── POSITION ICONS (positions.png sprite) ─── */
 .pt-icon-sprite{
   width:72px;height:72px;border-radius:50%;
@@ -586,6 +596,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   margin:0 auto 4px;
 }
 .pt-card-wide .pt-icon-sprite{margin:0;flex-shrink:0}
+
+/* position-colored card backgrounds */
+.pt-card.pitcher{background:linear-gradient(135deg,#071828,#0a2040);border-color:#1a3a5a}
+.pt-card.catcher{background:linear-gradient(135deg,#180a14,#2a0f1e);border-color:#3a1a2a}
+.pt-card.infield{background:linear-gradient(135deg,#071810,#0a2816);border-color:#1a3a20}
+.pt-card.outfield{background:linear-gradient(135deg,#141408,#201e0a);border-color:#2a2a1a}
+.pt-card.baserunner{background:linear-gradient(135deg,#180e06,#28160a);border-color:#3a2a1a}
 .drill-card-wrap{background:linear-gradient(135deg,#0a1e0a,#0d1f08);border:1.5px solid #2a5c1a;border-radius:16px;padding:14px 16px;margin-bottom:10px}.drill-card-wrap.done{background:linear-gradient(135deg,#071a07,#0a1c06);border-color:#1a4a1a}.drill-card-hdr{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5abf3a;margin-bottom:5px;font-family:'Barlow Condensed',sans-serif}.drill-card-hdr.done{color:#3ecf82}.drill-card-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:1px}.drill-card-meta{font-size:12px;color:#5a8a4a;margin-bottom:12px;font-family:system-ui,sans-serif}.drill-start-btn{width:100%;background:linear-gradient(135deg,#2a7a1a,#3a8a28);border:none;border-radius:10px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.15s}.drill-start-btn:active{transform:scale(0.98)}.drill-done-row{display:flex;justify-content:space-between;align-items:center;background:rgba(62,207,130,0.07);border:1px solid rgba(62,207,130,0.15);border-radius:10px;padding:10px 12px}.drill-done-score{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#3ecf82;line-height:1}.cd-drill-panel{background:#071520;border:1px solid #1a3050;border-radius:10px;padding:12px;margin-bottom:12px}.cd-drill-input{width:100%;box-sizing:border-box;background:#040e1a;border:1px solid #1a3050;border-radius:8px;padding:8px 10px;color:#e0e8f0;font-size:13px;font-family:system-ui,sans-serif;margin-bottom:8px}.cd-drill-row{display:flex;gap:8px;margin-bottom:8px}.cd-drill-select{flex:1;background:#040e1a;border:1px solid #1a3050;border-radius:8px;padding:7px 8px;color:#e0e8f0;font-size:13px;font-family:system-ui,sans-serif}.cd-drill-assign-btn{width:100%;background:#1a6a0a;border:none;border-radius:8px;padding:10px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:#fff;letter-spacing:1.5px;cursor:pointer;text-transform:uppercase}.cd-drill-status-msg{font-size:11px;color:#3ecf82;margin-top:6px;min-height:14px;font-family:system-ui,sans-serif}.cd-drill-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;margin-top:4px;font-family:system-ui,sans-serif}.cd-drill-badge.pending{background:rgba(200,160,0,0.15);color:#c8a000;border:1px solid rgba(200,160,0,0.25)}.cd-drill-badge.done{background:rgba(62,207,130,0.12);color:#3ecf82;border:1px solid rgba(62,207,130,0.2)}.cd-drill-badge.none{background:rgba(255,255,255,0.05);color:#4a6a88;border:1px solid rgba(255,255,255,0.08)}
 
 /* ─── WRONG ANSWER REVIEW SECTION ─── */
@@ -1035,7 +1052,10 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <!-- Quick Play -->
   <button class="play-btn" id="start-btn" onclick="startGame()">
-    ⚾ &nbsp;<span id="play-btn-text">Take the Field</span>
+    ⚾ &nbsp;<span id="play-btn-text">Quick Game</span>
+  </button>
+  <button class="play-btn" onclick="showScreen('s-train')" style="background:linear-gradient(135deg,#0a2040,#071828);border:1px solid #1a3a5a;box-shadow:none;margin-top:-8px">
+    🎯 &nbsp;Train by Position
   </button>
 
   <!-- Coach Team Message Banner -->
@@ -1859,20 +1879,30 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <!-- ─── POSITION TRAINING SCREEN ─── -->
 <div id="s-train" class="screen">
   <div class="section-hdr">
-    <h2>🎯 Position Training</h2>
-    <p>Master every role on the field</p>
+    <h2>⚾ Train by Position</h2>
+    <p>Pick your spot on the field</p>
   </div>
 
-  <!-- Pitching & Catching -->
+  <!-- Quick all-positions card -->
+  <div class="train-all-card" onclick="startGame()">
+    <div class="train-all-left">
+      <div class="train-all-lbl">Quick Game</div>
+      <div class="train-all-title">All Positions</div>
+      <div class="train-all-sub">Mixed · Any difficulty · 12 questions</div>
+    </div>
+    <div class="train-all-icon">⚾</div>
+  </div>
+
+  <!-- Battery -->
   <div class="pt-section-lbl">Battery</div>
   <div class="pt-row-2">
-    <div class="pt-card" data-pos="Pitcher" onclick="startPositionDrill('Pitcher')">
+    <div class="pt-card pitcher" data-pos="Pitcher" onclick="startPositionDrill('Pitcher')">
       <div class="pt-icon-sprite" style="background-position:-6px -2px"></div>
       <div class="pt-name">Pitcher</div>
       <div class="pt-count" id="pt-count-Pitcher">— Qs</div>
       <div class="pt-pips" id="pt-pips-Pitcher"></div>
     </div>
-    <div class="pt-card" data-pos="Catcher" onclick="startPositionDrill('Catcher')">
+    <div class="pt-card catcher" data-pos="Catcher" onclick="startPositionDrill('Catcher')">
       <div class="pt-icon-sprite" style="background-position:-90px -2px"></div>
       <div class="pt-name">Catcher</div>
       <div class="pt-count" id="pt-count-Catcher">— Qs</div>
@@ -1883,25 +1913,25 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Infield -->
   <div class="pt-section-lbl">Infield</div>
   <div class="pt-row-4">
-    <div class="pt-card" data-pos="First Baseman" onclick="startPositionDrill('First Baseman')">
+    <div class="pt-card infield" data-pos="First Baseman" onclick="startPositionDrill('First Baseman')">
       <div class="pt-icon-sprite" style="background-position:-175px -2px"></div>
       <div class="pt-name">1st Base</div>
       <div class="pt-count" id="pt-count-First Baseman">— Qs</div>
       <div class="pt-pips" id="pt-pips-First Baseman"></div>
     </div>
-    <div class="pt-card" data-pos="Second Baseman" onclick="startPositionDrill('Second Baseman')">
+    <div class="pt-card infield" data-pos="Second Baseman" onclick="startPositionDrill('Second Baseman')">
       <div class="pt-icon-sprite" style="background-position:-259px -2px"></div>
       <div class="pt-name">2nd Base</div>
       <div class="pt-count" id="pt-count-Second Baseman">— Qs</div>
       <div class="pt-pips" id="pt-pips-Second Baseman"></div>
     </div>
-    <div class="pt-card" data-pos="Shortstop" onclick="startPositionDrill('Shortstop')">
+    <div class="pt-card infield" data-pos="Shortstop" onclick="startPositionDrill('Shortstop')">
       <div class="pt-icon-sprite" style="background-position:-343px -2px"></div>
       <div class="pt-name">Shortstop</div>
       <div class="pt-count" id="pt-count-Shortstop">— Qs</div>
       <div class="pt-pips" id="pt-pips-Shortstop"></div>
     </div>
-    <div class="pt-card" data-pos="Third Baseman" onclick="startPositionDrill('Third Baseman')">
+    <div class="pt-card infield" data-pos="Third Baseman" onclick="startPositionDrill('Third Baseman')">
       <div class="pt-icon-sprite" style="background-position:-6px -79px"></div>
       <div class="pt-name">3rd Base</div>
       <div class="pt-count" id="pt-count-Third Baseman">— Qs</div>
@@ -1912,19 +1942,19 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Outfield -->
   <div class="pt-section-lbl">Outfield</div>
   <div class="pt-row-3">
-    <div class="pt-card" data-pos="Left Fielder" onclick="startPositionDrill('Left Fielder')">
+    <div class="pt-card outfield" data-pos="Left Fielder" onclick="startPositionDrill('Left Fielder')">
       <div class="pt-icon-sprite" style="background-position:-6px -155px"></div>
       <div class="pt-name">Left Field</div>
       <div class="pt-count" id="pt-count-Left Fielder">— Qs</div>
       <div class="pt-pips" id="pt-pips-Left Fielder"></div>
     </div>
-    <div class="pt-card" data-pos="Center Fielder" onclick="startPositionDrill('Center Fielder')">
+    <div class="pt-card outfield" data-pos="Center Fielder" onclick="startPositionDrill('Center Fielder')">
       <div class="pt-icon-sprite" style="background-position:-175px -79px"></div>
       <div class="pt-name">Center Field</div>
       <div class="pt-count" id="pt-count-Center Fielder">— Qs</div>
       <div class="pt-pips" id="pt-pips-Center Fielder"></div>
     </div>
-    <div class="pt-card" data-pos="Right Fielder" onclick="startPositionDrill('Right Fielder')">
+    <div class="pt-card outfield" data-pos="Right Fielder" onclick="startPositionDrill('Right Fielder')">
       <div class="pt-icon-sprite" style="background-position:-175px -155px"></div>
       <div class="pt-name">Right Field</div>
       <div class="pt-count" id="pt-count-Right Fielder">— Qs</div>
@@ -1934,28 +1964,20 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <!-- Baserunning & Hitting -->
   <div class="pt-section-lbl">Baserunning &amp; Hitting</div>
-  <div class="pt-row-1">
-    <div class="pt-card pt-card-wide" data-pos="Baserunner" onclick="startPositionDrill('Baserunner')">
+  <div class="pt-row-2">
+    <div class="pt-card baserunner" data-pos="Baserunner" onclick="startPositionDrill('Baserunner')">
       <div class="pt-icon-sprite" style="background-position:-90px -155px"></div>
       <div class="pt-name">Baserunner</div>
-      <div class="pt-sub">Reads · Leads · Stolen bases · Rundowns</div>
       <div class="pt-count" id="pt-count-Baserunner">— Qs</div>
       <div class="pt-pips" id="pt-pips-Baserunner"></div>
     </div>
-  </div>
-  <div class="pt-row-1" style="margin-top:8px">
-    <div class="pt-card pt-card-wide" data-pos="Hitter" onclick="startPositionDrill('Hitter')">
-      <div style="width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px">🏏</div>
+    <div class="pt-card baserunner" data-pos="Hitter" onclick="startPositionDrill('Hitter')">
+      <div style="font-size:32px;line-height:1;margin:0 auto 4px">🪵</div>
       <div class="pt-name">Hitter</div>
-      <div class="pt-sub">Counts · Approach · Situational hitting · Squeezes</div>
       <div class="pt-count" id="pt-count-Hitter">— Qs</div>
       <div class="pt-pips" id="pt-pips-Hitter"></div>
     </div>
   </div>
-
-  <button class="play-btn" onclick="showScreen('s-home')" style="margin-top:12px;background:#0c1e30;border:1px solid #1a3050;color:#5a7a98;font-size:15px;padding:12px">
-    ← Back to Home
-  </button>
 </div>
 
 
