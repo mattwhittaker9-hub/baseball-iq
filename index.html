@@ -462,6 +462,51 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .hqp-pill:active{opacity:0.7}
 
 .home-feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;margin-top:18px}
+
+/* ─── PLAY BUTTON ─── */
+.play-btn{width:100%;background:linear-gradient(135deg,#c8102e 0%,#a00c25 100%);border:none;border-radius:14px;padding:17px;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:14px;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(200,16,46,0.30)}
+.play-btn:active{transform:scale(0.98);box-shadow:0 2px 10px rgba(200,16,46,0.20)}
+.play-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+
+/* ─── DAILY CHALLENGE CARD ─── */
+.dc-hero{background:linear-gradient(135deg,#0a1628 0%,#0d2040 100%);border:1px solid #1a3050;border-radius:16px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden}
+.dc-hero::before{content:'';position:absolute;left:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
+.dc-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3a5a78;margin-bottom:10px}
+.dc-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:2px}
+.dc-sub{font-size:12px;color:#4a6a88;margin-bottom:12px}
+
+/* ─── DC CARD INNER ELEMENTS ─── */
+.dc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.dc-live-badge{display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3ecf82}
+.dc-live-dot{width:7px;height:7px;border-radius:50%;background:#3ecf82;flex-shrink:0;box-shadow:0 0 6px rgba(62,207,130,0.6);animation:livePulse 2s ease-in-out infinite}
+@keyframes livePulse{0%,100%{opacity:1;box-shadow:0 0 6px rgba(62,207,130,0.6)}50%{opacity:0.5;box-shadow:0 0 2px rgba(62,207,130,0.3)}}
+.dc-countdown{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px}
+.dc-body{margin-bottom:12px}
+.dc-title span{color:#3ecf82}
+.dc-btn{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:11px;padding:14px 18px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:center;margin-bottom:10px;transition:all 0.15s;box-shadow:0 4px 16px rgba(200,16,46,0.25);display:block;width:100%}
+.dc-btn:active{transform:scale(0.98);box-shadow:none}
+.dc-team-rank{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.04);border-radius:8px;padding:8px 10px;margin-top:6px}
+.dc-done{margin-bottom:8px}
+.dc-done-score-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.dc-done-score{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:#3ecf82;line-height:1}
+.dc-done-pct{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#e8f4ff;text-align:right}
+.dc-done-meta{font-size:11px;color:#4a6a88;text-align:right;line-height:1.5;margin-top:2px}
+.dc-done-dots{display:flex;gap:5px;margin:8px 0}
+.dc-done-share{width:100%;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:9px;padding:10px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px;margin-top:6px}
+.dc-streak-row{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+.dc-streak-fire{font-size:22px;line-height:1;flex-shrink:0}
+.dc-streak-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;line-height:1;flex-shrink:0}
+.dc-streak-lbl{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.3}
+.dc-streak-lbl strong{color:#fff;display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:0.5px}
+.dc-rank-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#4a6a88;margin-bottom:8px}
+.dc-rank-lbl{font-size:11px;color:#3a5a78}
+.dc-rank-val{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#e8c060}
+.dc-done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,130,0.1);border:1px solid rgba(62,207,130,0.25);border-radius:8px;padding:8px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3ecf82;letter-spacing:0.5px;margin-bottom:8px}
+.dc-timer{font-size:11px;color:#3a5a78;text-align:center}
+
+/* ─── SCREEN CONSISTENCY ─── */
+.screen-header{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a5a78;margin-bottom:12px;padding-top:4px}
+
 .hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .hfr-card:active{transform:scale(0.96);background:#102030}
 .hfr-icon{font-size:22px;line-height:1}
@@ -629,6 +674,49 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <div class="tower-flare"></div>
   </div>
 
+  <!-- Field: close-up home plate area with correct orientation -->
+  <svg class="field-view" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="clayGrad" cx="50%" cy="100%" r="90%">
+        <stop offset="0%" stop-color="#A84020"/>
+        <stop offset="45%" stop-color="#8B3318"/>
+        <stop offset="100%" stop-color="#4A1808"/>
+      </radialGradient>
+      <radialGradient id="lightOnClay" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="rgba(255,248,175,0.13)"/>
+        <stop offset="100%" stop-color="rgba(255,240,140,0)"/>
+      </radialGradient>
+      <linearGradient id="skyBlend" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#010204" stop-opacity="1"/>
+        <stop offset="42%" stop-color="#010204" stop-opacity="0.88"/>
+        <stop offset="58%" stop-color="#010204" stop-opacity="0.18"/>
+        <stop offset="67%" stop-color="#010204" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Brickdust clay fills bottom portion -->
+    <rect x="0" y="490" width="400" height="310" fill="url(#clayGrad)"/>
+    <rect x="0" y="490" width="400" height="310" fill="url(#lightOnClay)"/>
+
+    <!-- Chalk markings -->
+    <g stroke="rgba(255,255,255,0.68)" stroke-width="2.2" fill="none">
+      <!-- Left batter's box -->
+      <rect x="62" y="610" width="88" height="130"/>
+      <!-- Right batter's box -->
+      <rect x="250" y="610" width="88" height="130"/>
+      <!-- Catcher's box (behind home plate) -->
+      <rect x="158" y="760" width="84" height="40"/>
+    </g>
+
+    <!-- Home plate: correct orientation
+         Flat edge at BOTTOM (catcher side, close to viewer)
+         Point facing UP (toward pitcher, away from viewer) -->
+    <polygon points="162,758 238,758 244,734 200,718 156,734"
+             fill="rgba(255,255,255,0.95)"/>
+
+    <!-- Sky fade into clay -->
+    <rect width="400" height="800" fill="url(#skyBlend)"/>
+  </svg>
 
   <!-- Content -->
   <div class="auth-container">
@@ -3578,8 +3666,19 @@ document.getElementById('tab-register').addEventListener('click',()=>{
 let parentType='player';
 // player type buttons removed
 
-
-
+document.getElementById('reg-age').addEventListener('input',e=>{
+  const a=parseInt(e.target.value);
+  const el=document.getElementById('age-preview');
+  if(a>=5&&a<=99){
+    const g=ageToGroup(a);
+    const gi=groupInfo(g);
+    el.className='age-group-preview set';
+    el.textContent=gi.emoji+' '+g;
+  }else{
+    el.className='age-group-preview';
+    el.textContent='Enter your age to see your division';
+  }
+});
 
 document.getElementById('login-btn').addEventListener('click',async()=>{
   const btn=document.getElementById('login-btn');
