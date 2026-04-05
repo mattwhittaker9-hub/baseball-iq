@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Baseball IQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#06111f;--bg2:#0a1828;--border:#162840;--green:#3ecf82;--red:#c8102e;--blue:#378add;--text:#e8f0f8;--muted:rgba(255,255,255,0.5);--dim:rgba(255,255,255,0.25)}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.site-header{background:#040d18;border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:1px;text-transform:uppercase}
+.logo em{color:var(--green);font-style:normal}
+.back-btn{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.back-btn:hover{color:var(--green)}
+.hero{background:linear-gradient(135deg,#040d18 0%,#071520 60%,#040d18 100%);border-bottom:1px solid var(--border);padding:56px 24px 40px;text-align:center}
+.hero-badge{display:inline-block;background:rgba(62,207,130,0.1);border:1px solid rgba(62,207,130,0.25);border-radius:20px;padding:4px 14px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,52px);font-weight:900;text-transform:uppercase;letter-spacing:1px;line-height:1;margin-bottom:12px}
+.hero h1 span{color:var(--green)}
+.hero-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 20px}
+.effective-date{font-size:12px;color:var(--dim);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase}
+.page-wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px}
+.toc{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:48px}
+.toc-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+@media(max-width:500px){.toc ol{grid-template-columns:1fr}}
+.toc li{counter-increment:toc}
+.toc a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.15s;display:flex;align-items:baseline;gap:6px}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:var(--green);flex-shrink:0}
+.toc a:hover{color:var(--green)}
+.section{margin-bottom:52px;scroll-margin-top:80px}
+.section-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
+.section h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:0.5px;color:#fff;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.section p{font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:14px}
+.section p:last-child{margin-bottom:0}
+.section strong{color:#fff;font-weight:600}
+.callout{border-radius:12px;padding:16px 20px;margin:18px 0;font-size:14px;line-height:1.6}
+.callout.green{background:rgba(62,207,130,0.07);border:1px solid rgba(62,207,130,0.2);color:rgba(62,207,130,0.9)}
+.callout.blue{background:rgba(55,138,221,0.07);border:1px solid rgba(55,138,221,0.2);color:rgba(90,171,220,0.9)}
+.callout.yellow{background:rgba(232,192,96,0.07);border:1px solid rgba(232,192,96,0.2);color:rgba(232,192,96,0.9)}
+.callout strong{color:inherit}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0;border-radius:10px;overflow:hidden}
+.data-table th{background:#071520;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table td{padding:12px 14px;border-bottom:1px solid rgba(22,40,64,0.5);color:rgba(255,255,255,0.7);vertical-align:top}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+.policy-list{list-style:none;padding:0;margin:14px 0}
+.policy-list li{font-size:15px;color:rgba(255,255,255,0.75);padding:6px 0 6px 20px;position:relative}
+.policy-list li::before{content:'—';position:absolute;left:0;color:var(--green);font-weight:700}
+.contact-card{background:linear-gradient(135deg,#040d18,#071520);border:1px solid var(--border);border-top:2px solid var(--green);border-radius:14px;padding:28px;text-align:center}
+.contact-card h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:8px}
+.contact-card p{font-size:14px;color:var(--muted);margin-bottom:16px}
+.contact-email{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--green);text-decoration:none;letter-spacing:0.5px;border-bottom:1px solid rgba(62,207,130,0.3);padding-bottom:2px}
+.contact-email:hover{border-color:var(--green)}
+.page-footer{background:#040d18;border-top:1px solid var(--border);padding:24px;text-align:center}
+.page-footer p{font-size:13px;color:var(--dim)}
+.page-footer a{color:var(--muted);text-decoration:none}
+.page-footer a:hover{color:var(--green)}
+.coppa-banner{background:linear-gradient(135deg,rgba(200,16,46,0.08),rgba(200,16,46,0.04));border:1px solid rgba(200,16,46,0.25);border-radius:12px;padding:18px 22px;margin:18px 0;display:flex;gap:14px;align-items:flex-start}
+.coppa-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.coppa-text{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.6}
+.coppa-text strong{color:#fff}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="logo">Baseball <em>IQ</em></a>
+  <a href="/" class="back-btn">&#8592; Back to App</a>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">Legal &amp; Privacy</div>
+  <h1>Privacy <span>Policy</span></h1>
+  <p class="hero-sub">We built Baseball IQ for players. Here's exactly what we collect, why we collect it, and how we protect it — in plain English.</p>
+  <p class="effective-date">Effective Date: April 5, 2026 &nbsp;&middot;&nbsp; Version 1.0</p>
+</div>
+
+<div class="page-wrap">
+
+<nav class="toc">
+  <div class="toc-title">On This Page</div>
+  <ol>
+    <li><a href="#who-we-are">Who We Are</a></li>
+    <li><a href="#what-we-collect">What We Collect</a></li>
+    <li><a href="#how-we-use">How We Use It</a></li>
+    <li><a href="#who-we-share">Who We Share With</a></li>
+    <li><a href="#children">Children &amp; COPPA</a></li>
+    <li><a href="#your-rights">Your Rights</a></li>
+    <li><a href="#data-security">Data Security</a></li>
+    <li><a href="#cookies">Cookies &amp; Storage</a></li>
+    <li><a href="#changes">Policy Changes</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ol>
+</nav>
+
+<div class="callout green">
+  <strong>The short version:</strong> Baseball IQ collects only what's needed to run your account and track your progress. We do not sell your data. We do not advertise to you. We do not share your information with third parties for marketing. Ever.
+</div>
+
+<section class="section" id="who-we-are">
+  <div class="section-num">01</div>
+  <h2>Who We Are</h2>
+  <p>Baseball IQ is an educational baseball training application available at <strong>playbaseballiq.com</strong>. We are an independent app and operate as its creator. If you have questions about this policy, see Section 10 for how to reach us.</p>
+  <p>This Privacy Policy applies to all users of the Baseball IQ web application, including players, coaches, and parents who create accounts on behalf of minors.</p>
+</section>
+
+<section class="section" id="what-we-collect">
+  <div class="section-num">02</div>
+  <h2>What We Collect</h2>
+  <p>We collect only what's necessary to make the app work. Here's the full list:</p>
+  <table class="data-table">
+    <thead><tr><th>Data Type</th><th>What It Is</th><th>Why We Need It</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Email address</strong></td><td>The email you sign up with</td><td>Account login and password recovery</td></tr>
+      <tr><td><strong>Username</strong></td><td>Display name you choose</td><td>Leaderboard display and team rosters</td></tr>
+      <tr><td><strong>Age / age group</strong></td><td>Whether you're Youth or Adult</td><td>Separate leaderboard categories</td></tr>
+      <tr><td><strong>Game performance</strong></td><td>Scores, streaks, answers, IQ score</td><td>Progress tracking and leaderboards</td></tr>
+      <tr><td><strong>Position preference</strong></td><td>Your chosen field position</td><td>Personalizing your question mix</td></tr>
+      <tr><td><strong>Team code</strong></td><td>Team join code (if on a team)</td><td>Connecting players with their coach</td></tr>
+      <tr><td><strong>Flagged questions</strong></td><td>Questions you report as problematic</td><td>Improving question quality</td></tr>
+      <tr><td><strong>Device/session info</strong></td><td>Browser type, approximate visit times</td><td>Debugging and service improvement</td></tr>
+    </tbody>
+  </table>
+  <p>We do <strong>not</strong> collect: full name, phone number, home address, school name, photos, payment information, or location data.</p>
+</section>
+
+<section class="section" id="how-we-use">
+  <div class="section-num">03</div>
+  <h2>How We Use It</h2>
+  <p>Your data is used only for the following purposes:</p>
+  <ul class="policy-list">
+    <li>Creating and managing your account</li>
+    <li>Tracking your scores, IQ rating, and progress over time</li>
+    <li>Displaying your username on leaderboards and team rosters</li>
+    <li>Personalizing questions based on your position preference</li>
+    <li>Allowing coaches to view their team's training progress</li>
+    <li>Sending password reset emails (only when you request one)</li>
+    <li>Investigating reported questions to improve content quality</li>
+    <li>Diagnosing bugs and improving app performance</li>
+  </ul>
+  <div class="callout blue">
+    <strong>We will never:</strong> send you marketing emails, show you ads, sell your data, or use your information for any purpose unrelated to operating Baseball IQ.
+  </div>
+</section>
+
+<section class="section" id="who-we-share">
+  <div class="section-num">04</div>
+  <h2>Who We Share With</h2>
+  <p>We do not sell, rent, or trade your personal information. Period. We use a small number of trusted infrastructure providers to operate the app:</p>
+  <table class="data-table">
+    <thead><tr><th>Provider</th><th>Purpose</th><th>What They See</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Supabase</strong></td><td>Database &amp; authentication</td><td>Account data, scores (stored securely)</td></tr>
+      <tr><td><strong>Netlify</strong></td><td>Web hosting &amp; delivery</td><td>Anonymous web traffic only</td></tr>
+      <tr><td><strong>Google Fonts</strong></td><td>Typography</td><td>Your IP address (standard web request)</td></tr>
+    </tbody>
+  </table>
+  <p>Each provider has their own privacy policy and security standards. We may disclose information if required by law, court order, or to protect the safety of our users.</p>
+</section>
+
+<section class="section" id="children">
+  <div class="section-num">05</div>
+  <h2>Children &amp; COPPA</h2>
+  <div class="coppa-banner">
+    <div class="coppa-icon">&#9918;</div>
+    <div class="coppa-text">Baseball IQ is designed for players of all ages, including children under 13. We take the privacy of young players seriously and comply with the <strong>Children's Online Privacy Protection Act (COPPA)</strong>.</div>
+  </div>
+  <p>For users under 13 years old:</p>
+  <ul class="policy-list">
+    <li><strong>Parental consent is required</strong> before creating an account. By signing a child up, a parent or guardian confirms they have reviewed this policy and consent to data collection on their child's behalf.</li>
+    <li>We collect only the minimum information necessary — a username, email, age group, and gameplay data.</li>
+    <li>We do not collect sensitive personal information from children.</li>
+    <li>We do not use children's data for advertising or share it with third parties for marketing.</li>
+    <li>We recommend not using your child's real full name as their username on the leaderboard.</li>
+    <li>Parents or guardians may request to review, correct, or delete their child's data at any time by contacting us (see Section 10).</li>
+  </ul>
+  <div class="callout yellow">
+    <strong>For coaches:</strong> When you add players to your team, you are responsible for having obtained appropriate consent from those players and their parents. Do not add players who have not agreed to participate.
+  </div>
+</section>
+
+<section class="section" id="your-rights">
+  <div class="section-num">06</div>
+  <h2>Your Rights</h2>
+  <p>You have the following rights regarding your data:</p>
+  <ul class="policy-list">
+    <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+    <li><strong>Correction:</strong> Request we fix inaccurate information</li>
+    <li><strong>Deletion:</strong> Request we delete your account and associated data</li>
+    <li><strong>Portability:</strong> Request your data in a readable format</li>
+    <li><strong>Objection:</strong> Object to certain uses of your data</li>
+  </ul>
+  <p>To exercise any of these rights, contact us at the email in Section 10. We will respond within 30 days. Account deletion removes your profile, scores, and leaderboard entries.</p>
+  <p>If you are located in the European Union or California, you may have additional rights under GDPR or CCPA respectively. We honor these rights for all users regardless of location.</p>
+</section>
+
+<section class="section" id="data-security">
+  <div class="section-num">07</div>
+  <h2>Data Security</h2>
+  <p>We take reasonable steps to protect your information:</p>
+  <ul class="policy-list">
+    <li>All data is transmitted over <strong>HTTPS</strong> (encrypted in transit)</li>
+    <li>Passwords are never stored in plain text — authentication is handled by Supabase with industry-standard hashing</li>
+    <li>Database access requires authenticated API keys not exposed publicly</li>
+    <li>We do not store payment information (Baseball IQ is free)</li>
+  </ul>
+  <p>No internet transmission or storage system is 100% secure. If you believe your account has been compromised, contact us immediately.</p>
+</section>
+
+<section class="section" id="cookies">
+  <div class="section-num">08</div>
+  <h2>Cookies &amp; Local Storage</h2>
+  <p>Baseball IQ uses browser local storage (not traditional tracking cookies) to:</p>
+  <ul class="policy-list">
+    <li>Keep you signed in between sessions</li>
+    <li>Remember your onboarding status</li>
+    <li>Cache your profile locally for faster loading</li>
+    <li>Store your position preference and game progress temporarily</li>
+  </ul>
+  <p>We do <strong>not</strong> use advertising cookies, cross-site tracking cookies, or third-party analytics that profile you across the web. You can clear local storage at any time through your browser settings — this signs you out but does not delete your account.</p>
+</section>
+
+<section class="section" id="changes">
+  <div class="section-num">09</div>
+  <h2>Policy Changes</h2>
+  <p>We may update this Privacy Policy from time to time. When we make significant changes, we will update the "Effective Date" at the top of this page and notify you by email or in-app notice for material changes.</p>
+  <p>Your continued use of Baseball IQ after any changes constitutes acceptance of the updated policy. If you disagree with changes, you can request account deletion at any time.</p>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-num">10</div>
+  <h2>Contact Us</h2>
+  <p>Questions, requests, or concerns about your privacy? We respond personally.</p>
+  <div class="contact-card">
+    <h3>Get in Touch</h3>
+    <p>For privacy requests, data deletion, parental inquiries, or any other privacy-related questions:</p>
+    <a class="contact-email" href="mailto:privacy@playbaseballiq.com">privacy@playbaseballiq.com</a>
+    <p style="margin-top:16px;font-size:12px;color:var(--dim)">We aim to respond to all privacy requests within 30 days.</p>
+  </div>
+</section>
+
+</div>
+
+<footer class="page-footer">
+  <p>&#169; 2026 Baseball IQ &nbsp;&middot;&nbsp; <a href="/">Back to App</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
+  <p style="margin-top:6px">Baseball IQ is a free educational app. Not affiliated with MLB or any official baseball organization.</p>
+</footer>
+
+</body>
+</html>
