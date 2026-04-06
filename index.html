@@ -119,7 +119,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-inning{font-family:Barlow Condensed,sans-serif;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .gc-question{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.2;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px}
 .gc-choices{display:flex;flex-direction:column;gap:7px}
-.gc-choice{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Barlow',sans-serif;width:100%;min-height:48px}
+.gc-choice{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Barlow',sans-serif;width:100%;min-height:auto}
 .gc-choice:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.2);box-shadow:0 2px 12px rgba(0,0,0,0.3);transform:translateY(-1px)}
 .gc-choice:active{transform:scale(0.98)}
 .gc-ltr{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:Barlow Condensed,sans-serif;font-size:13px;font-weight:800;color:rgba(255,255,255,0.4);flex-shrink:0}
@@ -997,8 +997,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <button class="main-cta" id="login-btn">Sign In &rarr;</button>
         <button type="button" id="forgot-btn" class="secondary-action">Forgot password?</button>
         <div class="auth-msg" id="login-msg"></div>
-      </div>
-
       <div id="form-forgot" class="auth-form">
         <div>
           <label class="field-label">Email address</label>
@@ -1407,7 +1405,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <div class="gc-sp-detail" id="gc-sp-detail"></div>
       </div>
       <button class="gc-next" id="gc-next">Next Situation ↑</button>
-      <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question for review">🚩 Flag</button>
+      <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question for review">📋 Challenge</button>
     </div>
   </div>
   <div class="gc-swipe-hint" id="gc-hint">Tap an answer</div>
@@ -2109,7 +2107,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     </button>
     <button class="bnav-btn" data-screen="s-team">
       <span class="bnav-icon"><div class="icon-sprite icon-team"></div></span>
-      <span class="bnav-label">Team</span>
+      <span class="bnav-label">Dugout</span>
     </button>
     <button class="bnav-btn" data-screen="s-stats">
       <span class="bnav-icon"><div class="icon-sprite icon-stats"></div></span>
@@ -2134,7 +2132,7 @@ const sb=createClient(
 );
 
 // ─── CONSTANTS ───
-var TOTAL_QS=12;
+var TOTAL_QS=7;
 const DAILY_QS=5;
 const SITE_URL='playbaseballiq.com';
 
@@ -3996,7 +3994,7 @@ document.getElementById('tab-login').addEventListener('click',()=>{
 document.getElementById('tab-register').addEventListener('click',()=>{
   document.getElementById('tab-register').classList.add('on');
   document.getElementById('tab-login').classList.remove('on');
-  document.getElementById('form-register').className='auth-form active';
+  document.getElementById('form-register').className='auth-form active';['reg-username','reg-email','reg-password','reg-age'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';}); 
   document.getElementById('form-login').className='auth-form';
   document.getElementById('form-forgot').className='auth-form';
 });
