@@ -18,7 +18,7 @@
 html{height:100%}
 body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:72px}
 .app{max-width:680px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px 80px}
-.screen{display:none}.screen.active{display:block;min-height:300px}
+.screen{display:none}.screen.active{display:block;min-height:300px}.screen#s-auth.active{overflow-y:auto;height:auto}
 button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── TOP NAV (desktop) ─── */
@@ -69,7 +69,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 #s-auth.active{display:flex}
 .stadium-glow{position:absolute;top:0;width:100%;height:40%;background:radial-gradient(circle at 18% 4%,rgba(255,235,120,0.10),transparent 50%),radial-gradient(circle at 82% 4%,rgba(255,235,120,0.10),transparent 50%);z-index:2;pointer-events:none}
 .light-towers{display:none}.tower-flare{display:none}.field-view{display:none}
-.auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:16px 24px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto}
+.auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:24px 24px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto;min-height:100vh;justify-content:center}
 .brand-group{margin-bottom:18px}
 .pre-title{font-family:'Barlow Condensed',sans-serif;color:var(--electric-green);font-size:11px;letter-spacing:3px;font-weight:700;text-transform:uppercase}
 .brand-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:0.85;margin:6px 0}
@@ -992,7 +992,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         </div>
         <div>
           <label class="field-label">Password</label>
-          <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password">
+          <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="off">
         </div>
         <button class="main-cta" id="login-btn">Sign In &rarr;</button>
         <button type="button" id="forgot-btn" class="secondary-action">Forgot password?</button>
