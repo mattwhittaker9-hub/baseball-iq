@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Baseball IQ — Daily Training</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,14 +17,14 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}
 body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:72px}
-.app{max-width:680px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px 80px}
-.screen{display:none}.screen.active{display:block;min-height:300px}.screen#s-auth.active{overflow-y:auto;height:auto}
+.app{max-width:680px;margin:0 auto;padding:16px 14px 80px}
+.screen{display:none}.screen.active{display:block;min-height:300px}
 button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── TOP NAV (desktop) ─── */
-.top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:env(safe-area-inset-top,10px) 0 10px}
+.top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:10px 0}
 .nav-logo{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#fff}
-.nav-logo em{color:#3ecf82;font-style:normal}
+.nav-logo em{color:#c8102e;font-style:normal}
 .nav-left{display:flex;gap:6px}
 .nav-btn{background:transparent;border:1px solid #1a3050;border-radius:5px;padding:8px 16px;font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:700;color:#4a6a88;text-transform:uppercase;letter-spacing:1px;transition:all 0.2s}
 .nav-btn:hover{border-color:#3a5a78;color:#a0c0d8}
@@ -37,39 +37,21 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── BOTTOM NAV (mobile) ─── */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#071520;border-top:1px solid #162840;z-index:100;padding:6px 0 env(safe-area-inset-bottom,0)}.bottom-nav.bnav-visible{display:block}
 .bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
-.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
 .bnav-btn.active{color:#c8102e}
-.bnav-icon{font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;height:44px}
-
-/* ── ICON SPRITE SYSTEM (icons.png 2816×1536, 4×2 grid) ── */
-/* ── ICON SPRITE SYSTEM ── */
-.icon-sprite{width:44px;height:44px;background-image:url('icons.png');background-repeat:no-repeat;flex-shrink:0;border-radius:8px;overflow:hidden}
-.icon-home{background-size:199px 108px;background-position:-4px -7px}
-.icon-board{background-size:160px 87px;background-position:-39px -2px}
-.icon-team{background-size:160px 87px;background-position:-78px -2px}
-.icon-stats{background-size:199px 108px;background-position:-151px -7px}
-.icon-rules{background-size:214px 117px;background-position:-6px -59px}
-.icon-battle{background-size:202px 110px;background-position:-51px -55px}
-.icon-pro{background-size:200px 109px;background-position:-101px -54px}
-.icon-train{background-size:206px 112px;background-position:-153px -56px}
-.icon-sprite.background-size:206px 112px;background-position:-153px -56px}
-.icon-hfr.icon-rules{background-size:363px 198px;background-position:-10px -106px}
-.icon-hfr.icon-battle{background-size:344px 187px;background-position:-87px -95px}
-.icon-hfr.icon-train{background-size:350px 191px;background-position:-262px -96px}
-.hfr-card .icon-sprite{background-color:#050e1e}
-.bnav-btn .icon-sprite{background-color:#071520}
+.bnav-icon{font-size:20px;line-height:1}
 .bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
 
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
 /* ─── STADIUM AUTH ─── */
-#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;justify-content:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
+#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
 #s-auth::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(1,2,8,0.45) 0%,rgba(1,2,8,0.08) 30%,rgba(1,2,8,0.30) 65%,rgba(1,2,8,0.82) 100%);z-index:0;pointer-events:none}
 #s-auth>*{position:relative;z-index:1}
 #s-auth.active{display:flex}
 .stadium-glow{position:absolute;top:0;width:100%;height:40%;background:radial-gradient(circle at 18% 4%,rgba(255,235,120,0.10),transparent 50%),radial-gradient(circle at 82% 4%,rgba(255,235,120,0.10),transparent 50%);z-index:2;pointer-events:none}
 .light-towers{display:none}.tower-flare{display:none}.field-view{display:none}
-.auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:24px 24px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto;min-height:100vh;justify-content:center}
+.auth-container{position:relative;z-index:3;width:100%;max-width:390px;padding:44px 24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box;margin:0 auto}
 .brand-group{margin-bottom:18px}
 .pre-title{font-family:'Barlow Condensed',sans-serif;color:var(--electric-green);font-size:11px;letter-spacing:3px;font-weight:700;text-transform:uppercase}
 .brand-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:0.85;margin:6px 0}
@@ -119,8 +101,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-inning{font-family:Barlow Condensed,sans-serif;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .gc-question{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.2;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px}
 .gc-choices{display:flex;flex-direction:column;gap:7px}
-.gc-choice{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Barlow',sans-serif;width:100%;min-height:auto}
-.gc-choice:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.2);box-shadow:0 2px 12px rgba(0,0,0,0.3);transform:translateY(-1px)}
+.gc-choice{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Barlow',sans-serif;width:100%;min-height:48px}
 .gc-choice:active{transform:scale(0.98)}
 .gc-ltr{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:Barlow Condensed,sans-serif;font-size:13px;font-weight:800;color:rgba(255,255,255,0.4);flex-shrink:0}
 .gc-txt{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);line-height:1.4;overflow-wrap:break-word;word-break:break-word;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -150,29 +131,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-result-sub{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px}
 .gc-explanation{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;margin-bottom:12px;font-family:'Barlow',sans-serif}
 /* gc-statcast retired — replaced by gc-spotlight */
-
-/* ─── PRO SPOTLIGHT CARD ─── */
-.gc-spotlight{margin-top:14px;border-radius:13px;padding:12px 14px;background:linear-gradient(135deg,#040f1c,#071520);border:1px solid rgba(62,207,130,0.2);position:relative;overflow:hidden}
-.gc-spotlight::before{content:'';position:absolute;right:-10px;top:-10px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
-.gc-spotlight.history{border-color:rgba(232,192,96,0.2);background:linear-gradient(135deg,#0f0c04,#150e06)}
-.gc-spotlight.history::before{background:radial-gradient(circle,rgba(232,192,96,0.06),transparent 70%)}
-.gc-spotlight.fan{border-color:rgba(55,138,221,0.2);background:linear-gradient(135deg,#04080f,#060f1a)}
-.gc-spotlight.fan::before{background:radial-gradient(circle,rgba(55,138,221,0.06),transparent 70%)}
-.gc-sp-type{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3ecf82;margin-bottom:6px}
-.gc-spotlight.history .gc-sp-type{color:#e8c060}
-.gc-spotlight.fan .gc-sp-type{color:#378add}
-.gc-sp-top{display:flex;align-items:baseline;gap:10px;margin-bottom:3px}
-.gc-sp-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;line-height:1}
-.gc-sp-val{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#3ecf82;letter-spacing:0.5px;margin-top:2px;display:block}
-.gc-spotlight.history .gc-sp-val{color:#e8c060}
-.gc-spotlight.fan .gc-sp-val{color:#378add}
-.gc-sp-stat{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3ecf82;letter-spacing:0.5px}
-.gc-spotlight.history .gc-sp-stat{color:#e8c060}
-.gc-spotlight.fan .gc-sp-stat{color:#378add}
-.gc-sp-detail{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;font-family:'Barlow Condensed',sans-serif;font-weight:400;letter-spacing:0.2px;margin-top:5px}
-.gc-sp-body{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;font-family:'Barlow Condensed',sans-serif;font-weight:400;letter-spacing:0.2px;margin-top:2px}
-.gc-next{width:100%;background:linear-gradient(135deg,#0d1e30,#0a1828);border:1px solid #1a3a5a;border-radius:12px;padding:14px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all 0.15s;box-shadow:0 4px 16px rgba(0,0,0,0.4),0 1px 0 rgba(255,255,255,0.06) inset}
-.gc-next:active{transform:scale(0.98);background:#0a1828}
+.gc-next{width:100%;background:#c8102e;border:none;border-radius:12px;padding:14px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all 0.15s}
+.gc-next:active{transform:scale(0.98)}
 .gc-swipe-hint{position:absolute;bottom:calc(env(safe-area-inset-bottom,16px)+10px);left:0;right:0;text-align:center;font-family:Barlow Condensed,sans-serif;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1.5px;text-transform:uppercase;animation:hintPulse 2.5s ease-in-out infinite}
 @keyframes hintPulse{0%,100%{opacity:0.3}50%{opacity:0.9}}
 .gc-streak-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.04)}
@@ -434,7 +394,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .cd-progress-wrap{margin-top:8px}
 .cd-progress-bar{height:3px;background:#0a1828;border-radius:2px;overflow:hidden}
 .cd-progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;background:linear-gradient(90deg,#1a5adc,#3ecf82)}
-.cd-activity{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:20px;margin-top:4px}
+.cd-activity{position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:20px}
 .cd-activity.active{background:rgba(62,207,130,0.15);color:#3ecf82}
 .cd-activity.new{background:rgba(232,192,96,0.15);color:#e8c060}
 .cd-activity.recent{background:rgba(138,170,74,0.15);color:#8aaa4a}
@@ -501,7 +461,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .hqp-pill.on{background:#0a1e30;border-color:#c8102e;color:#f08090}
 .hqp-pill:active{opacity:0.7}
 
-.home-feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;margin-top:20px}
+.home-feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;margin-top:18px}
 
 /* ─── PLAY BUTTON ─── */
 /* play-btn defined below */
@@ -510,7 +470,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── DAILY CHALLENGE CARD ─── */
 .dc-hero{background:linear-gradient(135deg,#0a1628 0%,#0d2040 100%);border:1px solid #1a3050;border-radius:16px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden}
-.dc-hero::before{content:'';position:absolute;left:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.05),transparent 70%);pointer-events:none}
+.dc-hero::before{content:'';position:absolute;left:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
 .dc-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3a5a78;margin-bottom:10px}
 .dc-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:2px}
 .dc-sub{font-size:12px;color:#4a6a88;margin-bottom:12px}
@@ -547,15 +507,11 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── SCREEN CONSISTENCY ─── */
 .screen-header{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a5a78;margin-bottom:12px;padding-top:4px}
 
-.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:14px;padding:20px 8px 16px;text-align:center;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(0,0,0,0.35)}
+.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .hfr-card:active{transform:scale(0.96);background:#102030}
-.hfr-card:hover{border-color:#1e3a5a;box-shadow:0 6px 24px rgba(0,0,0,0.45);transform:translateY(-2px)}
-.hfr-card.hfr-train{border-top:2px solid #3ecf82;box-shadow:0 4px 16px rgba(62,207,130,0.1)}
-.hfr-card.hfr-chief{border-top:2px solid #5aabdc;box-shadow:0 4px 16px rgba(90,171,220,0.1)}
-.hfr-card.hfr-battle{border-top:2px solid #c8102e;box-shadow:0 4px 16px rgba(200,16,46,0.1)}
 .hfr-icon{font-size:22px;line-height:1}
-.hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
-.hfr-sub{font-size:10px;color:#4a7a98;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+.hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
+.hfr-sub{font-size:10px;color:#3a5a78;font-family:system-ui,sans-serif}
 
 /* ─── POSITION TRAINING SCREEN ─── */
 .pt-section-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:#3a5a78;letter-spacing:2.5px;text-transform:uppercase;margin:10px 0 6px}
@@ -582,9 +538,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── IQ HERO ─── */
 .iq-hero{background:linear-gradient(135deg,#0a1628 0%,#0d1e35 100%);border:1px solid #1a3050;border-radius:16px;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
-.iq-hero::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,130,0.06),transparent 70%);pointer-events:none}
+.iq-hero::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,0.08),transparent 70%);pointer-events:none}
 .iq-hero-left{display:flex;flex-direction:column}
-.iq-hero-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3ecf82;margin-bottom:2px;font-family:'Barlow Condensed',sans-serif}
+.iq-hero-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#3a5a78;margin-bottom:2px;font-family:'Barlow Condensed',sans-serif}
 .iq-hero-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;line-height:1;letter-spacing:-1px;color:#fff;transition:color 0.4s}
 .iq-hero-rating{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;transition:color 0.4s}
 .iq-hero-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
@@ -740,10 +696,10 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .review-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .review-dots{display:flex;gap:5px;flex-wrap:wrap}
 .end-actions{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.submit-score-btn{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:11px;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;box-shadow:0 6px 24px rgba(200,16,46,0.40),0 1px 0 rgba(255,255,255,0.12) inset;width:100%}
+.submit-score-btn{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:11px;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;box-shadow:0 4px 16px rgba(200,16,46,0.25)}
 .submit-score-btn:active{transform:scale(0.98)}
 .submit-score-btn:disabled{opacity:0.4}
-.share-btn{background:rgba(55,138,221,0.12);border:1px solid rgba(55,138,221,0.35);border-radius:11px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(55,138,221,0.15);transition:all 0.15s;width:100%}
+.share-btn{background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.25);border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px}
 .play-again-btn{background:#071520;border:1px solid #1a3050;border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#4a6a88;cursor:pointer;letter-spacing:0.5px}
 .submit-msg{font-size:12px;text-align:center;min-height:16px;color:#3ecf82;font-family:system-ui,sans-serif}
 
@@ -772,42 +728,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .ob-dots{display:flex;gap:6px;margin-bottom:20px}
 .ob-dot{width:8px;height:8px;border-radius:50%;background:#1a3050;transition:all 0.3s}
 .ob-dot.active{background:#3ecf82;width:20px;border-radius:4px}
-.ob-btn{width:100%;background:linear-gradient(135deg,#3ecf82,#2aaf68);border:none;border-radius:13px;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#03140a;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:10px;box-shadow:0 4px 24px rgba(62,207,130,0.40),0 1px 0 rgba(255,255,255,0.15) inset;transition:all 0.15s}
+.ob-btn{width:100%;background:linear-gradient(135deg,#3ecf82,#2aaf68);border:none;border-radius:13px;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#03140a;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:10px;box-shadow:0 4px 20px rgba(62,207,130,0.30);transition:all 0.15s}
 .ob-btn:active{transform:scale(0.98)}
 .ob-skip{background:none;border:none;color:#3a5a78;font-size:13px;cursor:pointer;font-family:system-ui,sans-serif;padding:4px}
-
-/* ── ELITE ONBOARDING ── */
-#s-onboard{background:linear-gradient(160deg,#030e1a 0%,#06111f 60%,#040c18 100%)}
-.ob-slide{justify-content:center;padding:40px 28px 28px}
-.ob-hero-badge{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;color:#3a5a78;text-transform:uppercase;margin-bottom:8px}
-.ob-big-logo{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:2px;line-height:1;margin-bottom:14px}
-.ob-big-logo span{color:#3ecf82}
-.ob-tagline{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:32px;font-family:'Barlow',sans-serif}
-.ob-stat-row{display:flex;align-items:center;gap:0;margin-bottom:36px;width:100%;max-width:320px;background:#071520;border:1px solid #1a3050;border-radius:14px;padding:16px 0;justify-content:space-around}
-.ob-stat{text-align:center;flex:1}
-.ob-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#3ecf82;line-height:1}
-.ob-stat-lbl{font-size:10px;color:#3a5a78;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
-.ob-stat-div{width:1px;height:32px;background:#1a3050}
-/* Position Picker */
-.ob-pos-header{margin-bottom:20px;width:100%}
-.ob-pos-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.ob-pos-sub{font-size:13px;color:rgba(255,255,255,0.45);font-family:'Barlow',sans-serif}
-.ob-pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:340px;margin-bottom:0}
-.ob-pos-card{background:#0a1828;border:1.5px solid #1a3050;border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent}
-.ob-pos-card:active{transform:scale(0.95)}
-.ob-pos-card.selected{background:#041f0e;border-color:#3ecf82;box-shadow:0 0 16px rgba(62,207,130,0.2)}
-.ob-pos-card.ob-pos-all{border-style:dashed;border-color:#2a4a68}
-.ob-pos-card.ob-pos-all.selected{border-style:solid;border-color:#3ecf82}
-.ob-pos-abbr{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;line-height:1;margin-bottom:2px}
-.ob-pos-card.selected .ob-pos-abbr{color:#3ecf82}
-.ob-pos-name{font-size:9px;color:#3a5a78;text-transform:uppercase;letter-spacing:0.5px}
-.ob-pos-card.selected .ob-pos-name{color:rgba(62,207,130,0.7)}
-/* Slide 3 */
-.ob-fp-diamond{margin-bottom:20px;opacity:0.9}
-.ob-fp-pos{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:20px;font-family:'Barlow',sans-serif;max-width:300px}
-.ob-fp-tip{background:#071520;border:1px solid #1a3050;border-radius:12px;padding:14px 16px;margin-bottom:24px;width:100%;max-width:320px;text-align:left}
-.ob-fp-tip-row{font-size:13px;color:rgba(255,255,255,0.6);padding:3px 0;font-family:'Barlow',sans-serif}
-.ob-btn-red{background:linear-gradient(135deg,#c8102e,#a00020) !important;box-shadow:0 4px 20px rgba(200,16,46,0.35) !important;color:#fff !important}
 
 /* ═══════════════════════════════════════════
    DAILY END SCREEN
@@ -826,10 +749,10 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
    BUTTON OVERRIDES — Fix colors
 ═══════════════════════════════════════════ */
 /* Step Up to the Plate = GREEN (primary daily challenge action) */
-.dc-btn{background:linear-gradient(135deg,#3ecf82,#2aaf68);border:none;border-radius:11px;padding:14px 18px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#03140a;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:center;margin-bottom:10px;transition:all 0.15s;box-shadow:0 6px 24px rgba(62,207,130,0.38),0 1px 0 rgba(255,255,255,0.15) inset;display:block;width:100%}
+.dc-btn{background:linear-gradient(135deg,#3ecf82,#2aaf68);border:none;border-radius:11px;padding:14px 18px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#03140a;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:center;margin-bottom:10px;transition:all 0.15s;box-shadow:0 4px 16px rgba(62,207,130,0.25);display:block;width:100%}
 .dc-btn:active{transform:scale(0.98);box-shadow:none}
 /* Take the Field = RED (general quick play — feels like game action) */
-.play-btn{width:100%;background:linear-gradient(135deg,#c8102e 0%,#a00c25 100%);border:none;border-radius:14px;padding:17px;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:14px;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 28px rgba(200,16,46,0.40),0 1px 0 rgba(255,255,255,0.12) inset}
+.play-btn{width:100%;background:linear-gradient(135deg,#c8102e 0%,#a00c25 100%);border:none;border-radius:14px;padding:17px;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:14px;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(200,16,46,0.30)}
 .play-btn:active{transform:scale(0.98);box-shadow:0 2px 10px rgba(200,16,46,0.20)}
 .play-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 .wrong-review-section{margin:14px 0 8px}
@@ -865,11 +788,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 
 /* ─── FLAG BUTTON ─── */
-.gc-flag-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.45);font-size:13px;cursor:pointer;padding:4px 10px;line-height:1.4;transition:all 0.2s;position:absolute;bottom:14px;right:14px;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:0.5px}
-.gc-flag-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)}
-.gc-flag-btn:hover::before{content:'Flag this question for coach review';position:absolute;bottom:calc(100% + 6px);right:0;background:#0a1828;border:1px solid #1a3a5a;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.7);white-space:nowrap;pointer-events:none;letter-spacing:0.3px}
+.gc-flag-btn{background:transparent;border:none;color:rgba(255,255,255,0.25);font-size:15px;cursor:pointer;padding:4px 8px;line-height:1;transition:color 0.2s;position:absolute;bottom:16px;right:18px}
 .gc-flag-btn:active{transform:scale(0.9)}
-.gc-flag-btn.flagged{color:#e8c060;border-color:rgba(232,192,96,0.3);background:rgba(232,192,96,0.08)}
+.gc-flag-btn.flagged{color:#e8c060}
 .gc-flag-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a2a0a;border:1px solid #3ecf82;border-radius:8px;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#3ecf82;letter-spacing:0.5px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none}
 .gc-flag-toast.show{opacity:1}
 
@@ -905,7 +826,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   </div>
   <div class="user-pill">
     <span id="nav-username">—</span>
-    <a href="/privacy.html" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;margin-right:8px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:0.5px">Privacy</a>
     <button class="logout-btn" id="logout-btn">Sign Out</button>
   </div>
 </div>
@@ -976,7 +896,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     </div>
 
     <div class="proof-pill">
-      <b>1,000+</b> Questions &middot; <b>11</b> Positions &middot; <b>Free</b>
+      <b>697+</b> Questions &middot; <b>11</b> Positions &middot; <b>Free</b>
     </div>
 
     <div class="glass-card">
@@ -992,11 +912,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         </div>
         <div>
           <label class="field-label">Password</label>
-          <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="off">
+          <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password">
         </div>
         <button class="main-cta" id="login-btn">Sign In &rarr;</button>
         <button type="button" id="forgot-btn" class="secondary-action">Forgot password?</button>
         <div class="auth-msg" id="login-msg"></div>
+      </div>
+
       <div id="form-forgot" class="auth-form">
         <div>
           <label class="field-label">Email address</label>
@@ -1025,14 +947,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <input type="number" id="reg-age" placeholder="your age" min="5" max="99" inputmode="numeric">
         </div>
         <button class="main-cta" id="register-btn">Create Free Account &rarr;</button>
-        <div class="auth-msg" id="register-msg"></div><div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,0.35)"><div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,0.35);font-family:'Barlow',sans-serif">
-        <p style="font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-top:12px;line-height:1.5">By creating an account you agree to our <a href="/privacy.html" target="_blank" style="color:rgba(255,255,255,0.45);text-decoration:underline">Privacy Policy</a>. Parents: <a href="/privacy.html#children" target="_blank" style="color:rgba(255,255,255,0.45);text-decoration:underline">see our COPPA section</a>.</p>
+        <div class="auth-msg" id="register-msg"></div>
       </div>
     </div>
   </div>
 </div>
 
-</div></div></div><!-- ─── HOME SCREEN ─── -->
+<!-- ─── HOME SCREEN ─── -->
 <div id="s-home" class="screen">
   <!-- ─── IQ HERO ─── -->
   <div class="iq-hero" id="iq-hero">
@@ -1040,13 +961,18 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <div class="iq-hero-lbl">Baseball IQ</div>
       <div class="iq-hero-num" id="ih-num">1,000</div>
       <div class="iq-hero-rating" id="ih-rating">Varsity</div>
+      <div id="ih-rank" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px;margin-top:2px"></div>
+      <div id="ih-team-name" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5aabdc;letter-spacing:0.5px;margin-top:2px"></div>
     </div>
     <div class="iq-hero-right">
       <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-games">0</div><div class="iq-hero-stat-lbl">Games</div></div>
       <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-avg">—</div><div class="iq-hero-stat-lbl">Avg Score</div></div>
       <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-streak">0</div><div class="iq-hero-stat-lbl">Best Streak</div></div>
+      <div class="iq-hero-stat" id="ih-badge-count-wrap" style="display:none"><div class="iq-hero-stat-val" id="ih-badge-count">0</div><div class="iq-hero-stat-lbl">Badges</div></div>
     </div>
   </div>
+  <!-- Assignment pill — shown when coach has assigned work -->
+  <div id="home-assign-pill" style="display:none;align-items:center;gap:8px;background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.3);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f08090;letter-spacing:0.5px;cursor:pointer" onclick="showScreen('s-team')"></div>
 
 
   <!-- ─── DRILL CARD (shows when coach assigns a drill) ─── -->
@@ -1133,6 +1059,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <button class="play-btn" id="start-btn" onclick="startGame()">
     ⚾ &nbsp;<span id="play-btn-text">Quick Game</span>
   </button>
+  <button class="play-btn" onclick="showScreen('s-train')" style="background:linear-gradient(135deg,#0a2040,#071828);border:1px solid #1a3a5a;box-shadow:none;margin-top:-8px">
+    🎯 &nbsp;Train by Position
+  </button>
 
   <!-- Coach Team Message Banner -->
   <div id="coach-msg-banner" style="display:none;background:#0a1828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:10px">
@@ -1153,18 +1082,18 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
-    <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
+    <div class="hfr-card" onclick="showScreen('s-train')">
+      <div class="hfr-icon">🎯</div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
-    <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
-      <div class="hfr-name">Crew Chief</div>
-      <div class="hfr-sub">Check the book</div>
+    <div class="hfr-card" onclick="showScreen('s-rules')">
+      <div class="hfr-icon">📋</div>
+      <div class="hfr-name">Rules</div>
+      <div class="hfr-sub">AI lookup</div>
     </div>
-    <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
+    <div class="hfr-card" onclick="showScreen('s-challenge')">
+      <div class="hfr-icon">⚔️</div>
       <div class="hfr-name">Battle</div>
       <div class="hfr-sub">Head-to-head</div>
     </div>
@@ -1405,7 +1334,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <div class="gc-sp-detail" id="gc-sp-detail"></div>
       </div>
       <button class="gc-next" id="gc-next">Next Situation ↑</button>
-      <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question for review">📋 Challenge</button>
+      <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question">🚩</button>
     </div>
   </div>
   <div class="gc-swipe-hint" id="gc-hint">Tap an answer</div>
@@ -1463,16 +1392,10 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <p>Top Baseball IQ scores worldwide</p>
   </div>
   <div class="lb-controls">
-    <button class="lb-tab on" data-age="all">🌎 Global</button>
-    <button class="lb-tab" data-age="youth">Youth (5-17)</button>
-    <button class="lb-tab" data-age="adult">Adult (18+)</button>
-
-  </div>
-  <div class="lb-controls">
-    <button class="sort-btn on" data-sort="score_pct">📊 Score %</button>
-    <button class="sort-btn" data-sort="iq_score">🧠 IQ</button>
-    <button class="sort-btn" data-sort="best_streak">🔥 Streak</button>
-    <button class="sort-btn" data-sort="total_questions">🎯 Volume</button>
+    <button class="lb-tab on" data-tab="global" data-age="all">🌎 Global</button>
+    <button class="lb-tab" data-tab="age" data-age="all">👥 My Group</button>
+    <button class="lb-tab" data-tab="daily" data-age="all">⚾ Daily</button>
+    <button class="lb-tab" data-tab="team" data-age="all">👕 Team</button>
     <button class="lb-refresh" id="lb-refresh">↺ Refresh</button>
   </div>
   <div class="lb-table" id="lb-table">
@@ -1506,8 +1429,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <div class="pos-iq-grid" id="pos-iq-grid"></div>
       </div>
       <div class="category-card">
-        <div class="cat-card-title">Accuracy by Position</div>
+        <div class="cat-card-title">Accuracy by Category</div>
         <div id="cat-bars"></div>
+        <div id="tier-breakdown" style="display:none;margin-top:12px;border-top:1px solid #162840;padding-top:12px"></div>
       </div>
       <div class="daily-history">
         <div class="cat-card-title">Daily Challenge History</div>
@@ -1516,11 +1440,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <div class="section-hdr" style="margin-top:16px"><p>Daily Challenge History</p></div>
         <div id="daily-history-list"></div>
       </div>
-    </div>
-    <div style="text-align:center;padding:24px 0 8px;border-top:1px solid #0d1e30;margin-top:20px">
-      <a href="/privacy.html" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px">Privacy Policy</a>
-      <span style="color:rgba(255,255,255,0.1);margin:0 8px">·</span>
-      <span style="font-size:11px;color:rgba(255,255,255,0.15);font-family:'Barlow Condensed',sans-serif">Baseball IQ v1.0</span>
     </div>
   </div>
 </div>
@@ -1853,81 +1772,89 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <div id="s-onboard">
   <div class="ob-slides" id="ob-slides">
 
-    <!-- SLIDE 1: The Hook -->
+    <!-- SLIDE 1: Welcome -->
     <div class="ob-slide">
-      <div class="ob-hero-badge">WELCOME TO</div>
-      <div class="ob-big-logo">BASEBALL <span>IQ</span></div>
-      <div class="ob-tagline">Real situations. Real decisions.<br>Train the brain that wins games.</div>
-      <div class="ob-stat-row">
-        <div class="ob-stat"><div class="ob-stat-val">1,000+</div><div class="ob-stat-lbl">Situations</div></div>
-        <div class="ob-stat-div"></div>
-        <div class="ob-stat"><div class="ob-stat-val">11</div><div class="ob-stat-lbl">Positions</div></div>
-        <div class="ob-stat-div"></div>
-        <div class="ob-stat"><div class="ob-stat-val">Free</div><div class="ob-stat-lbl">Always</div></div>
+      <div class="ob-icon">⚾</div>
+      <div class="ob-title">Welcome to<br><span>Baseball IQ</span></div>
+      <div class="ob-body">The only app that trains your <strong>situational baseball brain</strong> — not just stats, not just rules, but real in-game decisions that separate good players from great ones.</div>
+      <div class="ob-cards-preview">
+        <div class="ob-card-mini">
+          <div class="ob-card-val">497</div>
+          <div class="ob-card-lbl">Questions</div>
+        </div>
+        <div class="ob-card-mini">
+          <div class="ob-card-val">5</div>
+          <div class="ob-card-lbl">Positions</div>
+        </div>
+        <div class="ob-card-mini">
+          <div class="ob-card-val">3</div>
+          <div class="ob-card-lbl">Levels</div>
+        </div>
       </div>
       <div class="ob-dots">
         <div class="ob-dot active" id="dot-0"></div>
         <div class="ob-dot" id="dot-1"></div>
         <div class="ob-dot" id="dot-2"></div>
       </div>
-      <button class="ob-btn" onclick="obNext()">LET'S GO →</button>
-      <button class="ob-skip" onclick="finishOnboard()">Skip</button>
+      <button class="ob-btn" onclick="obNext()">Let's Go →</button>
+      <button class="ob-skip" onclick="finishOnboard()">Skip intro</button>
     </div>
 
-    <!-- SLIDE 2: Position Picker -->
+    <!-- SLIDE 2: How it works -->
     <div class="ob-slide">
-      <div class="ob-pos-header">
-        <div class="ob-pos-title">WHERE DO YOU PLAY?</div>
-        <div class="ob-pos-sub">Pick your position — we'll tailor your training</div>
+      <div class="ob-icon">🧠</div>
+      <div class="ob-title">Train Your<br><span>Baseball Mind</span></div>
+      <div class="ob-feature-list">
+        <div class="ob-feature">
+          <div class="ob-feature-icon">⚡</div>
+          <div class="ob-feature-text">
+            <strong>Daily Challenge</strong>
+            Same 5 questions for everyone. Resets at midnight. Build your streak.
+          </div>
+        </div>
+        <div class="ob-feature">
+          <div class="ob-feature-icon">⚾</div>
+          <div class="ob-feature-text">
+            <strong>Quick Game</strong>
+            12 questions, any position, any difficulty. Tap an answer, see the Statcast data.
+          </div>
+        </div>
+        <div class="ob-feature">
+          <div class="ob-feature-icon">⚔️</div>
+          <div class="ob-feature-text">
+            <strong>Head-to-Head Battle</strong>
+            Challenge a teammate. Same questions, live. Speed earns bonus points.
+          </div>
+        </div>
+        <div class="ob-feature">
+          <div class="ob-feature-icon">🏆</div>
+          <div class="ob-feature-text">
+            <strong>Global Leaderboard</strong>
+            Compete by age group. Prove your IQ is elite.
+          </div>
+        </div>
       </div>
-      <div class="ob-pos-grid">
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Pitcher')"><div class="ob-pos-abbr">P</div><div class="ob-pos-name">Pitcher</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Catcher')"><div class="ob-pos-abbr">C</div><div class="ob-pos-name">Catcher</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'First Baseman')"><div class="ob-pos-abbr">1B</div><div class="ob-pos-name">First Base</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Second Baseman')"><div class="ob-pos-abbr">2B</div><div class="ob-pos-name">Second Base</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Shortstop')"><div class="ob-pos-abbr">SS</div><div class="ob-pos-name">Shortstop</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Third Baseman')"><div class="ob-pos-abbr">3B</div><div class="ob-pos-name">Third Base</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Left Fielder')"><div class="ob-pos-abbr">LF</div><div class="ob-pos-name">Left Field</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Center Fielder')"><div class="ob-pos-abbr">CF</div><div class="ob-pos-name">Center Field</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Right Fielder')"><div class="ob-pos-abbr">RF</div><div class="ob-pos-name">Right Field</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Hitter')"><div class="ob-pos-abbr">HIT</div><div class="ob-pos-name">Hitter</div></div>
-        <div class="ob-pos-card" onclick="obSelectPos(this,'Baserunner')"><div class="ob-pos-abbr">BR</div><div class="ob-pos-name">Baserunner</div></div>
-        <div class="ob-pos-card ob-pos-all" onclick="obSelectPos(this,'')"><div class="ob-pos-abbr">ALL</div><div class="ob-pos-name">All Positions</div></div>
-      </div>
-      <div class="ob-dots" style="margin-top:16px">
+      <div class="ob-dots">
         <div class="ob-dot" id="dot-0b"></div>
         <div class="ob-dot active" id="dot-1b"></div>
         <div class="ob-dot" id="dot-2b"></div>
       </div>
-      <button class="ob-btn" id="ob-pos-btn" onclick="obNext()">NEXT →</button>
-      <button class="ob-skip" onclick="obSelectPos(null,'');obNext()">Skip — show me everything</button>
+      <button class="ob-btn" onclick="obNext()">Got It →</button>
+      <button class="ob-skip" onclick="finishOnboard()">Skip intro</button>
     </div>
 
-    <!-- SLIDE 3: First Pitch -->
+    <!-- SLIDE 3: First play -->
     <div class="ob-slide">
-      <div class="ob-fp-diamond">
-        <svg viewBox="0 0 100 100" width="90" height="90">
-          <polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="#1a3a5a" stroke-width="2"/>
-          <circle cx="50" cy="8" r="5" fill="#fff" opacity="0.9"/>
-          <circle cx="92" cy="50" r="5" fill="#fff" opacity="0.9"/>
-          <circle cx="50" cy="92" r="6" fill="#fff" opacity="0.9"/>
-          <circle cx="8" cy="50" r="5" fill="#fff" opacity="0.9"/>
-          <circle cx="50" cy="50" r="4" fill="#8B4523"/>
-        </svg>
-      </div>
-      <div class="ob-title" id="ob-fp-title">YOUR FIRST<br><span>SITUATION IS READY</span></div>
-      <div class="ob-fp-pos" id="ob-fp-pos">Tap an answer. Learn why it's right or wrong.<br>Every question makes you a smarter player.</div>
-      <div class="ob-fp-tip">
-        <div class="ob-fp-tip-row">📅 Daily Challenge = build your streak</div>
-        <div class="ob-fp-tip-row">🏆 Top the leaderboard = bragging rights</div>
-        <div class="ob-fp-tip-row">🎖️ Unlock badges as your IQ climbs</div>
-      </div>
+      <div class="ob-icon">🎯</div>
+      <div class="ob-title">Ready for Your<br><span>First Situation?</span></div>
+      <div class="ob-body">Every question puts you <strong>in the game</strong> — real scenarios, real decisions. Tap the right answer and learn why with MLB Statcast data.</div>
+      <div class="ob-badge">⭐ Tip: Do the Daily Challenge every day to build your streak</div>
       <div class="ob-dots">
         <div class="ob-dot" id="dot-0c"></div>
         <div class="ob-dot" id="dot-1c"></div>
         <div class="ob-dot active" id="dot-2c"></div>
       </div>
-      <button class="ob-btn ob-btn-red" onclick="finishOnboard()">TAKE THE FIELD ⚾</button>
+      <button class="ob-btn" onclick="finishOnboard()">Take the Field ⚾</button>
     </div>
 
   </div>
@@ -2045,7 +1972,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <div class="pt-pips" id="pt-pips-Baserunner"></div>
     </div>
     <div class="pt-card baserunner" data-pos="Hitter" onclick="startPositionDrill('Hitter')">
-      <div class="pt-icon-sprite" style="font-size:32px;line-height:1;margin:0 auto 4px;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="34" height="34"><g transform="rotate(-40,20,20)"><rect x="18.5" y="4" width="3" height="12" rx="1.5" fill="#8B4523"/><ellipse cx="20" cy="18" rx="6" ry="5" fill="#8B4523"/><ellipse cx="20" cy="22" rx="7" ry="5.5" fill="#9B5533"/><ellipse cx="20" cy="26" rx="7.5" ry="5" fill="#9B5533"/><ellipse cx="20" cy="30" rx="6.5" ry="4" fill="#8B4523"/><rect x="17.5" y="32" width="5" height="5" rx="2.5" fill="#6B3010"/></g></svg></div>
+      <div style="font-size:32px;line-height:1;margin:0 auto 4px">🪵</div>
       <div class="pt-name">Hitter</div>
       <div class="pt-count" id="pt-count-Hitter">— Qs</div>
       <div class="pt-pips" id="pt-pips-Hitter"></div>
@@ -2058,7 +1985,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <!-- ─── RULES REFERENCE SCREEN ─── -->
 <div id="s-rules" class="screen">
   <div class="section-hdr">
-    <h2>📋 Crew Chief</h2>
+    <h2>📋 Rules Reference</h2>
     <p>Ask any baseball rules question</p>
   </div>
 
@@ -2098,27 +2025,27 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <nav class="bottom-nav" id="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" data-screen="s-home">
-      <span class="bnav-icon"><div class="icon-sprite icon-home"></div></span>
+      <span class="bnav-icon">⚾</span>
       <span class="bnav-label">Home</span>
     </button>
     <button class="bnav-btn" data-screen="s-leaderboard">
-      <span class="bnav-icon"><div class="icon-sprite icon-board"></div></span>
+      <span class="bnav-icon">🏆</span>
       <span class="bnav-label">Board</span>
     </button>
     <button class="bnav-btn" data-screen="s-team">
-      <span class="bnav-icon"><div class="icon-sprite icon-team"></div></span>
-      <span class="bnav-label">Dugout</span>
+      <span class="bnav-icon">👥</span>
+      <span class="bnav-label">Team</span>
     </button>
     <button class="bnav-btn" data-screen="s-stats">
-      <span class="bnav-icon"><div class="icon-sprite icon-stats"></div></span>
+      <span class="bnav-icon">📊</span>
       <span class="bnav-label">Stats</span>
     </button>
     <button class="bnav-btn" data-screen="s-challenge" style="color:#6aabdc">
-      <span class="bnav-icon"><div class="icon-sprite icon-battle"></div></span>
+      <span class="bnav-icon">⚔️</span>
       <span class="bnav-label">Battle</span>
     </button>
     <button class="bnav-btn" data-screen="s-pro" style="color:#c89020">
-      <span class="bnav-icon"><div class="icon-sprite icon-pro"></div></span>
+      <span class="bnav-icon">⭐</span>
       <span class="bnav-label">Pro</span>
     </button>
   </div>
@@ -2132,7 +2059,7 @@ const sb=createClient(
 );
 
 // ─── CONSTANTS ───
-var TOTAL_QS=7;
+var TOTAL_QS=12;
 const DAILY_QS=5;
 const SITE_URL='playbaseballiq.com';
 
@@ -2184,59 +2111,6 @@ function getDifficultyForUser(overridePos){
   else                pool = [2,3,3,3,3];   // elite
   return pool.filter(function(v,i,a){ return a.indexOf(v)===i; });
 }
-// ─── SCENARIO QUESTION NORMALIZER (main game) ───────────────────────────────
-function normalizeScenarioQuestion(row){
-  const choices = Array.isArray(row.choices) ? row.choices : [];
-  const shuffled = [...choices];
-  for(let i=shuffled.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
-  }
-  const labels=['A','B','C','D'];
-  const labeledChoices = shuffled.map((c,i)=>labels[i]+'. '+c);
-  const correctIndex = shuffled.findIndex(c=>c===row.correct_answer);
-  const rs = row.runner_state || '';
-  const runners = { first:rs==='1st', second:rs==='2nd', third:rs==='3rd' };
-  return {
-    id:row.question_id, scenario_id:row.scenario_id, source:'scenario',
-    position:row.role, module:row.module==='defense'?'Defense':'Baserunning',
-    ball_label:((row.ball_location||'')+' '+(row.ball_type||'')).trim(),
-    play_label:({home:'Play at Home','3rd':'Play at 3rd','2nd':'Play at 2nd',read:'Read Play'})[row.play_type]||row.play_type||'',
-    infield_depth:row.infield_depth,
-    outs:typeof row.outs==='number'?row.outs:parseInt(row.outs)||0,
-    runners, runner_state:rs, question_type:'multiple_choice',
-    question:row.question_text, choices:labeledChoices,
-    correct_index:correctIndex, correct_answer:row.correct_answer,
-    explanation:row.correct_explanation, wrong_why:row.wrong_why,
-    wrong_correct_play:row.wrong_correct_play, quick_rule:row.quick_rule,
-    scenario_title:row.title||'', difficulty:row.difficulty_level||1, focus_type:row.focus_type,
-    category:row.module||'defense', inning:'', score:'', count:'',
-    scenario:row.title||'', runners_first:runners.first,
-    runners_second:runners.second, runners_third:runners.third,
-  };
-}
-
-// ─── DATA FETCH — MAIN GAME (scenario_questions JOIN scenarios) ──────────────
-async function fetchScenarioQuestions(){
-  const{data,error}=await sb
-    .from('scenario_questions')
-    .select(`question_id,scenario_id,role,focus_type,question_text,choices,correct_answer,correct_explanation,wrong_why,wrong_correct_play,quick_rule,scenarios(title,module,difficulty_level,runner_state,outs,ball_type,ball_location,play_type,infield_depth)`)
-    .eq('is_active',true);
-  if(error) throw error;
-  return (data||[]).map(row=>{
-    const s=row.scenarios||{};
-    return {
-      question_id:row.question_id, scenario_id:row.scenario_id, role:row.role,
-      focus_type:row.focus_type, question_text:row.question_text, choices:row.choices,
-      correct_answer:row.correct_answer, correct_explanation:row.correct_explanation,
-      wrong_why:row.wrong_why, wrong_correct_play:row.wrong_correct_play, quick_rule:row.quick_rule,
-      title:s.title, module:s.module, difficulty_level:s.difficulty_level,
-      runner_state:s.runner_state, outs:s.outs, ball_type:s.ball_type,
-      ball_location:s.ball_location, play_type:s.play_type, infield_depth:s.infield_depth,
-    };
-  });
-}
-
 function normalizeQuestion(row){
   if(row.question_type!=='multiple_choice'){
     return {
@@ -2333,7 +2207,7 @@ function getCatLabel(q){
     'Center Fielder':'🎯 Center Field',
     'Right Fielder': '💪 Right Field',
     'Baserunner':    '💨 Baserunner',
-    'Hitter':        '⚾ Hitter'
+    'Hitter':        '🏏 Hitter'
   };
   if(q.position && posEmoji[q.position]) return posEmoji[q.position];
   // Fallback to category if no position
@@ -2492,101 +2366,8 @@ function showCardFeedback(ok,q,prefix=''){
   const hint=document.getElementById(pfx+'gc-hint');
   const panel=document.getElementById(pfx+'gc-panel');
   if(icon){icon.textContent=ok?'✅':'❌';icon.className='gc-result-icon '+(ok?'ok':'bad');}
-  const correctTitles=[
-    // Sandlot
-    "Legends never die!",
-    "Benny the Jet approved.",
-    "FOR-EV-ER.",
-    "The Bambino would nod.",
-    "You're not Smalls anymore.",
-    // Field of Dreams / classics
-    "Go the distance!",
-    "If you know it, they will come.",
-    "The Natural.",
-    "Roy Hobbs energy.",
-    // Rookie of the Year / Angels
-    "Sign that kid!",
-    "Call the scouts!",
-    "It could happen — and it did!",
-    // Bull Durham
-    "Crash Davis would approve.",
-    "You've got good hands, meat.",
-    // Major League
-    "Wild thing — nailed it.",
-    "Juuust right.",
-    // Deep baseball knowledge winks
-    "Frozen rope!",
-    "Web gem!",
-    "Painted the black.",
-    "In the wheelhouse!",
-    "That's filthy.",
-    "High cheese — called it.",
-    "5-4-3, turning two.",
-    "You hit the cutoff.",
-    "The book says yes.",
-    "Ted Williams saw that pitch.",
-    "Ozzie Smith made that play.",
-    "Tony Gwynn put it where they weren't.",
-    "That's the hidden game.",
-    "Old school. New school. You.",
-    // General fire
-    "Baseball IQ!",
-    "Heads up ball!",
-    "That's the read!",
-    "No doubt!",
-    "Dialed in!",
-    "That's the game.",
-    "On the money!"
-  ];
-  const correctSubs=[
-    "Correct read","Smart play","Good instincts","Knew it",
-    "Pro move","Eyes up","That's IQ","The book agrees",
-    "George Brett would nod","Old school, new game",
-    "Smalls learned that one","Benny would run it out"
-  ];
-  const wrongTitles=[
-    // Sandlot — the GOAT wrong-answer lines
-    "You're KILLING me, Smalls!",
-    "Even Ham knew that one.",
-    "The Beast got that one. You didn't.",
-    "Squints saw it coming.",
-    // Major League
-    "Juuust a bit outside...",
-    "Wild thing. Wrong thing.",
-    // A League of Their Own
-    "There's no crying in baseball!",
-    // Field of Dreams / classics
-    "Is this heaven? No. Wrong answer.",
-    "Shoeless Joe knew better.",
-    // Bull Durham
-    "Not quite, meat.",
-    "Crash Davis is sighing.",
-    "You don't respect the game yet.",
-    // Deep baseball blunders (insider winks)
-    "Fred Merkle didn't run either.",   // 1908 bonehead play
-    "Bill Buckner flinched. So did you.",// 1986 World Series
-    "The cutoff man was OPEN.",
-    "That's a balk in the film room.",
-    "Even the umpire knew that.",
-    "The book says no.",
-    "Check your signs, rookie.",
-    "That's a golden sombrero.",        // 4 strikeouts
-    "Can of corn. You dropped it.",
-    // General
-    "Not this time...",
-    "Study the film, rookie.",
-    "Back to the drawing board.",
-    "Check the explanation."
-  ];
-  const wrongSubs=[
-    "Wrong read","Study the play","Almost had it","Not your finest",
-    "The book disagrees","Review it","Keep working",
-    "Crash Davis is sighing","Even Smalls knew better",
-    "Back to the cage","Hit the film room"
-  ];
-  const pick=(arr)=>arr[Math.floor(Math.random()*arr.length)];
-  if(title) title.textContent=ok?pick(correctTitles):pick(wrongTitles);
-  if(sub) sub.textContent=ok?pick(correctSubs):pick(wrongSubs);
+  if(title) title.textContent=ok?"That's the play!":'Not quite...';
+  if(sub) sub.textContent=ok?'Correct read':'Wrong read';
   if(expl) expl.textContent=q.explanation||'';
   // Spotlight — always show, pick best match for this question
   try {
@@ -2624,12 +2405,22 @@ async function startGame(){
   document.querySelector('.play-btn').disabled=true;
   const diffs=getDifficultyForUser();
   try{
-    // Check if player has a position assignment from coach OR their own fav_position from onboarding
-    // Fetch from scenario_questions JOIN scenarios (new flow)
-    const flat = await fetchScenarioQuestions();
-    const pool = flat.map(normalizeScenarioQuestion);
-    if(!pool.length) throw new Error('No scenario questions found. Check scenario_questions table.');
-    filteredQs = pool;
+    // Check if player has a position assignment from coach
+    var weightedPool = null;
+    if(cat==='all' && currentUser && currentUser.primary_position) {
+      weightedPool = await buildWeightedPool(diffs);
+    }
+    if(weightedPool && weightedPool.length >= TOTAL_QS) {
+      filteredQs = weightedPool;
+    } else {
+      let q=sb.from('questions').select('*').in('difficulty',diffs);
+      if(cat!=='all') q=q.eq('category',cat);
+      const{data,error}=await q.limit(500);
+      if(error) throw error;
+      let pool=(data||[]).map(normalizeQuestion);
+      if(!pool.length) throw new Error('No questions');
+      filteredQs=pool;
+    }
   }catch(e){
     document.getElementById('play-btn-text').textContent='Take the Field';
     document.querySelector('.play-btn').disabled=false;
@@ -2929,7 +2720,7 @@ async function loadStats(){
     return;
   }
 
-  // Try localStorage first
+  // Try localStorage first for instant render
   var sessions=JSON.parse(localStorage.getItem('biq_sessions_'+currentUser.username)||'[]');
 
   // If no local sessions, try to pull from Supabase player profile
@@ -2950,7 +2741,17 @@ async function loadStats(){
     }catch(e){}
   }
 
-  if(!sessions.length && !sbData && !lbData){
+  // ── SUPABASE: get_stats_payload — authoritative aggregates + per-tier + per-category ──
+  var sbStats=null;
+  if(currentUser.id){
+    try{
+      var sp=await sb.rpc('get_stats_payload',{p_player_id:currentUser.id});
+      if(sp.data && !sp.error) sbStats=sp.data;
+    }catch(e){ console.warn('get_stats_payload error:',e); }
+  }
+
+  // If nothing at all, show empty state
+  if(!sessions.length && !sbData && !lbData && !sbStats){
     document.getElementById('no-stats-msg').style.display='block';
     document.getElementById('stats-loaded').style.display='none';
     return;
@@ -2959,9 +2760,13 @@ async function loadStats(){
   document.getElementById('no-stats-msg').style.display='none';
   document.getElementById('stats-loaded').style.display='block';
 
-  // Compute stats from local sessions, or fall back to Supabase data
+  // ── TOP-LINE NUMBERS — DB wins if available ──
   var numGames, avgPct, bestStrk;
-  if(sessions.length){
+  if(sbStats){
+    numGames=sbStats.total_sessions||0;
+    avgPct=sbStats.avg_score||0;
+    bestStrk=sbStats.best_streak||0;
+  } else if(sessions.length){
     numGames=sessions.length;
     avgPct=Math.round(sessions.reduce((a,s)=>a+s.pct,0)/sessions.length);
     bestStrk=Math.max(...sessions.map(s=>s.streak||0));
@@ -2980,31 +2785,59 @@ async function loadStats(){
   document.getElementById('st-streak').textContent=bestStrk;
   document.getElementById('st-daily').textContent=getDailyStreak();
 
-  // Accuracy by position — uses proper display names
-  var posDisplayNames = {
-    'pitcher':'Pitcher','catcher':'Catcher','infield':'Infield',
-    'outfield':'Outfield','baserunner':'Baserunner','hitter':'Hitter',
-    'first baseman':'1st Base','second baseman':'2nd Base',
-    'shortstop':'Shortstop','third baseman':'3rd Base',
-    'left fielder':'Left Field','center fielder':'Center Field',
-    'right fielder':'Right Field'
-  };
-  var cats={};
-  sessions.forEach(function(s){
-    var key=(s.cat||'').toLowerCase();
-    if(!key) return;
-    if(!cats[key]) cats[key]=[];
-    cats[key].push(s.pct);
-  });
+  // ── CATEGORY BARS — use DB by_category if available, else localStorage ──
   var barsEl=document.getElementById('cat-bars');
   barsEl.innerHTML='';
-  Object.entries(cats).forEach(function([name,pcts]){
-    if(!pcts.length) return;
-    var avg=Math.round(pcts.reduce(function(a,v){return a+v;},0)/pcts.length);
-    var cls=avg>=75?'good':avg>=55?'mid':'';
-    var displayName=posDisplayNames[name]||(name.charAt(0).toUpperCase()+name.slice(1));
-    barsEl.innerHTML+='<div class="cat-row"><div class="cat-name">'+displayName+'</div><div class="cat-bar-wrap"><div class="cat-bar '+cls+'" style="width:'+avg+'%"></div></div><div class="cat-pct">'+avg+'%</div></div>';
-  });
+
+  if(sbStats && sbStats.by_category && sbStats.by_category.length){
+    sbStats.by_category.forEach(function(cat){
+      var pct=cat.pct||0;
+      var cls=pct>=75?'good':pct>=55?'mid':'';
+      var name=cat.category||'Unknown';
+      barsEl.innerHTML+='<div class="cat-row"><div class="cat-name">'+name+'</div><div class="cat-bar-wrap"><div class="cat-bar '+cls+'" style="width:'+pct+'%"></div></div><div class="cat-pct">'+pct+'%</div></div>';
+    });
+
+    // ── TIER BREAKDOWN — inject below category bars if by_tier present ──
+    var tierEl=document.getElementById('tier-breakdown');
+    if(tierEl && sbStats.by_tier && sbStats.by_tier.length){
+      tierEl.innerHTML=sbStats.by_tier.map(function(t){
+        var tierLabel=t.tier===1?'Tier 1 • Fundamental':t.tier===2?'Tier 2 • Intermediate':'Tier 3 • Advanced';
+        var tierColor=t.tier===1?'#5aabdc':t.tier===2?'#e8c060':'#e84060';
+        var pct=t.pct||0;
+        return '<div class="cat-row">'+
+          '<div class="cat-name" style="color:'+tierColor+'">'+tierLabel+'</div>'+
+          '<div class="cat-bar-wrap"><div class="cat-bar" style="width:'+pct+'%;background:'+tierColor+'"></div></div>'+
+          '<div class="cat-pct">'+t.correct+'/'+t.total+'</div>'+
+        '</div>';
+      }).join('');
+      tierEl.style.display='block';
+    }
+  } else {
+    // localStorage fallback
+    var posDisplayNames = {
+      'pitcher':'Pitcher','catcher':'Catcher','infield':'Infield',
+      'outfield':'Outfield','baserunner':'Baserunner','hitter':'Hitter',
+      'first baseman':'1st Base','second baseman':'2nd Base',
+      'shortstop':'Shortstop','third baseman':'3rd Base',
+      'left fielder':'Left Field','center fielder':'Center Field',
+      'right fielder':'Right Field'
+    };
+    var cats={};
+    sessions.forEach(function(s){
+      var key=(s.cat||'').toLowerCase();
+      if(!key) return;
+      if(!cats[key]) cats[key]=[];
+      cats[key].push(s.pct);
+    });
+    Object.entries(cats).forEach(function([name,pcts]){
+      if(!pcts.length) return;
+      var avg=Math.round(pcts.reduce(function(a,v){return a+v;},0)/pcts.length);
+      var cls=avg>=75?'good':avg>=55?'mid':'';
+      var displayName=posDisplayNames[name]||(name.charAt(0).toUpperCase()+name.slice(1));
+      barsEl.innerHTML+='<div class="cat-row"><div class="cat-name">'+displayName+'</div><div class="cat-bar-wrap"><div class="cat-bar '+cls+'" style="width:'+avg+'%"></div></div><div class="cat-pct">'+avg+'%</div></div>';
+    });
+  }
+
   if(!barsEl.innerHTML){
     barsEl.innerHTML='<div style="color:#3a5a78;font-size:13px">Play position-specific games to see your breakdown</div>';
   }
@@ -3015,24 +2848,37 @@ async function loadStats(){
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
 
-  // Daily history
-  var dailyHist=JSON.parse(localStorage.getItem('biq_daily_hist_'+currentUser.username)||'[]');
+  // ── RECENT SESSIONS HISTORY — DB wins if available ──
   var histEl=document.getElementById('daily-history-list');
-  if(!dailyHist.length){hh
-    histEl.innerHTML='<div style="color:#3a5a78;font-size:13px">No daily challenges completed yet</div>';
-    return;
+  if(sbStats && sbStats.recent_sessions && sbStats.recent_sessions.length){
+    histEl.innerHTML=sbStats.recent_sessions.map(function(s){
+      var dateStr=s.completed_at?new Date(s.completed_at).toLocaleDateString():'Recent';
+      var typeLabel=s.session_type==='daily_challenge'?'Daily':'Game';
+      var pctColor=s.score_pct>=80?'#3ecf82':s.score_pct>=55?'#e8c060':'#e84060';
+      return '<div class="dh-row">'+
+        '<div class="dh-date">'+typeLabel+' · '+dateStr+'</div>'+
+        '<div class="dh-score" style="color:'+pctColor+'">'+s.correct+'/'+s.total_questions+' · '+s.score_pct+'%</div>'+
+      '</div>';
+    }).join('');
+  } else {
+    // localStorage fallback
+    var dailyHist=JSON.parse(localStorage.getItem('biq_daily_hist_'+currentUser.username)||'[]');
+    if(!dailyHist.length){
+      histEl.innerHTML='<div style="color:#3a5a78;font-size:13px">No daily challenges completed yet</div>';
+      return;
+    }
+    histEl.innerHTML=dailyHist.slice(0,7).map(function(h){
+      var dots=h.answers.map(function(a){return '<div class="dh-dot '+(a==='correct'?'c':'w')+'">'+(a==='correct'?'✅':'❌')+'</div>';}).join('');
+      return '<div class="dh-row"><div class="dh-date">'+h.date+'</div><div class="dh-dots">'+dots+'</div><div class="dh-score">'+h.correct+'/'+DAILY_QS+'</div></div>';
+    }).join('');
   }
-  histEl.innerHTML=dailyHist.slice(0,7).map(function(h){
-    var dots=h.answers.map(function(a){return '<div class="dh-dot '+(a==='correct'?'c':'w')+'">'+(a==='correct'?'✅':'❌')+'</div>';}).join('');
-    return '<div class="dh-row"><div class="dh-date">'+h.date+'</div><div class="dh-dots">'+dots+'</div><div class="dh-score">'+h.correct+'/'+DAILY_QS+'</div></div>';
-  }).join('');
 }
 
 // ─── HOME SCREEN ───
 async function loadHome(){
   if(!currentUser) return;
 
-  // ── IQ HERO ─────────────────────────────────────────────────────────
+  // ── IQ HERO — render from localStorage immediately, then overwrite with Supabase ──
   var iqHero = document.getElementById('iq-hero');
   if(iqHero) iqHero.style.display = 'flex';
   var iq = loadIQScore();
@@ -3048,9 +2894,73 @@ async function loadHome(){
   var ihAvg = document.getElementById('ih-avg'); if(ihAvg) ihAvg.textContent = avg ? avg+'%' : '—';
   var ihStreak = document.getElementById('ih-streak'); if(ihStreak) ihStreak.textContent = bestSt;
 
+  // ── SUPABASE: get_home_payload — authoritative IQ, rank, daily status, assignments ──
+  if(currentUser.id){
+    try{
+      var hp=await sb.rpc('get_home_payload',{p_player_id:currentUser.id});
+      if(hp.data && !hp.error){
+        var hd=hp.data;
+        // IQ score (authoritative from DB)
+        var dbIQ=hd.iq_score||iq;
+        if(dbIQ!==iq){
+          currentUser.iq_score=dbIQ;
+          localStorage.setItem('biq_user',JSON.stringify(currentUser));
+        }
+        var dbRating=getIQRating(dbIQ);
+        if(ihNum){ ihNum.textContent=dbIQ.toLocaleString(); ihNum.style.color=dbRating.color||'#fff'; ihNum.classList.add('iq-animate'); }
+        if(ihRating){ ihRating.textContent=dbRating.label||''; ihRating.style.color=dbRating.color||'#4a6a88'; }
+        // Stats strip from DB
+        var dbGames=hd.total_sessions||sessions.length||0;
+        var dbAvg=hd.avg_score||avg||0;
+        var dbStreak=hd.best_streak||bestSt||0;
+        if(ihGames) ihGames.textContent=dbGames;
+        if(ihAvg) ihAvg.textContent=dbAvg ? dbAvg+'%' : '—';
+        if(ihStreak) ihStreak.textContent=dbStreak;
+        // Quick stats strip
+        if(dbGames>0){
+          document.getElementById('home-stats-strip').style.display='grid';
+          document.getElementById('hs-games').textContent=dbGames;
+          document.getElementById('hs-avg').textContent=dbAvg+'%';
+          document.getElementById('hs-streak').textContent=dbStreak;
+        }
+        // Global rank pill
+        var rankEl=document.getElementById('ih-rank');
+        if(rankEl && hd.global_rank) rankEl.textContent='#'+hd.global_rank+' Global';
+        // Badge count
+        var badgeCountEl=document.getElementById('ih-badge-count');
+        var badgeWrapEl=document.getElementById('ih-badge-count-wrap');
+        if(badgeCountEl && hd.badge_count){
+          badgeCountEl.textContent=hd.badge_count;
+          if(badgeWrapEl) badgeWrapEl.style.display='flex';
+        }
+        // Daily done status (DB is authoritative — overrides localStorage)
+        if(hd.daily_done_today===true){
+          document.getElementById('daily-cta').style.display='none';
+          document.getElementById('daily-done-area').style.display='block';
+        } else if(hd.daily_done_today===false){
+          document.getElementById('daily-cta').style.display='block';
+          document.getElementById('daily-done-area').style.display='none';
+        }
+        // Open assignments pill
+        var assignPill=document.getElementById('home-assign-pill');
+        if(assignPill){
+          if(hd.open_assignments>0){
+            assignPill.textContent=hd.open_assignments+' assignment'+(hd.open_assignments>1?'s':'')+' pending';
+            assignPill.style.display='inline-flex';
+          } else {
+            assignPill.style.display='none';
+          }
+        }
+        // Team name
+        var teamNameEl=document.getElementById('ih-team-name');
+        if(teamNameEl && hd.team_name) teamNameEl.textContent=hd.team_name;
+      }
+    }catch(e){ console.warn('get_home_payload error:',e); }
+  }
+
   // question count badge (silent)
   try{
-    const{count}=await sb.from('scenario_questions').select('*',{count:'exact',head:true}).eq('is_active',true);
+    const{count}=await sb.from('questions').select('*',{count:'exact',head:true});
     if(count) { var qb=document.getElementById('q-count-badge'); if(qb) qb.textContent=count+' expert questions'; }
   }catch(e){}
 
@@ -3081,9 +2991,19 @@ async function loadHome(){
     else{streakLbl.textContent=streak+' Day Streak';streakSub&&(streakSub.textContent=streak>=7?'You are on fire! Keep it up':'Keep showing up every day');}
   }
 
+  // localStorage daily state (shown immediately; DB state above overwrites if player has id)
+  if(!currentUser.id){
+    if(done){
+      document.getElementById('daily-cta').style.display='none';
+      document.getElementById('daily-done-area').style.display='block';
+    }else{
+      document.getElementById('daily-cta').style.display='block';
+      document.getElementById('daily-done-area').style.display='none';
+    }
+  }
+
+  // Daily done display details (score, dots, reset countdown)
   if(done){
-    document.getElementById('daily-cta').style.display='none';
-    document.getElementById('daily-done-area').style.display='block';
     const correct=done.answers.filter(a=>a==='correct').length;
     const pct=Math.round(correct/DAILY_QS*100);
     document.getElementById('daily-done-score').textContent=correct+'/'+DAILY_QS;
@@ -3091,29 +3011,23 @@ async function loadHome(){
     if(pctEl) pctEl.textContent=pct+'%';
     var doneStreakEl=document.getElementById('dc-done-streak');
     if(doneStreakEl) doneStreakEl.textContent=streak;
-    // Reset time
     var now2=new Date(); var midnight2=new Date(now2); midnight2.setHours(24,0,0,0);
     var diff2=Math.floor((midnight2-now2)/1000);
     var h2=Math.floor(diff2/3600),m2=Math.floor((diff2%3600)/60);
     var resetEl=document.getElementById('dc-done-reset');
     if(resetEl) resetEl.textContent='in '+h2+'h '+m2+'m';
-    // Dot bars
     const dotsEl=document.getElementById('daily-done-dots');
     if(dotsEl) dotsEl.innerHTML=done.answers.map(a=>'<div class="dc-done-dot '+(a==='correct'?'c':'w')+'"></div>').join('');
-  }else{
-    document.getElementById('daily-cta').style.display='block';
-    document.getElementById('daily-done-area').style.display='none';
   }
 
-  // Quick stats strip
-  // sessions already declared above
-  if(sessions.length){
+  // Quick stats strip (localStorage fallback if DB payload not yet loaded)
+  if(sessions.length && !currentUser.id){
     document.getElementById('home-stats-strip').style.display='grid';
     document.getElementById('hs-games').textContent=sessions.length;
-    const avg=Math.round(sessions.reduce((a,s)=>a+s.pct,0)/sessions.length);
-    document.getElementById('hs-avg').textContent=avg+'%';
-    const bestSt=Math.max(...sessions.map(s=>s.streak||0));
-    document.getElementById('hs-streak').textContent=bestSt;
+    const avg2=Math.round(sessions.reduce((a,s)=>a+s.pct,0)/sessions.length);
+    document.getElementById('hs-avg').textContent=avg2+'%';
+    const bestSt2=Math.max(...sessions.map(s=>s.streak||0));
+    document.getElementById('hs-streak').textContent=bestSt2;
   }
 
   // no diff-label in new layout
@@ -3123,20 +3037,116 @@ async function loadHome(){
 async function loadLeaderboard(){
   const el=document.getElementById('lb-table');
   el.innerHTML='<div class="lb-loading">Loading...</div>';
-  let q=sb.from('leaderboard').select('*').order(lbSort,{ascending:false}).limit(50);
-  if(lbAgeFilter==='youth') q=q.lte('age',17);
-  else if(lbAgeFilter==='adult') q=q.gte('age',18);
-  const{data,error}=await q;
-  if(error||!data){el.innerHTML='<div class="lb-empty">Could not load leaderboard</div>';return;}
-  if(!data.length){el.innerHTML='<div class="lb-empty">No scores yet — be the first!</div>';return;}
-  const header=`<div class="lb-header"><span>#</span><span>Player</span><span style="text-align:right">Score</span><span style="text-align:right">IQ</span><span style="text-align:right">🔥</span><span style="text-align:right">Games</span></div>`;
-  const rows=data.map((r,i)=>{
-    const rankClass=i===0?'gold':i===1?'silver':i===2?'bronze':'';
-    const isMe=currentUser&&r.username===currentUser.username;
-    var iqStr = r.iq_score ? (r.iq_score).toLocaleString() : '—';
-    return `<div class="lb-row${isMe?' me':''}"><div class="lb-rank ${rankClass}">${i+1}</div><div><div class="lb-username">${r.username}</div><div class="lb-meta">${r.league||''}</div></div><div class="lb-val hi">${r.score_pct}%</div><div class="lb-val" style="color:#3a8aff">${iqStr}</div><div class="lb-val">${r.best_streak||0}</div><div class="lb-val">${r.total_questions||0}</div></div>`;
-  }).join('');
-  el.innerHTML=header+rows;
+
+  // ── Route to correct view based on active tab ──
+  var activeTab=document.querySelector('.lb-tab.on');
+  var tabKey=activeTab?activeTab.dataset.tab:'global';
+
+  try{
+    if(tabKey==='daily'){
+      // Daily challenge leaderboard — today's results ranked by score then time
+      var today=new Date().toISOString().split('T')[0];
+      var{data:ddata,error:derr}=await sb.from('daily_challenge_leaderboard')
+        .select('daily_rank,player_id,username,team_code,score_pct,correct,total_questions,completed_at')
+        .eq('challenge_date',today)
+        .order('daily_rank',{ascending:true})
+        .limit(50);
+      if(derr||!ddata){el.innerHTML='<div class="lb-empty">Could not load daily leaderboard</div>';return;}
+      if(!ddata.length){el.innerHTML='<div class="lb-empty">No one has completed today\'s challenge yet — be first!</div>';return;}
+      var header='<div class="lb-header"><span>#</span><span>Player</span><span>Score</span><span>Correct</span><span>Time</span><span></span></div>';
+      var rows=ddata.map(function(r){
+        var rankClass=r.daily_rank===1?'gold':r.daily_rank===2?'silver':r.daily_rank===3?'bronze':'';
+        var isMe=currentUser&&r.username===currentUser.username;
+        var timeStr=r.completed_at?new Date(r.completed_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'—';
+        return '<div class="lb-row'+(isMe?' me':'')+'">'+'<div class="lb-rank '+rankClass+'">'+r.daily_rank+'</div>'+'<div><div class="lb-username">'+r.username+'</div><div class="lb-meta">'+(r.team_code||'')+'</div></div>'+'<div class="lb-val hi">'+r.score_pct+'%</div>'+'<div class="lb-val">'+r.correct+'/'+r.total_questions+'</div>'+'<div class="lb-val" style="font-size:12px;color:#5a7a98">'+timeStr+'</div>'+'<div class="lb-val"></div>'+'</div>';
+      }).join('');
+      el.innerHTML=header+rows;
+      return;
+    }
+
+    if(tabKey==='age'){
+      // Age-group leaderboard ranked by age_group_rank
+      var myGroup=currentUser?currentUser.age_group:null;
+      if(!myGroup){el.innerHTML='<div class="lb-empty">Sign in to see your age group ranking</div>';return;}
+      var{data:adata,error:aerr}=await sb.from('leaderboard_by_age_group')
+        .select('age_group_rank,player_id,username,age_group,iq_score,score_pct,best_streak')
+        .eq('age_group',myGroup)
+        .order('age_group_rank',{ascending:true})
+        .limit(50);
+      if(aerr||!adata){el.innerHTML='<div class="lb-empty">Could not load age group leaderboard</div>';return;}
+      if(!adata.length){el.innerHTML='<div class="lb-empty">No players in your age group yet</div>';return;}
+      var header='<div class="lb-header"><span>#</span><span>Player</span><span>Score</span><span>IQ</span><span>🔥</span><span></span></div>';
+      var rows=adata.map(function(r){
+        var rankClass=r.age_group_rank===1?'gold':r.age_group_rank===2?'silver':r.age_group_rank===3?'bronze':'';
+        var isMe=currentUser&&r.player_id===currentUser.id;
+        return '<div class="lb-row'+(isMe?' me':'')+'">'+'<div class="lb-rank '+rankClass+'">'+r.age_group_rank+'</div>'+'<div><div class="lb-username">'+r.username+'</div><div class="lb-meta">'+r.age_group+'</div></div>'+'<div class="lb-val hi">'+r.score_pct+'%</div>'+'<div class="lb-val" style="color:#3a8aff">'+(r.iq_score||'—')+'</div>'+'<div class="lb-val">'+r.best_streak+'</div>'+'<div class="lb-val"></div>'+'</div>';
+      }).join('');
+      el.innerHTML=header+rows;
+      return;
+    }
+
+    if(tabKey==='team'){
+      // Team leaderboard — ranked by IQ within the player's team
+      // Derive team_id from current player's team membership
+      var myTeamId=currentUser?currentUser._team_id:null;
+      if(!myTeamId && currentUser && currentUser.id){
+        var{data:tmdata}=await sb.from('team_members').select('team_id').eq('player_id',currentUser.id).limit(1);
+        if(tmdata&&tmdata.length){ myTeamId=tmdata[0].team_id; currentUser._team_id=myTeamId; }
+      }
+      if(!myTeamId){el.innerHTML='<div class="lb-empty">Join a team to see team rankings</div>';return;}
+      var{data:tdata,error:terr}=await sb.from('team_leaderboard')
+        .select('team_rank,player_id,username,iq_score,score_pct,total_sessions,best_streak')
+        .eq('team_id',myTeamId)
+        .order('team_rank',{ascending:true})
+        .limit(30);
+      if(terr||!tdata){el.innerHTML='<div class="lb-empty">Could not load team leaderboard</div>';return;}
+      if(!tdata.length){el.innerHTML='<div class="lb-empty">No teammates yet</div>';return;}
+      var header='<div class="lb-header"><span>#</span><span>Player</span><span>IQ</span><span>Score</span><span>🔥</span><span>Games</span></div>';
+      var rows=tdata.map(function(r){
+        var rankClass=r.team_rank===1?'gold':r.team_rank===2?'silver':r.team_rank===3?'bronze':'';
+        var isMe=currentUser&&r.player_id===currentUser.id;
+        return '<div class="lb-row'+(isMe?' me':'')+'">'+'<div class="lb-rank '+rankClass+'">'+r.team_rank+'</div>'+'<div><div class="lb-username">'+r.username+'</div></div>'+'<div class="lb-val" style="color:#3a8aff">'+(r.iq_score||'—')+'</div>'+'<div class="lb-val hi">'+r.score_pct+'%</div>'+'<div class="lb-val">'+r.best_streak+'</div>'+'<div class="lb-val">'+r.total_sessions+'</div>'+'</div>';
+      }).join('');
+      el.innerHTML=header+rows;
+      return;
+    }
+
+    // Default: global IQ leaderboard (leaderboard_global view, top 100)
+    var{data:gdata,error:gerr}=await sb.from('leaderboard_global')
+      .select('global_rank,player_id,username,age_group,league,iq_score,score_pct,best_streak,total_questions,team_code')
+      .order('global_rank',{ascending:true})
+      .limit(100);
+
+    // Age filter still supported on global tab
+    if(lbAgeFilter==='youth') gdata=gdata?gdata.filter(function(r){return r.age_group&&r.age_group.toLowerCase().includes('youth');}):[]; 
+    else if(lbAgeFilter==='adult') gdata=gdata?gdata.filter(function(r){return !r.age_group||!r.age_group.toLowerCase().includes('youth');}):[]; 
+
+    if(gerr||!gdata){el.innerHTML='<div class="lb-empty">Could not load leaderboard</div>';return;}
+    if(!gdata.length){el.innerHTML='<div class="lb-empty">No scores yet — be the first!</div>';return;}
+
+    var header='<div class="lb-header"><span>#</span><span>Player</span><span>Score</span><span>IQ</span><span>🔥</span><span>Games</span></div>';
+    var rows=gdata.map(function(r){
+      var rankClass=r.global_rank===1?'gold':r.global_rank===2?'silver':r.global_rank===3?'bronze':'';
+      var isMe=currentUser&&(r.player_id===currentUser.id||r.username===currentUser.username);
+      var iqStr=r.iq_score?r.iq_score.toLocaleString():'—';
+      return '<div class="lb-row'+(isMe?' me':'')+'">'+'<div class="lb-rank '+rankClass+'">'+r.global_rank+'</div>'+'<div><div class="lb-username">'+r.username+'</div><div class="lb-meta">'+(r.league||r.age_group||'')+'</div></div>'+'<div class="lb-val hi">'+r.score_pct+'%</div>'+'<div class="lb-val" style="color:#3a8aff">'+iqStr+'</div>'+'<div class="lb-val">'+r.best_streak+'</div>'+'<div class="lb-val">'+(r.total_questions||0)+'</div>'+'</div>';
+    }).join('');
+    el.innerHTML=header+rows;
+
+  }catch(e){
+    console.error('loadLeaderboard error:',e);
+    // Fallback to legacy leaderboard table query
+    var{data,error}=await sb.from('leaderboard').select('*').order(lbSort||'iq_score',{ascending:false}).limit(50);
+    if(error||!data){el.innerHTML='<div class="lb-empty">Could not load leaderboard</div>';return;}
+    if(!data.length){el.innerHTML='<div class="lb-empty">No scores yet</div>';return;}
+    var header='<div class="lb-header"><span>#</span><span>Player</span><span>Score</span><span>IQ</span><span>🔥</span><span>Games</span></div>';
+    var rows=data.map(function(r,i){
+      var rankClass=i===0?'gold':i===1?'silver':i===2?'bronze':'';
+      var isMe=currentUser&&r.username===currentUser.username;
+      return '<div class="lb-row'+(isMe?' me':'')+'">'+'<div class="lb-rank '+rankClass+'">'+(i+1)+'</div>'+'<div><div class="lb-username">'+r.username+'</div><div class="lb-meta">'+(r.league||'')+'</div></div>'+'<div class="lb-val hi">'+r.score_pct+'%</div>'+'<div class="lb-val" style="color:#3a8aff">'+(r.iq_score||'—')+'</div>'+'<div class="lb-val">'+(r.best_streak||0)+'</div>'+'<div class="lb-val">'+(r.total_questions||0)+'</div>'+'</div>';
+    }).join('');
+    el.innerHTML=header+rows;
+  }
 }
 
 async function submitScore(){
@@ -3864,7 +3874,7 @@ document.addEventListener('click', function(e) {
   // Reset flag btn when Next Situation is clicked
   if(e.target && (e.target.id === 'gc-next' || e.target.id === 'daily-gc-next')) {
     var btn = document.getElementById('gc-flag-btn');
-    if(btn) { btn.classList.remove('flagged'); btn.textContent = '🚩 Flag'; }
+    if(btn) { btn.classList.remove('flagged'); btn.textContent = '🚩'; }
   }
 });
 
@@ -4037,7 +4047,7 @@ document.getElementById('tab-login').addEventListener('click',()=>{
 document.getElementById('tab-register').addEventListener('click',()=>{
   document.getElementById('tab-register').classList.add('on');
   document.getElementById('tab-login').classList.remove('on');
-  document.getElementById('form-register').className='auth-form active';['reg-username','reg-email','reg-password','reg-age'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';}); 
+  document.getElementById('form-register').className='auth-form active';
   document.getElementById('form-login').className='auth-form';
   document.getElementById('form-forgot').className='auth-form';
 });
@@ -4160,17 +4170,15 @@ document.getElementById('daily-gc-next').addEventListener('click',()=>{
 // lb refresh
 document.getElementById('lb-refresh').addEventListener('click',loadLeaderboard);
 
-// lb tabs
-document.querySelectorAll('.lb-tab').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.lb-tab').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');lbAgeFilter=b.dataset.age;loadLeaderboard();
-}));
-
-// sort btns
-document.querySelectorAll('.sort-btn').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.sort-btn').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');lbSort=b.dataset.sort;loadLeaderboard();
-}));
+// lb tabs — data-tab drives view routing; data-age kept for backward compat
+document.querySelectorAll('.lb-tab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.lb-tab').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    lbAgeFilter=b.dataset.age||'all';
+    loadLeaderboard();
+  });
+});
 
 // submit score
 document.getElementById('submit-score-btn').addEventListener('click',submitScore);
@@ -4899,32 +4907,13 @@ function cancelChallenge(){
 
 // ── ONBOARDING ──────────────────────────────────────────────────────────────
 var obSlide = 0;
-var obSelectedPos = null;
 
 function showOnboard(){
   document.getElementById('s-auth').classList.remove('active');
   document.body.style.overflow='';
   document.getElementById('s-onboard').classList.add('active');
   obSlide=0;
-  obSelectedPos=null;
   obUpdateSlide();
-}
-
-function obSelectPos(el, pos){
-  obSelectedPos = pos;
-  // Highlight selected card
-  document.querySelectorAll('.ob-pos-card').forEach(function(c){ c.classList.remove('selected'); });
-  if(el) el.classList.add('selected');
-  // Update slide 3 title
-  var fpTitle = document.getElementById('ob-fp-title');
-  var fpPos = document.getElementById('ob-fp-pos');
-  if(fpTitle){
-    if(pos) {
-      fpTitle.innerHTML = 'YOUR FIRST<br><span>' + pos.toUpperCase() + ' DRILL</span>';
-    } else {
-      fpTitle.innerHTML = 'YOUR FIRST<br><span>SITUATION IS READY</span>';
-    }
-  }
 }
 
 function obNext(){
@@ -4934,33 +4923,22 @@ function obNext(){
 
 function obUpdateSlide(){
   document.getElementById('ob-slides').style.transform = 'translateX(-'+obSlide*33.333+'%)';
+  // Update all dot sets
   [0,1,2].forEach(function(i){
-    ['dot-'+i,'dot-'+i+'b','dot-'+i+'c'].forEach(function(id){
-      var el=document.getElementById(id);
-      if(el) el.className='ob-dot'+(i===obSlide?' active':'');
-    });
+    var d0=document.getElementById('dot-'+i);
+    var d1=document.getElementById('dot-'+i+'b');
+    var d2=document.getElementById('dot-'+i+'c');
+    if(d0) d0.className='ob-dot'+(i===obSlide?' active':'');
+    if(d1) d1.className='ob-dot'+(i===obSlide?' active':'');
+    if(d2) d2.className='ob-dot'+(i===obSlide?' active':'');
   });
 }
 
 function finishOnboard(){
   document.getElementById('s-onboard').classList.remove('active');
   localStorage.setItem('biq_onboarded','1');
-  // Save position preference to Supabase if they picked one
-  if(obSelectedPos && currentUser){
-    currentUser.fav_position = obSelectedPos;
-    localStorage.setItem('biq_user', JSON.stringify(currentUser));
-    sb.from('players').update({fav_position: obSelectedPos}).eq('user_id', currentUser.user_id).then(function(){});
-  }
-  // Launch first game immediately — position drill if they picked one, quick game otherwise
-  initNav();
+  // Start daily challenge directly to give them a first win
   showScreen('s-home');
-  setTimeout(function(){
-    if(obSelectedPos) {
-      startPositionDrill(obSelectedPos);
-    } else {
-      startGame();
-    }
-  }, 400);
 }
 
 function isNewUser(){
@@ -5363,11 +5341,9 @@ async function loadCoachDashboard() {
     var drillBtn = p.is_coach ? '' : '<button class="cd-expand-btn" style="margin-left:6px;color:#3a8a3a" data-dpid="'+drillPanelId+'" onclick="toggleDrillPanel(this.dataset.dpid)">Drill 📋</button>';
     var editBtn = p.is_coach ? '' : '<button class="cd-expand-btn" data-pid="'+posId+'" onclick="handleTogglePos(this)">Edit Position ✎</button>';
     return '<div class="cd-player-card'+(isTop?' top-player':'')+'">'+
+      '<div class="cd-activity '+actClass+'">'+actLabel+'</div>'+
       '<div class="cd-player-row">'+
-        '<div>'+
-          '<div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+
-          '<div class="cd-activity '+actClass+'">'+actLabel+'</div>'+
-        '</div>'+
+        '<div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+
         drillBadge+
         '<div style="text-align:right">'+
           '<div class="cd-player-iq" style="color:'+rating.color+'">'+iq.toLocaleString()+'</div>'+
@@ -5622,11 +5598,9 @@ async function savePosition(username, panelId) {
 // Build question pool based on player's position profile
 async function buildWeightedPool(diffs) {
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
-  // Coach-assigned position takes priority; fall back to player's own fav_position
-  var primaryPos = currentUser.primary_position || currentUser.fav_position;
+  var primaryPos = currentUser.primary_position;
   var secondaryPos = currentUser.secondary_position;
-  // Coach assignments use their configured mix; self-selected positions use 'personal' (60% primary)
-  var mixMode = currentUser.primary_position ? (currentUser.position_mix || 'blended') : 'personal';
+  var mixMode = currentUser.position_mix || 'blended';
 
   if(!primaryPos) return null; // no assignment, fall through to normal game
 
@@ -5656,7 +5630,6 @@ async function buildWeightedPool(diffs) {
   // blended = "Balanced":    50% primary, 30% baserunner, 20% other  
   // general = "Full Team":   25% primary, 40% baserunner, 35% other
   var ratios = {
-    personal:  {primary:7, secondary:0, baserunner:3, general:2},
     focused:  {primary:8, secondary:0, baserunner:3, general:1},
     blended:  {primary:6, secondary:1, baserunner:4, general:1},
     general:  {primary:3, secondary:0, baserunner:5, general:4}
