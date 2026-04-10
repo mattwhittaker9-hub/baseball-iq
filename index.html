@@ -121,6 +121,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 @keyframes gcWrong{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 .gc-panel{position:fixed;bottom:0;left:0;right:0;background:#080f1a;border-top:1px solid rgba(255,255,255,0.07);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);z-index:600;padding-bottom:env(safe-area-inset-bottom,16px)}
 .gc-panel.show{transform:translateY(0)}
+.gc-panel.panel-correct{border-top:3px solid #3ecf82}.gc-panel.panel-wrong{border-top:3px solid #e84060}
+.gc-wrong-block{margin-bottom:10px;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.5;font-family:'Barlow',sans-serif}
+.gc-wrong-why{background:rgba(232,64,96,0.08);border-left:3px solid #e84060;color:rgba(255,255,255,0.7)}
+.gc-wrong-correct{background:rgba(62,207,130,0.08);border-left:3px solid #3ecf82;color:rgba(255,255,255,0.7)}
+.gc-wrong-rule{background:rgba(255,255,255,0.04);border-left:3px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.55)}
+.gc-wrong-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.gc-wrong-why .gc-wrong-label{color:#e84060}.gc-wrong-correct .gc-wrong-label{color:#3ecf82}.gc-wrong-rule .gc-wrong-label{color:rgba(255,255,255,0.4)}
 .gc-handle{width:36px;height:4px;background:rgba(255,255,255,0.12);border-radius:2px;margin:10px auto 0}
 .gc-panel-inner{padding:14px 18px 16px}
 .gc-result-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -507,7 +514,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── SCREEN CONSISTENCY ─── */
 .screen-header{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a5a78;margin-bottom:12px;padding-top:4px}
 
-.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px;border-top:3px solid #162840}.hfr-card.hfr-train{border-top-color:#3ecf82}.hfr-card.hfr-chief{border-top-color:#3a8aff}.hfr-card.hfr-battle{border-top-color:#c8102e}
 .hfr-card:active{transform:scale(0.96);background:#102030}
 .hfr-icon{font-size:22px;line-height:1}
 .hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
@@ -951,6 +958,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <input type="number" id="reg-age" placeholder="your age" min="5" max="99" inputmode="numeric">
         </div>
         <button class="main-cta" id="register-btn">Create Free Account &rarr;</button>
+        <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.28);margin-top:6px;font-family:'Barlow',sans-serif">By signing up you agree to our <a href="/privacy.html" style="color:rgba(62,207,130,0.6);text-decoration:none" target="_blank">Privacy Policy</a></p>
         <div class="auth-msg" id="register-msg"></div>
       </div>
     </div>
@@ -2388,18 +2396,29 @@ function showCardFeedback(ok,q,prefix=''){
   const expl=document.getElementById(pfx+'gc-expl');
   const hint=document.getElementById(pfx+'gc-hint');
   const panel=document.getElementById(pfx+'gc-panel');
+  if(!window._fbCount)window._fbCount=0;
+  const idx=window._fbCount%5;window._fbCount++;
+  const cH=[{t:'NICE READ.',s:"That's baseball IQ."},{t:"THAT'S THE PLAY.",s:'Heads up ball.'},{t:'YOU SAW IT COMING.',s:'Smart read.'},{t:'HEADS UP BALL.',s:"That's how it's done."},{t:'SMART PLAY.',s:'Know the game.'}];
+  const wH=[{t:'NOT QUITE.',s:"Here's the read."},{t:'STUDY THIS ONE.',s:'Good thought, wrong play.'},{t:'CLOSE — NOT EXACT.',s:'Baseball is detail.'},{t:'GOOD THOUGHT.',s:'Wrong play — here’s why.'},{t:'FILE THIS AWAY.',s:"You'll see this again."}];
   if(icon){icon.textContent=ok?'✅':'❌';icon.className='gc-result-icon '+(ok?'ok':'bad');}
-  if(title) title.textContent=ok?"That's the play!":'Not quite...';
-  if(sub) sub.textContent=ok?'Correct read':'Wrong read';
-  if(expl) expl.textContent=q.explanation||'';
-  // Spotlight — always show, pick best match for this question
-  try {
-    var fact = getSpotlightFact(q);
-    renderSpotlight(fact, pfx);
-  } catch(e) {}
-  if(hint) hint.style.display='none';
-  try{if(ok&&(curStreak===3||curStreak===5||curStreak===10)) showStreakCelebration(curStreak);}catch(e){}
-  setTimeout(()=>{if(panel) panel.classList.add('show');},250);
+  if(panel){panel.classList.remove('panel-correct','panel-wrong');panel.classList.add(ok?'panel-correct':'panel-wrong');}
+  if(ok){const h=cH[idx];if(title)title.textContent=h.t;if(sub)sub.textContent=h.s;if(expl)expl.textContent=q.explanation||'';}
+  else{
+    const h=wH[idx];if(title)title.textContent=h.t;if(sub)sub.textContent=h.s;
+    if(expl){
+      const explanation=q.explanation||'';let html='';
+      if(q.explanation_wrong){
+        html+='<div class="gc-wrong-block gc-wrong-why"><div class="gc-wrong-label">&#10060; Why that was wrong</div>'+q.explanation_wrong+'</div>';
+        html+='<div class="gc-wrong-block gc-wrong-correct"><div class="gc-wrong-label">&#9989; The correct play</div>'+explanation+'</div>';
+        if(q.quick_rule)html+='<div class="gc-wrong-block gc-wrong-rule"><div class="gc-wrong-label">&#128203; Quick rule</div>'+q.quick_rule+'</div>';
+      }else{html+='<div class="gc-wrong-block gc-wrong-correct"><div class="gc-wrong-label">&#9989; The correct play</div>'+explanation+'</div>';}
+      expl.innerHTML=html;
+    }
+  }
+  try{var fact=getSpotlightFact(q);renderSpotlight(fact,pfx);}catch(e){}
+  if(hint)hint.style.display='none';
+  try{if(ok&&(curStreak===3||curStreak===5||curStreak===10))showStreakCelebration(curStreak);}catch(e){}
+  setTimeout(()=>{if(panel)panel.classList.add('show');},250);
 }
 function showFeedback(ok,expl,prefix=''){showCardFeedback(ok,{explanation:expl},prefix);}
 
