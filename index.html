@@ -39,8 +39,16 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
 .bnav-btn.active{color:#c8102e}
-.bnav-icon{font-size:20px;line-height:1}
+.bnav-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px}
 .bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+/* ─── NAV ICON SPRITE ─── */
+.icon-sprite.icon-nav{width:32px;height:32px;border-radius:8px;overflow:hidden;background-image:url('icons.png');background-repeat:no-repeat;background-size:128px 64px;flex-shrink:0}
+.icon-nav.icon-home{background-position:0px 0px}
+.icon-nav.icon-board{background-position:-32px 0px}
+.icon-nav.icon-team{background-position:-64px 0px}
+.icon-nav.icon-stats{background-position:-96px 0px}
+.icon-nav.icon-battle{background-position:-32px -32px}
+.icon-nav.icon-pro{background-position:-64px -32px}
 
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
@@ -2053,27 +2061,27 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <nav class="bottom-nav" id="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" data-screen="s-home">
-      <span class="bnav-icon">⚾</span>
+      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-home"></div></span>
       <span class="bnav-label">Home</span>
     </button>
     <button class="bnav-btn" data-screen="s-leaderboard">
-      <span class="bnav-icon">🏆</span>
+      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-board"></div></span>
       <span class="bnav-label">Board</span>
     </button>
     <button class="bnav-btn" data-screen="s-team">
-      <span class="bnav-icon">👥</span>
+      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-team"></div></span>
       <span class="bnav-label">Team</span>
     </button>
     <button class="bnav-btn" data-screen="s-stats">
-      <span class="bnav-icon">📊</span>
+      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-stats"></div></span>
       <span class="bnav-label">Stats</span>
     </button>
     <button class="bnav-btn" data-screen="s-challenge" style="color:#6aabdc">
-      <span class="bnav-icon">⚔️</span>
+      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-battle"></div></span>
       <span class="bnav-label">Battle</span>
     </button>
     <button class="bnav-btn" data-screen="s-pro" style="color:#c89020">
-      <span class="bnav-icon">⭐</span>
+      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-pro"></div></span>
       <span class="bnav-label">Pro</span>
     </button>
   </div>
