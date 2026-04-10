@@ -128,6 +128,18 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-wrong-rule{background:rgba(255,255,255,0.04);border-left:3px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.55)}
 .gc-wrong-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
 .gc-wrong-why .gc-wrong-label{color:#e84060}.gc-wrong-correct .gc-wrong-label{color:#3ecf82}.gc-wrong-rule .gc-wrong-label{color:rgba(255,255,255,0.4)}
+/* ─── SPOTLIGHT CARD ─── */
+.gc-spotlight{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;margin-bottom:12px;display:block}
+.gc-spotlight.pro{border-color:rgba(62,207,130,0.25);background:rgba(62,207,130,0.05)}
+.gc-spotlight.history{border-color:rgba(58,138,255,0.25);background:rgba(58,138,255,0.05)}
+.gc-sp-type{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:5px}
+.gc-spotlight.pro .gc-sp-type{color:#3ecf82}
+.gc-spotlight.history .gc-sp-type{color:#3a8aff}
+.gc-sp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
+.gc-sp-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:0.5px;text-transform:uppercase}
+.gc-sp-val{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3ecf82}
+.gc-sp-detail{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4;font-family:'Barlow',sans-serif}
+
 .gc-handle{width:36px;height:4px;background:rgba(255,255,255,0.12);border-radius:2px;margin:10px auto 0}
 .gc-panel-inner{padding:14px 18px 16px}
 .gc-result-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -603,6 +615,12 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   margin:0 auto 4px;
 }
 .pt-card-wide .pt-icon-sprite{margin:0;flex-shrink:0}
+
+/* ─── HOME TILE ICON SPRITE ─── */
+.icon-sprite.icon-hfr{width:80px;height:80px;border-radius:18px;overflow:hidden;background-image:url('icons.png');background-repeat:no-repeat;background-size:320px 160px;flex-shrink:0}
+.icon-hfr.icon-rules{background-position:0px -80px}
+.icon-hfr.icon-battle{background-position:-80px -80px}
+.icon-hfr.icon-train{background-position:-240px -80px}
 
 /* position-colored card backgrounds */
 .pt-card.pitcher{background:linear-gradient(135deg,#071828,#0a2040);border-color:#1a3a5a}
@@ -3923,65 +3941,20 @@ function getSpotlightFact(q) {
 }
 
 function renderSpotlight(fact, prefix) {
-  prefix = prefix || '';
   var el = document.getElementById(prefix + 'gc-spotlight');
-  if(!el || !fact) return;
-  el.className = 'gc-spotlight ' + (fact.type || 'pro');
-  var typeLabels = {pro:'⚡ Pro Spotlight', fan:'⚾ Fan Spotlight', history:'📖 History Spotlight'};
-  var typeEl   = document.getElementById(prefix + 'gc-sp-type');
-  var nameEl   = document.getElementById(prefix + 'gc-sp-name');
-  var valEl    = document.getElementById(prefix + 'gc-sp-val');
-  var detailEl = document.getElementById(prefix + 'gc-sp-detail');
-  if(typeEl) typeEl.textContent = typeLabels[fact.type] || '⚡ Pro Spotlight';
-  if(nameEl) nameEl.textContent = fact.subject;
-  // Fan facts: show their role (label) instead of a stat value — no confusion about who they are
-  if(valEl) valEl.textContent = (fact.type === 'fan') ? (fact.label || '') : (fact.val || '');
-  if(detailEl) detailEl.textContent = fact.detail;
+  if (!el) return;
+  if (!fact || fact.type === 'fan') { el.style.display = 'none'; return; }
   el.style.display = 'block';
+  el.className = 'gc-spotlight ' + (fact.type || 'pro');
+  var typeEl = document.getElementById(prefix + 'gc-sp-type');
+  var nameEl = document.getElementById(prefix + 'gc-sp-name');
+  var valEl = document.getElementById(prefix + 'gc-sp-val');
+  var detailEl = document.getElementById(prefix + 'gc-sp-detail');
+  if (typeEl) typeEl.textContent = fact.type === 'history' ? '📖 History Spotlight' : '⚡ Pro Spotlight';
+  if (nameEl) nameEl.textContent = fact.name || '';
+  if (valEl) valEl.textContent = fact.stat || '';
+  if (detailEl) detailEl.textContent = fact.detail || '';
 }
-
-
-// ═══════════════════════════════════════════════════════════════════════════
-// FEATURE 1: FLAG QUESTION
-// ═══════════════════════════════════════════════════════════════════════════
-async function flagCurrentQuestion() {
-  if(!cq || !currentUser) return;
-  var btn = document.getElementById('gc-flag-btn');
-  if(btn) { btn.classList.add('flagged'); btn.textContent = '🚩'; }
-
-  // Store flag locally to prevent re-flagging
-  var flaggedKey = 'biq_flagged_' + currentUser.username;
-  var flagged = JSON.parse(localStorage.getItem(flaggedKey) || '[]');
-  if(flagged.includes(cq.id)) { showFlagToast('Already flagged!'); return; }
-  flagged.push(cq.id);
-  localStorage.setItem(flaggedKey, JSON.stringify(flagged));
-
-  // Save to Supabase flagged_questions table
-  try {
-    var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
-    await fetch('https://kcisieenoznaorioagqq.supabase.co/rest/v1/flagged_questions', {
-      method: 'POST',
-      headers: {
-        'apikey': KEY,
-        'Authorization': 'Bearer ' + KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        question_id: cq.id,
-        reported_by: currentUser.username,
-        position: cq.position || '',
-        question_text: cq.question || '',
-        flagged_at: new Date().toISOString()
-      })
-    });
-  } catch(e) {
-    // Silent fail — flag saved locally even if network fails
-    console.warn('Flag save failed:', e);
-  }
-  showFlagToast('Thanks! Question flagged for review.');
-}
-
 function showFlagToast(msg) {
   var toast = document.getElementById('gc-flag-toast');
   if(!toast) return;
