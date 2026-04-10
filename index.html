@@ -741,6 +741,10 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .daily-end-streak{background:linear-gradient(135deg,#0a1e0a,#0a2816);border:1px solid #1a4a2a;border-radius:14px;padding:14px;text-align:center;margin:12px 0;display:flex;align-items:center;justify-content:center;gap:10px}
 .daily-end-streak-num{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:#3ecf82;line-height:1}
 .daily-end-streak-lbl{font-size:14px;color:#5a8a5a;text-align:left;line-height:1.4}
+/* --- DAILY END SCREEN ALIASES --- */
+.daily-result-hero{text-align:center;padding:20px 0 16px}
+.daily-result-score{font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:900;color:#3ecf82;line-height:1;letter-spacing:-2px}
+.daily-result-grid{display:flex;justify-content:center;gap:8px;margin:12px 0 4px;flex-wrap:wrap}
 .dc-done-dot{width:10px;height:10px;border-radius:50%}
 .dc-done-dot.c{background:#3ecf82}
 .dc-done-dot.w{background:#e84060}
@@ -1082,18 +1086,18 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
-    <div class="hfr-card" onclick="showScreen('s-train')">
-      <div class="hfr-icon">🎯</div>
+    <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
-    <div class="hfr-card" onclick="showScreen('s-rules')">
-      <div class="hfr-icon">📋</div>
-      <div class="hfr-name">Rules</div>
-      <div class="hfr-sub">AI lookup</div>
+    <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
+      <div class="hfr-name">Crew Chief</div>
+      <div class="hfr-sub">Check the book</div>
     </div>
-    <div class="hfr-card" onclick="showScreen('s-challenge')">
-      <div class="hfr-icon">⚔️</div>
+    <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
       <div class="hfr-name">Battle</div>
       <div class="hfr-sub">Head-to-head</div>
     </div>
@@ -6071,7 +6075,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-local | 2026-04-10 -->
+<!-- BUILD:phase3-v2 | 2026-04-10 -->
 <div id="biq-build-stamp" style="position:fixed;bottom:4px;right:8px;font-family:monospace;font-size:9px;color:rgba(255,255,255,0.25);z-index:9999;pointer-events:none">BUILD:phase3-local</div>
 </body>
 </html>
