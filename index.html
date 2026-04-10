@@ -2081,6 +2081,10 @@ let curStreak=0,bestStreak=0,answerHistory=[],questionDifficulties=[];
 let lbAgeFilter='all',lbSort='score_pct';
 let currentUser=null; // set via supabase.auth session
 let dailyQs=[],dailyQn=0,dailyAnswers=[],dailyAnswered=false,dailyCq=null;
+// ─── SESSION TRACKING STATE ───
+let _currentSessionId=null;    // UUID of the active game_sessions row
+let _questionStartTime=null;   // ms timestamp when current question was rendered
+let _shownOrder=0;             // 1-based index of current question in session
 
 // ─── HELPERS ───
 function getTodayKey(){
@@ -2355,6 +2359,23 @@ function handleTFAnswer(v,q,prefix=''){
     updateProgressRow();
     var dotsEl=document.getElementById('gc-dots');
     if(dotsEl){var dot=dotsEl.children[qn-1];if(dot)dot.className='gc-dot '+(ok?'correct':'wrong');}
+    // ── Insert session_questions row for T/F (fire-and-forget) ──
+    if(_currentSessionId && currentUser && currentUser.id && q){
+      var tfTime=_questionStartTime?Math.round(Date.now()-_questionStartTime):null;
+      sb.from('session_questions').insert({
+        session_id:_currentSessionId,
+        player_id:currentUser.id,
+        question_id:q.id||null,
+        question_source:'questions',
+        difficulty:q.difficulty||2,
+        category:q.category||null,
+        answer_given:String(v),
+        correct_answer:q.correct_answer||null,
+        is_correct:ok,
+        time_ms:tfTime,
+        shown_order:_shownOrder
+      }).then(function(){}).catch(function(e){ console.warn('session_questions tf insert failed:',e); });
+    }
   }
 }
 function showCardFeedback(ok,q,prefix=''){
@@ -2393,6 +2414,25 @@ function recordAnswer(ok,choiceIdx,q){
     var dot=dotsEl.children[qn-1];
     if(dot) dot.className='gc-dot '+(ok?'correct':'wrong');
   }
+  // ── Insert session_questions row (fire-and-forget) ──
+  if(_currentSessionId && currentUser && currentUser.id && q){
+    var timeTaken=_questionStartTime?Math.round(Date.now()-_questionStartTime):null;
+    var answerGiven=q.choices&&q.choices[choiceIdx]?String(choiceIdx):null;
+    var correctAns=q.correct_answer||(q.choices&&q.choices[q.correct_index]?q.choices[q.correct_index].text:null);
+    sb.from('session_questions').insert({
+      session_id:_currentSessionId,
+      player_id:currentUser.id,
+      question_id:q.id||null,
+      question_source:'questions',
+      difficulty:q.difficulty||2,
+      category:q.category||null,
+      answer_given:answerGiven,
+      correct_answer:correctAns,
+      is_correct:ok,
+      time_ms:timeTaken,
+      shown_order:_shownOrder
+    }).then(function(){}).catch(function(e){ console.warn('session_questions insert failed:',e); });
+  }
 }
 function buildProgressRow(){ /* legacy - dots now in renderQ */ }
 function updateProgressRow(){ /* legacy - dots now in renderQ */
@@ -2404,32 +2444,78 @@ async function startGame(){
   document.getElementById('play-btn-text').textContent='Loading...';
   document.querySelector('.play-btn').disabled=true;
   const diffs=getDifficultyForUser();
+
+  // ── Reset session state ──
+  _currentSessionId=null;
+  _shownOrder=0;
+  usedIdx=[];qn=0;nc=0;tot=0;curStreak=0;bestStreak=0;answerHistory=[];questionDifficulties=[];
+
+  // ── Create game_sessions row ──
+  if(currentUser && currentUser.id){
+    try{
+      var teamId=currentUser._team_id||null;
+      var teamCode=currentUser.team_code||null;
+      var diffStart=diffs[0]||1;
+      var{data:sessionData,error:sessionErr}=await sb.from('game_sessions').insert({
+        player_id:currentUser.id,
+        session_type:'game',
+        status:'in_progress',
+        difficulty_start:diffStart,
+        team_id:teamId,
+        team_code:teamCode
+      }).select('id').single();
+      if(!sessionErr && sessionData) _currentSessionId=sessionData.id;
+    }catch(e){ console.warn('session create failed:',e); }
+  }
+
+  // ── Fetch questions ──
   try{
-    // Check if player has a position assignment from coach
-    var weightedPool = null;
-    if(cat==='all' && currentUser && currentUser.primary_position) {
-      weightedPool = await buildWeightedPool(diffs);
-    }
-    if(weightedPool && weightedPool.length >= TOTAL_QS) {
-      filteredQs = weightedPool;
+    // Use fetch_game_questions RPC if player has a DB id (avoids recent repeats)
+    if(currentUser && currentUser.id){
+      var{data:rpcData,error:rpcErr}=await sb.rpc('fetch_game_questions',{p_player_id:currentUser.id});
+      if(!rpcErr && rpcData && rpcData.length>=9){
+        filteredQs=rpcData.map(normalizeQuestion);
+        // Pad to TOTAL_QS if needed (RPC returns 9, game expects TOTAL_QS)
+        if(filteredQs.length<TOTAL_QS){
+          // fill remainder from same pool shuffled
+          var extras=[...filteredQs].sort(()=>Math.random()-0.5);
+          while(filteredQs.length<TOTAL_QS) filteredQs.push(extras[filteredQs.length%extras.length]);
+        }
+      } else {
+        throw new Error(rpcErr?.message||'RPC returned no data');
+      }
     } else {
-      let q=sb.from('questions').select('*').in('difficulty',diffs);
-      if(cat!=='all') q=q.eq('category',cat);
-      const{data,error}=await q.limit(500);
-      if(error) throw error;
-      let pool=(data||[]).map(normalizeQuestion);
-      if(!pool.length) throw new Error('No questions');
-      filteredQs=pool;
+      // Unauthenticated fallback: query questions table directly
+      var weightedPool=null;
+      if(cat==='all' && currentUser && currentUser.primary_position){
+        weightedPool=await buildWeightedPool(diffs);
+      }
+      if(weightedPool && weightedPool.length>=TOTAL_QS){
+        filteredQs=weightedPool;
+      } else {
+        let q=sb.from('questions').select('*').in('difficulty',diffs);
+        if(cat!=='all') q=q.eq('category',cat);
+        const{data,error}=await q.limit(500);
+        if(error) throw error;
+        let pool=(data||[]).map(normalizeQuestion);
+        if(!pool.length) throw new Error('No questions');
+        filteredQs=pool;
+      }
     }
   }catch(e){
+    // Abandon the session row if question fetch failed
+    if(_currentSessionId){
+      sb.from('game_sessions').update({status:'abandoned'}).eq('id',_currentSessionId).then(()=>{});
+      _currentSessionId=null;
+    }
     document.getElementById('play-btn-text').textContent='Take the Field';
     document.querySelector('.play-btn').disabled=false;
     alert('Could not load questions. Check your connection.');
     return;
   }
+
   document.getElementById('play-btn-text').textContent='Take the Field';
   document.querySelector('.play-btn').disabled=false;
-  usedIdx=[];qn=0;nc=0;tot=0;curStreak=0;bestStreak=0;answerHistory=[];questionDifficulties=[];
   showScreen('s-game');
   nextQ();
 }
@@ -2471,6 +2557,8 @@ function nextQ(){
   } while(!isQuestionClean(candidate) && attempts<5);
   usedIdx.push(idx);cq=candidate;
   answered=false;qn++;
+  _shownOrder=qn;          // track shown order for session_questions
+  _questionStartTime=Date.now(); // start timer for time_ms
   var gcNext=document.getElementById('gc-next');
   if(gcNext) gcNext.textContent=qn>=TOTAL_QS?'See My Results ✓':'Next Situation ↑';
   renderQ(cq,'');
@@ -2538,6 +2626,19 @@ function showEnd(){
   setTimeout(checkAndAwardBadges, 1800);
   // Auto-submit to leaderboard if player is on a team
   if(currentUser.team_code) submitScore();
+  // ── Complete game_sessions row — triggers IQ, badges, leaderboard updates server-side ──
+  if(_currentSessionId && currentUser && currentUser.id){
+    sb.from('game_sessions').update({
+      status:'completed',
+      total_questions:tot,
+      correct:nc,
+      streak:bestStreak,
+      difficulty_end:questionDifficulties.length?questionDifficulties[questionDifficulties.length-1]:null,
+      completed_at:new Date().toISOString()
+    }).eq('id',_currentSessionId).then(function(){
+      _currentSessionId=null;
+    }).catch(function(e){ console.warn('game_sessions complete failed:',e); });
+  }
 }
 
 // ─── DAILY CHALLENGE ───
