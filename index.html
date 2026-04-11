@@ -39,16 +39,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
 .bnav-btn.active{color:#c8102e}
-.bnav-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px}
+.bnav-icon{font-size:20px;line-height:1}
 .bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
-/* ─── NAV ICON SPRITE ─── */
-.icon-sprite.icon-nav{width:32px;height:32px;border-radius:8px;overflow:hidden;background-image:url('icons.png');background-repeat:no-repeat;background-size:128px 64px;flex-shrink:0}
-.icon-nav.icon-home{background-position:0px 0px}
-.icon-nav.icon-board{background-position:-32px 0px}
-.icon-nav.icon-team{background-position:-64px 0px}
-.icon-nav.icon-stats{background-position:-96px 0px}
-.icon-nav.icon-battle{background-position:-32px -32px}
-.icon-nav.icon-pro{background-position:-64px -32px}
 
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
@@ -129,25 +121,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 @keyframes gcWrong{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 .gc-panel{position:fixed;bottom:0;left:0;right:0;background:#080f1a;border-top:1px solid rgba(255,255,255,0.07);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);z-index:600;padding-bottom:env(safe-area-inset-bottom,16px)}
 .gc-panel.show{transform:translateY(0)}
-.gc-panel.panel-correct{border-top:3px solid #3ecf82}.gc-panel.panel-wrong{border-top:3px solid #e84060}
-.gc-wrong-block{margin-bottom:10px;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.5;font-family:'Barlow',sans-serif}
-.gc-wrong-why{background:rgba(232,64,96,0.08);border-left:3px solid #e84060;color:rgba(255,255,255,0.7)}
-.gc-wrong-correct{background:rgba(62,207,130,0.08);border-left:3px solid #3ecf82;color:rgba(255,255,255,0.7)}
-.gc-wrong-rule{background:rgba(255,255,255,0.04);border-left:3px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.55)}
-.gc-wrong-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
-.gc-wrong-why .gc-wrong-label{color:#e84060}.gc-wrong-correct .gc-wrong-label{color:#3ecf82}.gc-wrong-rule .gc-wrong-label{color:rgba(255,255,255,0.4)}
-/* ─── SPOTLIGHT CARD ─── */
-.gc-spotlight{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;margin-bottom:12px;display:block}
-.gc-spotlight.pro{border-color:rgba(62,207,130,0.25);background:rgba(62,207,130,0.05)}
-.gc-spotlight.history{border-color:rgba(58,138,255,0.25);background:rgba(58,138,255,0.05)}
-.gc-sp-type{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:5px}
-.gc-spotlight.pro .gc-sp-type{color:#3ecf82}
-.gc-spotlight.history .gc-sp-type{color:#3a8aff}
-.gc-sp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
-.gc-sp-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:0.5px;text-transform:uppercase}
-.gc-sp-val{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3ecf82}
-.gc-sp-detail{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4;font-family:'Barlow',sans-serif}
-
 .gc-handle{width:36px;height:4px;background:rgba(255,255,255,0.12);border-radius:2px;margin:10px auto 0}
 .gc-panel-inner{padding:14px 18px 16px}
 .gc-result-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -157,7 +130,17 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-result-title{font-family:Barlow Condensed,sans-serif;font-size:18px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
 .gc-result-sub{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px}
 .gc-explanation{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;margin-bottom:12px;font-family:'Barlow',sans-serif}
-/* gc-statcast retired — replaced by gc-spotlight */
+/* gc-spotlight — pro/fan/history fact shown on answer reveal */
+.gc-spotlight{background:rgba(255,255,255,0.04);border-radius:10px;padding:10px 12px;margin-bottom:12px;display:none}
+.gc-spotlight.show{display:block}
+.gc-spotlight.pro .gc-sp-type{color:#3ecf82}
+.gc-spotlight.fan .gc-sp-type{color:#f0a030}
+.gc-spotlight.history .gc-sp-type{color:#3a8aff}
+.gc-sp-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#3ecf82;margin-bottom:4px}
+.gc-sp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
+.gc-sp-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:0.5px;text-transform:uppercase}
+.gc-sp-val{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3ecf82}
+.gc-sp-detail{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4;font-family:'Barlow',sans-serif}
 .gc-next{width:100%;background:#c8102e;border:none;border-radius:12px;padding:14px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all 0.15s}
 .gc-next:active{transform:scale(0.98)}
 .gc-swipe-hint{position:absolute;bottom:calc(env(safe-area-inset-bottom,16px)+10px);left:0;right:0;text-align:center;font-family:Barlow Condensed,sans-serif;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1.5px;text-transform:uppercase;animation:hintPulse 2.5s ease-in-out infinite}
@@ -534,7 +517,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── SCREEN CONSISTENCY ─── */
 .screen-header{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a5a78;margin-bottom:12px;padding-top:4px}
 
-.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px;border-top:3px solid #162840}.hfr-card.hfr-train{border-top-color:#3ecf82}.hfr-card.hfr-chief{border-top-color:#3a8aff}.hfr-card.hfr-battle{border-top-color:#c8102e}
+.hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .hfr-card:active{transform:scale(0.96);background:#102030}
 .hfr-icon{font-size:22px;line-height:1}
 .hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
@@ -623,12 +606,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   margin:0 auto 4px;
 }
 .pt-card-wide .pt-icon-sprite{margin:0;flex-shrink:0}
-
-/* ─── HOME TILE ICON SPRITE ─── */
-.icon-sprite.icon-hfr{width:80px;height:80px;border-radius:18px;overflow:hidden;background-image:url('icons.png');background-repeat:no-repeat;background-size:320px 160px;flex-shrink:0}
-.icon-hfr.icon-rules{background-position:0px -80px}
-.icon-hfr.icon-battle{background-position:-80px -80px}
-.icon-hfr.icon-train{background-position:-240px -80px}
 
 /* position-colored card backgrounds */
 .pt-card.pitcher{background:linear-gradient(135deg,#071828,#0a2040);border-color:#1a3a5a}
@@ -984,7 +961,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <input type="number" id="reg-age" placeholder="your age" min="5" max="99" inputmode="numeric">
         </div>
         <button class="main-cta" id="register-btn">Create Free Account &rarr;</button>
-        <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.28);margin-top:6px;font-family:'Barlow',sans-serif">By signing up you agree to our <a href="/privacy.html" style="color:rgba(62,207,130,0.6);text-decoration:none" target="_blank">Privacy Policy</a></p>
         <div class="auth-msg" id="register-msg"></div>
       </div>
     </div>
@@ -1228,8 +1204,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <div class="gc-sp-val" id="daily-gc-sp-val"></div>
         </div>
         <div class="gc-sp-detail" id="daily-gc-sp-detail"></div>
-      
-
+      </div>
       <button class="gc-next" id="daily-gc-next">Next Situation ↑</button>
     </div>
   </div>
@@ -2061,27 +2036,27 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <nav class="bottom-nav" id="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" data-screen="s-home">
-      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-home"></div></span>
+      <span class="bnav-icon">⚾</span>
       <span class="bnav-label">Home</span>
     </button>
     <button class="bnav-btn" data-screen="s-leaderboard">
-      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-board"></div></span>
+      <span class="bnav-icon">🏆</span>
       <span class="bnav-label">Board</span>
     </button>
     <button class="bnav-btn" data-screen="s-team">
-      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-team"></div></span>
+      <span class="bnav-icon">👥</span>
       <span class="bnav-label">Team</span>
     </button>
     <button class="bnav-btn" data-screen="s-stats">
-      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-stats"></div></span>
+      <span class="bnav-icon">📊</span>
       <span class="bnav-label">Stats</span>
     </button>
     <button class="bnav-btn" data-screen="s-challenge" style="color:#6aabdc">
-      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-battle"></div></span>
+      <span class="bnav-icon">⚔️</span>
       <span class="bnav-label">Battle</span>
     </button>
     <button class="bnav-btn" data-screen="s-pro" style="color:#c89020">
-      <span class="bnav-icon"><div class="icon-sprite icon-nav icon-pro"></div></span>
+      <span class="bnav-icon">⭐</span>
       <span class="bnav-label">Pro</span>
     </button>
   </div>
@@ -2325,6 +2300,9 @@ function renderQ(q,prefix=''){
   if(bar){const total=isDaily?dailyQs.length:TOTAL_QS;const cur=isDaily?dailyQn:qn;bar.style.width=Math.round(cur/total*100)+'%';}
   const panel=document.getElementById(pfx+'gc-panel');
   if(panel) panel.classList.remove('show');
+  // Reset spotlight so previous fact doesn't linger
+  var spotEl = document.getElementById(pfx+'gc-spotlight');
+  if(spotEl) spotEl.classList.remove('show');
   const hint=document.getElementById(pfx+'gc-hint');
   if(hint) hint.style.display='block';
   const content=document.getElementById(pfx+'gc-content');
@@ -2422,29 +2400,34 @@ function showCardFeedback(ok,q,prefix=''){
   const expl=document.getElementById(pfx+'gc-expl');
   const hint=document.getElementById(pfx+'gc-hint');
   const panel=document.getElementById(pfx+'gc-panel');
-  if(!window._fbCount)window._fbCount=0;
-  const idx=window._fbCount%5;window._fbCount++;
-  const cH=[{t:'NICE READ.',s:"That's baseball IQ."},{t:"THAT'S THE PLAY.",s:'Heads up ball.'},{t:'YOU SAW IT COMING.',s:'Smart read.'},{t:'HEADS UP BALL.',s:"That's how it's done."},{t:'SMART PLAY.',s:'Know the game.'}];
-  const wH=[{t:'NOT QUITE.',s:"Here's the read."},{t:'STUDY THIS ONE.',s:'Good thought, wrong play.'},{t:'CLOSE — NOT EXACT.',s:'Baseball is detail.'},{t:'GOOD THOUGHT.',s:'Wrong play — here’s why.'},{t:'FILE THIS AWAY.',s:"You'll see this again."}];
   if(icon){icon.textContent=ok?'✅':'❌';icon.className='gc-result-icon '+(ok?'ok':'bad');}
-  if(panel){panel.classList.remove('panel-correct','panel-wrong');panel.classList.add(ok?'panel-correct':'panel-wrong');}
-  if(ok){const h=cH[idx];if(title)title.textContent=h.t;if(sub)sub.textContent=h.s;if(expl)expl.textContent=q.explanation||'';}
-  else{
-    const h=wH[idx];if(title)title.textContent=h.t;if(sub)sub.textContent=h.s;
-    if(expl){
-      const explanation=q.explanation||'';let html='';
-      if(q.explanation_wrong){
-        html+='<div class="gc-wrong-block gc-wrong-why"><div class="gc-wrong-label">&#10060; Why that was wrong</div>'+q.explanation_wrong+'</div>';
-        html+='<div class="gc-wrong-block gc-wrong-correct"><div class="gc-wrong-label">&#9989; The correct play</div>'+explanation+'</div>';
-        if(q.quick_rule)html+='<div class="gc-wrong-block gc-wrong-rule"><div class="gc-wrong-label">&#128203; Quick rule</div>'+q.quick_rule+'</div>';
-      }else{html+='<div class="gc-wrong-block gc-wrong-correct"><div class="gc-wrong-label">&#9989; The correct play</div>'+explanation+'</div>';}
-      expl.innerHTML=html;
+  if(title) title.textContent=ok?"That's the play!":'Not quite...';
+  if(sub) sub.textContent=ok?'Correct read':'Wrong read';
+  if(expl) expl.textContent=q.explanation||'';
+  // Spotlight — always show, pick best match for this question
+  try {
+    var fact = getSpotlightFact(q);
+    if(fact) {
+      renderSpotlight(fact, pfx);
+    } else if(q.statcast_stat && q.statcast_blurb) {
+      var el = document.getElementById(pfx + 'gc-spotlight');
+      var typeEl = document.getElementById(pfx + 'gc-sp-type');
+      var nameEl = document.getElementById(pfx + 'gc-sp-name');
+      var valEl  = document.getElementById(pfx + 'gc-sp-val');
+      var detailEl = document.getElementById(pfx + 'gc-sp-detail');
+      if(el) {
+        el.className = 'gc-spotlight pro';
+        if(typeEl) typeEl.textContent = '📊 By The Numbers';
+        if(valEl)  valEl.textContent  = q.statcast_stat;
+        if(nameEl) nameEl.textContent = '';
+        if(detailEl) detailEl.textContent = q.statcast_blurb;
+        el.classList.add('show');
+      }
     }
-  }
-  try{var fact=getSpotlightFact(q);renderSpotlight(fact,pfx);}catch(e){}
-  if(hint)hint.style.display='none';
-  try{if(ok&&(curStreak===3||curStreak===5||curStreak===10))showStreakCelebration(curStreak);}catch(e){}
-  setTimeout(()=>{if(panel)panel.classList.add('show');},250);
+  } catch(e) { console.warn('Spotlight error:', e); }
+  if(hint) hint.style.display='none';
+  try{if(ok&&(curStreak===3||curStreak===5||curStreak===10)) showStreakCelebration(curStreak);}catch(e){}
+  setTimeout(()=>{if(panel) panel.classList.add('show');},250);
 }
 function showFeedback(ok,expl,prefix=''){showCardFeedback(ok,{explanation:expl},prefix);}
 
@@ -3949,20 +3932,65 @@ function getSpotlightFact(q) {
 }
 
 function renderSpotlight(fact, prefix) {
+  prefix = prefix || '';
   var el = document.getElementById(prefix + 'gc-spotlight');
-  if (!el) return;
-  if (!fact || fact.type === 'fan') { el.style.display = 'none'; return; }
-  el.style.display = 'block';
+  if(!el || !fact) return;
   el.className = 'gc-spotlight ' + (fact.type || 'pro');
-  var typeEl = document.getElementById(prefix + 'gc-sp-type');
-  var nameEl = document.getElementById(prefix + 'gc-sp-name');
-  var valEl = document.getElementById(prefix + 'gc-sp-val');
+  var typeLabels = {pro:'⚡ Pro Spotlight', fan:'⚾ Fan Spotlight', history:'📖 History Spotlight'};
+  var typeEl   = document.getElementById(prefix + 'gc-sp-type');
+  var nameEl   = document.getElementById(prefix + 'gc-sp-name');
+  var valEl    = document.getElementById(prefix + 'gc-sp-val');
   var detailEl = document.getElementById(prefix + 'gc-sp-detail');
-  if (typeEl) typeEl.textContent = fact.type === 'history' ? '📖 History Spotlight' : '⚡ Pro Spotlight';
-  if (nameEl) nameEl.textContent = fact.name || '';
-  if (valEl) valEl.textContent = fact.stat || '';
-  if (detailEl) detailEl.textContent = fact.detail || '';
+  if(typeEl) typeEl.textContent = typeLabels[fact.type] || '⚡ Pro Spotlight';
+  if(nameEl) nameEl.textContent = fact.subject;
+  // Fan facts: show their role (label) instead of a stat value — no confusion about who they are
+  if(valEl) valEl.textContent = (fact.type === 'fan') ? (fact.label || '') : (fact.val || '');
+  if(detailEl) detailEl.textContent = fact.detail;
+  el.classList.add('show');
 }
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FEATURE 1: FLAG QUESTION
+// ═══════════════════════════════════════════════════════════════════════════
+async function flagCurrentQuestion() {
+  if(!cq || !currentUser) return;
+  var btn = document.getElementById('gc-flag-btn');
+  if(btn) { btn.classList.add('flagged'); btn.textContent = '🚩'; }
+
+  // Store flag locally to prevent re-flagging
+  var flaggedKey = 'biq_flagged_' + currentUser.username;
+  var flagged = JSON.parse(localStorage.getItem(flaggedKey) || '[]');
+  if(flagged.includes(cq.id)) { showFlagToast('Already flagged!'); return; }
+  flagged.push(cq.id);
+  localStorage.setItem(flaggedKey, JSON.stringify(flagged));
+
+  // Save to Supabase flagged_questions table
+  try {
+    var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
+    await fetch('https://kcisieenoznaorioagqq.supabase.co/rest/v1/flagged_questions', {
+      method: 'POST',
+      headers: {
+        'apikey': KEY,
+        'Authorization': 'Bearer ' + KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        question_id: cq.id,
+        reported_by: currentUser.username,
+        position: cq.position || '',
+        question_text: cq.question || '',
+        flagged_at: new Date().toISOString()
+      })
+    });
+  } catch(e) {
+    // Silent fail — flag saved locally even if network fails
+    console.warn('Flag save failed:', e);
+  }
+  showFlagToast('Thanks! Question flagged for review.');
+}
+
 function showFlagToast(msg) {
   var toast = document.getElementById('gc-flag-toast');
   if(!toast) return;
@@ -6073,7 +6101,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v3 | 2026-04-10 -->
+<!-- BUILD:phase3-v2 | 2026-04-10 -->
 <div id="biq-build-stamp" style="position:fixed;bottom:4px;right:8px;font-family:monospace;font-size:9px;color:rgba(255,255,255,0.25);z-index:9999;pointer-events:none">BUILD:phase3-local</div>
 </body>
 </html>
