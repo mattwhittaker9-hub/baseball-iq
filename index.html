@@ -520,6 +520,22 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .hfr-card{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .hfr-card:active{transform:scale(0.96);background:#102030}
 .hfr-icon{font-size:22px;line-height:1}
+
+/* ─── ICONS.PNG SPRITE ─── */
+.icon-sprite{display:inline-block;background-image:url('icons.png');background-repeat:no-repeat}
+/* Feature card icons (36px display size) */
+.icon-hfr{width:36px;height:39px;background-size:144px 79px}
+.icon-hfr.icon-train {background-position:-108px -39px}
+.icon-hfr.icon-rules {background-position:0px -39px}
+.icon-hfr.icon-battle{background-position:-36px -39px}
+/* Bottom nav icons (26px display size) */
+.bnav-sprite{display:inline-block;width:26px;height:28px;background-image:url('icons.png');background-size:104px 57px;background-repeat:no-repeat}
+.bnav-home  {background-position:0px 0px}
+.bnav-board {background-position:-26px 0px}
+.bnav-team  {background-position:-52px 0px}
+.bnav-stats {background-position:-78px 0px}
+.bnav-battle{background-position:-26px -28px}
+.bnav-pro   {background-position:-52px -28px}
 .hfr-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
 .hfr-sub{font-size:10px;color:#3a5a78;font-family:system-ui,sans-serif}
 
@@ -1098,17 +1114,17 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
     <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
-      <div class="hfr-icon">🎯</div>
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
     <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
-      <div class="hfr-icon">📋</div>
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
       <div class="hfr-name">Crew Chief</div>
       <div class="hfr-sub">Check the book</div>
     </div>
     <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
-      <div class="hfr-icon">⚔️</div>
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
       <div class="hfr-name">Battle</div>
       <div class="hfr-sub">Head-to-head</div>
     </div>
@@ -2039,27 +2055,27 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <nav class="bottom-nav" id="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" data-screen="s-home">
-      <span class="bnav-icon">⚾</span>
+      <span class="bnav-icon"><div class="bnav-sprite bnav-home"></div></span>
       <span class="bnav-label">Home</span>
     </button>
     <button class="bnav-btn" data-screen="s-leaderboard">
-      <span class="bnav-icon">🏆</span>
+      <span class="bnav-icon"><div class="bnav-sprite bnav-board"></div></span>
       <span class="bnav-label">Board</span>
     </button>
     <button class="bnav-btn" data-screen="s-team">
-      <span class="bnav-icon">👥</span>
+      <span class="bnav-icon"><div class="bnav-sprite bnav-team"></div></span>
       <span class="bnav-label">Team</span>
     </button>
     <button class="bnav-btn" data-screen="s-stats">
-      <span class="bnav-icon">📊</span>
+      <span class="bnav-icon"><div class="bnav-sprite bnav-stats"></div></span>
       <span class="bnav-label">Stats</span>
     </button>
     <button class="bnav-btn" data-screen="s-challenge" style="color:#6aabdc">
-      <span class="bnav-icon">⚔️</span>
+      <span class="bnav-icon"><div class="bnav-sprite bnav-battle"></div></span>
       <span class="bnav-label">Battle</span>
     </button>
     <button class="bnav-btn" data-screen="s-pro" style="color:#c89020">
-      <span class="bnav-icon">⭐</span>
+      <span class="bnav-icon"><div class="bnav-sprite bnav-pro"></div></span>
       <span class="bnav-label">Pro</span>
     </button>
   </div>
