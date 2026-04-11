@@ -39,7 +39,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
 .bnav-btn.active{color:#c8102e}
-.bnav-icon{font-size:20px;line-height:1}
+.bnav-icon{font-size:22px;line-height:1;display:block}
 .bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
 
 /* ─── AUTH ─── */
@@ -745,6 +745,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ═══════════════════════════════════════════
    DAILY END SCREEN
 ═══════════════════════════════════════════ */
+.daily-end-card{background:#0c1828;border:1px solid #162840;border-radius:16px;padding:20px;margin-bottom:14px}
+.daily-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,130,0.1);border:1px solid rgba(62,207,130,0.25);border-radius:20px;padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#3ecf82;letter-spacing:1px;margin-bottom:14px}
+.share-result-btn{width:100%;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.25);border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px}
 .daily-end-hero{text-align:center;padding:20px 0 16px}
 .daily-end-score{font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:900;color:#3ecf82;line-height:1;letter-spacing:-2px}
 .daily-end-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;color:#3a5a78;text-transform:uppercase;margin-top:4px}
@@ -1095,17 +1098,17 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
     <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
+      <div class="hfr-icon">🎯</div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
     <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
+      <div class="hfr-icon">📋</div>
       <div class="hfr-name">Crew Chief</div>
       <div class="hfr-sub">Check the book</div>
     </div>
     <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
+      <div class="hfr-icon">⚔️</div>
       <div class="hfr-name">Battle</div>
       <div class="hfr-sub">Head-to-head</div>
     </div>
@@ -6102,6 +6105,6 @@ function closeReview(evt) {
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
 <!-- BUILD:phase3-v2 | 2026-04-10 -->
-<div id="biq-build-stamp" style="position:fixed;bottom:4px;right:8px;font-family:monospace;font-size:9px;color:rgba(255,255,255,0.25);z-index:9999;pointer-events:none">BUILD:phase3-local</div>
+<div id="biq-build-stamp" style="display:none"></div>
 </body>
 </html>
