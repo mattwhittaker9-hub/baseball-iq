@@ -2828,6 +2828,7 @@ function updateDailyStreak(){
   else data.streak=1;
   data.last=today;
   localStorage.setItem(key,JSON.stringify(data));
+  if(currentUser?.user_id){sb.from('players').update({best_streak:Math.max(data.streak,currentUser.best_streak||0)}).eq('user_id',currentUser.user_id).then(function(){currentUser.best_streak=Math.max(data.streak,currentUser.best_streak||0);});}
 }
 
 function getDailyStreak(){
@@ -2837,6 +2838,12 @@ function getDailyStreak(){
   const yesterday=new Date(new Date()-86400000).toISOString().split('T')[0];
   if(data.last===today||data.last===yesterday) return data.streak;
   return 0;
+}
+
+async function syncStreakFromDB(){
+  if(!currentUser?.user_id) return;
+  try{const {data}=await sb.from('players').select('best_streak').eq('user_id',currentUser.user_id).single();if(!data)return;const key='biq_dstreak_'+currentUser.username;const local=JSON.parse(localStorage.getItem(key)||'{"streak":0,"last":""}');if(data.best_streak>local.streak){local.streak=data.best_streak;localStorage.setItem(key,JSON.stringify(local));}}
+  catch(e){console.warn('Streak sync error:',e);}
 }
 
 // ─── STATS STORAGE ───
@@ -2993,7 +3000,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid'); syncBadgesFromDB();
+  renderBadgesGrid('badges-grid'); syncBadgesFromDB(); syncStreakFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
@@ -5158,8 +5165,9 @@ function loadIQScore() {
   if(!currentUser) return 1000;
   var stored = parseInt(localStorage.getItem('biq_iq_'+currentUser.username)) || 0;
   if(stored) return stored;
-  // Pull from Supabase player profile if available
-  return currentUser.iq_score || 1000;
+  var dbIQ = currentUser.iq_score || 1000;
+  if(dbIQ && dbIQ !== 1000) localStorage.setItem('biq_iq_'+currentUser.username, dbIQ);
+  return dbIQ;
 }
 
 function calculateSessionDelta(answersArr, difficultiesArr) {
