@@ -2840,6 +2840,22 @@ function getDailyStreak(){
   return 0;
 }
 
+async function syncSessionsFromDB(){
+  if(!currentUser?.user_id) return;
+  try{
+    const sessions=JSON.parse(localStorage.getItem('biq_sessions_'+currentUser.username)||'[]');
+    if(sessions.length) return;
+    const {data}=await sb.from('players').select('total_sessions,total_questions,total_correct,avg_score,best_streak,iq_score').eq('user_id',currentUser.user_id).single();
+    if(!data||!data.total_sessions) return;
+    currentUser.total_sessions=data.total_sessions;
+    currentUser.avg_score=data.avg_score;
+    currentUser.best_streak=data.best_streak;
+    localStorage.setItem('biq_user',JSON.stringify(currentUser));
+    if(typeof updateHomeIQ==='function') updateHomeIQ();
+    console.log('Stats seeded from DB:',data.total_sessions,'sessions');
+  }catch(e){console.warn('Session sync error:',e);}
+}
+
 async function syncStreakFromDB(){
   if(!currentUser?.user_id) return;
   try{const {data}=await sb.from('players').select('best_streak').eq('user_id',currentUser.user_id).single();if(!data)return;const key='biq_dstreak_'+currentUser.username;const local=JSON.parse(localStorage.getItem(key)||'{"streak":0,"last":""}');if(data.best_streak>local.streak){local.streak=data.best_streak;localStorage.setItem(key,JSON.stringify(local));}}
@@ -3000,7 +3016,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid'); syncBadgesFromDB(); syncStreakFromDB();
+  renderBadgesGrid('badges-grid'); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
