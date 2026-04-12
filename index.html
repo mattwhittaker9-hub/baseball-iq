@@ -2993,7 +2993,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid');
+  renderBadgesGrid('badges-grid'); syncBadgesFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
@@ -5406,6 +5406,7 @@ function checkAndAwardBadges() {
     if(newlyEarned.length > 0) {
       // Save updated earned list
       localStorage.setItem('biq_badges_' + currentUser.username, JSON.stringify(earned));
+      newlyEarned.forEach(function(b){ saveBadgeToDB(b); });
       // Show badges one at a time with stagger
       newlyEarned.forEach(function(badge, i) {
         setTimeout(function() { showNewBadge(badge); }, i * 3500);
@@ -5421,6 +5422,26 @@ function checkAndAwardBadges() {
 function getEarnedBadges() {
   if(!currentUser) return [];
   return JSON.parse(localStorage.getItem('biq_badges_'+currentUser.username)||'[]');
+}
+async function syncBadgesFromDB() {
+  if(!currentUser) return;
+  try {
+    var {data,error} = await sb.from('user_badges').select('badge_key').eq('player_id', currentUser.id);
+    if(error || !data || !data.length) return;
+    var dbIds = data.map(function(r){return r.badge_key;});
+    var local = getEarnedBadges();
+    var merged = Array.from(new Set(local.concat(dbIds)));
+    if(merged.length !== local.length) {
+      localStorage.setItem('biq_badges_'+currentUser.username, JSON.stringify(merged));
+      console.log('Synced '+dbIds.length+' badges from DB');
+    }
+  } catch(e) { console.warn('Badge sync error:', e); }
+}
+async function saveBadgeToDB(badge) {
+  if(!currentUser) return;
+  try {
+    await sb.from('user_badges').upsert({player_id:currentUser.id,badge_key:badge.id,badge_label:badge.name},{onConflict:'player_id,badge_key',ignoreDuplicates:true});
+  } catch(e) { console.warn('Badge save error:', e); }
 }
 
 // ── COACH DASHBOARD ──────────────────────────────────────────────────────────
