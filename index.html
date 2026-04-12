@@ -2709,6 +2709,7 @@ function showEnd(){
   var currentIQ=loadIQScore();
   var ahSimple2=answerHistory.map(function(a){return typeof a==='object'?a.result:a;});
   var delta=calculateSessionDelta(ahSimple2,questionDifficulties);
+  saveIQScoreServerSide(ahSimple2,questionDifficulties);
   var newIQ=Math.max(500,Math.min(1800,currentIQ+delta));
   renderEndIQ(delta,newIQ);
   saveIQScore(newIQ);
@@ -5305,6 +5306,23 @@ function calculateSessionDelta(answersArr, difficultiesArr) {
   return Math.max(-150, Math.min(200, delta));
 }
 
+async function saveIQScoreServerSide(answers,difficulties){
+  if(!currentUser?.id)return null;
+  try{
+    const{data,error}=await sb.rpc('calculate_and_save_iq',{
+      p_player_id:currentUser.id,
+      p_answers:answers,
+      p_difficulties:difficulties,
+      p_current_iq:loadIQScore()
+    });
+    if(error||!data)return null;
+    localStorage.setItem('biq_iq_'+currentUser.username,data.new_iq);
+    currentUser.iq_score=data.new_iq;
+    localStorage.setItem('biq_user',JSON.stringify(currentUser));
+    console.log('Server IQ validated:',data.new_iq,'delta:',data.delta);
+    return data;
+  }catch(e){console.warn('Server IQ error:',e);return null;}
+}
 async function saveIQScore(newScore) {
   if(!currentUser) return;
   localStorage.setItem('biq_iq_'+currentUser.username, newScore);
