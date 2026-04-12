@@ -2848,7 +2848,7 @@ function showDailyEnd(answers,pct){
   document.getElementById('de-streak-num').textContent=streak;
   document.getElementById('de-streak-label').textContent=streak===1?'Day Streak':streak+' Day Streak';
   document.getElementById('de-streak-sub').textContent=streak>=7?'You\'re on fire!':streak>=3?'Building momentum!':'Keep it going daily';
-  if(pct>=80)setTimeout(launchConfetti,400);
+  if(pct>=80)setTimeout(launchFireworks,400);
 }
 function launchConfetti(){
   // Stadium fireworks
@@ -2888,6 +2888,18 @@ function launchConfetti(){
   })();
 }
 
+function launchFireworks(){
+  const c=document.getElementById('daily-confetti');if(!c)return;c.style.display='block';c.width=window.innerWidth;c.height=window.innerHeight;
+  const ctx=c.getContext('2d'),cols=['#c8102e','#003087','#e8c060','#ffffff','#3ecf82'];
+  const shells=[];
+  function addShell(){shells.push({x:c.width*0.15+Math.random()*c.width*0.7,y:c.height+20,targetY:c.height*0.08+Math.random()*c.height*0.38,vx:(Math.random()-0.5)*1.5,vy:-20-Math.random()*8,exploded:false,particles:[],color:cols[Math.floor(Math.random()*cols.length)],trail:[]});}
+  function explode(s){s.exploded=true;const c2=cols[Math.floor(Math.random()*cols.length)];for(let i=0;i<80;i++){const a=(Math.PI*2/80)*i,sp=4+Math.random()*6;s.particles.push({x:s.x,y:s.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,alpha:1,color:Math.random()>0.4?s.color:c2,size:2+Math.random()*2});}}
+  const launches=[0,20,38,58,80,105];let si=0,frame=0;
+  (function draw(){ctx.fillStyle='rgba(6,17,31,0.2)';ctx.fillRect(0,0,c.width,c.height);
+  if(si<launches.length&&frame===launches[si]){addShell();si++;}
+  shells.forEach(s=>{if(!s.exploded){s.trail.push({x:s.x,y:s.y});if(s.trail.length>10)s.trail.shift();s.x+=s.vx;s.y+=s.vy;s.vy+=0.4;s.trail.forEach((pt,i)=>{ctx.globalAlpha=(i/s.trail.length)*0.5;ctx.fillStyle='#fff8d0';ctx.beginPath();ctx.arc(pt.x,pt.y,1.5,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;if(s.vy>=-1||s.y<=s.targetY)explode(s);}else{s.particles=s.particles.filter(p=>p.alpha>0.03);s.particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.1;p.vx*=0.97;p.alpha-=0.014;ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;}});
+  frame++;if(frame>160&&shells.every(s=>!s.exploded||s.particles.length===0)){ctx.clearRect(0,0,c.width,c.height);c.style.display='none';}else requestAnimationFrame(draw);})();
+}
 function shareDailyResult(){
   const key=getTodayKey();
   const done=JSON.parse(localStorage.getItem('biq_daily_'+key)||'null');
