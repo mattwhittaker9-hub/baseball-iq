@@ -883,6 +883,78 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .screen-loading::before{content:'⚾';font-size:24px;margin-right:8px;animation:spin 1.5s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
+
+/* ═══ BASEBALL IQ — MATERIAL TEXTURES ═══ */
+.tex-grass{background-image:url(tex_grass.webp);background-size:512px 512px;background-repeat:repeat}
+.tex-leather{background-image:url(tex_leather.webp);background-size:512px 512px;background-repeat:repeat}
+.tex-brickdust{background-image:url(tex_brickdust.webp);background-size:512px 512px;background-repeat:repeat}
+.tex-wood{background-image:url(tex_wood.webp);background-size:512px 512px;background-repeat:repeat}
+.tex-canvas{background-image:url(tex_canvas.webp);background-size:512px 512px;background-repeat:repeat}
+
+/* TEXTURE OVERLAYS — dark layer over texture so text stays readable */
+.tex-overlay-dark::after{content:'';position:absolute;inset:0;background:rgba(6,17,31,0.82);pointer-events:none;border-radius:inherit}
+.tex-overlay-leather::after{content:'';position:absolute;inset:0;background:rgba(15,8,2,0.78);pointer-events:none;border-radius:inherit}
+.tex-overlay-brickdust::after{content:'';position:absolute;inset:0;background:rgba(25,6,2,0.80);pointer-events:none;border-radius:inherit}
+.tex-overlay-wood::after{content:'';position:absolute;inset:0;background:rgba(10,5,0,0.82);pointer-events:none;border-radius:inherit}
+.tex-overlay-canvas::after{content:'';position:absolute;inset:0;background:rgba(8,14,24,0.86);pointer-events:none;border-radius:inherit}
+
+/* HOME SCREEN REDESIGN */
+.home-header-new{position:relative;padding:20px 18px 16px;overflow:hidden;border-bottom:1px solid rgba(62,130,62,0.2)}
+.home-header-new>*{position:relative;z-index:1}
+.home-iq-giant{font-family:'Barlow Condensed',sans-serif;font-size:80px;font-weight:900;color:#f0ece4;line-height:1;letter-spacing:-3px}
+.home-iq-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:#3a9a5a;text-transform:uppercase;margin-top:2px}
+.home-tier-pill-new{display:inline-flex;align-items:center;gap:6px;background:rgba(232,192,96,0.1);border:1px solid rgba(232,192,96,0.2);border-radius:20px;padding:4px 12px;margin-top:8px}
+.home-tier-pill-new span{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#e8c060;letter-spacing:1px}
+.home-stats-strip{display:flex;gap:1px;margin-top:12px}
+.home-stat-cell{flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)}
+.home-stat-cell:first-child{border-radius:8px 0 0 8px}
+.home-stat-cell:last-child{border-radius:0 8px 8px 0}
+.home-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#f0ece4;line-height:1;display:block}
+.home-stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;color:#3a5a78;text-transform:uppercase;margin-top:2px;display:block}
+
+/* DAILY CARD — brick dust */
+.daily-card-new{border-radius:14px;overflow:hidden;border:1px solid rgba(200,80,30,0.25);position:relative;margin-bottom:10px}
+.daily-card-new>*{position:relative;z-index:1}
+.daily-top-new{padding:14px 16px 10px}
+.daily-live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e84040;animation:dotPulse 1.4s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.daily-title-new{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#f0ece4;line-height:1.1;margin-top:4px}
+.daily-title-new em{color:#3ecf82;font-style:normal}
+.daily-sub-new{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#6a4a38;font-weight:400;letter-spacing:1px;margin-top:3px}
+.daily-bottom-new{padding:10px 16px 12px;display:flex;align-items:center;gap:12px;border-top:1px solid rgba(200,80,30,0.12)}
+.daily-cta{background:#3ecf82;border:none;border-radius:8px;padding:9px 16px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#06111f;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
+
+/* FEATURE CARDS */
+.feat-primary{border-radius:14px;overflow:hidden;border:1px solid rgba(62,207,130,0.2);position:relative;display:flex;align-items:center;gap:16px;padding:16px;margin-bottom:8px}
+.feat-primary>*{position:relative;z-index:1}
+.feat-secondary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.feat-secondary{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);position:relative;padding:14px 12px}
+.feat-secondary>*{position:relative;z-index:1}
+.feat-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feat-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#f0ece4;letter-spacing:0.5px;text-transform:uppercase}
+.feat-desc{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a88;margin-top:2px;letter-spacing:0.5px}
+.feat-secondary .feat-name{font-size:16px}
+.feat-secondary .feat-icon{width:38px;height:38px;margin-bottom:8px}
+
+/* SPOTLIGHT */
+.spotlight-new{border-radius:12px;overflow:hidden;border:1px solid rgba(55,138,221,0.12);position:relative;padding:12px 16px;margin-bottom:10px}
+.spotlight-new>*{position:relative;z-index:1}
+.spotlight-label-new{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;color:#378add;text-transform:uppercase;margin-bottom:5px}
+.spotlight-text-new{font-family:system-ui,sans-serif;font-size:12px;color:#6a90b0;line-height:1.5}
+.spotlight-text-new strong{color:#c8e0f4;font-weight:600}
+
+/* QUICK GAME BTN */
+.quick-game-new{width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(200,16,46,0.25);position:relative;padding:15px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;margin-bottom:8px;background:transparent}
+.quick-game-new>*{position:relative;z-index:1}
+.qg-pip{width:10px;height:10px;border-radius:50%;background:#c8102e}
+.qg-text{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#f0ece4;letter-spacing:2px;text-transform:uppercase}
+
+/* STITCH DOTS */
+.stitch-row-new{display:flex;gap:6px;padding:8px 0 0}
+.sdot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900}
+.sdot.hit{background:rgba(62,207,130,0.15);border:1.5px solid #3ecf82;color:#3ecf82}
+.sdot.miss{background:rgba(232,64,96,0.1);border:1.5px solid #e84060;color:#e84060}
+.sdot.empty{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1)}
 </style>
 </head>
 <body>
@@ -1029,438 +1101,94 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 <!-- ─── HOME SCREEN ─── -->
 <div id="s-home" class="screen">
-  <!-- ─── IQ HERO ─── -->
-  <div class="iq-hero" id="iq-hero">
-    <div class="iq-hero-left">
-      <div class="iq-hero-lbl">Baseball IQ</div>
-      <div class="iq-hero-num" id="ih-num">1,000</div>
-      <div class="iq-hero-rating" id="ih-rating">Varsity</div>
-      <div id="ih-rank" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px;margin-top:2px"></div>
-      <div id="ih-team-name" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5aabdc;letter-spacing:0.5px;margin-top:2px"></div>
-    </div>
-    <div class="iq-hero-right">
-      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-games">0</div><div class="iq-hero-stat-lbl">Games</div></div>
-      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-avg">—</div><div class="iq-hero-stat-lbl">Avg Score</div></div>
-      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-streak">0</div><div class="iq-hero-stat-lbl">Best Streak</div></div>
-      <div class="iq-hero-stat" id="ih-badge-count-wrap" style="display:none"><div class="iq-hero-stat-val" id="ih-badge-count">0</div><div class="iq-hero-stat-lbl">Badges</div></div>
-    </div>
-  </div>
-  <!-- Assignment pill — shown when coach has assigned work -->
-  <div id="home-assign-pill" style="display:none;align-items:center;gap:8px;background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.3);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f08090;letter-spacing:0.5px;cursor:pointer" onclick="showScreen('s-team')"></div>
-
-
-  <!-- ─── DRILL CARD (shows when coach assigns a drill) ─── -->
-  <div id="drill-card" style="display:none">
-    <div class="drill-card-wrap">
-      <div class="drill-card-hdr">📋 Coach Drill</div>
-      <div class="drill-card-name" id="dc-name">—</div>
-      <div class="drill-card-meta" id="dc-meta">—</div>
-      <button class="drill-start-btn" onclick="startDrill()">Start Drill →</button>
-    </div>
-  </div>
-  <div id="drill-done-card" style="display:none">
-    <div class="drill-card-wrap done">
-      <div class="drill-card-hdr done">📋 Drill Complete ✓</div>
-      <div class="drill-done-row">
-        <div>
-          <div class="drill-card-name" id="dc-done-name" style="font-size:17px">—</div>
-          <div class="drill-card-meta" style="margin-bottom:0">Assigned by coach</div>
-        </div>
-        <div style="text-align:right">
-          <div class="drill-done-score" id="dc-done-score">—%</div>
-          <div style="font-size:10px;color:#4a7a4a;font-family:system-ui,sans-serif">your score</div>
-        </div>
+  <!-- HEADER — real grass texture -->
+  <div class="home-header-new tex-grass tex-overlay-dark">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:#3a9a5a;text-transform:uppercase">Baseball IQ</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:6px">
+      <div>
+        <div class="home-iq-giant" id="home-iq">1,000</div>
+        <div class="home-iq-label">Baseball IQ</div>
+        <div class="home-tier-pill-new" id="home-tier-badge"><span>🪑 Benchwarmer</span></div>
+      </div>
+      <div style="text-align:right;padding-bottom:6px">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#f0ece4;line-height:1" id="ih-games-played">—</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a5a78;letter-spacing:2px;text-transform:uppercase">GAMES</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#3ecf82;line-height:1;margin-top:6px" id="ih-avg-score">—</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a5a78;letter-spacing:2px;text-transform:uppercase">AVG SCORE</div>
       </div>
     </div>
   </div>
 
-  <!-- ─── DAILY CHALLENGE HERO ─── -->
-  <div class="dc-hero" id="daily-card">
-    <!-- Top strip -->
-    <div class="dc-top">
-      <div class="dc-live-badge"><div class="dc-live-dot"></div>Daily Challenge</div>
-      <div class="dc-countdown" id="dc-countdown">Resets in —</div>
-    </div>
-
-    <!-- NOT YET DONE -->
-    <div id="daily-cta">
-      <div class="dc-body">
-        <div class="dc-title">Today's <span>Drill</span></div>
-        <div class="dc-sub" id="daily-date-label">5 questions · Same for everyone worldwide</div>
-        <div class="dc-streak-row">
-          <div class="dc-streak-fire">🔥</div>
-          <div class="dc-streak-num" id="daily-streak-num">0</div>
-          <div class="dc-streak-lbl"><strong id="dc-streak-label">Day Streak</strong><span id="dc-streak-sub">Complete today to keep it going</span></div>
+  <div style="padding:10px 14px 0">
+    <!-- DAILY CARD — brick dust texture -->
+    <div class="daily-card-new tex-brickdust tex-overlay-brickdust">
+      <div class="daily-top-new">
+        <div style="display:flex;align-items:center;gap:6px">
+          <div class="daily-live-dot"></div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:#c8602e;text-transform:uppercase">Daily Challenge</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;color:#6a4a38;margin-left:6px" id="daily-reset-time"></span>
+        </div>
+        <div class="daily-title-new">Today's <em>Drill</em></div>
+        <div class="daily-sub-new">5 questions · Same for everyone worldwide</div>
+        <div class="stitch-row-new" id="home-stitch-dots">
+          <div class="sdot empty"></div><div class="sdot empty"></div><div class="sdot empty"></div><div class="sdot empty"></div><div class="sdot empty"></div>
         </div>
       </div>
-      <div class="dc-btn" onclick="startDaily()">Step Up to the Plate →</div>
-      <div class="dc-team-rank" id="dc-team-rank" style="display:none">
-        <div class="dc-rank-lbl">Your team rank today</div>
-        <div class="dc-rank-val" id="dc-team-rank-val">#—</div>
+      <div class="daily-bottom-new">
+        <div style="font-size:28px;line-height:1" id="ih-streak-fire">🔥</div>
+        <div style="flex:1">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#3ecf82;line-height:1" id="ih-streak-num">0</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:#3a7a5a;text-transform:uppercase">Day Streak</div>
+        </div>
+        <button class="daily-cta" id="daily-cta-btn" onclick="startDailyChallenge()">Step Up →</button>
       </div>
     </div>
 
-    <!-- ALREADY DONE -->
-    <div id="daily-done-area" style="display:none">
-      <div class="dc-body">
-        <div class="dc-title">Drill <span>Complete</span> ✓</div>
-        <div class="dc-done">
-          <div class="dc-done-score-row">
-            <div>
-              <div class="dc-done-score" id="daily-done-score">—</div>
-              <div style="font-size:11px;color:#4a7a5a;font-family:system-ui,sans-serif">today's score</div>
-            </div>
-            <div style="text-align:right">
-              <div class="dc-done-pct" id="dc-done-pct">—%</div>
-              <div class="dc-done-meta">🔥 <span id="dc-done-streak">0</span> day streak<br>Resets <span id="dc-done-reset">at midnight</span></div>
-            </div>
-          </div>
-          <div class="dc-done-dots" id="daily-done-dots"></div>
-          <button class="dc-done-share" onclick="shareDailyResult()">📤 Share My Result</button>
-        </div>
+    <!-- QUICK GAME — wood grain texture -->
+    <div class="quick-game-new tex-wood tex-overlay-wood" onclick="startGame('quick')">
+      <div class="qg-pip"></div>
+      <div class="qg-text">Quick Game</div>
+    </div>
+
+    <!-- TRAIN CARD — leather texture (primary) -->
+    <div class="feat-primary tex-leather tex-overlay-leather" onclick="showScreen('s-train')">
+      <div class="feat-icon" style="background:rgba(62,207,130,0.12);border:1px solid rgba(62,207,130,0.2)">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><polygon points="12,3 21,20 3,20" stroke="#3ecf82" stroke-width="1.5" stroke-linejoin="round" fill="rgba(62,207,130,0.1)"/><line x1="12" y1="8" x2="12" y2="14" stroke="#3ecf82" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="#3ecf82"/></svg>
       </div>
-      <div class="dc-team-rank" id="dc-team-rank-done" style="display:none">
-        <div class="dc-rank-lbl">Team rank today</div>
-        <div class="dc-rank-val" id="dc-team-rank-done-val">#—</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- IQ Bar (legacy — now using iq-hero above) -->
-  <div id="home-stats-strip" style="display:none"></div>
-
-  <!-- Quick Play -->
-  <button class="play-btn" id="start-btn" onclick="startGame()">
-    ⚾ &nbsp;<span id="play-btn-text">Quick Game</span>
-  </button>
-
-
-  <!-- Coach Team Message Banner -->
-  <div id="coach-msg-banner" style="display:none;background:#0a1828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:10px">
-    <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c8102e;margin-bottom:3px">📣 Coach says</div>
-    <div id="cmb-text" style="font-size:14px;color:#e0e8f0;font-family:system-ui,sans-serif"></div>
-    <div id="cmb-time" style="font-size:10px;color:#3a6a88;margin-top:2px"></div>
-  </div>
-
-  <!-- Coach Position Assignment Banner -->
-  <div id="coach-pos-banner" style="display:none;background:#071828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:none">
-    <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a8aff;margin-bottom:3px">⚾ Coach has assigned you</div>
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div id="cpb-pos" style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff">—</div>
-      <div id="cpb-mix" style="font-size:11px;color:#4a8aaa">—</div>
-    </div>
-    <div id="cpb-desc" style="font-size:11px;color:#3a6a88;margin-top:2px">—</div>
-  </div>
-
-  <!-- Feature Cards Row -->
-  <div class="home-feature-row">
-    <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
-      <div class="hfr-name">Train</div>
-      <div class="hfr-sub">By position</div>
-    </div>
-    <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
-      <div class="hfr-name">Crew Chief</div>
-      <div class="hfr-sub">Check the book</div>
-    </div>
-    <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
-      <div class="hfr-name">Battle</div>
-      <div class="hfr-sub">Head-to-head</div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── DAILY CHALLENGE GAME ─── -->
-<div id="s-daily-game" class="game-card-screen">
-  <div class="gc-top">
-    <div class="gc-dots" id="daily-gc-dots"></div>
-    <button class="gc-exit-btn" onclick="showScreen('s-home')">✕</button>
-  </div>
-  <div class="gc-cat"><div class="gc-cat-pill" id="daily-gc-cat">⚡ Daily Challenge</div></div>
-  <div class="gc-content" id="daily-gc-content">
-    <div class="gc-scenario" id="daily-gc-scenario">
-      <div class="gc-broadcast">
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-val" id="daily-gc-b-inning">—</div>
-          <div class="gc-bcast-lbl">Inning</div>
-        </div>
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-val score" id="daily-gc-b-score">—</div>
-          <div class="gc-bcast-lbl">Score</div>
-        </div>
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-outs" id="daily-gc-b-outs">
-            <div class="gc-out-pip"></div>
-            <div class="gc-out-pip"></div>
-            <div class="gc-out-pip"></div>
-          </div>
-          <div class="gc-bcast-lbl">Outs</div>
-        </div>
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-count">
-            <div class="gc-count-row" id="daily-gc-balls-row">
-              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
-            </div>
-            <div class="gc-count-row" id="daily-gc-strikes-row">
-              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
-            </div>
-          </div>
-          <div class="gc-bcast-lbl">Count</div>
-        </div>
-      </div>
-      <div class="gc-diamond-row">
-        <svg class="gc-field-svg" viewBox="0 0 100 100" width="88" height="88">
-          <defs>
-            <radialGradient id="dgGrass" cx="50%" cy="60%" r="55%">
-              <stop offset="0%" stop-color="#0d2018"/>
-              <stop offset="100%" stop-color="#071510"/>
-            </radialGradient>
-          </defs>
-          <rect width="100" height="100" fill="url(#dgGrass)" rx="4"/>
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.9"/>
-          <polygon points="50,30 78,56 50,82 22,56" fill="#0a1c12" opacity="0.95"/>
-          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
-          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
-          <circle cx="50" cy="58" r="3.5" fill="#1a1208" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
-          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.55)"/>
-          <rect id="daily-gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,78,56)"/>
-          <rect id="daily-gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,50,30)"/>
-          <rect id="daily-gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,22,56)"/>
-          <circle id="daily-gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
-          <circle id="daily-gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
-          <circle id="daily-gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
-        </svg>
-        <div class="gc-scenario-text">
-          <div class="gc-scenario-label">Situation</div>
-          <div class="gc-scenario-body" id="daily-gc-scenario-body"></div>
+      <div>
+        <div class="feat-name">Train</div>
+        <div class="feat-desc">By position · 782 questions</div>
+        <div style="margin-top:8px;display:flex;gap:4px;align-items:center">
+          <div style="height:3px;width:36px;background:#3ecf82;border-radius:2px"></div>
+          <div style="height:3px;width:20px;background:rgba(62,207,130,0.3);border-radius:2px"></div>
+          <div style="height:3px;width:12px;background:rgba(62,207,130,0.15);border-radius:2px"></div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a7a5a;letter-spacing:1px;margin-left:4px" id="home-tier-level">BENCHWARMER</span>
         </div>
       </div>
     </div>
-    <div class="gc-inning" id="daily-gc-inning" style="display:none"></div>
-    <div class="gc-question" id="daily-gc-question"></div>
-    <div class="gc-choices" id="daily-choices"></div>
-  </div>
-  <div class="gc-panel" id="daily-gc-panel">
-    <div class="gc-handle"></div>
-    <div class="gc-panel-inner">
-      <div class="gc-result-row">
-        <div class="gc-result-icon ok" id="daily-gc-icon">✅</div>
-        <div>
-          <div class="gc-result-title" id="daily-gc-title">That's the play!</div>
-          <div class="gc-result-sub" id="daily-gc-sub">Correct read</div>
-        </div>
-      </div>
-      <div class="gc-explanation" id="daily-gc-expl"></div>
-      <div class="gc-spotlight" id="daily-gc-spotlight">
-        <div class="gc-sp-type" id="daily-gc-sp-type">Pro Spotlight</div>
-        <div class="gc-sp-row">
-          <div class="gc-sp-name" id="daily-gc-sp-name"></div>
-          <div class="gc-sp-val" id="daily-gc-sp-val"></div>
-        </div>
-        <div class="gc-sp-detail" id="daily-gc-sp-detail"></div>
-      </div>
-      <button class="gc-next" id="daily-gc-next">Next Situation ↑</button>
-    </div>
-  </div>
-  <div class="gc-swipe-hint" id="daily-gc-hint">Tap an answer</div>
-  <div class="gc-streak-bar"><div class="gc-streak-fill" id="daily-gc-bar" style="width:0%"></div></div>
-</div>
-</div><!-- /s-daily-game -->
 
-<!-- ─── DAILY CHALLENGE END ─── -->
-<div id="s-daily-end" class="screen">
-  <canvas id="daily-confetti" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none"></canvas>
-  <div class="de-hero">
-    <div class="de-trophy" id="de-trophy">⚾</div>
-    <div class="de-badge" id="de-badge">⚡ DAILY COMPLETE</div>
-    <div class="de-score" id="daily-end-score">—</div>
-    <div class="de-score-label">TODAY'S SCORE</div>
-    <div class="de-dots" id="daily-end-grid"></div>
-  </div>
-  <div class="de-streak-card">
-    <div class="de-streak-fire">🔥</div>
-    <div class="de-streak-num" id="de-streak-num">0</div>
-    <div class="de-streak-text"><strong id="de-streak-label">Day Streak</strong><span id="de-streak-sub">Keep it going tomorrow</span></div>
-  </div>
-  <div class="de-rating-card">
-    <div class="de-rating-icon" id="de-rating-icon">🏆</div>
-    <div class="de-rating-text">
-      <div class="de-rating-label" id="de-rating-label">GREAT GAME</div>
-      <div class="de-rating-sub" id="de-rating-sub">You know the game</div>
+    <!-- CREW CHIEF + BATTLE — canvas texture -->
+    <div class="feat-secondary-row">
+      <div class="feat-secondary tex-canvas tex-overlay-canvas" onclick="showScreen('s-rules')">
+        <div class="feat-icon" style="background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.15)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#378add" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#378add" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feat-name">Crew Chief</div>
+        <div class="feat-desc">Check the book</div>
+      </div>
+      <div class="feat-secondary tex-canvas tex-overlay-canvas" onclick="showScreen('s-battle')">
+        <div class="feat-icon" style="background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.15)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="4" y1="20" x2="20" y2="4" stroke="#c8102e" stroke-width="2.5" stroke-linecap="round"/><line x1="20" y1="20" x2="4" y2="4" stroke="#c8102e" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feat-name">Battle</div>
+        <div class="feat-desc">Head-to-head</div>
+      </div>
     </div>
-  </div>
-  <button class="de-share-btn" id="share-daily-btn" onclick="shareDailyResult()">📤 Share My Result</button>
-  <div class="wrong-review-section" id="daily-wrong-review-section" style="display:none">
-    <button class="wrong-review-toggle" id="daily-wrong-review-toggle" onclick="toggleWrongReview('daily-wrong-review-list','daily-wrong-review-toggle')">
-      📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="daily-wrong-review-count">0</span>
-      <span id="daily-wrong-review-arrow">▼</span>
-    </button>
-    <div class="wr-list" id="daily-wrong-review-list" style="display:none"></div>
-  </div>
-  <button class="play-btn" style="margin-top:8px" onclick="showScreen('s-home')">← Back to Home</button>
-</div>
 
-<!-- ─── GAME SCREEN ─── -->
-<div id="s-game" class="game-card-screen">
-  <div class="gc-top">
-    <div class="gc-dots" id="gc-dots"></div>
-    <button class="gc-exit-btn" onclick="confirmExitGame()">✕</button>
-  </div>
-  <div class="gc-cat"><div class="gc-cat-pill" id="gc-cat">⚾ Baseball IQ</div></div>
-  <div class="gc-content" id="gc-content">
-    <!-- VISUAL SCENARIO BLOCK -->
-    <div class="gc-scenario" id="gc-scenario">
-      <div class="gc-broadcast" id="gc-broadcast">
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-val" id="gc-b-inning">—</div>
-          <div class="gc-bcast-lbl">Inning</div>
-        </div>
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-val score" id="gc-b-score">—</div>
-          <div class="gc-bcast-lbl">Score</div>
-        </div>
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-outs" id="gc-b-outs">
-            <div class="gc-out-pip"></div>
-            <div class="gc-out-pip"></div>
-            <div class="gc-out-pip"></div>
-          </div>
-          <div class="gc-bcast-lbl">Outs</div>
-        </div>
-        <div class="gc-bcast-seg">
-          <div class="gc-bcast-count" id="gc-b-count">
-            <div class="gc-count-row" id="gc-balls-row">
-              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
-            </div>
-            <div class="gc-count-row" id="gc-strikes-row">
-              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
-            </div>
-          </div>
-          <div class="gc-bcast-lbl">Count</div>
-        </div>
-      </div>
-      <div class="gc-diamond-row" id="gc-diamond-row">
-        <svg class="gc-field-svg" id="gc-diamond-svg" viewBox="0 0 100 100" width="88" height="88">
-          <!-- Outfield grass gradient -->
-          <defs>
-            <radialGradient id="grassGrad" cx="50%" cy="60%" r="55%">
-              <stop offset="0%" stop-color="#0d2018"/>
-              <stop offset="100%" stop-color="#071510"/>
-            </radialGradient>
-            <radialGradient id="inGrad" cx="50%" cy="55%" r="40%">
-              <stop offset="0%" stop-color="#12281a"/>
-              <stop offset="100%" stop-color="#0a1c12"/>
-            </radialGradient>
-          </defs>
-          <!-- Field background -->
-          <rect width="100" height="100" fill="url(#grassGrad)" rx="4"/>
-          <!-- Infield dirt circle -->
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.8"/>
-          <!-- Infield grass diamond -->
-          <polygon points="50,30 78,56 50,82 22,56" fill="url(#inGrad)" opacity="0.9"/>
-          <!-- Baselines -->
-          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <!-- Foul lines -->
-          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
-          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
-          <!-- Pitcher mound -->
-          <circle cx="50" cy="58" r="3.5" fill="#1e1a0e" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
-          <!-- Home plate -->
-          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.6)"/>
-          <!-- Bases (empty state) -->
-          <rect id="gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,78,56)"/>
-          <rect id="gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,50,30)"/>
-          <rect id="gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,22,56)"/>
-          <!-- Runner dots (hidden by default) -->
-          <circle id="gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-          <circle id="gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-          <circle id="gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-        </svg>
-        <div class="gc-scenario-text">
-          <div class="gc-scenario-label">Situation</div>
-          <div class="gc-scenario-body" id="gc-scenario-body"></div>
-        </div>
-      </div>
-    </div>
-    <div class="gc-question" id="gc-question"></div>
-    <div class="gc-choices" id="choices"></div>
-  </div>
-  <div class="gc-panel" id="gc-panel">
-    <div class="gc-handle"></div>
-    <div class="gc-panel-inner">
-      <div class="gc-result-row">
-        <div class="gc-result-icon ok" id="gc-icon">✅</div>
-        <div>
-          <div class="gc-result-title" id="gc-title">That's the play!</div>
-          <div class="gc-result-sub" id="gc-sub">Correct read</div>
-        </div>
-      </div>
-      <div class="gc-explanation" id="gc-expl"></div>
-      <div class="gc-spotlight" id="gc-spotlight">
-        <div class="gc-sp-type" id="gc-sp-type">Pro Spotlight</div>
-        <div class="gc-sp-row">
-          <div class="gc-sp-name" id="gc-sp-name"></div>
-          <div class="gc-sp-val" id="gc-sp-val"></div>
-        </div>
-        <div class="gc-sp-detail" id="gc-sp-detail"></div>
-      </div>
-      <button class="gc-next" id="gc-next">Next Situation ↑</button>
-      <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question">🚩</button>
-    </div>
-  </div>
-  <div class="gc-swipe-hint" id="gc-hint">Tap an answer</div>
-  <div class="gc-streak-bar"><div class="gc-streak-fill" id="gc-bar" style="width:0%"></div></div>
-</div>
-
-<!-- ─── SESSION END ─── -->
-<div id="s-end" class="screen">
-  <div class="session-end">
-    <div class="end-hero">
-      <div class="end-trophy" id="end-trophy">🏆</div>
-      <div class="end-rating" id="end-rating"></div>
-      <div class="end-title" id="end-title"></div>
-      <div class="end-subtitle" id="end-subtitle"></div>
-      <div class="final-score" id="final-score">0%</div>
-      <div class="final-label">THIS GAME</div>
-    </div>
-    <div class="end-iq-block" id="end-iq-block">
-      <div class="end-iq-title">Baseball IQ Score</div>
-      <div class="end-iq-score">1,000</div>
-      <div class="end-iq-delta-row"><span class="iq-delta neutral">Calculating...</span></div>
-    </div>
-    <div class="end-bar"><div class="end-bar-fill" id="end-bar-fill"></div></div>
-    <div class="stats-grid">
-      <div class="stat-item"><div class="sv" id="e-correct">0</div><div class="sl">Correct</div></div>
-      <div class="stat-item"><div class="sv" id="e-wrong">0</div><div class="sl">Wrong</div></div>
-      <div class="stat-item"><div class="sv" id="e-streak">0</div><div class="sl">Best Streak</div></div>
-      <div class="stat-item"><div class="sv" id="e-perfects">0</div><div class="sl">Perfect Games</div></div>
-    </div>
-    <div class="answer-review">
-      <div class="review-label">Answer History</div>
-      <div class="review-dots" id="review-dots"></div>
-    </div>
-    <!-- Wrong answer inline review -->
-    <div class="wrong-review-section" id="wrong-review-section" style="display:none">
-      <button class="wrong-review-toggle" id="wrong-review-toggle" onclick="toggleWrongReview('wrong-review-list','wrong-review-toggle')">
-        📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="wrong-review-count">0</span>
-        <span id="wrong-review-arrow">▼</span>
-      </button>
-      <div class="wr-list" id="wrong-review-list" style="display:none"></div>
-    </div>
-    <div class="end-actions">
-      <button class="submit-score-btn" id="submit-score-btn">Submit to Leaderboard</button>
-      <button class="share-btn" id="share-session-btn">📤 Share My Score</button>
-      <div class="submit-msg" id="submit-msg"></div>
-      <button class="play-again-btn" onclick="showScreen('s-home')">← Back to Home</button>
+    <!-- SPOTLIGHT — canvas texture -->
+    <div class="spotlight-new tex-canvas tex-overlay-canvas">
+      <div class="spotlight-label-new">Today in Baseball</div>
+      <div class="spotlight-text-new" id="home-spotlight-text">Loading today's moment...</div>
     </div>
   </div>
 </div>
