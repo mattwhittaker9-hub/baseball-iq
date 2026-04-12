@@ -357,6 +357,22 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── COACH DASHBOARD ─── */
 .coach-dash{display:none}
+.cd-insight-strip{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.cd-insight{display:flex;align-items:center;gap:10px;background:#0a1828;border:1px solid #162840;border-radius:10px;padding:10px 14px;font-size:13px;color:#e8f4ff}
+.cd-insight-icon{font-size:18px;flex-shrink:0}
+.cd-insight-text{flex:1;line-height:1.3}
+.cd-insight-text strong{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;display:block}
+.cd-insight.warning{border-color:rgba(232,192,96,0.3);background:rgba(232,192,96,0.05)}
+.cd-insight.danger{border-color:rgba(200,16,46,0.3);background:rgba(200,16,46,0.05)}
+.cd-insight.good{border-color:rgba(62,207,130,0.3);background:rgba(62,207,130,0.05)}
+.cd-pos-badge{display:inline-block;background:#0a2040;border:1px solid #1a3a60;border-radius:6px;padding:2px 8px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5a8aaa;letter-spacing:0.5px;margin-top:3px}
+.cd-weak-section{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px;margin-bottom:12px}
+.cd-weak-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.cd-weak-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.cd-weak-pos{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e8f4ff;width:110px;flex-shrink:0}
+.cd-weak-bar-wrap{flex:1;height:6px;background:#0a1828;border-radius:3px;overflow:hidden}
+.cd-weak-bar{height:100%;border-radius:3px;transition:width 0.6s ease}
+.cd-weak-pct{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e8f4ff;min-width:36px;text-align:right}
 .cd-pos-panel{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #0a2040}
 .cd-pos-panel.open{display:block}
 .cd-pos-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a88;margin-bottom:6px}
@@ -1654,6 +1670,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <button class="cd-share-btn" onclick="shareTeamCode()">📋 Share Join Code</button>
     </div>
 
+    <div id="cd-insight-strip" class="cd-insight-strip"></div>
+    <div id="cd-weak-section" class="cd-weak-section" style="display:none"></div>
     <div class="cd-stats-row" id="cd-stats-row">
       <div class="cd-stat"><div class="cd-stat-val" id="cd-players">—</div><div class="cd-stat-lbl">Players</div></div>
       <div class="cd-stat"><div class="cd-stat-val" id="cd-avg-iq">—</div><div class="cd-stat-lbl">Avg IQ</div></div>
@@ -5571,7 +5589,7 @@ async function loadCoachDashboard() {
   var res = await fetch('https://kcisieenoznaorioagqq.supabase.co/rest/v1/players?team_code=eq.'+currentUser.team_code+'&select=username,age,total_sessions,total_questions,total_correct,avg_score,best_streak,iq_score,is_coach,primary_position,secondary_position,position_mix,updated_at,assigned_drill,drill_completed_at,drill_score&order=iq_score.desc',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}});
   var players = await res.json();
   if(!Array.isArray(players)||!players.length){
-    document.getElementById('cd-roster').innerHTML='<div class="cd-empty">No players yet.<br><strong>Share your join code to get started!</strong></div>';
+    document.getElementById('cd-roster').innerHTML='<div class="cd-empty">No players yet. Share your join code to get your roster started.</div>';
     return;
   }
   var nonCoach=players.filter(function(p){return !p.is_coach;});
@@ -5585,73 +5603,84 @@ async function loadCoachDashboard() {
   document.getElementById('cd-avg-iq').textContent=avgIQ;
   document.getElementById('cd-avg-score').textContent=avgScore+'%';
   document.getElementById('cd-top-streak').textContent=topStreak;
+
+  // ── INSIGHT STRIPS ──
+  var now=Date.now();
+  var inactive=nonCoach.filter(function(p){return p.updated_at&&Math.floor((now-new Date(p.updated_at).getTime())/(86400000))>=5;});
+  var active=nonCoach.filter(function(p){return p.updated_at&&Math.floor((now-new Date(p.updated_at).getTime())/(86400000))===0;});
+  var topPlayer=nonCoach.slice().sort(function(a,b){return (b.iq_score||0)-(a.iq_score||0);})[0];
+  var insights=[];
+  if(active.length>0) insights.push({cls:'good',icon:'🔥',title:active.length+' player'+(active.length>1?'s':'')+' trained today',sub:'Keep the momentum going'});
+  if(inactive.length>0) insights.push({cls:'danger',icon:'⚠️',title:inactive.length+' player'+(inactive.length>1?'s':'')+' MIA (5+ days)',sub:inactive.map(function(p){return p.username;}).join(', ')});
+  if(topPlayer) insights.push({cls:'good',icon:'🏆',title:topPlayer.username+' leads the club — '+( topPlayer.iq_score||1000).toLocaleString()+' IQ',sub:getIQRating(topPlayer.iq_score||1000).label});
+  if(topStreak>=7) insights.push({cls:'good',icon:'📅',title:topStreak+'-day streak on the roster',sub:'Someone is locked in'});
+  var insightEl=document.getElementById('cd-insight-strip');
+  if(insightEl) insightEl.innerHTML=insights.length?insights.map(function(ins){return '<div class="cd-insight '+ins.cls+'"><div class="cd-insight-icon">'+ins.icon+'</div><div class="cd-insight-text"><strong>'+ins.title+'</strong>'+ins.sub+'</div></div>';}).join(''):'';
+
+  // ── WEAK SPOTS ──
+  var posCounts={};var posCorrect={};
+  nonCoach.forEach(function(p){
+    var pos=p.primary_position||'General';
+    posCounts[pos]=(posCounts[pos]||0)+( p.total_sessions||0);
+    posCorrect[pos]=(posCorrect[pos]||0)+(p.avg_score||0);
+  });
+  var posData=Object.keys(posCounts).map(function(pos){return {pos:pos,avg:posCounts[pos]?Math.round(posCorrect[pos]/Object.keys(posCounts).filter(function(k){return k===pos;}).length):0};}).sort(function(a,b){return a.avg-b.avg;}).slice(0,4);
+  var weakEl=document.getElementById('cd-weak-section');if(weakEl&&posData.length)weakEl.style.display='block';
+  if(weakEl&&posData.length){
+    weakEl.innerHTML='<div class="cd-weak-title">⚾ Team Accuracy by Position</div>'+posData.map(function(d){var color=d.avg>=80?'#3ecf82':d.avg>=60?'#e8c060':'#e84060';return '<div class="cd-weak-row"><div class="cd-weak-pos">'+d.pos+'</div><div class="cd-weak-bar-wrap"><div class="cd-weak-bar" style="width:'+d.avg+'%;background:'+color+'"></div></div><div class="cd-weak-pct" style="color:'+color+'">'+d.avg+'%</div></div>';}).join('');
+  }
+
+  // ── PLAYER CARDS ──
   var topIQ=nonCoach.length?Math.max.apply(null,nonCoach.map(function(p){return p.iq_score||0;})):0;
   document.getElementById('cd-roster').innerHTML=sorted.map(function(p){
     var isTop=p.iq_score>=topIQ&&!p.is_coach&&nonCoach.length>0;
     var rating=getIQRating(p.iq_score||1000);
     var sessions=p.total_sessions||0;
     var avg=p.avg_score||0;
-    var streak=p.best_streak||0;
     var iq=p.iq_score||1000;
-    // Last active calculation
-    var lastActiveStr = '—';
-    var actLabel = sessions===0 ? 'New' : 'Active';
-    var actClass = sessions===0 ? 'new' : 'active';
-    if(p.updated_at) {
-      var daysSince = Math.floor((Date.now()-new Date(p.updated_at).getTime())/(1000*60*60*24));
-      if(daysSince === 0) { lastActiveStr = 'Today'; actClass = 'active'; actLabel = 'Active'; }
-      else if(daysSince === 1) { lastActiveStr = 'Yesterday'; actClass = 'active'; actLabel = 'Active'; }
-      else if(daysSince <= 7) { lastActiveStr = daysSince+'d ago'; actClass = 'recent'; actLabel = daysSince+'d ago'; }
-      else { lastActiveStr = daysSince+'d ago'; actClass = 'inactive'; actLabel = 'Inactive'; }
-    }
-    var crownHTML=isTop?'<span class="cd-crown">&#128081;</span>':'';
+    var daysSince=p.updated_at?Math.floor((now-new Date(p.updated_at).getTime())/86400000):99;
+    var lastStr=daysSince===0?'Today':daysSince===1?'Yesterday':daysSince<=7?daysSince+'d ago':daysSince+'d ago';
+    var actClass=daysSince===0?'active':daysSince<=3?'recent':daysSince<=7?'recent':'inactive';
+    var actLabel=daysSince===0?'Active Today':daysSince<=3?'Active':daysSince<=7?lastStr:'Inactive';
+    if(sessions===0){actClass='new';actLabel='Not started';}
+    var crownHTML=isTop?'<span class="cd-crown">👑</span>':'';
     var coachBadge=p.is_coach?' <span style="font-size:10px;color:#4a6a88">(coach)</span>':'';
-    var primaryPos = p.primary_position || '';
-    var secondaryPos = p.secondary_position || '';
-    var mixMode = p.position_mix || 'blended';
-    var posDisplay = primaryPos ? ('<div class="cd-assigned-pos">⚾ '+primaryPos+(secondaryPos?' · '+secondaryPos:'')+'</div>') : '';
-    // Drill badge
-    var drillBadge = '';
-    if(!p.is_coach) {
-      if(p.assigned_drill) {
-        var drillObj = {}; try { drillObj = JSON.parse(p.assigned_drill); } catch(e){}
-        var isDone = p.drill_completed_at && drillObj.assigned_at && new Date(p.drill_completed_at) >= new Date(drillObj.assigned_at);
-        if(isDone) { drillBadge = '<div class="cd-drill-badge done">✅ Drill '+( p.drill_score||0)+'%</div>'; }
-        else { drillBadge = '<div class="cd-drill-badge pending">⏳ '+( drillObj.name||'Drill')+' pending</div>'; }
-      } else { drillBadge = '<div class="cd-drill-badge none">— No drill</div>'; }
+    var posBadge=p.primary_position?'<div class="cd-pos-badge">'+p.primary_position+(p.secondary_position?' · '+p.secondary_position:'')+'</div>':'';
+    var drillBadge='';
+    if(!p.is_coach){
+      if(p.assigned_drill){
+        var drillObj={};try{drillObj=JSON.parse(p.assigned_drill);}catch(e){}
+        var isDone=p.drill_completed_at&&drillObj.assigned_at&&new Date(p.drill_completed_at)>=new Date(drillObj.assigned_at);
+        drillBadge=isDone?'<div class="cd-drill-badge done">✅ Drill '+( p.drill_score||0)+'%</div>':'<div class="cd-drill-badge pending">⏳ '+(drillObj.name||'Drill')+' pending</div>';
+      }
     }
-    var posId = 'pos-panel-'+p.username;
-    var posPanel = p.is_coach ? '' : buildPosPanel(p.username, primaryPos, secondaryPos, mixMode, posId);
-    var drillPanelId = 'drill-panel-'+p.username.replace(/[^a-zA-Z0-9]/g,'_');
-    var drillPanel = p.is_coach ? '' : buildDrillPanel(p.username, p.assigned_drill, p.drill_completed_at, p.drill_score, drillPanelId);
-    var drillBtn = p.is_coach ? '' : '<button class="cd-expand-btn" style="margin-left:6px;color:#3a8a3a" data-dpid="'+drillPanelId+'" onclick="toggleDrillPanel(this.dataset.dpid)">Drill 📋</button>';
-    var editBtn = p.is_coach ? '' : '<button class="cd-expand-btn" data-pid="'+posId+'" onclick="handleTogglePos(this)">Edit Position ✎</button>';
-    return '<div class="cd-player-card'+(isTop?' top-player':'')+'">'+
+    var posId='pos-panel-'+p.username;
+    var posPanel=p.is_coach?'':buildPosPanel(p.username,p.primary_position,p.secondary_position,p.position_mix,posId);
+    var drillPanelId='drill-panel-'+p.username.replace(/[^a-zA-Z0-9]/g,'_');
+    var drillPanel=p.is_coach?'':buildDrillPanel(p.username,p.assigned_drill,p.drill_completed_at,p.drill_score,drillPanelId);
+    var drillBtn=p.is_coach?'':'<button class="cd-expand-btn" style="margin-left:6px;color:#3a8a3a" data-dpid="'+drillPanelId+'" onclick="toggleDrillPanel(this.dataset.dpid)">Drill 📋</button>';
+    var editBtn=p.is_coach?'':'<button class="cd-expand-btn" data-pid="'+posId+'" onclick="handleTogglePos(this)">Position ✎</button>';
+    return '<div class="cd-player-card'+(isTop?' top-player':'')+'" style="border-left:3px solid '+rating.color+'">'+
       '<div class="cd-activity '+actClass+'">'+actLabel+'</div>'+
       '<div class="cd-player-row">'+
-        '<div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+
-        drillBadge+
+        '<div><div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+posBadge+drillBadge+'</div>'+
         '<div style="text-align:right">'+
           '<div class="cd-player-iq" style="color:'+rating.color+'">'+iq.toLocaleString()+'</div>'+
           '<div class="cd-player-rating" style="color:'+rating.color+'">'+rating.label+'</div>'+
-          posDisplay+
         '</div>'+
       '</div>'+
-      editBtn+drillBtn+
-      '<div class="cd-player-stats" style="clear:both;padding-top:4px">'+
-        '<div class="cd-ps"><div class="cd-ps-val">'+sessions+'</div><div class="cd-ps-lbl">Games</div></div>'+
+      '<div style="display:flex;gap:4px;margin:6px 0 4px">'+editBtn+drillBtn+'</div>'+
+      '<div class="cd-player-stats">'+
+        '<div class="cd-ps"><div class="cd-ps-val">'+sessions+'</div><div class="cd-ps-lbl">Sessions</div></div>'+
         '<div class="cd-ps"><div class="cd-ps-val">'+avg+'%</div><div class="cd-ps-lbl">Avg Score</div></div>'+
-        '<div class="cd-ps"><div class="cd-ps-val" style="color:'+(actClass==='inactive'?'#8a4a4a':actClass==='recent'?'#8a7a4a':'#3a8a5a')+'">'+lastActiveStr+'</div><div class="cd-ps-lbl">Last Active</div></div>'+
+        '<div class="cd-ps"><div class="cd-ps-val" style="color:'+(actClass==='inactive'?'#8a4a4a':actClass==='new'?'#4a6a88':'#3a8a5a')+'">'+lastStr+'</div><div class="cd-ps-lbl">Last Active</div></div>'+
+        '<div class="cd-ps"><div class="cd-ps-val" style="color:#e8c060">'+(p.best_streak||0)+'</div><div class="cd-ps-lbl">Streak</div></div>'+
       '</div>'+
-      '<div class="cd-progress-wrap">'+
-        '<div class="cd-progress-bar"><div class="cd-progress-fill" style="width:'+avg+'%"></div></div>'+
-      '</div>'+
-      posPanel+
-      drillPanel+
+      '<div class="cd-progress-wrap"><div class="cd-progress-bar"><div class="cd-progress-fill" style="width:'+Math.min(avg,100)+'%"></div></div></div>'+
+      posPanel+drillPanel+
     '</div>';
   }).join('');
 }
-
 
 // ── COACH POSITION ASSIGNMENT ────────────────────────────────────────────────
 var ALL_POS_OPTS = ['Pitcher','Catcher','First Baseman','Second Baseman','Shortstop','Third Baseman','Left Fielder','Center Fielder','Right Fielder','Baserunner'];
