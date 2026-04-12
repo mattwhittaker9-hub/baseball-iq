@@ -761,6 +761,31 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ═══════════════════════════════════════════
    DAILY END SCREEN
 ═══════════════════════════════════════════ */
+.de-hero{text-align:center;padding:24px 0 16px}
+.de-trophy{font-size:56px;line-height:1;margin-bottom:10px;animation:deTrophyDrop 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards}
+@keyframes deTrophyDrop{from{transform:translateY(-40px) scale(0.4);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.de-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,130,0.12);border:1px solid rgba(62,207,130,0.3);border-radius:20px;padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#3ecf82;letter-spacing:2px;margin-bottom:14px}
+.de-score{font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;line-height:1;letter-spacing:-3px;animation:deScorePop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.3s both}
+@keyframes deScorePop{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
+.de-score-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:#3a5a78;text-transform:uppercase;margin-top:4px;margin-bottom:14px}
+.de-dots{display:flex;gap:8px;justify-content:center;margin-bottom:4px}
+.de-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;animation:deDotPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both}
+.de-dot.c{background:rgba(62,207,130,0.15);border:2px solid #3ecf82;color:#3ecf82}
+.de-dot.w{background:rgba(232,64,96,0.12);border:2px solid #e84060;color:#e84060}
+@keyframes deDotPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.de-streak-card{background:linear-gradient(135deg,#0a1e0a,#0a2816);border:1px solid #1a4a2a;border-radius:16px;padding:16px 20px;margin-bottom:10px;display:flex;align-items:center;gap:14px;animation:deSlideUp 0.5s ease 0.5s both}
+.de-streak-fire{font-size:36px;line-height:1;flex-shrink:0}
+.de-streak-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;color:#3ecf82;line-height:1;flex-shrink:0}
+.de-streak-text{display:flex;flex-direction:column;gap:2px}
+.de-streak-text strong{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;display:block}
+.de-streak-text span{font-size:12px;color:#5a8a5a}
+.de-rating-card{background:#0c1828;border:1px solid #162840;border-radius:16px;padding:16px 20px;margin-bottom:12px;display:flex;align-items:center;gap:14px;animation:deSlideUp 0.65s ease both}
+.de-rating-icon{font-size:36px;line-height:1;flex-shrink:0}
+.de-rating-text{display:flex;flex-direction:column}
+.de-rating-label{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:0.5px}
+.de-rating-sub{font-size:12px;color:#4a6a88;margin-top:2px}
+.de-share-btn{width:100%;background:linear-gradient(135deg,#1a3060,#0e2040);border:1px solid #2a5090;border-radius:12px;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;margin-bottom:10px;animation:deSlideUp 0.5s ease 0.8s both}
+@keyframes deSlideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
 .daily-end-card{background:#0c1828;border:1px solid #162840;border-radius:16px;padding:20px;margin-bottom:14px}
 .daily-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,130,0.1);border:1px solid rgba(62,207,130,0.25);border-radius:20px;padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#3ecf82;letter-spacing:1px;margin-bottom:14px}
 .share-result-btn{width:100%;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.25);border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px}
@@ -1234,18 +1259,27 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 <!-- ─── DAILY CHALLENGE END ─── -->
 <div id="s-daily-end" class="screen">
-  <div class="daily-end-card">
-    <div class="daily-result-hero">
-      <div class="daily-badge" style="margin:0 auto 12px">⚡ Daily Challenge Complete</div>
-      <div class="daily-result-score" id="daily-end-score">—</div>
-      <div class="final-label">TODAY'S SCORE</div>
-      <div class="daily-result-grid" id="daily-end-grid"></div>
-    </div>
-    <div style="padding:0 24px 16px">
-      <button class="share-result-btn" id="share-daily-btn">📤 Share My Result</button>
+  <canvas id="daily-confetti" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none"></canvas>
+  <div class="de-hero">
+    <div class="de-trophy" id="de-trophy">⚾</div>
+    <div class="de-badge" id="de-badge">⚡ DAILY COMPLETE</div>
+    <div class="de-score" id="daily-end-score">—</div>
+    <div class="de-score-label">TODAY'S SCORE</div>
+    <div class="de-dots" id="daily-end-grid"></div>
+  </div>
+  <div class="de-streak-card">
+    <div class="de-streak-fire">🔥</div>
+    <div class="de-streak-num" id="de-streak-num">0</div>
+    <div class="de-streak-text"><strong id="de-streak-label">Day Streak</strong><span id="de-streak-sub">Keep it going tomorrow</span></div>
+  </div>
+  <div class="de-rating-card">
+    <div class="de-rating-icon" id="de-rating-icon">🏆</div>
+    <div class="de-rating-text">
+      <div class="de-rating-label" id="de-rating-label">GREAT GAME</div>
+      <div class="de-rating-sub" id="de-rating-sub">You know the game</div>
     </div>
   </div>
-  <!-- Daily wrong answer review -->
+  <button class="de-share-btn" id="share-daily-btn" onclick="shareDailyResult()">📤 Share My Result</button>
   <div class="wrong-review-section" id="daily-wrong-review-section" style="display:none">
     <button class="wrong-review-toggle" id="daily-wrong-review-toggle" onclick="toggleWrongReview('daily-wrong-review-list','daily-wrong-review-toggle')">
       📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="daily-wrong-review-count">0</span>
@@ -1253,7 +1287,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     </button>
     <div class="wr-list" id="daily-wrong-review-list" style="display:none"></div>
   </div>
-  <button class="play-btn" onclick="showScreen('s-home')">← Back to Home</button>
+  <button class="play-btn" style="margin-top:8px" onclick="showScreen('s-home')">← Back to Home</button>
 </div>
 
 <!-- ─── GAME SCREEN ─── -->
@@ -2777,10 +2811,32 @@ function finishDaily(){
 
 function showDailyEnd(answers,pct){
   const correct=answers.filter(a=>a==='correct').length;
-  document.getElementById('daily-end-score').textContent=correct+'/'+DAILY_QS;
-  document.getElementById('daily-end-score').style.color=pct>=80?'#3ecf82':pct>=60?'#e8c060':'#e84060';
-  const grid=document.getElementById('daily-end-grid');
-  grid.innerHTML=answers.map(a=>`<div class="dgrid-dot ${a==='correct'?'c':'w'}">${a==='correct'?'✅':'❌'}</div>`).join('');
+  const s=document.getElementById('daily-end-score');
+  s.textContent=correct+'/'+DAILY_QS;
+  s.style.color=pct>=80?'#3ecf82':pct>=60?'#e8c060':'#e84060';
+  document.getElementById('daily-end-grid').innerHTML=answers.map((a,i)=>`<div class="de-dot ${a==='correct'?'c':'w'}" style="animation-delay:${0.4+i*0.1}s">${a==='correct'?'✓':'✗'}</div>`).join('');
+  const trophy=document.getElementById('de-trophy'),badge=document.getElementById('de-badge');
+  if(pct===100){trophy.textContent='🏆';badge.textContent='⚡ PERFECT GAME';}
+  else if(pct>=80){trophy.textContent='🔥';badge.textContent='⚡ GREAT GAME';}
+  else if(pct>=60){trophy.textContent='⚾';badge.textContent='⚡ DAILY COMPLETE';}
+  else{trophy.textContent='📚';badge.textContent='⚡ KEEP TRAINING';}
+  const ratings=[{min:100,icon:'🏆',label:'PERFECT GAME',sub:'You called every play correctly'},{min:80,icon:'🔥',label:'HOT CORNER',sub:'Almost flawless — you know the game'},{min:60,icon:'⚾',label:'SOLID SCOUT',sub:'Good baseball instincts'},{min:0,icon:'📚',label:'BACK TO THE DUGOUT',sub:'Study up and come back tomorrow'}];
+  const r=ratings.find(x=>pct>=x.min)||ratings[ratings.length-1];
+  document.getElementById('de-rating-icon').textContent=r.icon;
+  document.getElementById('de-rating-label').textContent=r.label;
+  document.getElementById('de-rating-sub').textContent=r.sub;
+  const streak=getDailyStreak();
+  document.getElementById('de-streak-num').textContent=streak;
+  document.getElementById('de-streak-label').textContent=streak===1?'Day Streak':streak+' Day Streak';
+  document.getElementById('de-streak-sub').textContent=streak>=7?'You\'re on fire!':streak>=3?'Building momentum!':'Keep it going daily';
+  if(pct>=80)setTimeout(launchConfetti,400);
+}
+function launchConfetti(){
+  const c=document.getElementById('daily-confetti');if(!c)return;
+  c.style.display='block';c.width=window.innerWidth;c.height=window.innerHeight;
+  const ctx=c.getContext('2d'),cols=['#3ecf82','#c8102e','#e8c060','#378add','#fff'];
+  const p=Array.from({length:90},()=>({x:Math.random()*c.width,y:-20-Math.random()*80,r:3+Math.random()*5,d:2+Math.random()*3,col:cols[Math.floor(Math.random()*5)],t:Math.random()*10-5,ts:0.1+Math.random()*0.3}));
+  let f=0;(function draw(){ctx.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.y+=q.d;q.x+=Math.sin(f*0.02+q.t)*1.5;q.t+=q.ts;ctx.fillStyle=q.col;ctx.beginPath();ctx.ellipse(q.x,q.y,q.r,q.r*0.5,q.t,0,Math.PI*2);ctx.fill();});f++;if(f<180)requestAnimationFrame(draw);else{ctx.clearRect(0,0,c.width,c.height);c.style.display='none';}})();
 }
 
 function shareDailyResult(){
@@ -2862,6 +2918,10 @@ async function syncStreakFromDB(){
   catch(e){console.warn('Streak sync error:',e);}
 }
 
+async function syncStreakFromDB(){if(!currentUser?.user_id)return;try{const{data}=await sb.from('players').select('best_streak').eq('user_id',currentUser.user_id).single();if(!data)return;const key='biq_dstreak_'+currentUser.username;const local=JSON.parse(localStorage.getItem(key)||'{"streak":0,"last":""}');if(data.best_streak>local.streak){local.streak=data.best_streak;localStorage.setItem(key,JSON.stringify(local));}}catch(e){}}
+async function syncBadgesFromDB(){if(!currentUser)return;try{var{data}=await sb.from('user_badges').select('badge_key').eq('player_id',currentUser.id);if(!data||!data.length)return;var local=JSON.parse(localStorage.getItem('biq_badges_'+currentUser.username)||'[]');var merged=[...new Set([...local,...data.map(r=>r.badge_key)])];if(merged.length!==local.length)localStorage.setItem('biq_badges_'+currentUser.username,JSON.stringify(merged));}catch(e){}}
+async function saveBadgeToDB(badge){if(!currentUser)return;try{await sb.from('user_badges').upsert({player_id:currentUser.id,badge_key:badge.id,badge_label:badge.name},{onConflict:'player_id,badge_key',ignoreDuplicates:true});}catch(e){}}
+async function syncSessionsFromDB(){if(!currentUser?.user_id)return;try{const sessions=JSON.parse(localStorage.getItem('biq_sessions_'+currentUser.username)||'[]');if(sessions.length)return;const{data}=await sb.from('players').select('total_sessions,avg_score,best_streak,iq_score').eq('user_id',currentUser.user_id).single();if(!data||!data.total_sessions)return;currentUser.total_sessions=data.total_sessions;currentUser.avg_score=data.avg_score;localStorage.setItem('biq_user',JSON.stringify(currentUser));if(typeof updateHomeIQ==='function')updateHomeIQ();}catch(e){}}
 // ─── STATS STORAGE ───
 function saveSessionStats(pct,nc,tot,answers,streak,cat){
   if(!currentUser) return;
@@ -3016,7 +3076,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid'); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
+  renderBadgesGrid('badges-grid');syncBadgesFromDB();syncStreakFromDB();syncSessionsFromDB(); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
@@ -5430,6 +5490,7 @@ function checkAndAwardBadges() {
     if(newlyEarned.length > 0) {
       // Save updated earned list
       localStorage.setItem('biq_badges_' + currentUser.username, JSON.stringify(earned));
+      newlyEarned.forEach(function(b){saveBadgeToDB(b);});
       newlyEarned.forEach(function(b){ saveBadgeToDB(b); });
       // Show badges one at a time with stagger
       newlyEarned.forEach(function(badge, i) {
