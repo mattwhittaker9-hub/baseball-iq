@@ -3125,7 +3125,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid');syncBadgesFromDB();syncStreakFromDB();syncSessionsFromDB(); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
+  renderBadgesGrid('badges-grid');syncBadgesFromDB();syncStreakFromDB();syncSessionsFromDB();setTimeout(function(){BADGES.filter(function(b){return b.tier==='platinum'&&BADGE_IMAGE_MAP[b.id];}).forEach(function(b){fetchBadgeArt(b.id);});},5000); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
@@ -5266,6 +5266,19 @@ function isNewUser(){
 // ⭐ IQ SCORE SYSTEM
 // ══════════════════════════════════════════════════════════════════════════
 
+var BADGE_IMAGE_WORKER='https://baseball-iq-badges.mattwhittaker9.workers.dev';
+var BADGE_IMAGE_MAP={"pinetar":"pine_tar","hof":"cooperstown","nohitter":"no_hitter","ironman":"iron_man","walkoff":"walkoff"};
+var BADGE_IMAGE_CACHE={};
+async function fetchBadgeArt(id){var wid=BADGE_IMAGE_MAP[id];if(!wid)return null;if(BADGE_IMAGE_CACHE[id])return BADGE_IMAGE_CACHE[id];try{var r=await fetch(BADGE_IMAGE_WORKER+'?badge='+wid);var d=await r.json();if(d.image){var s='data:image/png;base64,'+d.image;BADGE_IMAGE_CACHE[id]=s;return s;}}catch(e){}return null;}
+async function getBadgeArtHTMLAsync(badge,size){size=size||72;var src=await fetchBadgeArt(badge.id);if(src)return '<img src="'+src+'" style="width:'+size+'px;height:'+size+'px;border-radius:10px;object-fit:cover;flex-shrink:0" loading="lazy"/>';return getBadgeArtHTML(badge,size);}
+var TIER_ORDER=['benchwarmer','bullpen','utility','starter','veteran','all_star','october','hall_of_famer'];
+var TIER_LABELS={benchwarmer:'Benchwarmer',bullpen:'Bullpen',utility:'Utility Player',starter:'Starter',veteran:'Veteran',all_star:'All-Star',october:'October',hall_of_famer:'Hall of Famer'};
+var TIER_ICONS={benchwarmer:'🪑',bullpen:'⚾',utility:'🔄',starter:'⚡',veteran:'🎖️',all_star:'⭐',october:'🍂',hall_of_famer:'🏆'};
+var TIER_COLORS={benchwarmer:'#4a6a88',bullpen:'#5a8aaa',utility:'#c89060',starter:'#5ab4f0',veteran:'#f0ece4',all_star:'#3ecf82',october:'#e8c060',hall_of_famer:'#c8102e'};
+var currentPlayerTier='benchwarmer';
+async function loadPlayerTier(pos){if(!currentUser?.id||!pos)return 'benchwarmer';try{const{data}=await sb.rpc('get_or_create_player_tier',{p_player_id:currentUser.id,p_position:pos});if(data){currentPlayerTier=data.tier||'benchwarmer';return data.tier;}}catch(e){}return 'benchwarmer';}
+async function processTierAfterSession(pos,total,correct,ids){if(!currentUser?.id||!pos||total<1)return;try{const{data}=await sb.rpc('process_tier_advancement',{p_player_id:currentUser.id,p_position:pos,p_questions_total:total,p_questions_correct:correct,p_question_ids:ids});if(data&&data.action&&data.action!=='none'){const msg=data.action==='dropped'?'📉 Dropped to '+TIER_LABELS[data.new_tier]:data.action==='fast_tracked'?'⚡ FAST TRACK! '+TIER_LABELS[data.new_tier]:'🎉 Promoted to '+TIER_LABELS[data.new_tier]+' '+TIER_ICONS[data.new_tier];const t=document.createElement('div');t.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0c1828;border:1px solid '+(data.action==='dropped'?'#c8102e':'#3ecf82')+';border-radius:12px;padding:12px 20px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:900;color:#fff;z-index:99999;text-align:center';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),4000);}if(data)currentPlayerTier=data.new_tier||currentPlayerTier;}catch(e){}}
+var sessionQuestionIds=[];
 var IQ_DELTAS = {
   correct: {1: 8, 2: 15, 3: 25},
   wrong:   {1: -5, 2: -8, 3: -12}
@@ -5421,14 +5434,10 @@ function renderBadgesGrid(containerId) {
   el.innerHTML = BADGES.map(function(b) {
     var isEarned = earned.includes(b.id);
     var art = getBadgeArtHTML(b, 68);
-    return '<div class="badge-item">'+
-      '<div class="badge-wrap '+(isEarned?b.tier:'locked')+'">'+
-        art+
-        (!isEarned ? '<span class="badge-locked-icon">🔒</span>' : '')+
-      '</div>'+
-      '<div class="badge-name '+(isEarned?'':'locked')+'">'+b.name+'</div>'+
-    '</div>';
+    return '<div class="badge-item"><div class="badge-wrap '+(isEarned?b.tier:'locked')+'" id="bwrap-'+b.id+'">'+art+(!isEarned?'<span class="badge-locked-icon">🔒</span>':'')+
+    '</div><div class="badge-name '+(isEarned?'':'locked')+'">'+b.name+'</div></div>';
   }).join('');
+  BADGES.filter(function(b){return earned.includes(b.id)&&BADGE_IMAGE_MAP[b.id];}).forEach(function(b){getBadgeArtHTMLAsync(b,68).then(function(ai){var w=document.getElementById('bwrap-'+b.id);if(w)w.innerHTML=ai;});});
 }
 
 function showNewBadge(badge) {
@@ -5437,6 +5446,7 @@ function showNewBadge(badge) {
   var art = getBadgeArtHTML(badge, 80);
   document.getElementById('beo-badge-art').innerHTML = art;
   document.getElementById('beo-badge-wrap').className = 'badge-wrap '+badge.tier;
+  getBadgeArtHTMLAsync(badge,80).then(function(ai){var el=document.getElementById('beo-badge-art');if(el&&ai!==art)el.innerHTML=ai;});
   document.getElementById('beo-name').textContent = badge.name;
   document.getElementById('beo-desc').textContent = badge.desc;
   overlay.classList.add('show');
