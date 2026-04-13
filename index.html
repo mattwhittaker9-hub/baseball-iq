@@ -892,11 +892,11 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .tex-canvas{background-image:url(tex_canvas.webp);background-size:512px 512px;background-repeat:repeat}
 
 /* TEXTURE OVERLAYS — dark layer over texture so text stays readable */
-.tex-overlay-dark::after{content:'';position:absolute;inset:0;background:rgba(6,17,31,0.82);pointer-events:none;border-radius:inherit}
-.tex-overlay-leather::after{content:'';position:absolute;inset:0;background:rgba(15,8,2,0.78);pointer-events:none;border-radius:inherit}
-.tex-overlay-brickdust::after{content:'';position:absolute;inset:0;background:rgba(25,6,2,0.80);pointer-events:none;border-radius:inherit}
-.tex-overlay-wood::after{content:'';position:absolute;inset:0;background:rgba(10,5,0,0.82);pointer-events:none;border-radius:inherit}
-.tex-overlay-canvas::after{content:'';position:absolute;inset:0;background:rgba(8,14,24,0.86);pointer-events:none;border-radius:inherit}
+.tex-overlay-dark::after{content:'';position:absolute;inset:0;background:rgba(6,17,31,0.68);pointer-events:none;border-radius:inherit}
+.tex-overlay-leather::after{content:'';position:absolute;inset:0;background:rgba(15,8,2,0.65);pointer-events:none;border-radius:inherit}
+.tex-overlay-brickdust::after{content:'';position:absolute;inset:0;background:rgba(22,5,2,0.68);pointer-events:none;border-radius:inherit}
+.tex-overlay-wood::after{content:'';position:absolute;inset:0;background:rgba(10,5,0,0.70);pointer-events:none;border-radius:inherit}
+.tex-overlay-canvas::after{content:'';position:absolute;inset:0;background:rgba(8,14,24,0.74);pointer-events:none;border-radius:inherit}
 
 /* HOME SCREEN REDESIGN */
 .home-header-new{position:relative;padding:20px 18px 16px;overflow:hidden;border-bottom:1px solid rgba(62,130,62,0.2)}
@@ -1145,7 +1145,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     </div>
 
     <!-- QUICK GAME — wood grain texture -->
-    <div class="quick-game-new tex-wood tex-overlay-wood" onclick="startGame('quick')">
+    <div class="quick-game-new tex-wood tex-overlay-wood" onclick="startGame()">
       <div class="qg-pip"></div>
       <div class="qg-text">Quick Game</div>
     </div>
@@ -2489,7 +2489,7 @@ async function startDaily(){window._dailyFullHistory=[];
   if(window._dailyFullHistory && window._dailyFullHistory.length) {
     populateWrongReview('daily-wrong-review-list','daily-wrong-review-count','daily-wrong-review-section', window._dailyFullHistory);
   }
-  showScreen('s-daily-end');
+  showScreen('s-daily-end');if(typeof pct!=='undefined'&&pct>=80)setTimeout(launchFireworks,600);
     return;
   }
   // fetch all questions for this user's difficulty
@@ -2865,7 +2865,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid');syncBadgesFromDB();syncStreakFromDB();syncSessionsFromDB();setTimeout(function(){BADGES.filter(function(b){return b.tier==='platinum'&&BADGE_IMAGE_MAP[b.id];}).forEach(function(b){fetchBadgeArt(b.id);});},5000); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
+  renderBadgesGrid('badges-grid');setTimeout(function(){var _sf=document.getElementById('home-spotlight-text');if(_sf&&(_sf.textContent==='Loading...'||_sf.textContent==='')){var _f=["On April 15, 1947, <strong>Jackie Robinson</strong> broke the color barrier. His number 42 is the only one retired across all of baseball.","In 1941, <strong>Joe DiMaggio</strong> hit safely in 56 consecutive games — a record that still stands.","<strong>Cal Ripken Jr.</strong> played 2,632 consecutive games over 16 years.","In 1968, <strong>Bob Gibson</strong> posted a 1.12 ERA. MLB lowered the mound because of him.","<strong>Rickey Henderson</strong> stole 130 bases in a single season.","<strong>Ted Williams</strong> hit .406 in 1941 — the last .400 season in history.","<strong>Nolan Ryan</strong> threw 7 no-hitters. The next closest has 4.","The <strong>infield fly rule</strong> prevents fielders from intentionally dropping pop-ups for easy double plays.","<strong>Bill Mazeroski</strong> hit the only walk-off homer to end a World Series Game 7.","<strong>Sandy Koufax</strong> retired at 30. His last four seasons may be the best four-year pitching run ever."];_sf.innerHTML=_f[(new Date().getMonth()*31+new Date().getDate())%_f.length];}var sp=document.getElementById('ih-streak-num');if(sp)sp.textContent=getDailyStreak();var hiq=document.getElementById('home-iq');if(hiq)hiq.textContent=loadIQScore().toLocaleString();var sessions=JSON.parse(localStorage.getItem('biq_sessions_'+(currentUser?.username||''))||'[]');var gp=document.getElementById('ih-games-played');if(gp)gp.textContent=sessions.length||'—';var scores=sessions.map(function(s){return s.pct||0;});var ag=document.getElementById('ih-avg-score');if(ag)ag.textContent=scores.length?Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length)+'%':'—';},500);syncBadgesFromDB();syncStreakFromDB();syncSessionsFromDB();setTimeout(function(){BADGES.filter(function(b){return b.tier==='platinum'&&BADGE_IMAGE_MAP[b.id];}).forEach(function(b){fetchBadgeArt(b.id);});},5000); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
