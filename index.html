@@ -2557,8 +2557,8 @@ async function startGame(){
       if(weightedPool && weightedPool.length>=TOTAL_QS){
         filteredQs=weightedPool;
       } else {
-        let q=sb.from('scenario_questions').select('*').eq('is_active',true);
-        if(cat!=='all') q=q.eq('role',cat);
+        let q=sb.from('questions').select('*').eq('is_active',true);
+        if(cat!=='all') q=q.eq('category',cat);
         const{data,error}=await q.limit(500);
         if(error) throw error;
         let pool=(data||[]).map(normalizeQuestion);
@@ -2729,7 +2729,7 @@ async function startDaily(){window._dailyFullHistory=[];
   // fetch all questions for this user's difficulty
   const diffs=getDifficultyForUser();
   try{
-    const{data,error}=await sb.from('scenario_questions').select('*').eq('is_active',true).limit(500);
+    const{data,error}=await sb.from('questions').select('*').eq('is_active',true).limit(500);
     if(error) throw error;
     const all=(data||[]).map(normalizeQuestion);
     dailyQs=getDailyQuestions(all);
@@ -3132,7 +3132,7 @@ async function loadHome(){
 
   // question count badge (silent)
   try{
-    const{count}=await sb.from('scenario_questions').select('*',{count:'exact',head:true});
+    const{count}=await sb.from('questions').select('*',{count:'exact',head:true});
     if(count) { var qb=document.getElementById('q-count-badge'); if(qb) qb.textContent=count+' expert questions'; }
   }catch(e){}
 
@@ -4666,7 +4666,7 @@ async function createChallenge(){
   var code=genCode();
   // Select 5 random question IDs for this match
   var diffs=getDifficultyForUser();
-  var qRes=await sb.from('scenario_questions').select('id').eq('is_active',true).limit(200);
+  var qRes=await sb.from('questions').select('id').eq('is_active',true).limit(200);
   if(qRes.error){setMsg('challenge-msg','err','Could not load questions.');return;}
   var allIds=qRes.data.map(function(q){return q.id;});
   // Shuffle and pick 5
@@ -4785,7 +4785,7 @@ function setupWaitingRoom(code, isCreator){
 async function startBattle(){
   if(!challengeRoom) return;
   // Fetch the actual question objects
-  var qRes=await sb.from('scenario_questions')
+  var qRes=await sb.from('questions')
     .select('*')
     .in('id',challengeRoom.question_ids||[])
     .limit(CHALLENGE_QS);
@@ -4808,7 +4808,7 @@ async function startBattle(){
 function loadBattleQuestions(questionsOrIds){
   // If we got IDs, fetch them; if objects, use directly
   if(questionsOrIds.length && typeof questionsOrIds[0]==='string'){
-    sb.from('scenario_questions').select('*').in('id',questionsOrIds).limit(CHALLENGE_QS).then(function(res){
+    sb.from('questions').select('*').in('id',questionsOrIds).limit(CHALLENGE_QS).then(function(res){
       if(res.data){
         var qMap={};
         res.data.forEach(function(q){ qMap[q.id]=normalizeQuestion(q); });
@@ -6165,7 +6165,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v5 | 2026-04-10 -->
+<!-- BUILD:phase3-v6 | 2026-04-10 -->
 <div id="biq-build-stamp" style="display:none"></div>
 </body>
 </html>
