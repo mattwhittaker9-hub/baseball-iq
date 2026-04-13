@@ -2814,17 +2814,64 @@ function shareDailyResult(){
 
 function shareSessionResult(){
   if(!answerHistory.length) return;
+  const btn=document.getElementById('share-session-btn');
+  const origText=btn?btn.textContent:'';
+  if(btn){btn.textContent='Generating...';btn.disabled=true;}
   const pct=tot>0?Math.round(nc/tot*100):0;
-  const emoji=answerHistory.map(function(a){var r=typeof a==='object'?a.result:a;return r==='correct'?'✅':'❌';}).join('');
   const r=getRating(pct);
-  const text=`⚾ Baseball IQ — ${r.rating}\n${emoji}\n${nc}/${tot} correct (${pct}%)\n\nCan you beat me? ${SITE_URL}`;
-  if(navigator.share){
-    navigator.share({title:'Baseball IQ',text}).catch(()=>copyToClipboard(text));
-  }else{
-    copyToClipboard(text);
-  }
+  const iq=loadIQScore?loadIQScore():1000;
+  const answers=answerHistory.map(a=>typeof a==='object'?a.result:a);
+  try{
+    const canvas=document.createElement('canvas');
+    canvas.width=1080;canvas.height=1080;
+    const ctx=canvas.getContext('2d');
+    const bg=ctx.createLinearGradient(0,0,0,1080);
+    bg.addColorStop(0,'#06111f');bg.addColorStop(1,'#0a1e2e');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1080);
+    ctx.fillStyle='#c8102e';ctx.fillRect(0,0,1080,8);
+    ctx.save();ctx.translate(540,520);ctx.rotate(Math.PI/4);
+    ctx.fillStyle='rgba(200,16,46,0.04)';ctx.fillRect(-320,-320,640,640);ctx.restore();
+    ctx.font='bold 52px Arial Black,Arial';ctx.fillStyle='#ffffff';ctx.textAlign='center';
+    ctx.fillText('BASEBALL',540,130);ctx.fillStyle='#3ecf82';ctx.fillText('IQ',540,192);
+    ctx.font='900 220px Arial Black,Arial';ctx.fillStyle=r.color||'#3ecf82';ctx.textAlign='center';
+    ctx.fillText(pct+'%',540,480);
+    ctx.font='bold 38px Arial';ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fillText(r.rating.toUpperCase(),540,540);
+    ctx.font='500 32px Arial';ctx.fillStyle='rgba(255,255,255,0.35)';ctx.fillText(nc+' of '+tot+' correct',540,592);
+    const dotSize=28,dotGap=14,totalDotW=answers.length*(dotSize+dotGap)-dotGap,dotStartX=540-totalDotW/2;
+    answers.forEach(function(res,i){
+      ctx.beginPath();ctx.arc(dotStartX+i*(dotSize+dotGap)+dotSize/2,660,dotSize/2,0,Math.PI*2);
+      ctx.fillStyle=res==='correct'?'#3ecf82':'#e84060';ctx.fill();
+    });
+    ctx.font='bold 28px Arial';ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText('BASEBALL IQ  '+iq.toLocaleString(),540,750);
+    ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(160,800);ctx.lineTo(920,800);ctx.stroke();
+    ctx.font='bold 30px Arial';ctx.fillStyle='rgba(255,255,255,0.45)';ctx.fillText('Can you beat me?',540,860);
+    ctx.font='bold 34px Arial';ctx.fillStyle='#3ecf82';ctx.fillText('playbaseballiq.com',540,910);
+    if(bestStreak>=5){
+      ctx.fillStyle='rgba(232,192,96,0.15)';
+      ctx.beginPath();ctx.roundRect(380,944,300,60,30);ctx.fill();
+      ctx.fillStyle='#e8c060';ctx.font='bold 26px Arial';
+      ctx.fillText('🔥 '+bestStreak+'-QUESTION STREAK',540,982);
+    }
+    canvas.toBlob(function(blob){
+      if(btn){btn.textContent=origText;btn.disabled=false;}
+      if(!blob){_shareTextFallback(pct,r,nc,tot,answers);return;}
+      const file=new File([blob],'baseball-iq-score.png',{type:'image/png'});
+      const shareText='⚾ I scored '+pct+'% on Baseball IQ — '+r.rating+'\nCan you beat me? '+SITE_URL;
+      if(navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({title:'Baseball IQ',text:shareText,files:[file]}).catch(()=>_shareTextFallback(pct,r,nc,tot,answers));
+      }else if(navigator.share){
+        navigator.share({title:'Baseball IQ',text:shareText}).catch(()=>_shareTextFallback(pct,r,nc,tot,answers));
+      }else{
+        const url=URL.createObjectURL(blob);window.open(url,'_blank');copyToClipboard(shareText);
+      }
+    },'image/png');
+  }catch(e){if(btn){btn.textContent=origText;btn.disabled=false;}_shareTextFallback(pct,r,nc,tot,answers);}
 }
-
+function _shareTextFallback(pct,r,nc,tot,answers){
+  const emoji=answers.map(a=>a==='correct'?'🟢':'🔴').join('');
+  copyToClipboard('⚾ Baseball IQ — '+r.rating+'\n'+emoji+'\n'+nc+'/'+tot+' correct ('+pct+'%)\n\nCan you beat me? '+SITE_URL);
+}
 function copyToClipboard(text){
   navigator.clipboard.writeText(text).then(()=>{
     const btn=document.getElementById('share-session-btn');
@@ -3288,6 +3335,10 @@ async function loadLeaderboard(){
       .select('global_rank,player_id,username,age_group,league,iq_score,score_pct,best_streak,total_questions,team_code')
       .order('global_rank',{ascending:true})
       .limit(100);
+    if((!gdata||!gdata.length)&&!gerr){
+      var{data:pdata}=await sb.from('players').select('id,username,age_group,league,iq_score,avg_score,best_streak,total_questions,team_code,total_sessions').gt('total_sessions',0).order('iq_score',{ascending:false}).limit(100);
+      if(pdata&&pdata.length)gdata=pdata.map(function(p,i){return{global_rank:i+1,player_id:p.id,username:p.username,age_group:p.age_group,league:p.league,iq_score:p.iq_score||1000,score_pct:p.avg_score||0,best_streak:p.best_streak||0,total_questions:p.total_questions||0,team_code:p.team_code};});
+    }
 
     // Age filter still supported on global tab
     if(lbAgeFilter==='youth') gdata=gdata?gdata.filter(function(r){return r.age_group&&r.age_group.toLowerCase().includes('youth');}):[]; 
@@ -4200,13 +4251,15 @@ function updateCoachPosBanner() {
 }
 
 function initNav(){
-  // Only show top nav on non-mobile (CSS handles mobile via media query)
   if(window.innerWidth >= 601) {
     document.getElementById('top-nav').style.display='flex';
   }
   document.getElementById('bottom-nav').classList.add('bnav-visible');
   var uname = document.getElementById('nav-username');
   if(uname) uname.textContent=currentUser.username;
+  if(typeof syncBadgesFromDB === 'function') syncBadgesFromDB();
+  if(typeof syncStreakFromDB === 'function') syncStreakFromDB();
+  setTimeout(function(){ if(typeof checkAndAwardBadges === 'function') checkAndAwardBadges(); }, 2000);
 }
 
 document.getElementById('tab-login').addEventListener('click',()=>{
@@ -5356,7 +5409,7 @@ function getPlayerBadgeStats() {
   var dailyHist = JSON.parse(localStorage.getItem('biq_daily_hist_'+username)||'[]');
   var battleWins = parseInt(localStorage.getItem('biq_battle_wins_'+username)||'0');
   var perfectAdv = parseInt(localStorage.getItem('biq_perfect_adv_'+username)||'0');
-  var totalCorrect = sessions.reduce(function(a,s){ return a+(s.nc||0); }, 0);
+  var totalCorrect = sessions.length ? sessions.reduce(function(a,s){ return a+(s.nc||0); }, 0) : (currentUser.total_correct||0);
   var perfectGames = parseInt(localStorage.getItem('biq_perfects_'+username)||'0');
   var consecutiveDays = parseInt(localStorage.getItem('biq_consec_days_'+username)||'0');
   var bigBattleWins = parseInt(localStorage.getItem('biq_big_battle_'+username)||'0');
@@ -5388,7 +5441,7 @@ function getPlayerBadgeStats() {
   }
   localStorage.setItem('biq_last_day_'+username, todayKey);
   return {
-    games: sessions.length,
+    games: sessions.length||(currentUser.total_sessions||0),
     dailyCompleted: dailyHist.length,
     dailyStreak: typeof getDailyStreak==='function' ? getDailyStreak() : 0,
     bestStreak: Math.max.apply(null, sessions.map(function(s){ return s.streak||0; }).concat([0])),
@@ -5463,7 +5516,7 @@ async function syncBadgesFromDB() {
 async function saveBadgeToDB(badge) {
   if(!currentUser) return;
   try {
-    await sb.from('user_badges').upsert({player_id:currentUser.id,badge_key:badge.id,badge_label:badge.name},{onConflict:'player_id,badge_key',ignoreDuplicates:true});
+    const result=await sb.from('user_badges').upsert({player_id:currentUser.id,badge_key:badge.id,badge_label:badge.name,awarded_at:new Date().toISOString()},{onConflict:'player_id,badge_key',ignoreDuplicates:true});if(result.error)console.warn('Badge save error:',result.error.message);
   } catch(e) { console.warn('Badge save error:', e); }
 }
 
@@ -6165,7 +6218,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v6 | 2026-04-10 -->
+<!-- BUILD:phase3-v8 | 2026-04-10 -->
 <div id="biq-build-stamp" style="display:none"></div>
 </body>
 </html>
