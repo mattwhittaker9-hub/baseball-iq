@@ -698,35 +698,39 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
    END GAME SCREEN
 ═══════════════════════════════════════════ */
 .session-end{padding:8px 0}
-.end-hero{text-align:center;padding:20px 0 16px}
-.end-trophy{font-size:48px;margin-bottom:8px}
-.end-rating{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3a5a78;margin-bottom:4px}
+.end-hero{text-align:center;padding:24px 0 20px}
+.end-trophy{font-size:56px;margin-bottom:6px;display:block;animation:trophyPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes trophyPop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1) rotate(0deg);opacity:1}}
+.end-rating{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#c8102e;margin-bottom:6px}
 .end-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.end-subtitle{font-size:13px;color:#4a6a88;margin-bottom:12px}
-.final-score{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;color:#3ecf82;line-height:1;letter-spacing:-2px}
-.final-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:#3a5a78;text-transform:uppercase;margin-top:2px}
-.end-iq-block{background:linear-gradient(135deg,#0a1628,#0d1e35);border:1px solid #1a3050;border-radius:14px;padding:14px 18px;margin:12px 0;display:flex;align-items:center;justify-content:space-between}
+.end-subtitle{font-size:13px;color:#4a6a88;margin-bottom:16px}
+.final-score{font-family:'Barlow Condensed',sans-serif;font-size:80px;font-weight:900;color:#3ecf82;line-height:1;letter-spacing:-3px;animation:scorePop 0.6s 0.2s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes scorePop{0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1}}
+.final-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:#3a5a78;text-transform:uppercase;margin-top:4px}
+.end-iq-block{background:linear-gradient(135deg,#0a1628,#0d1e35);border:1px solid rgba(200,16,46,0.3);border-radius:16px;padding:16px 20px;margin:14px 0;display:flex;align-items:center;justify-content:space-between}
 .end-iq-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a5a78}
+.end-iq-score{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#fff;line-height:1}
 .end-iq-delta-row{margin-top:4px}
-.iq-delta{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;padding:2px 8px;border-radius:20px}
-.iq-delta.up{color:#3ecf82;background:rgba(62,207,130,0.1)}
-.iq-delta.down{color:#e84060;background:rgba(232,64,96,0.1)}
+.iq-delta{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;padding:3px 10px;border-radius:20px}
+.iq-delta.up{color:#3ecf82;background:rgba(62,207,130,0.15);border:1px solid rgba(62,207,130,0.2)}
+.iq-delta.down{color:#e84060;background:rgba(232,64,96,0.15);border:1px solid rgba(232,64,96,0.2)}
 .iq-delta.neutral{color:#4a6a88}
-.end-bar{height:6px;background:#0a1828;border-radius:3px;overflow:hidden;margin:12px 0}
-.end-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#c8102e,#3ecf82);transition:width 1s ease}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
-.stat-item{background:#0c1828;border:1px solid #162840;border-radius:10px;padding:10px 6px;text-align:center}
-.sv{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;line-height:1}
-.sl{font-size:9px;color:#3a5a78;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
-.answer-review{margin-bottom:12px}
-.review-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
-.review-dots{display:flex;gap:5px;flex-wrap:wrap}
-.end-actions{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.submit-score-btn{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:11px;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;box-shadow:0 4px 16px rgba(200,16,46,0.25)}
-.submit-score-btn:active{transform:scale(0.98)}
+.end-bar{height:8px;background:#0a1828;border-radius:4px;overflow:hidden;margin:14px 0}
+.end-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#c8102e,#f5a623,#3ecf82);transition:width 1.2s cubic-bezier(0.4,0,0.2,1)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.stat-item{background:linear-gradient(135deg,#0a1628,#0c1e30);border:1px solid #162840;border-radius:12px;padding:12px 6px;text-align:center}
+.sv{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;line-height:1}
+.sl{font-size:9px;color:#3a5a78;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.answer-review{margin-bottom:14px}
+.review-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.review-dots{display:flex;gap:6px;flex-wrap:wrap}
+.end-actions{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.submit-score-btn{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:12px;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;box-shadow:0 4px 20px rgba(200,16,46,0.3)}
+.submit-score-btn:active{transform:scale(0.97)}
 .submit-score-btn:disabled{opacity:0.4}
-.share-btn{background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.25);border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px}
-.play-again-btn{background:#071520;border:1px solid #1a3050;border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#4a6a88;cursor:pointer;letter-spacing:0.5px}
+.share-btn{background:rgba(55,138,221,0.12);border:1px solid rgba(55,138,221,0.3);border-radius:12px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px}
+.play-again-btn{background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:#4a6a88;cursor:pointer;letter-spacing:0.5px}
+.play-again-btn:hover{border-color:rgba(255,255,255,0.15);color:#6a8aaa}
 .submit-msg{font-size:12px;text-align:center;min-height:16px;color:#3ecf82;font-family:system-ui,sans-serif}
 
 /* ═══════════════════════════════════════════
@@ -2553,7 +2557,7 @@ async function startGame(){
       if(weightedPool && weightedPool.length>=TOTAL_QS){
         filteredQs=weightedPool;
       } else {
-        let q=sb.from('questions').select('*').eq('is_active',true);
+        let q=sb.from('scenario_questions').select('*').eq('is_active',true);
         if(cat!=='all') q=q.eq('role',cat);
         const{data,error}=await q.limit(500);
         if(error) throw error;
@@ -2725,7 +2729,7 @@ async function startDaily(){window._dailyFullHistory=[];
   // fetch all questions for this user's difficulty
   const diffs=getDifficultyForUser();
   try{
-    const{data,error}=await sb.from('questions').select('*').eq('is_active',true).limit(500);
+    const{data,error}=await sb.from('scenario_questions').select('*').eq('is_active',true).limit(500);
     if(error) throw error;
     const all=(data||[]).map(normalizeQuestion);
     dailyQs=getDailyQuestions(all);
@@ -3128,7 +3132,7 @@ async function loadHome(){
 
   // question count badge (silent)
   try{
-    const{count}=await sb.from('questions').select('*',{count:'exact',head:true});
+    const{count}=await sb.from('scenario_questions').select('*',{count:'exact',head:true});
     if(count) { var qb=document.getElementById('q-count-badge'); if(qb) qb.textContent=count+' expert questions'; }
   }catch(e){}
 
@@ -4662,7 +4666,7 @@ async function createChallenge(){
   var code=genCode();
   // Select 5 random question IDs for this match
   var diffs=getDifficultyForUser();
-  var qRes=await sb.from('questions').select('id').eq('is_active',true).limit(200);
+  var qRes=await sb.from('scenario_questions').select('id').eq('is_active',true).limit(200);
   if(qRes.error){setMsg('challenge-msg','err','Could not load questions.');return;}
   var allIds=qRes.data.map(function(q){return q.id;});
   // Shuffle and pick 5
@@ -4781,7 +4785,7 @@ function setupWaitingRoom(code, isCreator){
 async function startBattle(){
   if(!challengeRoom) return;
   // Fetch the actual question objects
-  var qRes=await sb.from('questions')
+  var qRes=await sb.from('scenario_questions')
     .select('*')
     .in('id',challengeRoom.question_ids||[])
     .limit(CHALLENGE_QS);
@@ -4804,7 +4808,7 @@ async function startBattle(){
 function loadBattleQuestions(questionsOrIds){
   // If we got IDs, fetch them; if objects, use directly
   if(questionsOrIds.length && typeof questionsOrIds[0]==='string'){
-    sb.from('questions').select('*').in('id',questionsOrIds).limit(CHALLENGE_QS).then(function(res){
+    sb.from('scenario_questions').select('*').in('id',questionsOrIds).limit(CHALLENGE_QS).then(function(res){
       if(res.data){
         var qMap={};
         res.data.forEach(function(q){ qMap[q.id]=normalizeQuestion(q); });
@@ -6161,7 +6165,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v4 | 2026-04-10 -->
+<!-- BUILD:phase3-v5 | 2026-04-10 -->
 <div id="biq-build-stamp" style="display:none"></div>
 </body>
 </html>
