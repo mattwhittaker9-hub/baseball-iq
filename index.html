@@ -357,22 +357,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 /* ─── COACH DASHBOARD ─── */
 .coach-dash{display:none}
-.cd-insight-strip{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.cd-insight{display:flex;align-items:center;gap:10px;background:#0a1828;border:1px solid #162840;border-radius:10px;padding:10px 14px;font-size:13px;color:#e8f4ff}
-.cd-insight-icon{font-size:18px;flex-shrink:0}
-.cd-insight-text{flex:1;line-height:1.3}
-.cd-insight-text strong{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;display:block}
-.cd-insight.warning{border-color:rgba(232,192,96,0.3);background:rgba(232,192,96,0.05)}
-.cd-insight.danger{border-color:rgba(200,16,46,0.3);background:rgba(200,16,46,0.05)}
-.cd-insight.good{border-color:rgba(62,207,130,0.3);background:rgba(62,207,130,0.05)}
-.cd-pos-badge{display:inline-block;background:#0a2040;border:1px solid #1a3a60;border-radius:6px;padding:2px 8px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5a8aaa;letter-spacing:0.5px;margin-top:3px}
-.cd-weak-section{background:#0c1828;border:1px solid #162840;border-radius:12px;padding:14px;margin-bottom:12px}
-.cd-weak-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.cd-weak-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
-.cd-weak-pos{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e8f4ff;width:110px;flex-shrink:0}
-.cd-weak-bar-wrap{flex:1;height:6px;background:#0a1828;border-radius:3px;overflow:hidden}
-.cd-weak-bar{height:100%;border-radius:3px;transition:width 0.6s ease}
-.cd-weak-pct{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e8f4ff;min-width:36px;text-align:right}
 .cd-pos-panel{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #0a2040}
 .cd-pos-panel.open{display:block}
 .cd-pos-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a88;margin-bottom:6px}
@@ -777,31 +761,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ═══════════════════════════════════════════
    DAILY END SCREEN
 ═══════════════════════════════════════════ */
-.de-hero{text-align:center;padding:24px 0 16px}
-.de-trophy{font-size:56px;line-height:1;margin-bottom:10px;animation:deTrophyDrop 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards}
-@keyframes deTrophyDrop{from{transform:translateY(-40px) scale(0.4);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
-.de-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,130,0.12);border:1px solid rgba(62,207,130,0.3);border-radius:20px;padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#3ecf82;letter-spacing:2px;margin-bottom:14px}
-.de-score{font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;line-height:1;letter-spacing:-3px;animation:deScorePop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.3s both}
-@keyframes deScorePop{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
-.de-score-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:#3a5a78;text-transform:uppercase;margin-top:4px;margin-bottom:14px}
-.de-dots{display:flex;gap:8px;justify-content:center;margin-bottom:4px}
-.de-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;animation:deDotPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both}
-.de-dot.c{background:rgba(62,207,130,0.15);border:2px solid #3ecf82;color:#3ecf82}
-.de-dot.w{background:rgba(232,64,96,0.12);border:2px solid #e84060;color:#e84060}
-@keyframes deDotPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.de-streak-card{background:linear-gradient(135deg,#0a1e0a,#0a2816);border:1px solid #1a4a2a;border-radius:16px;padding:16px 20px;margin-bottom:10px;display:flex;align-items:center;gap:14px;animation:deSlideUp 0.5s ease 0.5s both}
-.de-streak-fire{font-size:36px;line-height:1;flex-shrink:0}
-.de-streak-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;color:#3ecf82;line-height:1;flex-shrink:0}
-.de-streak-text{display:flex;flex-direction:column;gap:2px}
-.de-streak-text strong{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;display:block}
-.de-streak-text span{font-size:12px;color:#5a8a5a}
-.de-rating-card{background:#0c1828;border:1px solid #162840;border-radius:16px;padding:16px 20px;margin-bottom:12px;display:flex;align-items:center;gap:14px;animation:deSlideUp 0.65s ease both}
-.de-rating-icon{font-size:36px;line-height:1;flex-shrink:0}
-.de-rating-text{display:flex;flex-direction:column}
-.de-rating-label{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:0.5px}
-.de-rating-sub{font-size:12px;color:#4a6a88;margin-top:2px}
-.de-share-btn{width:100%;background:linear-gradient(135deg,#1a3060,#0e2040);border:1px solid #2a5090;border-radius:12px;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;margin-bottom:10px;animation:deSlideUp 0.5s ease 0.8s both}
-@keyframes deSlideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
 .daily-end-card{background:#0c1828;border:1px solid #162840;border-radius:16px;padding:20px;margin-bottom:14px}
 .daily-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,130,0.1);border:1px solid rgba(62,207,130,0.25);border-radius:20px;padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#3ecf82;letter-spacing:1px;margin-bottom:14px}
 .share-result-btn{width:100%;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.25);border-radius:11px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px}
@@ -883,78 +842,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .screen-loading::before{content:'⚾';font-size:24px;margin-right:8px;animation:spin 1.5s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
-
-/* ═══ BASEBALL IQ — MATERIAL TEXTURES ═══ */
-.tex-grass{background-image:url(tex_grass.webp);background-size:512px 512px;background-repeat:repeat}
-.tex-leather{background-image:url(tex_leather.webp);background-size:512px 512px;background-repeat:repeat}
-.tex-brickdust{background-image:url(tex_brickdust.webp);background-size:512px 512px;background-repeat:repeat}
-.tex-wood{background-image:url(tex_wood.webp);background-size:512px 512px;background-repeat:repeat}
-.tex-canvas{background-image:url(tex_canvas.webp);background-size:512px 512px;background-repeat:repeat}
-
-/* TEXTURE OVERLAYS — dark layer over texture so text stays readable */
-.tex-overlay-dark::after{content:'';position:absolute;inset:0;background:rgba(6,17,31,0.68);pointer-events:none;border-radius:inherit}
-.tex-overlay-leather::after{content:'';position:absolute;inset:0;background:rgba(15,8,2,0.65);pointer-events:none;border-radius:inherit}
-.tex-overlay-brickdust::after{content:'';position:absolute;inset:0;background:rgba(22,5,2,0.68);pointer-events:none;border-radius:inherit}
-.tex-overlay-wood::after{content:'';position:absolute;inset:0;background:rgba(10,5,0,0.70);pointer-events:none;border-radius:inherit}
-.tex-overlay-canvas::after{content:'';position:absolute;inset:0;background:rgba(8,14,24,0.74);pointer-events:none;border-radius:inherit}
-
-/* HOME SCREEN REDESIGN */
-.home-header-new{position:relative;padding:20px 18px 16px;overflow:hidden;border-bottom:1px solid rgba(62,130,62,0.2)}
-.home-header-new>*{position:relative;z-index:1}
-.home-iq-giant{font-family:'Barlow Condensed',sans-serif;font-size:80px;font-weight:900;color:#f0ece4;line-height:1;letter-spacing:-3px}
-.home-iq-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:#3a9a5a;text-transform:uppercase;margin-top:2px}
-.home-tier-pill-new{display:inline-flex;align-items:center;gap:6px;background:rgba(232,192,96,0.1);border:1px solid rgba(232,192,96,0.2);border-radius:20px;padding:4px 12px;margin-top:8px}
-.home-tier-pill-new span{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#e8c060;letter-spacing:1px}
-.home-stats-strip{display:flex;gap:1px;margin-top:12px}
-.home-stat-cell{flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)}
-.home-stat-cell:first-child{border-radius:8px 0 0 8px}
-.home-stat-cell:last-child{border-radius:0 8px 8px 0}
-.home-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#f0ece4;line-height:1;display:block}
-.home-stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;color:#3a5a78;text-transform:uppercase;margin-top:2px;display:block}
-
-/* DAILY CARD — brick dust */
-.daily-card-new{border-radius:14px;overflow:hidden;border:1px solid rgba(200,80,30,0.25);position:relative;margin-bottom:10px}
-.daily-card-new>*{position:relative;z-index:1}
-.daily-top-new{padding:14px 16px 10px}
-.daily-live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e84040;animation:dotPulse 1.4s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-.daily-title-new{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#f0ece4;line-height:1.1;margin-top:4px}
-.daily-title-new em{color:#3ecf82;font-style:normal}
-.daily-sub-new{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#6a4a38;font-weight:400;letter-spacing:1px;margin-top:3px}
-.daily-bottom-new{padding:10px 16px 12px;display:flex;align-items:center;gap:12px;border-top:1px solid rgba(200,80,30,0.12)}
-.daily-cta{background:#3ecf82;border:none;border-radius:8px;padding:9px 16px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#06111f;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
-
-/* FEATURE CARDS */
-.feat-primary{border-radius:14px;overflow:hidden;border:1px solid rgba(62,207,130,0.2);position:relative;display:flex;align-items:center;gap:16px;padding:16px;margin-bottom:8px}
-.feat-primary>*{position:relative;z-index:1}
-.feat-secondary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.feat-secondary{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);position:relative;padding:14px 12px}
-.feat-secondary>*{position:relative;z-index:1}
-.feat-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.feat-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#f0ece4;letter-spacing:0.5px;text-transform:uppercase}
-.feat-desc{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a88;margin-top:2px;letter-spacing:0.5px}
-.feat-secondary .feat-name{font-size:16px}
-.feat-secondary .feat-icon{width:38px;height:38px;margin-bottom:8px}
-
-/* SPOTLIGHT */
-.spotlight-new{border-radius:12px;overflow:hidden;border:1px solid rgba(55,138,221,0.12);position:relative;padding:12px 16px;margin-bottom:10px}
-.spotlight-new>*{position:relative;z-index:1}
-.spotlight-label-new{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;color:#378add;text-transform:uppercase;margin-bottom:5px}
-.spotlight-text-new{font-family:system-ui,sans-serif;font-size:12px;color:#6a90b0;line-height:1.5}
-.spotlight-text-new strong{color:#c8e0f4;font-weight:600}
-
-/* QUICK GAME BTN */
-.quick-game-new{width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(200,16,46,0.25);position:relative;padding:15px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;margin-bottom:8px;background:transparent}
-.quick-game-new>*{position:relative;z-index:1}
-.qg-pip{width:10px;height:10px;border-radius:50%;background:#c8102e}
-.qg-text{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#f0ece4;letter-spacing:2px;text-transform:uppercase}
-
-/* STITCH DOTS */
-.stitch-row-new{display:flex;gap:6px;padding:8px 0 0}
-.sdot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900}
-.sdot.hit{background:rgba(62,207,130,0.15);border:1.5px solid #3ecf82;color:#3ecf82}
-.sdot.miss{background:rgba(232,64,96,0.1);border:1.5px solid #e84060;color:#e84060}
-.sdot.empty{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1)}
 </style>
 </head>
 <body>
@@ -1101,94 +988,429 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 <!-- ─── HOME SCREEN ─── -->
 <div id="s-home" class="screen">
-  <!-- HEADER — real grass texture -->
-  <div class="home-header-new tex-grass tex-overlay-dark">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:#3a9a5a;text-transform:uppercase">Baseball IQ</div>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:6px">
-      <div>
-        <div class="home-iq-giant" id="home-iq">1,000</div>
-        <div class="home-iq-label">Baseball IQ</div>
-        <div class="home-tier-pill-new" id="home-tier-badge"><span>🪑 Benchwarmer</span></div>
-      </div>
-      <div style="text-align:right;padding-bottom:6px">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#f0ece4;line-height:1" id="ih-games-played">—</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a5a78;letter-spacing:2px;text-transform:uppercase">GAMES</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#3ecf82;line-height:1;margin-top:6px" id="ih-avg-score">—</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a5a78;letter-spacing:2px;text-transform:uppercase">AVG SCORE</div>
+  <!-- ─── IQ HERO ─── -->
+  <div class="iq-hero" id="iq-hero">
+    <div class="iq-hero-left">
+      <div class="iq-hero-lbl">Baseball IQ</div>
+      <div class="iq-hero-num" id="ih-num">1,000</div>
+      <div class="iq-hero-rating" id="ih-rating">Varsity</div>
+      <div id="ih-rank" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px;margin-top:2px"></div>
+      <div id="ih-team-name" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5aabdc;letter-spacing:0.5px;margin-top:2px"></div>
+    </div>
+    <div class="iq-hero-right">
+      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-games">0</div><div class="iq-hero-stat-lbl">Games</div></div>
+      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-avg">—</div><div class="iq-hero-stat-lbl">Avg Score</div></div>
+      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-streak">0</div><div class="iq-hero-stat-lbl">Best Streak</div></div>
+      <div class="iq-hero-stat" id="ih-badge-count-wrap" style="display:none"><div class="iq-hero-stat-val" id="ih-badge-count">0</div><div class="iq-hero-stat-lbl">Badges</div></div>
+    </div>
+  </div>
+  <!-- Assignment pill — shown when coach has assigned work -->
+  <div id="home-assign-pill" style="display:none;align-items:center;gap:8px;background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.3);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f08090;letter-spacing:0.5px;cursor:pointer" onclick="showScreen('s-team')"></div>
+
+
+  <!-- ─── DRILL CARD (shows when coach assigns a drill) ─── -->
+  <div id="drill-card" style="display:none">
+    <div class="drill-card-wrap">
+      <div class="drill-card-hdr">📋 Coach Drill</div>
+      <div class="drill-card-name" id="dc-name">—</div>
+      <div class="drill-card-meta" id="dc-meta">—</div>
+      <button class="drill-start-btn" onclick="startDrill()">Start Drill →</button>
+    </div>
+  </div>
+  <div id="drill-done-card" style="display:none">
+    <div class="drill-card-wrap done">
+      <div class="drill-card-hdr done">📋 Drill Complete ✓</div>
+      <div class="drill-done-row">
+        <div>
+          <div class="drill-card-name" id="dc-done-name" style="font-size:17px">—</div>
+          <div class="drill-card-meta" style="margin-bottom:0">Assigned by coach</div>
+        </div>
+        <div style="text-align:right">
+          <div class="drill-done-score" id="dc-done-score">—%</div>
+          <div style="font-size:10px;color:#4a7a4a;font-family:system-ui,sans-serif">your score</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div style="padding:10px 14px 0">
-    <!-- DAILY CARD — brick dust texture -->
-    <div class="daily-card-new tex-brickdust tex-overlay-brickdust">
-      <div class="daily-top-new">
-        <div style="display:flex;align-items:center;gap:6px">
-          <div class="daily-live-dot"></div>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:#c8602e;text-transform:uppercase">Daily Challenge</span>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;color:#6a4a38;margin-left:6px" id="daily-reset-time"></span>
-        </div>
-        <div class="daily-title-new">Today's <em>Drill</em></div>
-        <div class="daily-sub-new">5 questions · Same for everyone worldwide</div>
-        <div class="stitch-row-new" id="home-stitch-dots">
-          <div class="sdot empty"></div><div class="sdot empty"></div><div class="sdot empty"></div><div class="sdot empty"></div><div class="sdot empty"></div>
+  <!-- ─── DAILY CHALLENGE HERO ─── -->
+  <div class="dc-hero" id="daily-card">
+    <!-- Top strip -->
+    <div class="dc-top">
+      <div class="dc-live-badge"><div class="dc-live-dot"></div>Daily Challenge</div>
+      <div class="dc-countdown" id="dc-countdown">Resets in —</div>
+    </div>
+
+    <!-- NOT YET DONE -->
+    <div id="daily-cta">
+      <div class="dc-body">
+        <div class="dc-title">Today's <span>Drill</span></div>
+        <div class="dc-sub" id="daily-date-label">5 questions · Same for everyone worldwide</div>
+        <div class="dc-streak-row">
+          <div class="dc-streak-fire">🔥</div>
+          <div class="dc-streak-num" id="daily-streak-num">0</div>
+          <div class="dc-streak-lbl"><strong id="dc-streak-label">Day Streak</strong><span id="dc-streak-sub">Complete today to keep it going</span></div>
         </div>
       </div>
-      <div class="daily-bottom-new">
-        <div style="font-size:28px;line-height:1" id="ih-streak-fire">🔥</div>
-        <div style="flex:1">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#3ecf82;line-height:1" id="ih-streak-num">0</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:#3a7a5a;text-transform:uppercase">Day Streak</div>
-        </div>
-        <button class="daily-cta" id="daily-cta-btn" onclick="startDailyChallenge()">Step Up →</button>
+      <div class="dc-btn" onclick="startDaily()">Step Up to the Plate →</div>
+      <div class="dc-team-rank" id="dc-team-rank" style="display:none">
+        <div class="dc-rank-lbl">Your team rank today</div>
+        <div class="dc-rank-val" id="dc-team-rank-val">#—</div>
       </div>
     </div>
 
-    <!-- QUICK GAME — wood grain texture -->
-    <div class="quick-game-new tex-wood tex-overlay-wood" onclick="startGame()">
-      <div class="qg-pip"></div>
-      <div class="qg-text">Quick Game</div>
-    </div>
-
-    <!-- TRAIN CARD — leather texture (primary) -->
-    <div class="feat-primary tex-leather tex-overlay-leather" onclick="showScreen('s-train')">
-      <div class="feat-icon" style="background:rgba(62,207,130,0.12);border:1px solid rgba(62,207,130,0.2)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><polygon points="12,3 21,20 3,20" stroke="#3ecf82" stroke-width="1.5" stroke-linejoin="round" fill="rgba(62,207,130,0.1)"/><line x1="12" y1="8" x2="12" y2="14" stroke="#3ecf82" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="#3ecf82"/></svg>
+    <!-- ALREADY DONE -->
+    <div id="daily-done-area" style="display:none">
+      <div class="dc-body">
+        <div class="dc-title">Drill <span>Complete</span> ✓</div>
+        <div class="dc-done">
+          <div class="dc-done-score-row">
+            <div>
+              <div class="dc-done-score" id="daily-done-score">—</div>
+              <div style="font-size:11px;color:#4a7a5a;font-family:system-ui,sans-serif">today's score</div>
+            </div>
+            <div style="text-align:right">
+              <div class="dc-done-pct" id="dc-done-pct">—%</div>
+              <div class="dc-done-meta">🔥 <span id="dc-done-streak">0</span> day streak<br>Resets <span id="dc-done-reset">at midnight</span></div>
+            </div>
+          </div>
+          <div class="dc-done-dots" id="daily-done-dots"></div>
+          <button class="dc-done-share" onclick="shareDailyResult()">📤 Share My Result</button>
+        </div>
       </div>
-      <div>
-        <div class="feat-name">Train</div>
-        <div class="feat-desc">By position · 782 questions</div>
-        <div style="margin-top:8px;display:flex;gap:4px;align-items:center">
-          <div style="height:3px;width:36px;background:#3ecf82;border-radius:2px"></div>
-          <div style="height:3px;width:20px;background:rgba(62,207,130,0.3);border-radius:2px"></div>
-          <div style="height:3px;width:12px;background:rgba(62,207,130,0.15);border-radius:2px"></div>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a7a5a;letter-spacing:1px;margin-left:4px" id="home-tier-level">BENCHWARMER</span>
+      <div class="dc-team-rank" id="dc-team-rank-done" style="display:none">
+        <div class="dc-rank-lbl">Team rank today</div>
+        <div class="dc-rank-val" id="dc-team-rank-done-val">#—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IQ Bar (legacy — now using iq-hero above) -->
+  <div id="home-stats-strip" style="display:none"></div>
+
+  <!-- Quick Play -->
+  <button class="play-btn" id="start-btn" onclick="startGame()">
+    ⚾ &nbsp;<span id="play-btn-text">Quick Game</span>
+  </button>
+
+
+  <!-- Coach Team Message Banner -->
+  <div id="coach-msg-banner" style="display:none;background:#0a1828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:10px">
+    <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c8102e;margin-bottom:3px">📣 Coach says</div>
+    <div id="cmb-text" style="font-size:14px;color:#e0e8f0;font-family:system-ui,sans-serif"></div>
+    <div id="cmb-time" style="font-size:10px;color:#3a6a88;margin-top:2px"></div>
+  </div>
+
+  <!-- Coach Position Assignment Banner -->
+  <div id="coach-pos-banner" style="display:none;background:#071828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:none">
+    <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a8aff;margin-bottom:3px">⚾ Coach has assigned you</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div id="cpb-pos" style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff">—</div>
+      <div id="cpb-mix" style="font-size:11px;color:#4a8aaa">—</div>
+    </div>
+    <div id="cpb-desc" style="font-size:11px;color:#3a6a88;margin-top:2px">—</div>
+  </div>
+
+  <!-- Feature Cards Row -->
+  <div class="home-feature-row">
+    <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
+      <div class="hfr-name">Train</div>
+      <div class="hfr-sub">By position</div>
+    </div>
+    <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
+      <div class="hfr-name">Crew Chief</div>
+      <div class="hfr-sub">Check the book</div>
+    </div>
+    <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
+      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
+      <div class="hfr-name">Battle</div>
+      <div class="hfr-sub">Head-to-head</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DAILY CHALLENGE GAME ─── -->
+<div id="s-daily-game" class="game-card-screen">
+  <div class="gc-top">
+    <div class="gc-dots" id="daily-gc-dots"></div>
+    <button class="gc-exit-btn" onclick="showScreen('s-home')">✕</button>
+  </div>
+  <div class="gc-cat"><div class="gc-cat-pill" id="daily-gc-cat">⚡ Daily Challenge</div></div>
+  <div class="gc-content" id="daily-gc-content">
+    <div class="gc-scenario" id="daily-gc-scenario">
+      <div class="gc-broadcast">
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-val" id="daily-gc-b-inning">—</div>
+          <div class="gc-bcast-lbl">Inning</div>
+        </div>
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-val score" id="daily-gc-b-score">—</div>
+          <div class="gc-bcast-lbl">Score</div>
+        </div>
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-outs" id="daily-gc-b-outs">
+            <div class="gc-out-pip"></div>
+            <div class="gc-out-pip"></div>
+            <div class="gc-out-pip"></div>
+          </div>
+          <div class="gc-bcast-lbl">Outs</div>
+        </div>
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-count">
+            <div class="gc-count-row" id="daily-gc-balls-row">
+              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
+            </div>
+            <div class="gc-count-row" id="daily-gc-strikes-row">
+              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
+            </div>
+          </div>
+          <div class="gc-bcast-lbl">Count</div>
+        </div>
+      </div>
+      <div class="gc-diamond-row">
+        <svg class="gc-field-svg" viewBox="0 0 100 100" width="88" height="88">
+          <defs>
+            <radialGradient id="dgGrass" cx="50%" cy="60%" r="55%">
+              <stop offset="0%" stop-color="#0d2018"/>
+              <stop offset="100%" stop-color="#071510"/>
+            </radialGradient>
+          </defs>
+          <rect width="100" height="100" fill="url(#dgGrass)" rx="4"/>
+          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.9"/>
+          <polygon points="50,30 78,56 50,82 22,56" fill="#0a1c12" opacity="0.95"/>
+          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
+          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
+          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
+          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
+          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
+          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
+          <circle cx="50" cy="58" r="3.5" fill="#1a1208" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.55)"/>
+          <rect id="daily-gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,78,56)"/>
+          <rect id="daily-gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,50,30)"/>
+          <rect id="daily-gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,22,56)"/>
+          <circle id="daily-gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
+          <circle id="daily-gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
+          <circle id="daily-gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
+        </svg>
+        <div class="gc-scenario-text">
+          <div class="gc-scenario-label">Situation</div>
+          <div class="gc-scenario-body" id="daily-gc-scenario-body"></div>
         </div>
       </div>
     </div>
-
-    <!-- CREW CHIEF + BATTLE — canvas texture -->
-    <div class="feat-secondary-row">
-      <div class="feat-secondary tex-canvas tex-overlay-canvas" onclick="showScreen('s-rules')">
-        <div class="feat-icon" style="background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.15)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#378add" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#378add" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="gc-inning" id="daily-gc-inning" style="display:none"></div>
+    <div class="gc-question" id="daily-gc-question"></div>
+    <div class="gc-choices" id="daily-choices"></div>
+  </div>
+  <div class="gc-panel" id="daily-gc-panel">
+    <div class="gc-handle"></div>
+    <div class="gc-panel-inner">
+      <div class="gc-result-row">
+        <div class="gc-result-icon ok" id="daily-gc-icon">✅</div>
+        <div>
+          <div class="gc-result-title" id="daily-gc-title">That's the play!</div>
+          <div class="gc-result-sub" id="daily-gc-sub">Correct read</div>
         </div>
-        <div class="feat-name">Crew Chief</div>
-        <div class="feat-desc">Check the book</div>
       </div>
-      <div class="feat-secondary tex-canvas tex-overlay-canvas" onclick="showScreen('s-battle')">
-        <div class="feat-icon" style="background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.15)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="4" y1="20" x2="20" y2="4" stroke="#c8102e" stroke-width="2.5" stroke-linecap="round"/><line x1="20" y1="20" x2="4" y2="4" stroke="#c8102e" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <div class="gc-explanation" id="daily-gc-expl"></div>
+      <div class="gc-spotlight" id="daily-gc-spotlight">
+        <div class="gc-sp-type" id="daily-gc-sp-type">Pro Spotlight</div>
+        <div class="gc-sp-row">
+          <div class="gc-sp-name" id="daily-gc-sp-name"></div>
+          <div class="gc-sp-val" id="daily-gc-sp-val"></div>
         </div>
-        <div class="feat-name">Battle</div>
-        <div class="feat-desc">Head-to-head</div>
+        <div class="gc-sp-detail" id="daily-gc-sp-detail"></div>
+      </div>
+      <button class="gc-next" id="daily-gc-next">Next Situation ↑</button>
+    </div>
+  </div>
+  <div class="gc-swipe-hint" id="daily-gc-hint">Tap an answer</div>
+  <div class="gc-streak-bar"><div class="gc-streak-fill" id="daily-gc-bar" style="width:0%"></div></div>
+</div>
+</div><!-- /s-daily-game -->
+
+<!-- ─── DAILY CHALLENGE END ─── -->
+<div id="s-daily-end" class="screen">
+  <div class="daily-end-card">
+    <div class="daily-result-hero">
+      <div class="daily-badge" style="margin:0 auto 12px">⚡ Daily Challenge Complete</div>
+      <div class="daily-result-score" id="daily-end-score">—</div>
+      <div class="final-label">TODAY'S SCORE</div>
+      <div class="daily-result-grid" id="daily-end-grid"></div>
+    </div>
+    <div style="padding:0 24px 16px">
+      <button class="share-result-btn" id="share-daily-btn">📤 Share My Result</button>
+    </div>
+  </div>
+  <!-- Daily wrong answer review -->
+  <div class="wrong-review-section" id="daily-wrong-review-section" style="display:none">
+    <button class="wrong-review-toggle" id="daily-wrong-review-toggle" onclick="toggleWrongReview('daily-wrong-review-list','daily-wrong-review-toggle')">
+      📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="daily-wrong-review-count">0</span>
+      <span id="daily-wrong-review-arrow">▼</span>
+    </button>
+    <div class="wr-list" id="daily-wrong-review-list" style="display:none"></div>
+  </div>
+  <button class="play-btn" onclick="showScreen('s-home')">← Back to Home</button>
+</div>
+
+<!-- ─── GAME SCREEN ─── -->
+<div id="s-game" class="game-card-screen">
+  <div class="gc-top">
+    <div class="gc-dots" id="gc-dots"></div>
+    <button class="gc-exit-btn" onclick="confirmExitGame()">✕</button>
+  </div>
+  <div class="gc-cat"><div class="gc-cat-pill" id="gc-cat">⚾ Baseball IQ</div></div>
+  <div class="gc-content" id="gc-content">
+    <!-- VISUAL SCENARIO BLOCK -->
+    <div class="gc-scenario" id="gc-scenario">
+      <div class="gc-broadcast" id="gc-broadcast">
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-val" id="gc-b-inning">—</div>
+          <div class="gc-bcast-lbl">Inning</div>
+        </div>
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-val score" id="gc-b-score">—</div>
+          <div class="gc-bcast-lbl">Score</div>
+        </div>
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-outs" id="gc-b-outs">
+            <div class="gc-out-pip"></div>
+            <div class="gc-out-pip"></div>
+            <div class="gc-out-pip"></div>
+          </div>
+          <div class="gc-bcast-lbl">Outs</div>
+        </div>
+        <div class="gc-bcast-seg">
+          <div class="gc-bcast-count" id="gc-b-count">
+            <div class="gc-count-row" id="gc-balls-row">
+              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
+            </div>
+            <div class="gc-count-row" id="gc-strikes-row">
+              <div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div>
+            </div>
+          </div>
+          <div class="gc-bcast-lbl">Count</div>
+        </div>
+      </div>
+      <div class="gc-diamond-row" id="gc-diamond-row">
+        <svg class="gc-field-svg" id="gc-diamond-svg" viewBox="0 0 100 100" width="88" height="88">
+          <!-- Outfield grass gradient -->
+          <defs>
+            <radialGradient id="grassGrad" cx="50%" cy="60%" r="55%">
+              <stop offset="0%" stop-color="#0d2018"/>
+              <stop offset="100%" stop-color="#071510"/>
+            </radialGradient>
+            <radialGradient id="inGrad" cx="50%" cy="55%" r="40%">
+              <stop offset="0%" stop-color="#12281a"/>
+              <stop offset="100%" stop-color="#0a1c12"/>
+            </radialGradient>
+          </defs>
+          <!-- Field background -->
+          <rect width="100" height="100" fill="url(#grassGrad)" rx="4"/>
+          <!-- Infield dirt circle -->
+          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.8"/>
+          <!-- Infield grass diamond -->
+          <polygon points="50,30 78,56 50,82 22,56" fill="url(#inGrad)" opacity="0.9"/>
+          <!-- Baselines -->
+          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <!-- Foul lines -->
+          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+          <!-- Pitcher mound -->
+          <circle cx="50" cy="58" r="3.5" fill="#1e1a0e" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+          <!-- Home plate -->
+          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.6)"/>
+          <!-- Bases (empty state) -->
+          <rect id="gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,78,56)"/>
+          <rect id="gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,50,30)"/>
+          <rect id="gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,22,56)"/>
+          <!-- Runner dots (hidden by default) -->
+          <circle id="gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+        </svg>
+        <div class="gc-scenario-text">
+          <div class="gc-scenario-label">Situation</div>
+          <div class="gc-scenario-body" id="gc-scenario-body"></div>
+        </div>
       </div>
     </div>
+    <div class="gc-question" id="gc-question"></div>
+    <div class="gc-choices" id="choices"></div>
+  </div>
+  <div class="gc-panel" id="gc-panel">
+    <div class="gc-handle"></div>
+    <div class="gc-panel-inner">
+      <div class="gc-result-row">
+        <div class="gc-result-icon ok" id="gc-icon">✅</div>
+        <div>
+          <div class="gc-result-title" id="gc-title">That's the play!</div>
+          <div class="gc-result-sub" id="gc-sub">Correct read</div>
+        </div>
+      </div>
+      <div class="gc-explanation" id="gc-expl"></div>
+      <div class="gc-spotlight" id="gc-spotlight">
+        <div class="gc-sp-type" id="gc-sp-type">Pro Spotlight</div>
+        <div class="gc-sp-row">
+          <div class="gc-sp-name" id="gc-sp-name"></div>
+          <div class="gc-sp-val" id="gc-sp-val"></div>
+        </div>
+        <div class="gc-sp-detail" id="gc-sp-detail"></div>
+      </div>
+      <button class="gc-next" id="gc-next">Next Situation ↑</button>
+      <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question">🚩</button>
+    </div>
+  </div>
+  <div class="gc-swipe-hint" id="gc-hint">Tap an answer</div>
+  <div class="gc-streak-bar"><div class="gc-streak-fill" id="gc-bar" style="width:0%"></div></div>
+</div>
 
-    <!-- SPOTLIGHT — canvas texture -->
-    <div class="spotlight-new tex-canvas tex-overlay-canvas">
-      <div class="spotlight-label-new">Today in Baseball</div>
-      <div class="spotlight-text-new" id="home-spotlight-text">Loading today's moment...</div>
+<!-- ─── SESSION END ─── -->
+<div id="s-end" class="screen">
+  <div class="session-end">
+    <div class="end-hero">
+      <div class="end-trophy" id="end-trophy">🏆</div>
+      <div class="end-rating" id="end-rating"></div>
+      <div class="end-title" id="end-title"></div>
+      <div class="end-subtitle" id="end-subtitle"></div>
+      <div class="final-score" id="final-score">0%</div>
+      <div class="final-label">THIS GAME</div>
+    </div>
+    <div class="end-iq-block" id="end-iq-block">
+      <div class="end-iq-title">Baseball IQ Score</div>
+      <div class="end-iq-score">1,000</div>
+      <div class="end-iq-delta-row"><span class="iq-delta neutral">Calculating...</span></div>
+    </div>
+    <div class="end-bar"><div class="end-bar-fill" id="end-bar-fill"></div></div>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="sv" id="e-correct">0</div><div class="sl">Correct</div></div>
+      <div class="stat-item"><div class="sv" id="e-wrong">0</div><div class="sl">Wrong</div></div>
+      <div class="stat-item"><div class="sv" id="e-streak">0</div><div class="sl">Best Streak</div></div>
+      <div class="stat-item"><div class="sv" id="e-perfects">0</div><div class="sl">Perfect Games</div></div>
+    </div>
+    <div class="answer-review">
+      <div class="review-label">Answer History</div>
+      <div class="review-dots" id="review-dots"></div>
+    </div>
+    <!-- Wrong answer inline review -->
+    <div class="wrong-review-section" id="wrong-review-section" style="display:none">
+      <button class="wrong-review-toggle" id="wrong-review-toggle" onclick="toggleWrongReview('wrong-review-list','wrong-review-toggle')">
+        📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="wrong-review-count">0</span>
+        <span id="wrong-review-arrow">▼</span>
+      </button>
+      <div class="wr-list" id="wrong-review-list" style="display:none"></div>
+    </div>
+    <div class="end-actions">
+      <button class="submit-score-btn" id="submit-score-btn">Submit to Leaderboard</button>
+      <button class="share-btn" id="share-session-btn">📤 Share My Score</button>
+      <div class="submit-msg" id="submit-msg"></div>
+      <button class="play-again-btn" onclick="showScreen('s-home')">← Back to Home</button>
     </div>
   </div>
 </div>
@@ -1398,8 +1620,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <button class="cd-share-btn" onclick="shareTeamCode()">📋 Share Join Code</button>
     </div>
 
-    <div id="cd-insight-strip" class="cd-insight-strip"></div>
-    <div id="cd-weak-section" class="cd-weak-section" style="display:none"></div>
     <div class="cd-stats-row" id="cd-stats-row">
       <div class="cd-stat"><div class="cd-stat-val" id="cd-players">—</div><div class="cd-stat-lbl">Players</div></div>
       <div class="cd-stat"><div class="cd-stat-val" id="cd-avg-iq">—</div><div class="cd-stat-lbl">Avg IQ</div></div>
@@ -1926,6 +2146,26 @@ function getDifficultyForUser(overridePos){
   return pool.filter(function(v,i,a){ return a.indexOf(v)===i; });
 }
 function normalizeQuestion(row){
+  if(row.question_text!==undefined){
+    const rawChoices=Array.isArray(row.choices)?row.choices:(typeof row.choices==='string'?JSON.parse(row.choices):[]);
+    const correctText=row.correct_answer||'';
+    const correctOrigIdx=rawChoices.indexOf(correctText);
+    const labels=['A','B','C','D'];
+    const indexed=rawChoices.map((t,i)=>({text:t,isCorrect:i===correctOrigIdx}));
+    for(let i=indexed.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[indexed[i],indexed[j]]=[indexed[j],indexed[i]];}
+    const newCorrectIndex=indexed.findIndex(c=>c.isCorrect);
+    return {
+      id:row.id||row.question_id,difficulty:row.difficulty||1,
+      category:row.category||row.role||'',position:row.position||row.role||'',
+      inning:null,score:null,count:null,outs:null,
+      runners:{first:false,second:false,third:false},
+      scenario:null,question_type:'multiple_choice',question:row.question_text,
+      choices:indexed.map((c,i)=>labels[i]+'. '+c.text),
+      correct_index:newCorrectIndex,correct_answer:correctText,
+      explanation:row.correct_explanation||row.explanation||'',
+      tags:row.tags||[],statcast_stat:null,statcast_blurb:null
+    };
+  }
   if(row.question_type!=='multiple_choice'){
     return {
       id:row.id,difficulty:row.difficulty,category:row.category,position:row.position,
@@ -1936,17 +2176,8 @@ function normalizeQuestion(row){
       explanation:row.explanation,tags:row.tags||[]
     };
   }
-  // Shuffle choices so correct answer lands at a random position every time
-  const raw=[
-    {text:row.choice_a,orig:0},
-    {text:row.choice_b,orig:1},
-    {text:row.choice_c,orig:2},
-    {text:row.choice_d,orig:3},
-  ];
-  for(let i=raw.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [raw[i],raw[j]]=[raw[j],raw[i]];
-  }
+  const raw=[{text:row.choice_a,orig:0},{text:row.choice_b,orig:1},{text:row.choice_c,orig:2},{text:row.choice_d,orig:3}];
+  for(let i=raw.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[raw[i],raw[j]]=[raw[j],raw[i]];}
   const labels=['A','B','C','D'];
   const choices=raw.map((c,i)=>labels[i]+'. '+c.text);
   const newCorrectIndex=raw.findIndex(c=>c.orig===row.correct_index);
@@ -2322,8 +2553,8 @@ async function startGame(){
       if(weightedPool && weightedPool.length>=TOTAL_QS){
         filteredQs=weightedPool;
       } else {
-        let q=sb.from('questions').select('*').in('difficulty',diffs);
-        if(cat!=='all') q=q.eq('category',cat);
+        let q=sb.from('questions').select('*').eq('is_active',true);
+        if(cat!=='all') q=q.eq('role',cat);
         const{data,error}=await q.limit(500);
         if(error) throw error;
         let pool=(data||[]).map(normalizeQuestion);
@@ -2437,7 +2668,6 @@ function showEnd(){
   var currentIQ=loadIQScore();
   var ahSimple2=answerHistory.map(function(a){return typeof a==='object'?a.result:a;});
   var delta=calculateSessionDelta(ahSimple2,questionDifficulties);
-  saveIQScoreServerSide(ahSimple2,questionDifficulties);
   var newIQ=Math.max(500,Math.min(1800,currentIQ+delta));
   renderEndIQ(delta,newIQ);
   saveIQScore(newIQ);
@@ -2489,13 +2719,13 @@ async function startDaily(){window._dailyFullHistory=[];
   if(window._dailyFullHistory && window._dailyFullHistory.length) {
     populateWrongReview('daily-wrong-review-list','daily-wrong-review-count','daily-wrong-review-section', window._dailyFullHistory);
   }
-  showScreen('s-daily-end');if(typeof pct!=='undefined'&&pct>=80)setTimeout(launchFireworks,600);
+  showScreen('s-daily-end');
     return;
   }
   // fetch all questions for this user's difficulty
   const diffs=getDifficultyForUser();
   try{
-    const{data,error}=await sb.from('questions').select('*').in('difficulty',diffs).limit(500);
+    const{data,error}=await sb.from('questions').select('*').eq('is_active',true).limit(500);
     if(error) throw error;
     const all=(data||[]).map(normalizeQuestion);
     dailyQs=getDailyQuestions(all);
@@ -2558,76 +2788,12 @@ function finishDaily(){
 
 function showDailyEnd(answers,pct){
   const correct=answers.filter(a=>a==='correct').length;
-  const s=document.getElementById('daily-end-score');
-  s.textContent=correct+'/'+DAILY_QS;
-  s.style.color=pct>=80?'#3ecf82':pct>=60?'#e8c060':'#e84060';
-  document.getElementById('daily-end-grid').innerHTML=answers.map((a,i)=>`<div class="de-dot ${a==='correct'?'c':'w'}" style="animation-delay:${0.4+i*0.1}s">${a==='correct'?'✓':'✗'}</div>`).join('');
-  const trophy=document.getElementById('de-trophy'),badge=document.getElementById('de-badge');
-  if(pct===100){trophy.textContent='🏆';badge.textContent='⚡ PERFECT GAME';}
-  else if(pct>=80){trophy.textContent='🔥';badge.textContent='⚡ GREAT GAME';}
-  else if(pct>=60){trophy.textContent='⚾';badge.textContent='⚡ DAILY COMPLETE';}
-  else{trophy.textContent='📚';badge.textContent='⚡ KEEP TRAINING';}
-  const ratings=[{min:100,icon:'🏆',label:'PERFECT GAME',sub:'You called every play correctly'},{min:80,icon:'🔥',label:'HOT CORNER',sub:'Almost flawless — you know the game'},{min:60,icon:'⚾',label:'SOLID SCOUT',sub:'Good baseball instincts'},{min:0,icon:'📚',label:'BACK TO THE DUGOUT',sub:'Study up and come back tomorrow'}];
-  const r=ratings.find(x=>pct>=x.min)||ratings[ratings.length-1];
-  document.getElementById('de-rating-icon').textContent=r.icon;
-  document.getElementById('de-rating-label').textContent=r.label;
-  document.getElementById('de-rating-sub').textContent=r.sub;
-  const streak=getDailyStreak();
-  document.getElementById('de-streak-num').textContent=streak;
-  document.getElementById('de-streak-label').textContent=streak===1?'Day Streak':streak+' Day Streak';
-  document.getElementById('de-streak-sub').textContent=streak>=7?'You\'re on fire!':streak>=3?'Building momentum!':'Keep it going daily';
-  if(pct>=80)setTimeout(launchFireworks,400);
-}
-function launchConfetti(){
-  // Stadium fireworks
-  const c=document.getElementById('daily-confetti');if(!c)return;
-  c.style.display='block';c.width=window.innerWidth;c.height=window.innerHeight;
-  const ctx=c.getContext('2d');
-  const teamColors=['#c8102e','#003087','#e8c060','#1a3060','#ffffff','#3ecf82'];
-  const shells=[];
-  function addShell(){
-    shells.push({x:c.width*0.15+Math.random()*c.width*0.7,y:c.height+20,targetY:c.height*0.08+Math.random()*c.height*0.38,vx:(Math.random()-0.5)*1.5,vy:-20-Math.random()*8,exploded:false,particles:[],color:teamColors[Math.floor(Math.random()*teamColors.length)],trail:[]});
-  }
-  function explode(s){
-    s.exploded=true;
-    const n=70+Math.floor(Math.random()*40),c2=teamColors[Math.floor(Math.random()*teamColors.length)];
-    for(let i=0;i<n;i++){const a=(Math.PI*2/n)*i,sp=4+Math.random()*6;s.particles.push({x:s.x,y:s.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,alpha:1,color:Math.random()>0.4?s.color:c2,size:2+Math.random()*2});}
-  }
-  const launches=[0,20,38,58,80,105];let si=0,frame=0;
-  (function draw(){
-    ctx.fillStyle='rgba(6,17,31,0.2)';ctx.fillRect(0,0,c.width,c.height);
-    if(si<launches.length&&frame===launches[si]){addShell();si++;}
-    shells.forEach(s=>{
-      if(!s.exploded){
-        s.trail.push({x:s.x,y:s.y});if(s.trail.length>10)s.trail.shift();
-        s.x+=s.vx;s.y+=s.vy;s.vy+=0.4;
-        s.trail.forEach((pt,i)=>{ctx.globalAlpha=(i/s.trail.length)*0.5;ctx.fillStyle='#fff8d0';ctx.beginPath();ctx.arc(pt.x,pt.y,1.5,0,Math.PI*2);ctx.fill();});
-        ctx.globalAlpha=1;
-        if(s.vy>=-1||s.y<=s.targetY)explode(s);
-      } else {
-        s.particles=s.particles.filter(p=>p.alpha>0.03);
-        s.particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.1;p.vx*=0.97;p.alpha-=0.014;ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();});
-        ctx.globalAlpha=1;
-      }
-    });
-    frame++;
-    if(frame>160&&shells.every(s=>!s.exploded||s.particles.length===0)){ctx.clearRect(0,0,c.width,c.height);c.style.display='none';}
-    else requestAnimationFrame(draw);
-  })();
+  document.getElementById('daily-end-score').textContent=correct+'/'+DAILY_QS;
+  document.getElementById('daily-end-score').style.color=pct>=80?'#3ecf82':pct>=60?'#e8c060':'#e84060';
+  const grid=document.getElementById('daily-end-grid');
+  grid.innerHTML=answers.map(a=>`<div class="dgrid-dot ${a==='correct'?'c':'w'}">${a==='correct'?'✅':'❌'}</div>`).join('');
 }
 
-function launchFireworks(){
-  const c=document.getElementById('daily-confetti');if(!c)return;c.style.display='block';c.width=window.innerWidth;c.height=window.innerHeight;
-  const ctx=c.getContext('2d'),cols=['#c8102e','#003087','#e8c060','#ffffff','#3ecf82'];
-  const shells=[];
-  function addShell(){shells.push({x:c.width*0.15+Math.random()*c.width*0.7,y:c.height+20,targetY:c.height*0.08+Math.random()*c.height*0.38,vx:(Math.random()-0.5)*1.5,vy:-20-Math.random()*8,exploded:false,particles:[],color:cols[Math.floor(Math.random()*cols.length)],trail:[]});}
-  function explode(s){s.exploded=true;const c2=cols[Math.floor(Math.random()*cols.length)];for(let i=0;i<80;i++){const a=(Math.PI*2/80)*i,sp=4+Math.random()*6;s.particles.push({x:s.x,y:s.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,alpha:1,color:Math.random()>0.4?s.color:c2,size:2+Math.random()*2});}}
-  const launches=[0,20,38,58,80,105];let si=0,frame=0;
-  (function draw(){ctx.fillStyle='rgba(6,17,31,0.2)';ctx.fillRect(0,0,c.width,c.height);
-  if(si<launches.length&&frame===launches[si]){addShell();si++;}
-  shells.forEach(s=>{if(!s.exploded){s.trail.push({x:s.x,y:s.y});if(s.trail.length>10)s.trail.shift();s.x+=s.vx;s.y+=s.vy;s.vy+=0.4;s.trail.forEach((pt,i)=>{ctx.globalAlpha=(i/s.trail.length)*0.5;ctx.fillStyle='#fff8d0';ctx.beginPath();ctx.arc(pt.x,pt.y,1.5,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;if(s.vy>=-1||s.y<=s.targetY)explode(s);}else{s.particles=s.particles.filter(p=>p.alpha>0.03);s.particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.1;p.vx*=0.97;p.alpha-=0.014;ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;}});
-  frame++;if(frame>160&&shells.every(s=>!s.exploded||s.particles.length===0)){ctx.clearRect(0,0,c.width,c.height);c.style.display='none';}else requestAnimationFrame(draw);})();
-}
 function shareDailyResult(){
   const key=getTodayKey();
   const done=JSON.parse(localStorage.getItem('biq_daily_'+key)||'null');
@@ -2685,32 +2851,12 @@ function getDailyStreak(){
   return 0;
 }
 
-async function syncSessionsFromDB(){
-  if(!currentUser?.user_id) return;
-  try{
-    const sessions=JSON.parse(localStorage.getItem('biq_sessions_'+currentUser.username)||'[]');
-    if(sessions.length) return;
-    const {data}=await sb.from('players').select('total_sessions,total_questions,total_correct,avg_score,best_streak,iq_score').eq('user_id',currentUser.user_id).single();
-    if(!data||!data.total_sessions) return;
-    currentUser.total_sessions=data.total_sessions;
-    currentUser.avg_score=data.avg_score;
-    currentUser.best_streak=data.best_streak;
-    localStorage.setItem('biq_user',JSON.stringify(currentUser));
-    if(typeof updateHomeIQ==='function') updateHomeIQ();
-    console.log('Stats seeded from DB:',data.total_sessions,'sessions');
-  }catch(e){console.warn('Session sync error:',e);}
-}
-
 async function syncStreakFromDB(){
   if(!currentUser?.user_id) return;
   try{const {data}=await sb.from('players').select('best_streak').eq('user_id',currentUser.user_id).single();if(!data)return;const key='biq_dstreak_'+currentUser.username;const local=JSON.parse(localStorage.getItem(key)||'{"streak":0,"last":""}');if(data.best_streak>local.streak){local.streak=data.best_streak;localStorage.setItem(key,JSON.stringify(local));}}
   catch(e){console.warn('Streak sync error:',e);}
 }
 
-async function syncStreakFromDB(){if(!currentUser?.user_id)return;try{const{data}=await sb.from('players').select('best_streak').eq('user_id',currentUser.user_id).single();if(!data)return;const key='biq_dstreak_'+currentUser.username;const local=JSON.parse(localStorage.getItem(key)||'{"streak":0,"last":""}');if(data.best_streak>local.streak){local.streak=data.best_streak;localStorage.setItem(key,JSON.stringify(local));}}catch(e){}}
-async function syncBadgesFromDB(){if(!currentUser)return;try{var{data}=await sb.from('user_badges').select('badge_key').eq('player_id',currentUser.id);if(!data||!data.length)return;var local=JSON.parse(localStorage.getItem('biq_badges_'+currentUser.username)||'[]');var merged=[...new Set([...local,...data.map(r=>r.badge_key)])];if(merged.length!==local.length)localStorage.setItem('biq_badges_'+currentUser.username,JSON.stringify(merged));}catch(e){}}
-async function saveBadgeToDB(badge){if(!currentUser)return;try{await sb.from('user_badges').upsert({player_id:currentUser.id,badge_key:badge.id,badge_label:badge.name},{onConflict:'player_id,badge_key',ignoreDuplicates:true});}catch(e){}}
-async function syncSessionsFromDB(){if(!currentUser?.user_id)return;try{const sessions=JSON.parse(localStorage.getItem('biq_sessions_'+currentUser.username)||'[]');if(sessions.length)return;const{data}=await sb.from('players').select('total_sessions,avg_score,best_streak,iq_score').eq('user_id',currentUser.user_id).single();if(!data||!data.total_sessions)return;currentUser.total_sessions=data.total_sessions;currentUser.avg_score=data.avg_score;localStorage.setItem('biq_user',JSON.stringify(currentUser));if(typeof updateHomeIQ==='function')updateHomeIQ();}catch(e){}}
 // ─── STATS STORAGE ───
 function saveSessionStats(pct,nc,tot,answers,streak,cat){
   if(!currentUser) return;
@@ -2865,7 +3011,7 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid');setTimeout(function(){var _sf=document.getElementById('home-spotlight-text');if(_sf&&(_sf.textContent==='Loading...'||_sf.textContent==='')){var _f=["On April 15, 1947, <strong>Jackie Robinson</strong> broke the color barrier. His number 42 is the only one retired across all of baseball.","In 1941, <strong>Joe DiMaggio</strong> hit safely in 56 consecutive games — a record that still stands.","<strong>Cal Ripken Jr.</strong> played 2,632 consecutive games over 16 years.","In 1968, <strong>Bob Gibson</strong> posted a 1.12 ERA. MLB lowered the mound because of him.","<strong>Rickey Henderson</strong> stole 130 bases in a single season.","<strong>Ted Williams</strong> hit .406 in 1941 — the last .400 season in history.","<strong>Nolan Ryan</strong> threw 7 no-hitters. The next closest has 4.","The <strong>infield fly rule</strong> prevents fielders from intentionally dropping pop-ups for easy double plays.","<strong>Bill Mazeroski</strong> hit the only walk-off homer to end a World Series Game 7.","<strong>Sandy Koufax</strong> retired at 30. His last four seasons may be the best four-year pitching run ever."];_sf.innerHTML=_f[(new Date().getMonth()*31+new Date().getDate())%_f.length];}var sp=document.getElementById('ih-streak-num');if(sp)sp.textContent=getDailyStreak();var hiq=document.getElementById('home-iq');if(hiq)hiq.textContent=loadIQScore().toLocaleString();var sessions=JSON.parse(localStorage.getItem('biq_sessions_'+(currentUser?.username||''))||'[]');var gp=document.getElementById('ih-games-played');if(gp)gp.textContent=sessions.length||'—';var scores=sessions.map(function(s){return s.pct||0;});var ag=document.getElementById('ih-avg-score');if(ag)ag.textContent=scores.length?Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length)+'%':'—';},500);syncBadgesFromDB();syncStreakFromDB();syncSessionsFromDB();setTimeout(function(){BADGES.filter(function(b){return b.tier==='platinum'&&BADGE_IMAGE_MAP[b.id];}).forEach(function(b){fetchBadgeArt(b.id);});},5000); syncBadgesFromDB(); syncStreakFromDB(); syncSessionsFromDB();
+  renderBadgesGrid('badges-grid'); syncBadgesFromDB(); syncStreakFromDB();
   renderPosIQGrid();
   setTimeout(checkAndAwardBadges, 300);
   setTimeout(renderPosIQGrid, 200);
@@ -4516,7 +4662,7 @@ async function createChallenge(){
   var code=genCode();
   // Select 5 random question IDs for this match
   var diffs=getDifficultyForUser();
-  var qRes=await sb.from('questions').select('id').in('difficulty',diffs).limit(200);
+  var qRes=await sb.from('questions').select('id').eq('is_active',true).limit(200);
   if(qRes.error){setMsg('challenge-msg','err','Could not load questions.');return;}
   var allIds=qRes.data.map(function(q){return q.id;});
   // Shuffle and pick 5
@@ -5006,19 +5152,6 @@ function isNewUser(){
 // ⭐ IQ SCORE SYSTEM
 // ══════════════════════════════════════════════════════════════════════════
 
-var BADGE_IMAGE_WORKER='https://baseball-iq-badges.mattwhittaker9.workers.dev';
-var BADGE_IMAGE_MAP={"pinetar":"pine_tar","hof":"cooperstown","nohitter":"no_hitter","ironman":"iron_man","walkoff":"walkoff"};
-var BADGE_IMAGE_CACHE={};
-async function fetchBadgeArt(id){var wid=BADGE_IMAGE_MAP[id];if(!wid)return null;if(BADGE_IMAGE_CACHE[id])return BADGE_IMAGE_CACHE[id];try{var r=await fetch(BADGE_IMAGE_WORKER+'?badge='+wid);var d=await r.json();if(d.image){var s='data:image/png;base64,'+d.image;BADGE_IMAGE_CACHE[id]=s;return s;}}catch(e){}return null;}
-async function getBadgeArtHTMLAsync(badge,size){size=size||72;var src=await fetchBadgeArt(badge.id);if(src)return '<img src="'+src+'" style="width:'+size+'px;height:'+size+'px;border-radius:10px;object-fit:cover;flex-shrink:0" loading="lazy"/>';return getBadgeArtHTML(badge,size);}
-var TIER_ORDER=['benchwarmer','bullpen','utility','starter','veteran','all_star','october','hall_of_famer'];
-var TIER_LABELS={benchwarmer:'Benchwarmer',bullpen:'Bullpen',utility:'Utility Player',starter:'Starter',veteran:'Veteran',all_star:'All-Star',october:'October',hall_of_famer:'Hall of Famer'};
-var TIER_ICONS={benchwarmer:'🪑',bullpen:'⚾',utility:'🔄',starter:'⚡',veteran:'🎖️',all_star:'⭐',october:'🍂',hall_of_famer:'🏆'};
-var TIER_COLORS={benchwarmer:'#4a6a88',bullpen:'#5a8aaa',utility:'#c89060',starter:'#5ab4f0',veteran:'#f0ece4',all_star:'#3ecf82',october:'#e8c060',hall_of_famer:'#c8102e'};
-var currentPlayerTier='benchwarmer';
-async function loadPlayerTier(pos){if(!currentUser?.id||!pos)return 'benchwarmer';try{const{data}=await sb.rpc('get_or_create_player_tier',{p_player_id:currentUser.id,p_position:pos});if(data){currentPlayerTier=data.tier||'benchwarmer';return data.tier;}}catch(e){}return 'benchwarmer';}
-async function processTierAfterSession(pos,total,correct,ids){if(!currentUser?.id||!pos||total<1)return;try{const{data}=await sb.rpc('process_tier_advancement',{p_player_id:currentUser.id,p_position:pos,p_questions_total:total,p_questions_correct:correct,p_question_ids:ids});if(data&&data.action&&data.action!=='none'){const msg=data.action==='dropped'?'📉 Dropped to '+TIER_LABELS[data.new_tier]:data.action==='fast_tracked'?'⚡ FAST TRACK! '+TIER_LABELS[data.new_tier]:'🎉 Promoted to '+TIER_LABELS[data.new_tier]+' '+TIER_ICONS[data.new_tier];const t=document.createElement('div');t.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0c1828;border:1px solid '+(data.action==='dropped'?'#c8102e':'#3ecf82')+';border-radius:12px;padding:12px 20px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:900;color:#fff;z-index:99999;text-align:center';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),4000);}if(data)currentPlayerTier=data.new_tier||currentPlayerTier;}catch(e){}}
-var sessionQuestionIds=[];
 var IQ_DELTAS = {
   correct: {1: 8, 2: 15, 3: 25},
   wrong:   {1: -5, 2: -8, 3: -12}
@@ -5059,23 +5192,6 @@ function calculateSessionDelta(answersArr, difficultiesArr) {
   return Math.max(-150, Math.min(200, delta));
 }
 
-async function saveIQScoreServerSide(answers,difficulties){
-  if(!currentUser?.id)return null;
-  try{
-    const{data,error}=await sb.rpc('calculate_and_save_iq',{
-      p_player_id:currentUser.id,
-      p_answers:answers,
-      p_difficulties:difficulties,
-      p_current_iq:loadIQScore()
-    });
-    if(error||!data)return null;
-    localStorage.setItem('biq_iq_'+currentUser.username,data.new_iq);
-    currentUser.iq_score=data.new_iq;
-    localStorage.setItem('biq_user',JSON.stringify(currentUser));
-    console.log('Server IQ validated:',data.new_iq,'delta:',data.delta);
-    return data;
-  }catch(e){console.warn('Server IQ error:',e);return null;}
-}
 async function saveIQScore(newScore) {
   if(!currentUser) return;
   localStorage.setItem('biq_iq_'+currentUser.username, newScore);
@@ -5174,10 +5290,14 @@ function renderBadgesGrid(containerId) {
   el.innerHTML = BADGES.map(function(b) {
     var isEarned = earned.includes(b.id);
     var art = getBadgeArtHTML(b, 68);
-    return '<div class="badge-item"><div class="badge-wrap '+(isEarned?b.tier:'locked')+'" id="bwrap-'+b.id+'">'+art+(!isEarned?'<span class="badge-locked-icon">🔒</span>':'')+
-    '</div><div class="badge-name '+(isEarned?'':'locked')+'">'+b.name+'</div></div>';
+    return '<div class="badge-item">'+
+      '<div class="badge-wrap '+(isEarned?b.tier:'locked')+'">'+
+        art+
+        (!isEarned ? '<span class="badge-locked-icon">🔒</span>' : '')+
+      '</div>'+
+      '<div class="badge-name '+(isEarned?'':'locked')+'">'+b.name+'</div>'+
+    '</div>';
   }).join('');
-  BADGES.filter(function(b){return earned.includes(b.id)&&BADGE_IMAGE_MAP[b.id];}).forEach(function(b){getBadgeArtHTMLAsync(b,68).then(function(ai){var w=document.getElementById('bwrap-'+b.id);if(w)w.innerHTML=ai;});});
 }
 
 function showNewBadge(badge) {
@@ -5186,7 +5306,6 @@ function showNewBadge(badge) {
   var art = getBadgeArtHTML(badge, 80);
   document.getElementById('beo-badge-art').innerHTML = art;
   document.getElementById('beo-badge-wrap').className = 'badge-wrap '+badge.tier;
-  getBadgeArtHTMLAsync(badge,80).then(function(ai){var el=document.getElementById('beo-badge-art');if(el&&ai!==art)el.innerHTML=ai;});
   document.getElementById('beo-name').textContent = badge.name;
   document.getElementById('beo-desc').textContent = badge.desc;
   overlay.classList.add('show');
@@ -5306,7 +5425,6 @@ function checkAndAwardBadges() {
     if(newlyEarned.length > 0) {
       // Save updated earned list
       localStorage.setItem('biq_badges_' + currentUser.username, JSON.stringify(earned));
-      newlyEarned.forEach(function(b){saveBadgeToDB(b);});
       newlyEarned.forEach(function(b){ saveBadgeToDB(b); });
       // Show badges one at a time with stagger
       newlyEarned.forEach(function(badge, i) {
@@ -5357,7 +5475,7 @@ async function loadCoachDashboard() {
   var res = await fetch('https://kcisieenoznaorioagqq.supabase.co/rest/v1/players?team_code=eq.'+currentUser.team_code+'&select=username,age,total_sessions,total_questions,total_correct,avg_score,best_streak,iq_score,is_coach,primary_position,secondary_position,position_mix,updated_at,assigned_drill,drill_completed_at,drill_score&order=iq_score.desc',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}});
   var players = await res.json();
   if(!Array.isArray(players)||!players.length){
-    document.getElementById('cd-roster').innerHTML='<div class="cd-empty">No players yet. Share your join code to get your roster started.</div>';
+    document.getElementById('cd-roster').innerHTML='<div class="cd-empty">No players yet.<br><strong>Share your join code to get started!</strong></div>';
     return;
   }
   var nonCoach=players.filter(function(p){return !p.is_coach;});
@@ -5371,84 +5489,73 @@ async function loadCoachDashboard() {
   document.getElementById('cd-avg-iq').textContent=avgIQ;
   document.getElementById('cd-avg-score').textContent=avgScore+'%';
   document.getElementById('cd-top-streak').textContent=topStreak;
-
-  // ── INSIGHT STRIPS ──
-  var now=Date.now();
-  var inactive=nonCoach.filter(function(p){return p.updated_at&&Math.floor((now-new Date(p.updated_at).getTime())/(86400000))>=5;});
-  var active=nonCoach.filter(function(p){return p.updated_at&&Math.floor((now-new Date(p.updated_at).getTime())/(86400000))===0;});
-  var topPlayer=nonCoach.slice().sort(function(a,b){return (b.iq_score||0)-(a.iq_score||0);})[0];
-  var insights=[];
-  if(active.length>0) insights.push({cls:'good',icon:'🔥',title:active.length+' player'+(active.length>1?'s':'')+' trained today',sub:'Keep the momentum going'});
-  if(inactive.length>0) insights.push({cls:'danger',icon:'⚠️',title:inactive.length+' player'+(inactive.length>1?'s':'')+' MIA (5+ days)',sub:inactive.map(function(p){return p.username;}).join(', ')});
-  if(topPlayer) insights.push({cls:'good',icon:'🏆',title:topPlayer.username+' leads the club — '+( topPlayer.iq_score||1000).toLocaleString()+' IQ',sub:getIQRating(topPlayer.iq_score||1000).label});
-  if(topStreak>=7) insights.push({cls:'good',icon:'📅',title:topStreak+'-day streak on the roster',sub:'Someone is locked in'});
-  var insightEl=document.getElementById('cd-insight-strip');
-  if(insightEl) insightEl.innerHTML=insights.length?insights.map(function(ins){return '<div class="cd-insight '+ins.cls+'"><div class="cd-insight-icon">'+ins.icon+'</div><div class="cd-insight-text"><strong>'+ins.title+'</strong>'+ins.sub+'</div></div>';}).join(''):'';
-
-  // ── WEAK SPOTS ──
-  var posCounts={};var posCorrect={};
-  nonCoach.forEach(function(p){
-    var pos=p.primary_position||'General';
-    posCounts[pos]=(posCounts[pos]||0)+( p.total_sessions||0);
-    posCorrect[pos]=(posCorrect[pos]||0)+(p.avg_score||0);
-  });
-  var posData=Object.keys(posCounts).map(function(pos){return {pos:pos,avg:posCounts[pos]?Math.round(posCorrect[pos]/Object.keys(posCounts).filter(function(k){return k===pos;}).length):0};}).sort(function(a,b){return a.avg-b.avg;}).slice(0,4);
-  var weakEl=document.getElementById('cd-weak-section');if(weakEl&&posData.length)weakEl.style.display='block';
-  if(weakEl&&posData.length){
-    weakEl.innerHTML='<div class="cd-weak-title">⚾ Team Accuracy by Position</div>'+posData.map(function(d){var color=d.avg>=80?'#3ecf82':d.avg>=60?'#e8c060':'#e84060';return '<div class="cd-weak-row"><div class="cd-weak-pos">'+d.pos+'</div><div class="cd-weak-bar-wrap"><div class="cd-weak-bar" style="width:'+d.avg+'%;background:'+color+'"></div></div><div class="cd-weak-pct" style="color:'+color+'">'+d.avg+'%</div></div>';}).join('');
-  }
-
-  // ── PLAYER CARDS ──
   var topIQ=nonCoach.length?Math.max.apply(null,nonCoach.map(function(p){return p.iq_score||0;})):0;
   document.getElementById('cd-roster').innerHTML=sorted.map(function(p){
     var isTop=p.iq_score>=topIQ&&!p.is_coach&&nonCoach.length>0;
     var rating=getIQRating(p.iq_score||1000);
     var sessions=p.total_sessions||0;
     var avg=p.avg_score||0;
+    var streak=p.best_streak||0;
     var iq=p.iq_score||1000;
-    var daysSince=p.updated_at?Math.floor((now-new Date(p.updated_at).getTime())/86400000):99;
-    var lastStr=daysSince===0?'Today':daysSince===1?'Yesterday':daysSince<=7?daysSince+'d ago':daysSince+'d ago';
-    var actClass=daysSince===0?'active':daysSince<=3?'recent':daysSince<=7?'recent':'inactive';
-    var actLabel=daysSince===0?'Active Today':daysSince<=3?'Active':daysSince<=7?lastStr:'Inactive';
-    if(sessions===0){actClass='new';actLabel='Not started';}
-    var crownHTML=isTop?'<span class="cd-crown">👑</span>':'';
-    var coachBadge=p.is_coach?' <span style="font-size:10px;color:#4a6a88">(coach)</span>':'';
-    var posBadge=p.primary_position?'<div class="cd-pos-badge">'+p.primary_position+(p.secondary_position?' · '+p.secondary_position:'')+'</div>':'';
-    var drillBadge='';
-    if(!p.is_coach){
-      if(p.assigned_drill){
-        var drillObj={};try{drillObj=JSON.parse(p.assigned_drill);}catch(e){}
-        var isDone=p.drill_completed_at&&drillObj.assigned_at&&new Date(p.drill_completed_at)>=new Date(drillObj.assigned_at);
-        drillBadge=isDone?'<div class="cd-drill-badge done">✅ Drill '+( p.drill_score||0)+'%</div>':'<div class="cd-drill-badge pending">⏳ '+(drillObj.name||'Drill')+' pending</div>';
-      }
+    // Last active calculation
+    var lastActiveStr = '—';
+    var actLabel = sessions===0 ? 'New' : 'Active';
+    var actClass = sessions===0 ? 'new' : 'active';
+    if(p.updated_at) {
+      var daysSince = Math.floor((Date.now()-new Date(p.updated_at).getTime())/(1000*60*60*24));
+      if(daysSince === 0) { lastActiveStr = 'Today'; actClass = 'active'; actLabel = 'Active'; }
+      else if(daysSince === 1) { lastActiveStr = 'Yesterday'; actClass = 'active'; actLabel = 'Active'; }
+      else if(daysSince <= 7) { lastActiveStr = daysSince+'d ago'; actClass = 'recent'; actLabel = daysSince+'d ago'; }
+      else { lastActiveStr = daysSince+'d ago'; actClass = 'inactive'; actLabel = 'Inactive'; }
     }
-    var posId='pos-panel-'+p.username;
-    var posPanel=p.is_coach?'':buildPosPanel(p.username,p.primary_position,p.secondary_position,p.position_mix,posId);
-    var drillPanelId='drill-panel-'+p.username.replace(/[^a-zA-Z0-9]/g,'_');
-    var drillPanel=p.is_coach?'':buildDrillPanel(p.username,p.assigned_drill,p.drill_completed_at,p.drill_score,drillPanelId);
-    var drillBtn=p.is_coach?'':'<button class="cd-expand-btn" style="margin-left:6px;color:#3a8a3a" data-dpid="'+drillPanelId+'" onclick="toggleDrillPanel(this.dataset.dpid)">Drill 📋</button>';
-    var editBtn=p.is_coach?'':'<button class="cd-expand-btn" data-pid="'+posId+'" onclick="handleTogglePos(this)">Position ✎</button>';
-    return '<div class="cd-player-card'+(isTop?' top-player':'')+'" style="border-left:3px solid '+rating.color+'">'+
+    var crownHTML=isTop?'<span class="cd-crown">&#128081;</span>':'';
+    var coachBadge=p.is_coach?' <span style="font-size:10px;color:#4a6a88">(coach)</span>':'';
+    var primaryPos = p.primary_position || '';
+    var secondaryPos = p.secondary_position || '';
+    var mixMode = p.position_mix || 'blended';
+    var posDisplay = primaryPos ? ('<div class="cd-assigned-pos">⚾ '+primaryPos+(secondaryPos?' · '+secondaryPos:'')+'</div>') : '';
+    // Drill badge
+    var drillBadge = '';
+    if(!p.is_coach) {
+      if(p.assigned_drill) {
+        var drillObj = {}; try { drillObj = JSON.parse(p.assigned_drill); } catch(e){}
+        var isDone = p.drill_completed_at && drillObj.assigned_at && new Date(p.drill_completed_at) >= new Date(drillObj.assigned_at);
+        if(isDone) { drillBadge = '<div class="cd-drill-badge done">✅ Drill '+( p.drill_score||0)+'%</div>'; }
+        else { drillBadge = '<div class="cd-drill-badge pending">⏳ '+( drillObj.name||'Drill')+' pending</div>'; }
+      } else { drillBadge = '<div class="cd-drill-badge none">— No drill</div>'; }
+    }
+    var posId = 'pos-panel-'+p.username;
+    var posPanel = p.is_coach ? '' : buildPosPanel(p.username, primaryPos, secondaryPos, mixMode, posId);
+    var drillPanelId = 'drill-panel-'+p.username.replace(/[^a-zA-Z0-9]/g,'_');
+    var drillPanel = p.is_coach ? '' : buildDrillPanel(p.username, p.assigned_drill, p.drill_completed_at, p.drill_score, drillPanelId);
+    var drillBtn = p.is_coach ? '' : '<button class="cd-expand-btn" style="margin-left:6px;color:#3a8a3a" data-dpid="'+drillPanelId+'" onclick="toggleDrillPanel(this.dataset.dpid)">Drill 📋</button>';
+    var editBtn = p.is_coach ? '' : '<button class="cd-expand-btn" data-pid="'+posId+'" onclick="handleTogglePos(this)">Edit Position ✎</button>';
+    return '<div class="cd-player-card'+(isTop?' top-player':'')+'">'+
       '<div class="cd-activity '+actClass+'">'+actLabel+'</div>'+
       '<div class="cd-player-row">'+
-        '<div><div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+posBadge+drillBadge+'</div>'+
+        '<div class="cd-player-name">'+crownHTML+p.username+coachBadge+'</div>'+
+        drillBadge+
         '<div style="text-align:right">'+
           '<div class="cd-player-iq" style="color:'+rating.color+'">'+iq.toLocaleString()+'</div>'+
           '<div class="cd-player-rating" style="color:'+rating.color+'">'+rating.label+'</div>'+
+          posDisplay+
         '</div>'+
       '</div>'+
-      '<div style="display:flex;gap:4px;margin:6px 0 4px">'+editBtn+drillBtn+'</div>'+
-      '<div class="cd-player-stats">'+
-        '<div class="cd-ps"><div class="cd-ps-val">'+sessions+'</div><div class="cd-ps-lbl">Sessions</div></div>'+
+      editBtn+drillBtn+
+      '<div class="cd-player-stats" style="clear:both;padding-top:4px">'+
+        '<div class="cd-ps"><div class="cd-ps-val">'+sessions+'</div><div class="cd-ps-lbl">Games</div></div>'+
         '<div class="cd-ps"><div class="cd-ps-val">'+avg+'%</div><div class="cd-ps-lbl">Avg Score</div></div>'+
-        '<div class="cd-ps"><div class="cd-ps-val" style="color:'+(actClass==='inactive'?'#8a4a4a':actClass==='new'?'#4a6a88':'#3a8a5a')+'">'+lastStr+'</div><div class="cd-ps-lbl">Last Active</div></div>'+
-        '<div class="cd-ps"><div class="cd-ps-val" style="color:#e8c060">'+(p.best_streak||0)+'</div><div class="cd-ps-lbl">Streak</div></div>'+
+        '<div class="cd-ps"><div class="cd-ps-val" style="color:'+(actClass==='inactive'?'#8a4a4a':actClass==='recent'?'#8a7a4a':'#3a8a5a')+'">'+lastActiveStr+'</div><div class="cd-ps-lbl">Last Active</div></div>'+
       '</div>'+
-      '<div class="cd-progress-wrap"><div class="cd-progress-bar"><div class="cd-progress-fill" style="width:'+Math.min(avg,100)+'%"></div></div></div>'+
-      posPanel+drillPanel+
+      '<div class="cd-progress-wrap">'+
+        '<div class="cd-progress-bar"><div class="cd-progress-fill" style="width:'+avg+'%"></div></div>'+
+      '</div>'+
+      posPanel+
+      drillPanel+
     '</div>';
   }).join('');
 }
+
 
 // ── COACH POSITION ASSIGNMENT ────────────────────────────────────────────────
 var ALL_POS_OPTS = ['Pitcher','Catcher','First Baseman','Second Baseman','Shortstop','Third Baseman','Left Fielder','Center Fielder','Right Fielder','Baserunner'];
@@ -5680,6 +5787,7 @@ async function savePosition(username, panelId) {
 // ── WEIGHTED QUESTION POOL ───────────────────────────────────────────────────
 // Build question pool based on player's position profile
 async function buildWeightedPool(diffs) {
+  return null; // disabled - scenario_questions is single source of truth
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
   var primaryPos = currentUser.primary_position;
   var secondaryPos = currentUser.secondary_position;
@@ -6053,7 +6161,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v2 | 2026-04-10 -->
+<!-- BUILD:phase3-v4 | 2026-04-10 -->
 <div id="biq-build-stamp" style="display:none"></div>
 </body>
-</html> 
+</html>
