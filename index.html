@@ -2422,7 +2422,8 @@ function handleTFAnswer(v,q,prefix=''){
         is_correct:ok,
         time_ms:tfTime,
         shown_order:_shownOrder
-      }).then(function(){}).catch(function(e){ console.warn('session_questions tf insert failed:',e); });
+      }).then(function(result)(){}).catch(function(e){ console.warn('session_questions tf insert failed:',e); });
+      if(result && result.error) console.warn('session update failed:',result.error.message);
     }
   }
 }
