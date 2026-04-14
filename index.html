@@ -4259,7 +4259,7 @@ function initNav(){
   if(uname) uname.textContent=currentUser.username;
   if(typeof syncBadgesFromDB === 'function') syncBadgesFromDB();
   if(typeof syncStreakFromDB === 'function') syncStreakFromDB();
-  setTimeout(function(){ if(typeof checkAndAwardBadges === 'function') checkAndAwardBadges(); }, 2000);
+  
 }
 
 document.getElementById('tab-login').addEventListener('click',()=>{
