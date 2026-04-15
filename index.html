@@ -2502,9 +2502,13 @@ function updateProgressRow(){ /* legacy - dots now in renderQ */
 }
 
 async function startGame(){
-  document.getElementById('play-btn-text').textContent='Loading...';
-  document.querySelector('.play-btn').disabled=true;
-  const diffs=getDifficultyForUser();
+  const _btnTxt=document.getElementById('play-btn-text');
+  const _btn=document.querySelector('.play-btn');
+  function _resetBtn(){ if(_btnTxt)_btnTxt.textContent='Quick Game'; if(_btn)_btn.disabled=false; }
+  if(_btnTxt)_btnTxt.textContent='Loading...';
+  if(_btn)_btn.disabled=true;
+  var diffs;
+  try{ diffs=getDifficultyForUser(); }catch(e){ console.warn('getDifficultyForUser failed:',e); diffs=[1,2,3]; }
 
   // ── Reset session state ──
   _currentSessionId=null;
@@ -2525,12 +2529,8 @@ async function startGame(){
         team_id:teamId,
         team_code:teamCode
       }).select('id').single();
-      if(!sessionErr && sessionData){
-        _currentSessionId=sessionData.id;
-        console.log('session created OK — id:',_currentSessionId);
-      } else if(sessionErr){
-        console.warn('session create FAILED:',sessionErr.message,sessionErr.code);
-      }
+      if(!sessionErr && sessionData) _currentSessionId=sessionData.id;
+      else if(sessionErr) console.warn('session create failed:',sessionErr.message);
     }catch(e){ console.warn('session create failed:',e); }
   }
 
@@ -2574,14 +2574,12 @@ async function startGame(){
       sb.from('game_sessions').update({status:'abandoned'}).eq('id',_currentSessionId).then(()=>{});
       _currentSessionId=null;
     }
-    document.getElementById('play-btn-text').textContent='Take the Field';
-    document.querySelector('.play-btn').disabled=false;
+    _resetBtn();
     alert('Could not load questions. Check your connection.');
     return;
   }
 
-  document.getElementById('play-btn-text').textContent='Take the Field';
-  document.querySelector('.play-btn').disabled=false;
+  _resetBtn();
   showScreen('s-game');
   nextQ();
 }
@@ -2631,7 +2629,6 @@ function nextQ(){
 }
 
 function showEnd(){
-  console.log('showEnd fired — sid:',_currentSessionId,'tot:',tot,'nc:',nc,'user:',currentUser&&currentUser.id);
   // Save drill completion if in drill mode
   if(_drillMode) saveDrillCompletion();
   const pct=tot>0?Math.round(nc/tot*100):0;
@@ -2696,7 +2693,6 @@ function showEnd(){
   // ── Complete game_sessions row — triggers IQ, badges, leaderboard updates server-side ──
   if(_currentSessionId && currentUser && currentUser.id){
     var _sid=_currentSessionId;
-    console.log('session update firing — id:',_sid,'tot:',tot,'pct:',pct);
     sb.from('game_sessions').update({
       status:'completed',
       total_questions:tot,
@@ -2706,12 +2702,9 @@ function showEnd(){
       difficulty_end:questionDifficulties.length?questionDifficulties[questionDifficulties.length-1]:null,
       completed_at:new Date().toISOString()
     }).eq('id',_sid).then(function(result){
-      if(result && result.error) console.warn('session update FAILED:',result.error.message,result.error.code);
-      else console.log('session update OK — id:',_sid);
+      if(result && result.error) console.warn('session update failed:',result.error.message);
       _currentSessionId=null;
-    }).catch(function(e){ console.warn('game_sessions complete failed:',e); });
-  } else {
-    console.warn('session update SKIPPED — sid:',_currentSessionId,'uid:',currentUser&&currentUser.id);
+    }).catch(function(e){ console.warn('session update failed:',e); });
   }
 }
 
@@ -6225,7 +6218,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v10 | 2026-04-15 -->
+<!-- BUILD:phase3-v11 | 2026-04-15 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
