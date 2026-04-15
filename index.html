@@ -951,7 +951,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <label class="field-label">Password</label>
           <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password">
         </div>
-        <button type="button" class="main-cta" id="login-btn">Sign In &rarr;</button>
+        <button class="main-cta" id="login-btn">Sign In &rarr;</button>
         <button type="button" id="forgot-btn" class="secondary-action">Forgot password?</button>
         <div class="auth-msg" id="login-msg"></div>
       </div>
@@ -2422,7 +2422,7 @@ function handleTFAnswer(v,q,prefix=''){
         is_correct:ok,
         time_ms:tfTime,
         shown_order:_shownOrder
-      }).then(function()(){}).catch(function(e){ console.warn('session_questions tf insert failed:',e); });
+      }).then(function(){}).catch(function(e){ console.warn('session_questions tf insert failed:',e); });
     }
   }
 }
@@ -4259,7 +4259,7 @@ function initNav(){
   if(uname) uname.textContent=currentUser.username;
   if(typeof syncBadgesFromDB === 'function') syncBadgesFromDB();
   if(typeof syncStreakFromDB === 'function') syncStreakFromDB();
-  
+  setTimeout(function(){ if(typeof checkAndAwardBadges === 'function') checkAndAwardBadges(); }, 2000);
 }
 
 document.getElementById('tab-login').addEventListener('click',()=>{
