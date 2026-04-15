@@ -2525,7 +2525,12 @@ async function startGame(){
         team_id:teamId,
         team_code:teamCode
       }).select('id').single();
-      if(!sessionErr && sessionData) _currentSessionId=sessionData.id;
+      if(!sessionErr && sessionData){
+        _currentSessionId=sessionData.id;
+        console.log('session created OK — id:',_currentSessionId);
+      } else if(sessionErr){
+        console.warn('session create FAILED:',sessionErr.message,sessionErr.code);
+      }
     }catch(e){ console.warn('session create failed:',e); }
   }
 
@@ -2626,6 +2631,7 @@ function nextQ(){
 }
 
 function showEnd(){
+  console.log('showEnd fired — sid:',_currentSessionId,'tot:',tot,'nc:',nc,'user:',currentUser&&currentUser.id);
   // Save drill completion if in drill mode
   if(_drillMode) saveDrillCompletion();
   const pct=tot>0?Math.round(nc/tot*100):0;
