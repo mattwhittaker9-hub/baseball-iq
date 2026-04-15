@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0027)https://playbaseballiq.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Baseball IQ — Daily Training</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;%E2%9A%BE&lt;/text&gt;&lt;/svg&gt;">
+<link href="./index_files/css2" rel="stylesheet">
+<link rel="manifest" href="https://playbaseballiq.com/manifest.json">
 <meta name="theme-color" content="#c8102e">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Baseball IQ">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=2">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="apple-touch-icon" href="https://playbaseballiq.com/icons/apple-touch-icon.png?v=2">
+<script src="./index_files/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}
@@ -851,7 +852,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <body>
 
 <!-- TOP NAV (desktop) -->
-<div class="top-nav" id="top-nav" style="display:none">
+<div class="top-nav" id="top-nav" style="display: flex;">
   <div class="nav-logo">Baseball <em>IQ</em></div>
   <div class="nav-left">
     <button class="nav-btn active" data-screen="s-home">⚾ Home</button>
@@ -862,7 +863,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <button class="nav-btn" data-screen="s-pro" style="border-color:#4a3010;color:#c89020">⭐ Pro</button>
   </div>
   <div class="user-pill">
-    <span id="nav-username">—</span>
+    <span id="nav-username">Scout72535</span>
     <button class="logout-btn" id="logout-btn">Sign Out</button>
   </div>
 </div>
@@ -870,7 +871,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <div class="app">
 
 <!-- ─── AUTH SCREEN ─── -->
-<div id="s-auth" class="screen active">
+<div id="s-auth" class="screen">
   <div class="stadium-glow"></div>
   <div class="light-towers">
     <div class="tower-flare"></div>
@@ -880,45 +881,44 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Field: close-up home plate area with correct orientation -->
   <svg class="field-view" viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <radialGradient id="clayGrad" cx="50%" cy="100%" r="90%">
-        <stop offset="0%" stop-color="#A84020"/>
-        <stop offset="45%" stop-color="#8B3318"/>
-        <stop offset="100%" stop-color="#4A1808"/>
-      </radialGradient>
-      <radialGradient id="lightOnClay" cx="50%" cy="40%" r="65%">
-        <stop offset="0%" stop-color="rgba(255,248,175,0.13)"/>
-        <stop offset="100%" stop-color="rgba(255,240,140,0)"/>
-      </radialGradient>
-      <linearGradient id="skyBlend" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#010204" stop-opacity="1"/>
-        <stop offset="42%" stop-color="#010204" stop-opacity="0.88"/>
-        <stop offset="58%" stop-color="#010204" stop-opacity="0.18"/>
-        <stop offset="67%" stop-color="#010204" stop-opacity="0"/>
-      </linearGradient>
+      <radialgradient id="clayGrad" cx="50%" cy="100%" r="90%">
+        <stop offset="0%" stop-color="#A84020"></stop>
+        <stop offset="45%" stop-color="#8B3318"></stop>
+        <stop offset="100%" stop-color="#4A1808"></stop>
+      </radialgradient>
+      <radialgradient id="lightOnClay" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="rgba(255,248,175,0.13)"></stop>
+        <stop offset="100%" stop-color="rgba(255,240,140,0)"></stop>
+      </radialgradient>
+      <lineargradient id="skyBlend" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#010204" stop-opacity="1"></stop>
+        <stop offset="42%" stop-color="#010204" stop-opacity="0.88"></stop>
+        <stop offset="58%" stop-color="#010204" stop-opacity="0.18"></stop>
+        <stop offset="67%" stop-color="#010204" stop-opacity="0"></stop>
+      </lineargradient>
     </defs>
 
     <!-- Brickdust clay fills bottom portion -->
-    <rect x="0" y="490" width="400" height="310" fill="url(#clayGrad)"/>
-    <rect x="0" y="490" width="400" height="310" fill="url(#lightOnClay)"/>
+    <rect x="0" y="490" width="400" height="310" fill="url(#clayGrad)"></rect>
+    <rect x="0" y="490" width="400" height="310" fill="url(#lightOnClay)"></rect>
 
     <!-- Chalk markings -->
     <g stroke="rgba(255,255,255,0.68)" stroke-width="2.2" fill="none">
       <!-- Left batter's box -->
-      <rect x="62" y="610" width="88" height="130"/>
+      <rect x="62" y="610" width="88" height="130"></rect>
       <!-- Right batter's box -->
-      <rect x="250" y="610" width="88" height="130"/>
+      <rect x="250" y="610" width="88" height="130"></rect>
       <!-- Catcher's box (behind home plate) -->
-      <rect x="158" y="760" width="84" height="40"/>
+      <rect x="158" y="760" width="84" height="40"></rect>
     </g>
 
     <!-- Home plate: correct orientation
          Flat edge at BOTTOM (catcher side, close to viewer)
          Point facing UP (toward pitcher, away from viewer) -->
-    <polygon points="162,758 238,758 244,734 200,718 156,734"
-             fill="rgba(255,255,255,0.95)"/>
+    <polygon points="162,758 238,758 244,734 200,718 156,734" fill="rgba(255,255,255,0.95)"></polygon>
 
     <!-- Sky fade into clay -->
-    <rect width="400" height="800" fill="url(#skyBlend)"/>
+    <rect width="400" height="800" fill="url(#skyBlend)"></rect>
   </svg>
 
   <!-- Content -->
@@ -933,7 +933,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     </div>
 
     <div class="proof-pill">
-      <b>1,025+</b> Questions &middot; <b>11</b> Positions &middot; <b>Free</b>
+      <b>1,025+</b> Questions · <b>11</b> Positions · <b>Free</b>
     </div>
 
     <div class="glass-card">
@@ -949,9 +949,9 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         </div>
         <div>
           <label class="field-label">Password</label>
-          <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password">
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
         </div>
-        <button type="button" class="main-cta" id="login-btn">Sign In &rarr;</button>
+        <button type="button" class="main-cta" id="login-btn">Sign In →</button>
         <button type="button" id="forgot-btn" class="secondary-action">Forgot password?</button>
         <div class="auth-msg" id="login-msg"></div>
       </div>
@@ -961,8 +961,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <label class="field-label">Email address</label>
           <input type="email" id="forgot-email" placeholder="you@example.com" autocomplete="email">
         </div>
-        <button class="main-cta" id="send-reset-btn">Send Reset Link &rarr;</button>
-        <button type="button" id="back-to-login-btn" class="secondary-action">&larr; Back to Sign In</button>
+        <button class="main-cta" id="send-reset-btn">Send Reset Link →</button>
+        <button type="button" id="back-to-login-btn" class="secondary-action">← Back to Sign In</button>
         <div class="auth-msg" id="forgot-msg"></div>
       </div>
 
@@ -983,7 +983,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
           <label class="field-label">Age</label>
           <input type="number" id="reg-age" placeholder="your age" min="5" max="99" inputmode="numeric">
         </div>
-        <button class="main-cta" id="register-btn">Create Free Account &rarr;</button>
+        <button class="main-cta" id="register-btn">Create Free Account →</button>
         <div class="auth-msg" id="register-msg"></div>
       </div>
     </div>
@@ -991,25 +991,25 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 </div>
 
 <!-- ─── HOME SCREEN ─── -->
-<div id="s-home" class="screen">
+<div id="s-home" class="screen active">
   <!-- ─── IQ HERO ─── -->
-  <div class="iq-hero" id="iq-hero">
+  <div class="iq-hero" id="iq-hero" style="display: flex;">
     <div class="iq-hero-left">
       <div class="iq-hero-lbl">Baseball IQ</div>
-      <div class="iq-hero-num" id="ih-num">1,000</div>
-      <div class="iq-hero-rating" id="ih-rating">Varsity</div>
-      <div id="ih-rank" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px;margin-top:2px"></div>
-      <div id="ih-team-name" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5aabdc;letter-spacing:0.5px;margin-top:2px"></div>
+      <div class="iq-hero-num iq-animate" id="ih-num" style="color: rgb(62, 207, 130);">1,268</div>
+      <div class="iq-hero-rating" id="ih-rating" style="color: rgb(62, 207, 130);">Big Leaguer</div>
+      <div id="ih-rank" style="font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:11px;font-weight:700;color:#3a5a78;letter-spacing:1px;margin-top:2px"></div>
+      <div id="ih-team-name" style="font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:11px;font-weight:700;color:#5aabdc;letter-spacing:0.5px;margin-top:2px"></div>
     </div>
     <div class="iq-hero-right">
-      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-games">0</div><div class="iq-hero-stat-lbl">Games</div></div>
-      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-avg">—</div><div class="iq-hero-stat-lbl">Avg Score</div></div>
-      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-streak">0</div><div class="iq-hero-stat-lbl">Best Streak</div></div>
+      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-games">4</div><div class="iq-hero-stat-lbl">Games</div></div>
+      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-avg">85%</div><div class="iq-hero-stat-lbl">Avg Score</div></div>
+      <div class="iq-hero-stat"><div class="iq-hero-stat-val" id="ih-streak">7</div><div class="iq-hero-stat-lbl">Best Streak</div></div>
       <div class="iq-hero-stat" id="ih-badge-count-wrap" style="display:none"><div class="iq-hero-stat-val" id="ih-badge-count">0</div><div class="iq-hero-stat-lbl">Badges</div></div>
     </div>
   </div>
   <!-- Assignment pill — shown when coach has assigned work -->
-  <div id="home-assign-pill" style="display:none;align-items:center;gap:8px;background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.3);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f08090;letter-spacing:0.5px;cursor:pointer" onclick="showScreen('s-team')"></div>
+  <div id="home-assign-pill" style="display:none;align-items:center;gap:8px;background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.3);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:13px;font-weight:700;color:#f08090;letter-spacing:0.5px;cursor:pointer" onclick="showScreen(&#39;s-team&#39;)"></div>
 
 
   <!-- ─── DRILL CARD (shows when coach assigns a drill) ─── -->
@@ -1042,7 +1042,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <!-- Top strip -->
     <div class="dc-top">
       <div class="dc-live-badge"><div class="dc-live-dot"></div>Daily Challenge</div>
-      <div class="dc-countdown" id="dc-countdown">Resets in —</div>
+      <div class="dc-countdown" id="dc-countdown">Resets in 17h 31m</div>
     </div>
 
     <!-- NOT YET DONE -->
@@ -1052,8 +1052,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <div class="dc-sub" id="daily-date-label">5 questions · Same for everyone worldwide</div>
         <div class="dc-streak-row">
           <div class="dc-streak-fire">🔥</div>
-          <div class="dc-streak-num" id="daily-streak-num">0</div>
-          <div class="dc-streak-lbl"><strong id="dc-streak-label">Day Streak</strong><span id="dc-streak-sub">Complete today to keep it going</span></div>
+          <div class="dc-streak-num" id="daily-streak-num">7</div>
+          <div class="dc-streak-lbl"><strong id="dc-streak-label">7 Day Streak</strong><span id="dc-streak-sub">You are on fire! Keep it up</span></div>
         </div>
       </div>
       <div class="dc-btn" onclick="startDaily()">Step Up to the Plate →</div>
@@ -1090,7 +1090,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   </div>
 
   <!-- IQ Bar (legacy — now using iq-hero above) -->
-  <div id="home-stats-strip" style="display:none"></div>
+  <div id="home-stats-strip" style="display: grid;"></div>
 
   <!-- Quick Play -->
   <button class="play-btn" id="start-btn" onclick="startGame()">
@@ -1109,7 +1109,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <div id="coach-pos-banner" style="display:none;background:#071828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:none">
     <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a8aff;margin-bottom:3px">⚾ Coach has assigned you</div>
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <div id="cpb-pos" style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff">—</div>
+      <div id="cpb-pos" style="font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:17px;font-weight:900;color:#fff">—</div>
       <div id="cpb-mix" style="font-size:11px;color:#4a8aaa">—</div>
     </div>
     <div id="cpb-desc" style="font-size:11px;color:#3a6a88;margin-top:2px">—</div>
@@ -1117,17 +1117,17 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <!-- Feature Cards Row -->
   <div class="home-feature-row">
-    <div class="hfr-card hfr-train" onclick="showScreen('s-train')">
+    <div class="hfr-card hfr-train" onclick="showScreen(&#39;s-train&#39;)">
       <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
       <div class="hfr-name">Train</div>
       <div class="hfr-sub">By position</div>
     </div>
-    <div class="hfr-card hfr-chief" onclick="showScreen('s-rules')">
+    <div class="hfr-card hfr-chief" onclick="showScreen(&#39;s-rules&#39;)">
       <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
       <div class="hfr-name">Crew Chief</div>
       <div class="hfr-sub">Check the book</div>
     </div>
-    <div class="hfr-card hfr-battle" onclick="showScreen('s-challenge')">
+    <div class="hfr-card hfr-battle" onclick="showScreen(&#39;s-challenge&#39;)">
       <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
       <div class="hfr-name">Battle</div>
       <div class="hfr-sub">Head-to-head</div>
@@ -1139,7 +1139,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 <div id="s-daily-game" class="game-card-screen">
   <div class="gc-top">
     <div class="gc-dots" id="daily-gc-dots"></div>
-    <button class="gc-exit-btn" onclick="showScreen('s-home')">✕</button>
+    <button class="gc-exit-btn" onclick="showScreen(&#39;s-home&#39;)">✕</button>
   </div>
   <div class="gc-cat"><div class="gc-cat-pill" id="daily-gc-cat">⚡ Daily Challenge</div></div>
   <div class="gc-content" id="daily-gc-content">
@@ -1176,28 +1176,28 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <div class="gc-diamond-row">
         <svg class="gc-field-svg" viewBox="0 0 100 100" width="88" height="88">
           <defs>
-            <radialGradient id="dgGrass" cx="50%" cy="60%" r="55%">
-              <stop offset="0%" stop-color="#0d2018"/>
-              <stop offset="100%" stop-color="#071510"/>
-            </radialGradient>
+            <radialgradient id="dgGrass" cx="50%" cy="60%" r="55%">
+              <stop offset="0%" stop-color="#0d2018"></stop>
+              <stop offset="100%" stop-color="#071510"></stop>
+            </radialgradient>
           </defs>
-          <rect width="100" height="100" fill="url(#dgGrass)" rx="4"/>
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.9"/>
-          <polygon points="50,30 78,56 50,82 22,56" fill="#0a1c12" opacity="0.95"/>
-          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
-          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
-          <circle cx="50" cy="58" r="3.5" fill="#1a1208" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
-          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.55)"/>
-          <rect id="daily-gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,78,56)"/>
-          <rect id="daily-gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,50,30)"/>
-          <rect id="daily-gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,22,56)"/>
-          <circle id="daily-gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
-          <circle id="daily-gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
-          <circle id="daily-gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
+          <rect width="100" height="100" fill="url(#dgGrass)" rx="4"></rect>
+          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.9"></ellipse>
+          <polygon points="50,30 78,56 50,82 22,56" fill="#0a1c12" opacity="0.95"></polygon>
+          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
+          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
+          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
+          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
+          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"></line>
+          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"></line>
+          <circle cx="50" cy="58" r="3.5" fill="#1a1208" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"></circle>
+          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.55)"></polygon>
+          <rect id="daily-gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,78,56)"></rect>
+          <rect id="daily-gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,50,30)"></rect>
+          <rect id="daily-gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,22,56)"></rect>
+          <circle id="daily-gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"></circle>
+          <circle id="daily-gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"></circle>
+          <circle id="daily-gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"></circle>
         </svg>
         <div class="gc-scenario-text">
           <div class="gc-scenario-label">Situation</div>
@@ -1251,13 +1251,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   </div>
   <!-- Daily wrong answer review -->
   <div class="wrong-review-section" id="daily-wrong-review-section" style="display:none">
-    <button class="wrong-review-toggle" id="daily-wrong-review-toggle" onclick="toggleWrongReview('daily-wrong-review-list','daily-wrong-review-toggle')">
+    <button class="wrong-review-toggle" id="daily-wrong-review-toggle" onclick="toggleWrongReview(&#39;daily-wrong-review-list&#39;,&#39;daily-wrong-review-toggle&#39;)">
       📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="daily-wrong-review-count">0</span>
       <span id="daily-wrong-review-arrow">▼</span>
     </button>
     <div class="wr-list" id="daily-wrong-review-list" style="display:none"></div>
   </div>
-  <button class="play-btn" onclick="showScreen('s-home')">← Back to Home</button>
+  <button class="play-btn" onclick="showScreen(&#39;s-home&#39;)">← Back to Home</button>
 </div>
 
 <!-- ─── GAME SCREEN ─── -->
@@ -1303,41 +1303,41 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <svg class="gc-field-svg" id="gc-diamond-svg" viewBox="0 0 100 100" width="88" height="88">
           <!-- Outfield grass gradient -->
           <defs>
-            <radialGradient id="grassGrad" cx="50%" cy="60%" r="55%">
-              <stop offset="0%" stop-color="#0d2018"/>
-              <stop offset="100%" stop-color="#071510"/>
-            </radialGradient>
-            <radialGradient id="inGrad" cx="50%" cy="55%" r="40%">
-              <stop offset="0%" stop-color="#12281a"/>
-              <stop offset="100%" stop-color="#0a1c12"/>
-            </radialGradient>
+            <radialgradient id="grassGrad" cx="50%" cy="60%" r="55%">
+              <stop offset="0%" stop-color="#0d2018"></stop>
+              <stop offset="100%" stop-color="#071510"></stop>
+            </radialgradient>
+            <radialgradient id="inGrad" cx="50%" cy="55%" r="40%">
+              <stop offset="0%" stop-color="#12281a"></stop>
+              <stop offset="100%" stop-color="#0a1c12"></stop>
+            </radialgradient>
           </defs>
           <!-- Field background -->
-          <rect width="100" height="100" fill="url(#grassGrad)" rx="4"/>
+          <rect width="100" height="100" fill="url(#grassGrad)" rx="4"></rect>
           <!-- Infield dirt circle -->
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.8"/>
+          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.8"></ellipse>
           <!-- Infield grass diamond -->
-          <polygon points="50,30 78,56 50,82 22,56" fill="url(#inGrad)" opacity="0.9"/>
+          <polygon points="50,30 78,56 50,82 22,56" fill="url(#inGrad)" opacity="0.9"></polygon>
           <!-- Baselines -->
-          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
+          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
+          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
+          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
           <!-- Foul lines -->
-          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
-          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"></line>
+          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"></line>
           <!-- Pitcher mound -->
-          <circle cx="50" cy="58" r="3.5" fill="#1e1a0e" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+          <circle cx="50" cy="58" r="3.5" fill="#1e1a0e" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"></circle>
           <!-- Home plate -->
-          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.6)"/>
+          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.6)"></polygon>
           <!-- Bases (empty state) -->
-          <rect id="gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,78,56)"/>
-          <rect id="gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,50,30)"/>
-          <rect id="gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,22,56)"/>
+          <rect id="gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,78,56)"></rect>
+          <rect id="gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,50,30)"></rect>
+          <rect id="gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,22,56)"></rect>
           <!-- Runner dots (hidden by default) -->
-          <circle id="gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-          <circle id="gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-          <circle id="gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"></circle>
+          <circle id="gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"></circle>
+          <circle id="gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"></circle>
         </svg>
         <div class="gc-scenario-text">
           <div class="gc-scenario-label">Situation</div>
@@ -1404,7 +1404,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     </div>
     <!-- Wrong answer inline review -->
     <div class="wrong-review-section" id="wrong-review-section" style="display:none">
-      <button class="wrong-review-toggle" id="wrong-review-toggle" onclick="toggleWrongReview('wrong-review-list','wrong-review-toggle')">
+      <button class="wrong-review-toggle" id="wrong-review-toggle" onclick="toggleWrongReview(&#39;wrong-review-list&#39;,&#39;wrong-review-toggle&#39;)">
         📖 Review Wrong Answers&nbsp;<span class="wrt-count" id="wrong-review-count">0</span>
         <span id="wrong-review-arrow">▼</span>
       </button>
@@ -1414,7 +1414,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <button class="submit-score-btn" id="submit-score-btn">Submit to Leaderboard</button>
       <button class="share-btn" id="share-session-btn">📤 Share My Score</button>
       <div class="submit-msg" id="submit-msg"></div>
-      <button class="play-again-btn" onclick="showScreen('s-home')">← Back to Home</button>
+      <button class="play-again-btn" onclick="showScreen(&#39;s-home&#39;)">← Back to Home</button>
     </div>
   </div>
 </div>
@@ -1448,7 +1448,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <div style="font-size:48px;margin-bottom:10px">📊</div>
       <div style="font-family:Barlow Condensed,sans-serif;font-size:18px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">No Stats Yet</div>
       <p style="color:#5a7a98;font-size:13px;margin-bottom:16px">Complete a game to start tracking your Baseball IQ progress</p>
-      <button class="play-btn" onclick="showScreen('s-home')" style="font-size:14px;padding:12px 20px">Play Your First Game →</button>
+      <button class="play-btn" onclick="showScreen(&#39;s-home&#39;)" style="font-size:14px;padding:12px 20px">Play Your First Game →</button>
     </div>
     <div id="stats-loaded" style="display:none">
       <div class="stats-overview">
@@ -1524,7 +1524,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   </div>
 
   <div style="text-align:center;font-size:12px;color:#3a5a78;margin-top:8px">
-    Questions? Email <span style="color:#5a7a98"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="12616762627d606652627e736b7073617770737e7e7b633c717d7f">[email&#160;protected]</a></span>
+    Questions? Email <span style="color:#5a7a98"><a href="https://playbaseballiq.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="12616762627d606652627e736b7073617770737e7e7b633c717d7f">[email&nbsp;protected]</a></span>
   </div>
 </div>
 
@@ -1569,7 +1569,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         <div style="font-size:32px;margin-bottom:8px">🏟️</div>
         <div style="font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:700;color:#e8f4ff;margin-bottom:6px">Are you a coach?</div>
         <div style="font-size:13px;color:#5a7a98;margin-bottom:12px">Create a team, generate a join code, and track all your players' scores.</div>
-        <button class="play-btn" onclick="showScreen('s-pro')" style="font-size:14px;padding:11px">Get Coach License →</button>
+        <button class="play-btn" onclick="showScreen(&#39;s-pro&#39;)" style="font-size:14px;padding:11px">Get Coach License →</button>
       </div>
     </div>
   </div>
@@ -1652,7 +1652,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
         </select>
         <select id="cd-drill-count" class="cd-drill-select" style="max-width:80px">
           <option value="5">5 Qs</option>
-          <option value="10" selected>10 Qs</option>
+          <option value="10" selected="">10 Qs</option>
           <option value="15">15 Qs</option>
         </select>
       </div>
@@ -1665,7 +1665,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
       <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#3a8aff;text-transform:uppercase;margin-bottom:6px">📣 Team Message</div>
       <div style="display:flex;gap:8px;align-items:center">
         <input id="cd-team-msg" type="text" maxlength="80" placeholder="Send a message to your whole team..." style="flex:1;background:#071520;border:1px solid #1a3050;border-radius:8px;padding:8px 10px;color:#e0e8f0;font-size:13px;font-family:system-ui,sans-serif">
-        <button onclick="sendTeamMessage()" style="background:#c8102e;border:none;border-radius:8px;padding:8px 14px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap">Send</button>
+        <button onclick="sendTeamMessage()" style="background:#c8102e;border:none;border-radius:8px;padding:8px 14px;color:#fff;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap">Send</button>
       </div>
       <div id="cd-msg-status" style="font-size:11px;color:#3a8aff;margin-top:4px;min-height:16px"></div>
     </div>
@@ -1725,7 +1725,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <div class="settings-row"><span class="settings-key">Speed bonus</span><span class="settings-val gold">Up to +50 pts</span></div>
     <div class="settings-row"><span class="settings-key">Correct answer</span><span class="settings-val">100 pts</span></div>
   </div>
-  <button class="play-btn" id="wait-start-btn" onclick="startBattle()" disabled style="margin-bottom:8px;opacity:0.4">Waiting for opponent...</button>
+  <button class="play-btn" id="wait-start-btn" onclick="startBattle()" disabled="" style="margin-bottom:8px;opacity:0.4">Waiting for opponent...</button>
   <button class="play-btn" onclick="cancelChallenge()" style="background:#0c1e30;border:1px solid #1a3050;color:#5a7a98">Cancel</button>
 </div>
 
@@ -1735,9 +1735,8 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <div class="battle-top">
       <div class="timer-circle">
         <svg width="46" height="46" viewBox="0 0 46 46">
-          <circle cx="23" cy="23" r="19" fill="none" stroke="#162840" stroke-width="4"/>
-          <circle cx="23" cy="23" r="19" fill="none" stroke="#e8c060" stroke-width="4"
-            stroke-dasharray="119" id="battle-timer-arc" stroke-dashoffset="0" stroke-linecap="round"/>
+          <circle cx="23" cy="23" r="19" fill="none" stroke="#162840" stroke-width="4"></circle>
+          <circle cx="23" cy="23" r="19" fill="none" stroke="#e8c060" stroke-width="4" stroke-dasharray="119" id="battle-timer-arc" stroke-dashoffset="0" stroke-linecap="round"></circle>
         </svg>
         <div class="timer-val" id="battle-timer-val">10</div>
       </div>
@@ -1798,7 +1797,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
     <button class="cr-btn primary" onclick="rematchChallenge()">Rematch ⚔️</button>
     <button class="cr-btn secondary" onclick="shareChallengeResult()">📤 Share</button>
   </div>
-  <button class="play-btn" onclick="showScreen('s-home')" style="margin-top:8px;background:#0c1e30;border:1px solid #1a3050;color:#5a7a98">← Back to Home</button>
+  <button class="play-btn" onclick="showScreen(&#39;s-home&#39;)" style="margin-top:8px;background:#0c1e30;border:1px solid #1a3050;color:#5a7a98">← Back to Home</button>
 </div>
 
 
@@ -1896,7 +1895,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
 
 <!-- ─── BADGE EARNED OVERLAY ─── -->
-<div class="badge-earned-overlay" id="badge-earned-overlay" onclick="this.classList.remove('show')">
+<div class="badge-earned-overlay" id="badge-earned-overlay" onclick="this.classList.remove(&#39;show&#39;)">
   <div class="beo-new">🎉 Badge Unlocked!</div>
   <div class="beo-badge">
     <div class="badge-wrap gold" id="beo-badge-wrap">
@@ -1905,7 +1904,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   </div>
   <div class="beo-name" id="beo-name">Badge Name</div>
   <div class="beo-desc" id="beo-desc">You earned this!</div>
-  <button class="beo-close" onclick="closeBadgeOverlay()">Let's Go! 🔥</button>
+  <button class="beo-close" onclick="this.closest('.badge-earned-overlay').classList.remove('show')">Let's Go! 🔥</button>
 </div>
 
 
@@ -1930,13 +1929,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Battery -->
   <div class="pt-section-lbl">Battery</div>
   <div class="pt-row-2">
-    <div class="pt-card pitcher" data-pos="Pitcher" onclick="startPositionDrill('Pitcher')">
+    <div class="pt-card pitcher" data-pos="Pitcher" onclick="startPositionDrill(&#39;Pitcher&#39;)">
       <div class="pt-icon-sprite" style="background-position:-6px -2px"></div>
       <div class="pt-name">Pitcher</div>
       <div class="pt-count" id="pt-count-Pitcher">— Qs</div>
       <div class="pt-pips" id="pt-pips-Pitcher"></div>
     </div>
-    <div class="pt-card catcher" data-pos="Catcher" onclick="startPositionDrill('Catcher')">
+    <div class="pt-card catcher" data-pos="Catcher" onclick="startPositionDrill(&#39;Catcher&#39;)">
       <div class="pt-icon-sprite" style="background-position:-90px -2px"></div>
       <div class="pt-name">Catcher</div>
       <div class="pt-count" id="pt-count-Catcher">— Qs</div>
@@ -1947,25 +1946,25 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Infield -->
   <div class="pt-section-lbl">Infield</div>
   <div class="pt-row-4">
-    <div class="pt-card infield" data-pos="First Baseman" onclick="startPositionDrill('First Baseman')">
+    <div class="pt-card infield" data-pos="First Baseman" onclick="startPositionDrill(&#39;First Baseman&#39;)">
       <div class="pt-icon-sprite" style="background-position:-175px -2px"></div>
       <div class="pt-name">1st Base</div>
       <div class="pt-count" id="pt-count-First Baseman">— Qs</div>
       <div class="pt-pips" id="pt-pips-First Baseman"></div>
     </div>
-    <div class="pt-card infield" data-pos="Second Baseman" onclick="startPositionDrill('Second Baseman')">
+    <div class="pt-card infield" data-pos="Second Baseman" onclick="startPositionDrill(&#39;Second Baseman&#39;)">
       <div class="pt-icon-sprite" style="background-position:-259px -2px"></div>
       <div class="pt-name">2nd Base</div>
       <div class="pt-count" id="pt-count-Second Baseman">— Qs</div>
       <div class="pt-pips" id="pt-pips-Second Baseman"></div>
     </div>
-    <div class="pt-card infield" data-pos="Shortstop" onclick="startPositionDrill('Shortstop')">
+    <div class="pt-card infield" data-pos="Shortstop" onclick="startPositionDrill(&#39;Shortstop&#39;)">
       <div class="pt-icon-sprite" style="background-position:-343px -2px"></div>
       <div class="pt-name">Shortstop</div>
       <div class="pt-count" id="pt-count-Shortstop">— Qs</div>
       <div class="pt-pips" id="pt-pips-Shortstop"></div>
     </div>
-    <div class="pt-card infield" data-pos="Third Baseman" onclick="startPositionDrill('Third Baseman')">
+    <div class="pt-card infield" data-pos="Third Baseman" onclick="startPositionDrill(&#39;Third Baseman&#39;)">
       <div class="pt-icon-sprite" style="background-position:-6px -79px"></div>
       <div class="pt-name">3rd Base</div>
       <div class="pt-count" id="pt-count-Third Baseman">— Qs</div>
@@ -1976,19 +1975,19 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Outfield -->
   <div class="pt-section-lbl">Outfield</div>
   <div class="pt-row-3">
-    <div class="pt-card outfield" data-pos="Left Fielder" onclick="startPositionDrill('Left Fielder')">
+    <div class="pt-card outfield" data-pos="Left Fielder" onclick="startPositionDrill(&#39;Left Fielder&#39;)">
       <div class="pt-icon-sprite" style="background-position:-6px -155px"></div>
       <div class="pt-name">Left Field</div>
       <div class="pt-count" id="pt-count-Left Fielder">— Qs</div>
       <div class="pt-pips" id="pt-pips-Left Fielder"></div>
     </div>
-    <div class="pt-card outfield" data-pos="Center Fielder" onclick="startPositionDrill('Center Fielder')">
+    <div class="pt-card outfield" data-pos="Center Fielder" onclick="startPositionDrill(&#39;Center Fielder&#39;)">
       <div class="pt-icon-sprite" style="background-position:-175px -79px"></div>
       <div class="pt-name">Center Field</div>
       <div class="pt-count" id="pt-count-Center Fielder">— Qs</div>
       <div class="pt-pips" id="pt-pips-Center Fielder"></div>
     </div>
-    <div class="pt-card outfield" data-pos="Right Fielder" onclick="startPositionDrill('Right Fielder')">
+    <div class="pt-card outfield" data-pos="Right Fielder" onclick="startPositionDrill(&#39;Right Fielder&#39;)">
       <div class="pt-icon-sprite" style="background-position:-175px -155px"></div>
       <div class="pt-name">Right Field</div>
       <div class="pt-count" id="pt-count-Right Fielder">— Qs</div>
@@ -1999,13 +1998,13 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <!-- Baserunning & Hitting -->
   <div class="pt-section-lbl">Baserunning &amp; Hitting</div>
   <div class="pt-row-2">
-    <div class="pt-card baserunner" data-pos="Baserunner" onclick="startPositionDrill('Baserunner')">
+    <div class="pt-card baserunner" data-pos="Baserunner" onclick="startPositionDrill(&#39;Baserunner&#39;)">
       <div class="pt-icon-sprite" style="background-position:-90px -155px"></div>
       <div class="pt-name">Baserunner</div>
       <div class="pt-count" id="pt-count-Baserunner">— Qs</div>
       <div class="pt-pips" id="pt-pips-Baserunner"></div>
     </div>
-    <div class="pt-card baserunner" data-pos="Hitter" onclick="startPositionDrill('Hitter')">
+    <div class="pt-card baserunner" data-pos="Hitter" onclick="startPositionDrill(&#39;Hitter&#39;)">
       <div style="font-size:32px;line-height:1;margin:0 auto 4px">🪵</div>
       <div class="pt-name">Hitter</div>
       <div class="pt-count" id="pt-count-Hitter">— Qs</div>
@@ -2025,9 +2024,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 
   <div class="rules-search-wrap">
     <span class="rules-search-icon">🔍</span>
-    <input class="rules-search" id="rules-input" type="text" 
-           placeholder="e.g. Does the tie go to the runner?" 
-           onkeydown="if(event.key==='Enter') askRulesQuestion()">
+    <input class="rules-search" id="rules-input" type="text" placeholder="e.g. Does the tie go to the runner?" onkeydown="if(event.key===&#39;Enter&#39;) askRulesQuestion()">
   </div>
   <button class="rules-ask-btn" onclick="askRulesQuestion()">⚖️ Look Up Rule</button>
 
@@ -2048,15 +2045,15 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   <div class="rules-quick-lbl">Common Questions</div>
   <div class="rules-chips" id="rules-chips"></div>
 
-  <button class="play-btn" onclick="showScreen('s-home')" style="margin-top:8px;background:#0c1e30;border:1px solid #1a3050;color:#5a7a98;font-size:15px;padding:12px">
+  <button class="play-btn" onclick="showScreen(&#39;s-home&#39;)" style="margin-top:8px;background:#0c1e30;border:1px solid #1a3050;color:#5a7a98;font-size:15px;padding:12px">
     ← Back to Home
   </button>
 </div>
 
-</div><!-- /app -->
+<!-- /app -->
 
 <!-- BOTTOM NAV (mobile) -->
-<nav class="bottom-nav" id="bottom-nav">
+<nav class="bottom-nav bnav-visible" id="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" data-screen="s-home">
       <span class="bnav-icon"><div class="bnav-sprite bnav-home"></div></span>
@@ -2085,7 +2082,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
   </div>
 </nav>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="./index_files/email-decode.min.js.download"></script><script>
 const {createClient}=supabase;
 const sb=createClient(
   'https://kcisieenoznaorioagqq.supabase.co',
@@ -2381,7 +2378,7 @@ function handleAnswer(i,q,prefix=''){
     recordDailyAnswer(ok);
     // Track for daily wrong review
     if(!window._dailyFullHistory) window._dailyFullHistory = [];
-    window._dailyFullHistory.push({result:ok?'correct':'wrong', choice:null, tfAnswer:v, question:q});
+    window._dailyFullHistory.push({result:ok?'correct':'wrong', choice:null, tfAnswer:null, question:q});
   } else {tot++;if(ok)nc++;recordAnswer(ok,i,q);}
 }
 function handleTFAnswer(v,q,prefix=''){
@@ -5514,10 +5511,8 @@ async function syncBadgesFromDB() {
   } catch(e) { console.warn('Badge sync error:', e); }
 }
 async function saveBadgeToDB(badge) {
-  if(!currentUser) return;
-  try {
-    const result=await sb.from('user_badges').upsert({player_id:currentUser.id,badge_key:badge.id,badge_label:badge.name,awarded_at:new Date().toISOString()},{onConflict:'player_id,badge_key',ignoreDuplicates:true});if(result.error)console.warn('Badge save error:',result.error.message);
-  } catch(e) { console.warn('Badge save error:', e); }
+  // No-op: badge writes are handled server-side by the on_session_completed DB trigger.
+  // Direct client upserts to user_badges are blocked by RLS policy.
 }
 
 // ── COACH DASHBOARD ──────────────────────────────────────────────────────────
@@ -6218,7 +6213,8 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v8 | 2026-04-10 -->
+<!-- BUILD:phase3-v9 | 2026-04-15 -->
 <div id="biq-build-stamp" style="display:none"></div>
-</body>
-</html>
+
+
+</body></html>
