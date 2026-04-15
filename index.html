@@ -1710,6 +1710,128 @@ body::before {
   height: 2px !important;
 }
 
+
+
+/* ═══════════════════════════════════════════════
+   GAME SCREEN FIXES — v14
+   - Broadcast bar responsive (no overflow)
+   - Position pill premium redesign
+   - Further height reduction
+   ═══════════════════════════════════════════════ */
+
+/* Broadcast bar — no overflow, flex wrap on tiny screens */
+.gc-broadcast {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}
+
+.gc-bcast-seg {
+  flex: 1 !important;
+  min-width: 0 !important;
+  padding: 0 6px !important;
+}
+
+.gc-bcast-lbl {
+  font-size: 7px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.gc-bcast-val {
+  font-size: 12px !important;
+  white-space: nowrap !important;
+}
+
+/* ── POSITION PILL — premium badge ── */
+#gc-cat, #daily-gc-cat {
+  position: absolute !important;
+  top: 10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(200,16,46,0.15) !important;
+  border: 1px solid rgba(200,16,46,0.4) !important;
+  border-radius: 3px !important;
+  padding: 4px 12px !important;
+  font-family: var(--mono) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  color: rgba(255,180,180,0.9) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2.5px !important;
+  white-space: nowrap !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: none !important;
+  z-index: 20 !important;
+  display: block !important;
+}
+
+/* Shrink diamond - biggest vertical offender */
+#gc-diamond-row, .gc-diamond-row {
+  padding: 2px 0 2px !important;
+}
+
+#gc-diamond-svg, .gc-field-svg {
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.gc-diamond-row {
+  gap: 6px !important;
+}
+
+/* Scenario block - very compact */
+#gc-scenario, .gc-scenario {
+  margin: 4px 14px 4px !important;
+  padding: 6px 10px !important;
+  min-height: unset !important;
+}
+
+/* Remove large empty gap between scenario and question */
+#gc-question {
+  padding: 10px 14px 8px !important;
+  font-size: 17px !important;
+}
+
+/* Choices tighter */
+#choices {
+  padding: 0 14px !important;
+  gap: 5px !important;
+}
+
+.gc-choice {
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+}
+
+/* Feedback tighter */
+#gc-panel, .gc-panel {
+  margin: 6px 14px 4px !important;
+  padding: 9px 12px !important;
+}
+
+#gc-expl {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+/* Spotlight hide on small screens */
+@media (max-height: 700px) {
+  #gc-spotlight { display: none !important; }
+}
+
+/* Top bar tighter */
+.gc-top {
+  padding: 8px 14px 4px !important;
+}
+
+/* Hide the nav during game */
+.game-card-screen.active ~ .top-nav,
+.game-card-screen.active .top-nav {
+  display: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -3024,6 +3146,7 @@ function normalizeQuestion(row){
       inning:null,score:null,count:null,outs:null,
       runners:{first:false,second:false,third:false},
       scenario:null,question_type:'multiple_choice',question:row.question_text,
+      position:row.position||row.pos||row.role||'',
       choices:indexed.map((c,i)=>labels[i]+'. '+c.text),
       correct_index:newCorrectIndex,correct_answer:correctText,
       explanation:row.correct_explanation||row.explanation||'',
@@ -3037,7 +3160,8 @@ function normalizeQuestion(row){
       runners:{first:row.runners_first,second:row.runners_second,third:row.runners_third},
       scenario:row.scenario,question_type:row.question_type,question:row.question,
       choices:[],correct_index:null,correct_answer:row.correct_answer,
-      explanation:row.explanation,tags:row.tags||[]
+      explanation:row.explanation,tags:row.tags||[],
+      position:row.position||row.pos||row.role||''
     };
   }
   const raw=[{text:row.choice_a,orig:0},{text:row.choice_b,orig:1},{text:row.choice_c,orig:2},{text:row.choice_d,orig:3}];
