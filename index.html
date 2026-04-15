@@ -2157,7 +2157,7 @@ function normalizeQuestion(row){
     const newCorrectIndex=indexed.findIndex(c=>c.isCorrect);
     return {
       id:row.id||row.question_id,difficulty:row.difficulty||1,
-      category:row.category||row.role||'',position:row.position||row.role||'',
+      category:row.category||row.role||'',position:row.position||row.pos||row.role||'',
       inning:null,score:null,count:null,outs:null,
       runners:{first:false,second:false,third:false},
       scenario:null,question_type:'multiple_choice',question:row.question_text,
@@ -2697,7 +2697,6 @@ function showEnd(){
       status:'completed',
       total_questions:tot,
       correct:nc,
-      score_pct:pct,
       streak:bestStreak,
       difficulty_end:questionDifficulties.length?questionDifficulties[questionDifficulties.length-1]:null,
       completed_at:new Date().toISOString()
@@ -6218,7 +6217,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v11 | 2026-04-15 -->
+<!-- BUILD:phase3-v12 | 2026-04-15 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
