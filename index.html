@@ -2689,6 +2689,8 @@ function showEnd(){
   if(currentUser.team_code) submitScore();
   // ── Complete game_sessions row — triggers IQ, badges, leaderboard updates server-side ──
   if(_currentSessionId && currentUser && currentUser.id){
+    var _sid=_currentSessionId;
+    console.log('session update firing — id:',_sid,'tot:',tot,'pct:',pct);
     sb.from('game_sessions').update({
       status:'completed',
       total_questions:tot,
@@ -2697,9 +2699,13 @@ function showEnd(){
       streak:bestStreak,
       difficulty_end:questionDifficulties.length?questionDifficulties[questionDifficulties.length-1]:null,
       completed_at:new Date().toISOString()
-    }).eq('id',_currentSessionId).then(function(){
+    }).eq('id',_sid).then(function(result){
+      if(result && result.error) console.warn('session update FAILED:',result.error.message,result.error.code);
+      else console.log('session update OK — id:',_sid);
       _currentSessionId=null;
     }).catch(function(e){ console.warn('game_sessions complete failed:',e); });
+  } else {
+    console.warn('session update SKIPPED — sid:',_currentSessionId,'uid:',currentUser&&currentUser.id);
   }
 }
 
@@ -6213,7 +6219,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v9 | 2026-04-15 -->
+<!-- BUILD:phase3-v10 | 2026-04-15 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
