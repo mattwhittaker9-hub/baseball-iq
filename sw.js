@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baseball-iq-v11';
+const CACHE_NAME = 'baseball-iq-v16';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
@@ -29,12 +29,14 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+
   if (url.hostname.includes('supabase.co')) {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
     );
     return;
   }
+
   if (event.request.mode === 'navigate' ||
       (event.request.method === 'GET' &&
        event.request.headers.get('accept') &&
@@ -48,6 +50,7 @@ self.addEventListener('fetch', event => {
     );
     return;
   }
+
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
