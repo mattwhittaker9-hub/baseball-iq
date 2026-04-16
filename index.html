@@ -349,14 +349,14 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* NEW BADGE EARNED OVERLAY */
 .badge-earned-overlay{position:fixed;inset:0;background:radial-gradient(ellipse at center,rgba(14,30,55,0.97) 0%,rgba(2,6,13,0.98) 100%);z-index:9500;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px}
 .badge-earned-overlay.show{display:flex}
-.beo-new{font-size:11px;color:#e8c060;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+.beo-new{font-size:11px;color:#e8c060;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
 .beo-badge{margin-bottom:24px;animation:badgeDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
-.badge-earned-overlay .beo-badge{margin-bottom:48px}
+.badge-earned-overlay .beo-badge{margin-bottom:24px}
 .badge-earned-overlay .badge-wrap.gold{box-shadow:0 0 0 3px #e8c060,0 0 24px rgba(232,192,96,0.5)}
 .badge-earned-overlay .badge-wrap.silver{box-shadow:0 0 0 3px #a8a9ad,0 0 24px rgba(168,169,173,0.4)}
 .badge-earned-overlay .badge-wrap.bronze{box-shadow:0 0 0 3px #cd7f32,0 0 24px rgba(205,127,50,0.4)}
 .badge-earned-overlay .badge-wrap.platinum{box-shadow:0 0 0 3px #c8e6ff,0 0 24px rgba(200,230,255,0.5)}
-@keyframes badgeDrop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1.6) rotate(0deg);opacity:1}}
+@keyframes badgeDrop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1) rotate(0deg);opacity:1}}
 .beo-name{font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
 .beo-desc{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:32px;font-family:Barlow Condensed,sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase}
 .beo-close{background:linear-gradient(135deg,#c8102e,#e02040);border:none;border-radius:8px;padding:14px 40px;font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:900;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:3px;box-shadow:0 4px 20px rgba(200,16,46,0.4);transition:transform 0.15s,box-shadow 0.15s}
@@ -6377,7 +6377,12 @@ var BADGES = [
 function getBadgeArtHTML(badge, size) {
   size = size || 72;
   if(badge.sheet && badge.sp) {
-    return '<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;overflow:hidden;background:url('+badge.sheet+') '+badge.sp+';background-size:'+badge.sz+';flex-shrink:0"></div>';
+    var _scale = size / 72;
+    var _spParts = badge.sp.replace(/px/g,'').trim().split(/\s+/).map(Number);
+    var _szParts = badge.sz.replace(/px/g,'').trim().split(/\s+/).map(Number);
+    var _sp = _spParts.map(function(v){return (v*_scale).toFixed(1)+'px';}).join(' ');
+    var _sz = _szParts.map(function(v){return (v*_scale).toFixed(1)+'px';}).join(' ');
+    return '<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;overflow:hidden;background:url('+badge.sheet+') '+_sp+';background-size:'+_sz+';flex-shrink:0"></div>';
   }
   if(badge.emoji) {
     var bg={bronze:'#1a0c06',silver:'#0a1020',gold:'#120a00',platinum:'#050818'}[badge.tier]||'#0a1020';
@@ -6405,7 +6410,7 @@ function renderBadgesGrid(containerId) {
 function showNewBadge(badge) {
   var overlay = document.getElementById('badge-earned-overlay');
   if(!overlay) return;
-  var art = getBadgeArtHTML(badge, 72);
+  var art = getBadgeArtHTML(badge, 140);
   document.getElementById('beo-badge-art').innerHTML = art;
   document.getElementById('beo-badge-wrap').className = 'badge-wrap '+badge.tier;
   document.getElementById('beo-name').textContent = badge.name;
