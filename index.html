@@ -347,14 +347,19 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .badge-locked-icon{position:absolute;bottom:2px;right:2px;font-size:12px}
 
 /* NEW BADGE EARNED OVERLAY */
-.badge-earned-overlay{position:fixed;inset:0;background:rgba(6,17,31,0.92);z-index:9500;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px}
+.badge-earned-overlay{position:fixed;inset:0;background:radial-gradient(ellipse at center,rgba(14,30,55,0.97) 0%,rgba(2,6,13,0.98) 100%);z-index:9500;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px}
 .badge-earned-overlay.show{display:flex}
 .beo-new{font-size:11px;color:#e8c060;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
-.beo-badge{margin-bottom:18px;animation:badgeDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
+.beo-badge{margin-bottom:24px;animation:badgeDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
+.badge-earned-overlay .badge-wrap{width:120px;height:120px;font-size:64px}
+.badge-earned-overlay .badge-wrap.gold{box-shadow:0 0 0 4px #e8c060,0 0 40px rgba(232,192,96,0.5),0 0 80px rgba(232,192,96,0.2)}
+.badge-earned-overlay .badge-wrap.silver{box-shadow:0 0 0 4px #a8a9ad,0 0 40px rgba(168,169,173,0.4)}
+.badge-earned-overlay .badge-wrap.bronze{box-shadow:0 0 0 4px #cd7f32,0 0 40px rgba(205,127,50,0.4)}
+.badge-earned-overlay .badge-wrap.platinum{box-shadow:0 0 0 4px #c8e6ff,0 0 40px rgba(200,230,255,0.5),0 0 80px rgba(200,230,255,0.2)}
 @keyframes badgeDrop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1) rotate(0deg);opacity:1}}
 .beo-name{font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.beo-desc{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:28px;font-family:system-ui,sans-serif}
-.beo-close{background:#c8102e;border:none;border-radius:12px;padding:13px 32px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:900;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:2px}
+.beo-desc{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:32px;font-family:Barlow Condensed,sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.beo-close{background:linear-gradient(135deg,#c8102e,#e02040);border:none;border-radius:8px;padding:14px 40px;font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:900;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:3px;box-shadow:0 4px 20px rgba(200,16,46,0.4);transition:transform 0.15s,box-shadow 0.15s}
 
 /* ─── COACH DASHBOARD ─── */
 .coach-dash{display:none}
@@ -501,7 +506,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .dc-done-score-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .dc-done-score{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:#3ecf82;line-height:1}
 .dc-done-pct{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#e8f4ff;text-align:right}
-.dc-done-meta{font-size:11px;color:#4a6a88;text-align:right;line-height:1.5;margin-top:2px}
+.dc-done-meta{font-size:11px;color:rgba(255,255,255,0.45);text-align:right;line-height:1.6;margin-top:4px;font-family:Barlow Condensed,sans-serif;font-weight:600;letter-spacing:0.5px}
 .dc-done-dots{display:flex;gap:5px;margin:8px 0}
 .dc-done-share{width:100%;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:9px;padding:10px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#5aabdc;cursor:pointer;letter-spacing:0.5px;margin-top:6px}
 .dc-streak-row{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:10px 12px;margin-bottom:10px}
@@ -948,6 +953,13 @@ body::before {
 
 .nav-btn:hover { color: var(--text-2); }
 .nav-btn.active { color: var(--text-1); background: rgba(255,255,255,0.06); }
+
+/* Mobile: hide top nav buttons — bottom nav handles navigation */
+@media (max-width: 600px) {
+  .nav-btn { display: none !important; }
+  .top-nav { justify-content: space-between; }
+  .user-pill { font-size: 10px; padding: 4px 8px; }
+}
 
 .user-pill {
   background: rgba(0,0,0,0.4);
@@ -1494,18 +1506,6 @@ body::before {
   box-shadow: 0 8px 40px rgba(0,0,0,0.7) !important;
 }
 
-.beo-close {
-  background: transparent !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 4px !important;
-  color: var(--text-2) !important;
-  font-family: var(--mono) !important;
-  font-size: 12px !important;
-  letter-spacing: 2px !important;
-  transition: all 0.15s !important;
-}
-
-.beo-close:hover { border-color: rgba(255,255,255,0.18) !important; color: var(--text-1) !important; }
 
 /* ── STATS SCREEN ── */
 .stat-grid-card {
@@ -2319,19 +2319,29 @@ body::before {
         <svg class="gc-field-svg" id="gc-diamond-svg" viewBox="0 0 100 100" width="88" height="88">
           <!-- Outfield grass gradient -->
           <defs>
-            <radialgradient id="grassGrad" cx="50%" cy="60%" r="55%">
-              <stop offset="0%" stop-color="#0d2018"></stop>
-              <stop offset="100%" stop-color="#071510"></stop>
+            <radialgradient id="grassGrad" cx="50%" cy="70%" r="65%">
+              <stop offset="0%" stop-color="#1a3d20"></stop>
+              <stop offset="40%" stop-color="#143018"></stop>
+              <stop offset="100%" stop-color="#0a1f0e"></stop>
             </radialgradient>
             <radialgradient id="inGrad" cx="50%" cy="55%" r="40%">
-              <stop offset="0%" stop-color="#12281a"></stop>
-              <stop offset="100%" stop-color="#0a1c12"></stop>
+              <stop offset="0%" stop-color="#1e3d24"></stop>
+              <stop offset="100%" stop-color="#122818"></stop>
             </radialgradient>
+            <lineargradient id="stripe1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.04)"></stop>
+              <stop offset="50%" stop-color="rgba(255,255,255,0)"></stop>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.04)"></stop>
+            </lineargradient>
           </defs>
           <!-- Field background -->
           <rect width="100" height="100" fill="url(#grassGrad)" rx="4"></rect>
-          <!-- Infield dirt circle -->
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.8"></ellipse>
+          <!-- Warning track arc -->
+          <path d="M 8,85 Q 50,5 92,85" fill="none" stroke="rgba(180,140,80,0.12)" stroke-width="5"/>
+          <!-- Mow stripes on outfield -->
+          <rect x="0" y="0" width="100" height="100" fill="url(#stripe1)" rx="4" opacity="0.5"/>
+          <!-- Infield dirt — proper warm brown -->
+          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#2a1c08" opacity="0.85"></ellipse>
           <!-- Infield grass diamond -->
           <polygon points="50,30 78,56 50,82 22,56" fill="url(#inGrad)" opacity="0.9"></polygon>
           <!-- Baselines -->
@@ -6395,7 +6405,7 @@ function renderBadgesGrid(containerId) {
 function showNewBadge(badge) {
   var overlay = document.getElementById('badge-earned-overlay');
   if(!overlay) return;
-  var art = getBadgeArtHTML(badge, 80);
+  var art = getBadgeArtHTML(badge, 112);
   document.getElementById('beo-badge-art').innerHTML = art;
   document.getElementById('beo-badge-wrap').className = 'badge-wrap '+badge.tier;
   document.getElementById('beo-name').textContent = badge.name;
@@ -7251,7 +7261,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v16 | 2026-04-15 -->
+<!-- BUILD:phase3-v17 | 2026-04-16 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
