@@ -46,7 +46,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
 /* ─── STADIUM AUTH ─── */
-#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:999}
+#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:1001}
 #s-auth::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(1,2,8,0.45) 0%,rgba(1,2,8,0.08) 30%,rgba(1,2,8,0.30) 65%,rgba(1,2,8,0.82) 100%);z-index:0;pointer-events:none}
 #s-auth>*{position:relative;z-index:1}
 #s-auth.active{display:flex}
@@ -2225,8 +2225,7 @@ body::before {
     <div class="gc-inning" id="daily-gc-inning" style="display:none"></div>
     <div class="gc-question" id="daily-gc-question"></div>
     <div class="gc-choices" id="daily-choices"></div>
-  </div>
-  <div class="gc-panel" id="daily-gc-panel">
+    <div class="gc-panel" id="daily-gc-panel">
     <div class="gc-handle"></div>
     <div class="gc-panel-inner">
       <div class="gc-result-row">
@@ -2364,8 +2363,7 @@ body::before {
     </div>
     <div class="gc-question" id="gc-question"></div>
     <div class="gc-choices" id="choices"></div>
-  </div>
-  <div class="gc-panel" id="gc-panel">
+    <div class="gc-panel" id="gc-panel">
     <div class="gc-handle"></div>
     <div class="gc-panel-inner">
       <div class="gc-result-row">
@@ -2387,6 +2385,7 @@ body::before {
       <button class="gc-next" id="gc-next">Next Situation ↑</button>
       <button class="gc-flag-btn" id="gc-flag-btn" onclick="flagCurrentQuestion()" title="Flag this question">🚩</button>
     </div>
+  </div>
   </div>
   <div class="gc-swipe-hint" id="gc-hint">Tap an answer</div>
   <div class="gc-streak-bar"><div class="gc-streak-fill" id="gc-bar" style="width:0%"></div></div>
@@ -3477,7 +3476,11 @@ function showCardFeedback(ok,q,prefix=''){
   } catch(e) { console.warn('Spotlight error:', e); }
   if(hint) hint.style.display='none';
   try{if(ok&&(curStreak===3||curStreak===5||curStreak===10)) showStreakCelebration(curStreak);}catch(e){}
-  setTimeout(()=>{if(panel) panel.classList.add('show');},250);
+  setTimeout(()=>{
+    if(panel) panel.classList.add('show');
+    var _gc=document.getElementById(prefix+'gc-content');
+    if(_gc) setTimeout(()=>{ _gc.scrollTo({top:_gc.scrollHeight,behavior:'smooth'}); },100);
+  },250);
 }
 function showFeedback(ok,expl,prefix=''){showCardFeedback(ok,{explanation:expl},prefix);}
 
@@ -4158,10 +4161,11 @@ async function loadHome(){
         if(ihStreak) ihStreak.textContent=dbStreak;
         // Quick stats strip
         if(dbGames>0){
-          document.getElementById('home-stats-strip').style.display='grid';
-          document.getElementById('hs-games').textContent=dbGames;
-          document.getElementById('hs-avg').textContent=dbAvg+'%';
-          document.getElementById('hs-streak').textContent=dbStreak;
+          var _hss=document.getElementById('home-stats-strip'),_hg=document.getElementById('hs-games'),_ha=document.getElementById('hs-avg'),_hst=document.getElementById('hs-streak');
+          if(_hss)_hss.style.display='grid';
+          if(_hg)_hg.textContent=dbGames;
+          if(_ha)_ha.textContent=dbAvg+'%';
+          if(_hst)_hst.textContent=dbStreak;
         }
         // Global rank pill
         var rankEl=document.getElementById('ih-rank');
@@ -4262,8 +4266,9 @@ async function loadHome(){
 
   // Quick stats strip (localStorage fallback if DB payload not yet loaded)
   if(sessions.length && !currentUser.id){
-    document.getElementById('home-stats-strip').style.display='grid';
-    document.getElementById('hs-games').textContent=sessions.length;
+    var _hss2=document.getElementById('home-stats-strip'),_hg2=document.getElementById('hs-games');
+    if(_hss2)_hss2.style.display='grid';
+    if(_hg2)_hg2.textContent=sessions.length;
     const avg2=Math.round(sessions.reduce((a,s)=>a+s.pct,0)/sessions.length);
     document.getElementById('hs-avg').textContent=avg2+'%';
     const bestSt2=Math.max(...sessions.map(s=>s.streak||0));
@@ -7236,7 +7241,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v15 | 2026-04-15 -->
+<!-- BUILD:phase3-v16 | 2026-04-15 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
