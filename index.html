@@ -1768,60 +1768,6 @@ body::before {
   display: block !important;
 }
 
-/* Shrink diamond - biggest vertical offender */
-#gc-diamond-row, .gc-diamond-row {
-  padding: 2px 0 2px !important;
-}
-
-#gc-diamond-svg, .gc-field-svg {
-  width: 60px !important;
-  height: 60px !important;
-}
-
-.gc-diamond-row {
-  gap: 6px !important;
-}
-
-/* Scenario block - very compact */
-#gc-scenario, .gc-scenario {
-  margin: 4px 14px 4px !important;
-  padding: 6px 10px !important;
-  min-height: unset !important;
-}
-
-/* Remove large empty gap between scenario and question */
-#gc-question {
-  padding: 10px 14px 8px !important;
-  font-size: 17px !important;
-}
-
-/* Choices tighter */
-#choices {
-  padding: 0 14px !important;
-  gap: 5px !important;
-}
-
-.gc-choice {
-  padding: 10px 12px !important;
-  font-size: 14px !important;
-}
-
-/* Feedback tighter */
-#gc-panel, .gc-panel {
-  margin: 6px 14px 4px !important;
-  padding: 9px 12px !important;
-}
-
-#gc-expl {
-  font-size: 12px !important;
-  line-height: 1.4 !important;
-}
-
-/* Spotlight hide on small screens */
-@media (max-height: 700px) {
-  #gc-spotlight { display: none !important; }
-}
-
 /* Top bar tighter */
 .gc-top {
   padding: 8px 14px 4px !important;
@@ -2281,10 +2227,6 @@ body::before {
           <!-- Outfield wall arc drawn on top, outside clip -->
           <path d="M 0,39 Q 50,2 100,39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
         </svg>
-        <div class="gc-scenario-text">
-          <div class="gc-scenario-label">Situation</div>
-          <div class="gc-scenario-body" id="daily-gc-scenario-body"></div>
-        </div>
       </div>
     </div>
     <div class="gc-inning" id="daily-gc-inning" style="display:none"></div>
@@ -2445,10 +2387,6 @@ body::before {
           <!-- Outfield wall arc drawn on top, outside clip -->
           <path d="M 0,39 Q 50,2 100,39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
         </svg>
-        <div class="gc-scenario-text">
-          <div class="gc-scenario-label">Situation</div>
-          <div class="gc-scenario-body" id="gc-scenario-body"></div>
-        </div>
       </div>
     </div>
     <div class="gc-question" id="gc-question"></div>
