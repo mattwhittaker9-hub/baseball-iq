@@ -906,7 +906,7 @@ body::before {
   padding: 0 14px 80px;
 }
 
-.screen, .game-card-screen { position: relative; z-index: 1; }
+.screen { position: relative; z-index: 1; }
 
 /* ── TOP NAV ── */
 .top-nav {
@@ -1575,10 +1575,14 @@ body::before {
    GAME SCREEN — COMPACT: EVERYTHING ON ONE SCREEN
    ═══════════════════════════════════════════════ */
 
-/* Game screen is a fixed full-height flex column */
+/* Game screen — hidden by default, fixed+full when active */
 .game-card-screen {
+  display: none !important;
+}
+.game-card-screen.active {
   position: fixed !important;
   inset: 0 !important;
+  z-index: 500 !important;
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
