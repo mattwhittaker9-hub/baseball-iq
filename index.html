@@ -5384,8 +5384,16 @@ document.getElementById('register-btn').addEventListener('click',async()=>{
 });
 
 document.getElementById('logout-btn').addEventListener('click',async()=>{
-  await sb.auth.signOut();
-  currentUser=null;localStorage.removeItem('biq_user');
+  try{
+    await sb.auth.signOut();
+  }catch(e){}
+  // Clear ALL biq and Supabase keys from localStorage
+  Object.keys(localStorage).filter(k=>
+    k.startsWith('biq_')||
+    k.startsWith('sb-')||
+    k.includes('supabase')
+  ).forEach(k=>localStorage.removeItem(k));
+  currentUser=null;
   document.getElementById('top-nav').style.display='none';
   document.getElementById('bottom-nav').classList.remove('bnav-visible');
   showScreen('s-auth');
