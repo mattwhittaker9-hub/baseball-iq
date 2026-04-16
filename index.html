@@ -1782,7 +1782,7 @@ body::before {
   min-width: 52px !important;
 }
 .gc-sb-val { font-family: Barlow Condensed, sans-serif !important; font-size: 18px !important; font-weight: 900 !important; color: #fff !important; line-height: 1 !important; white-space: nowrap !important; }
-.gc-sb-score { color: #e8c060 !important; font-size: 13px !important; }
+.gc-sb-score { color: #e8c060 !important; }
 .gc-sb-lbl { font-size: 8px !important; color: rgba(255,255,255,0.35) !important; text-transform: uppercase !important; letter-spacing: 1.5px !important; margin-top: 2px !important; }
 .gc-sb-center { flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; }
 .gc-sb-right { display: flex !important; flex-direction: column !important; gap: 7px !important; flex-shrink: 0 !important; }
@@ -2178,40 +2178,60 @@ body::before {
       <div class="gc-sb-center">
         <svg class="gc-field-svg" viewBox="0 0 100 100" width="88" height="88" style="filter:drop-shadow(0 3px 16px rgba(0,0,0,0.75))">
           <defs>
-            <clipPath id="daily-fieldClip"><path d="M 50,94 L 0,39 Q 50,2 100,39 Z"/></clipPath>
             <radialGradient id="daily-gG" cx="50%" cy="72%" r="78%"><stop offset="0%" stop-color="#1c4820"/><stop offset="45%" stop-color="#143a18"/><stop offset="100%" stop-color="#0c2410"/></radialGradient>
             <radialGradient id="daily-iG" cx="50%" cy="55%" r="60%"><stop offset="0%" stop-color="#1f4c25"/><stop offset="100%" stop-color="#122d15"/></radialGradient>
             <radialGradient id="daily-dG" cx="50%" cy="50%" r="58%"><stop offset="0%" stop-color="#5e3515"/><stop offset="100%" stop-color="#3a1f08"/></radialGradient>
           </defs>
-          <g clip-path="url(#daily-fieldClip)">
-            <rect width="100" height="100" fill="url(#daily-gG)"/>
-            <rect x="0" y="4"  width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="22" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="40" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="58" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="76" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <path d="M 0,39 Q 50,2 100,39 L 96,44 Q 50,8 4,44 Z" fill="#7a4e22" opacity="0.7"/>
+          <!-- Foul territory: dark green base fills the full rectangle -->
+          <rect width="100" height="100" fill="#0d2410" rx="5"/>
+          <!-- Fair territory wedge: brighter green -->
+          <path d="M 50,93 L 0,38 Q 50,2 100,38 Z" fill="url(#daily-gG)"/>
+          <!-- Mow stripes in fair territory only (bounded by foul lines) -->
+          <clipPath id="daily-fairClip"><path d="M 50,93 L 0,38 Q 50,2 100,38 Z"/></clipPath>
+          <g clip-path="url(#daily-fairClip)">
+            <rect x="0" y="4"  width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="20" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="36" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="52" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="68" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <!-- Warning track -->
+            <path d="M 0,38 Q 50,2 100,38 L 95,43 Q 50,8 5,43 Z" fill="#7a4e22" opacity="0.7"/>
+            <!-- Infield dirt -->
             <ellipse cx="50" cy="67" rx="25" ry="22" fill="url(#daily-dG)"/>
+            <!-- Infield grass -->
             <polygon points="50,86 72,64 50,42 28,64" fill="url(#daily-iG)"/>
-            <line x1="50" y1="89" x2="0"   y2="39" stroke="rgba(255,255,255,0.55)" stroke-width="0.9"/>
-            <line x1="50" y1="89" x2="100" y2="39" stroke="rgba(255,255,255,0.55)" stroke-width="0.9"/>
-            <line x1="50" y1="87" x2="72" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <line x1="28" y1="64" x2="50" y2="87" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <circle cx="50" cy="65" r="3.2" fill="#5e3515" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
-            <rect x="47.5" y="64" width="5" height="2" rx="0.3" fill="rgba(255,255,255,0.5)"/>
-            <rect x="40" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-            <rect x="53" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-            <polygon points="46,84 54,84 56,87 50,92 44,87" fill="rgba(255,255,255,0.92)"/>
-            <rect id="daily-gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,72,64)"/>
-            <rect id="daily-gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,50,42)"/>
-            <rect id="daily-gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,28,64)"/>
-            <circle id="daily-gd-r1" cx="72" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-            <circle id="daily-gd-r2" cx="50" cy="42" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-            <circle id="daily-gd-r3" cx="28" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
           </g>
-          <path d="M 0,39 Q 50,2 100,39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
+          <!-- Outfield wall arc -->
+          <path d="M 0,38 Q 50,2 100,38" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+          <!-- Foul lines: crisp white chalk -->
+          <line x1="50" y1="93" x2="0"   y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+          <line x1="50" y1="93" x2="100" y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+          <!-- Baselines -->
+          <line x1="50" y1="87" x2="72" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="28" y1="64" x2="50" y2="87" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <!-- Pitcher mound + rubber -->
+          <circle cx="50" cy="65" r="3.2" fill="#5e3515" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+          <rect x="47.5" y="64" width="5" height="2" rx="0.3" fill="rgba(255,255,255,0.55)"/>
+          <!-- Batter boxes -->
+          <rect x="40" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <rect x="53" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <!-- On-deck circles in foul territory -->
+          <circle cx="27" cy="87" r="3.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+          <circle cx="73" cy="87" r="3.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+          <!-- Backstop arc behind home plate -->
+          <path d="M 39,96 Q 50,99 61,96" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <!-- Home plate -->
+          <polygon points="46,84 54,84 56,87 50,92 44,87" fill="rgba(255,255,255,0.92)"/>
+          <!-- Bases -->
+          <rect id="daily-gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,72,64)"/>
+          <rect id="daily-gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,50,42)"/>
+          <rect id="daily-gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,28,64)"/>
+          <!-- Runner dots -->
+          <circle id="daily-gd-r1" cx="72" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="daily-gd-r2" cx="50" cy="42" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="daily-gd-r3" cx="28" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
         </svg>
       </div>
       <div class="gc-sb-right">
@@ -2293,40 +2313,60 @@ body::before {
       <div class="gc-sb-center">
         <svg class="gc-field-svg" id="gc-diamond-svg" viewBox="0 0 100 100" width="88" height="88" style="filter:drop-shadow(0 3px 16px rgba(0,0,0,0.75))">
           <defs>
-            <clipPath id="fieldClip"><path d="M 50,94 L 0,39 Q 50,2 100,39 Z"/></clipPath>
             <radialGradient id="gG" cx="50%" cy="72%" r="78%"><stop offset="0%" stop-color="#1c4820"/><stop offset="45%" stop-color="#143a18"/><stop offset="100%" stop-color="#0c2410"/></radialGradient>
             <radialGradient id="iG" cx="50%" cy="55%" r="60%"><stop offset="0%" stop-color="#1f4c25"/><stop offset="100%" stop-color="#122d15"/></radialGradient>
             <radialGradient id="dG" cx="50%" cy="50%" r="58%"><stop offset="0%" stop-color="#5e3515"/><stop offset="100%" stop-color="#3a1f08"/></radialGradient>
           </defs>
-          <g clip-path="url(#fieldClip)">
-            <rect width="100" height="100" fill="url(#gG)"/>
-            <rect x="0" y="4"  width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="22" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="40" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="58" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <rect x="0" y="76" width="100" height="9" fill="rgba(255,255,255,0.022)"/>
-            <path d="M 0,39 Q 50,2 100,39 L 96,44 Q 50,8 4,44 Z" fill="#7a4e22" opacity="0.7"/>
+          <!-- Foul territory: dark green base fills the full rectangle -->
+          <rect width="100" height="100" fill="#0d2410" rx="5"/>
+          <!-- Fair territory wedge: brighter green -->
+          <path d="M 50,93 L 0,38 Q 50,2 100,38 Z" fill="url(#gG)"/>
+          <!-- Mow stripes in fair territory only (bounded by foul lines) -->
+          <clipPath id="fairClip"><path d="M 50,93 L 0,38 Q 50,2 100,38 Z"/></clipPath>
+          <g clip-path="url(#fairClip)">
+            <rect x="0" y="4"  width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="20" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="36" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="52" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="68" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <!-- Warning track -->
+            <path d="M 0,38 Q 50,2 100,38 L 95,43 Q 50,8 5,43 Z" fill="#7a4e22" opacity="0.7"/>
+            <!-- Infield dirt -->
             <ellipse cx="50" cy="67" rx="25" ry="22" fill="url(#dG)"/>
+            <!-- Infield grass -->
             <polygon points="50,86 72,64 50,42 28,64" fill="url(#iG)"/>
-            <line x1="50" y1="89" x2="0"   y2="39" stroke="rgba(255,255,255,0.55)" stroke-width="0.9"/>
-            <line x1="50" y1="89" x2="100" y2="39" stroke="rgba(255,255,255,0.55)" stroke-width="0.9"/>
-            <line x1="50" y1="87" x2="72" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <line x1="28" y1="64" x2="50" y2="87" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
-            <circle cx="50" cy="65" r="3.2" fill="#5e3515" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
-            <rect x="47.5" y="64" width="5" height="2" rx="0.3" fill="rgba(255,255,255,0.5)"/>
-            <rect x="40" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-            <rect x="53" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-            <polygon points="46,84 54,84 56,87 50,92 44,87" fill="rgba(255,255,255,0.92)"/>
-            <rect id="gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,72,64)"/>
-            <rect id="gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,50,42)"/>
-            <rect id="gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,28,64)"/>
-            <circle id="gd-r1" cx="72" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-            <circle id="gd-r2" cx="50" cy="42" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
-            <circle id="gd-r3" cx="28" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
           </g>
-          <path d="M 0,39 Q 50,2 100,39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
+          <!-- Outfield wall arc -->
+          <path d="M 0,38 Q 50,2 100,38" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+          <!-- Foul lines: crisp white chalk -->
+          <line x1="50" y1="93" x2="0"   y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+          <line x1="50" y1="93" x2="100" y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+          <!-- Baselines -->
+          <line x1="50" y1="87" x2="72" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="28" y1="64" x2="50" y2="87" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <!-- Pitcher mound + rubber -->
+          <circle cx="50" cy="65" r="3.2" fill="#5e3515" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+          <rect x="47.5" y="64" width="5" height="2" rx="0.3" fill="rgba(255,255,255,0.55)"/>
+          <!-- Batter boxes -->
+          <rect x="40" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <rect x="53" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <!-- On-deck circles in foul territory -->
+          <circle cx="27" cy="87" r="3.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+          <circle cx="73" cy="87" r="3.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+          <!-- Backstop arc behind home plate -->
+          <path d="M 39,96 Q 50,99 61,96" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <!-- Home plate -->
+          <polygon points="46,84 54,84 56,87 50,92 44,87" fill="rgba(255,255,255,0.92)"/>
+          <!-- Bases -->
+          <rect id="gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,72,64)"/>
+          <rect id="gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,50,42)"/>
+          <rect id="gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,28,64)"/>
+          <!-- Runner dots -->
+          <circle id="gd-r1" cx="72" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r2" cx="50" cy="42" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r3" cx="28" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
         </svg>
       </div>
       <div class="gc-sb-right">
@@ -3272,10 +3312,10 @@ function renderQ(q,prefix=''){
   // ── VISUAL SCENARIO BLOCK ────────────────────────────────────
   // Broadcast bar
   var bInning=document.getElementById(pfx+'gc-b-inning');
-  if(bInning) bInning.textContent=q.inning||'—';
+  if(bInning) bInning.textContent=(q.inning&&q.inning!=='any')?q.inning:'3rd';
 
   var bScore=document.getElementById(pfx+'gc-b-score');
-  if(bScore) bScore.textContent=(q.score||'—').replace('Visiting','Vis').replace('Home','HM').replace('leads','▲').replace('trails','▼').replace('Tie game','TIE');
+  if(bScore) bScore.textContent=((q.score&&q.score!=='any')?q.score:'0-0').replace('Visiting','Vis').replace('Home','HM').replace('leads','▲').replace('trails','▼').replace('Tie game','TIE');
 
   // Outs pips
   var outsEl=document.getElementById(pfx+'gc-b-outs');
@@ -4063,9 +4103,10 @@ async function loadStats(){
   }
 
   // Render badges and position IQ BEFORE any early returns
-  renderBadgesGrid('badges-grid'); syncBadgesFromDB(); syncStreakFromDB();
+  renderBadgesGrid('badges-grid'); syncStreakFromDB();
   renderPosIQGrid();
-  setTimeout(checkAndAwardBadges, 300);
+  // Await badge sync THEN check awards — prevents re-awarding already-earned badges
+  syncBadgesFromDB().then(function(){ setTimeout(checkAndAwardBadges, 300); });
   setTimeout(renderPosIQGrid, 200);
 
   // ── RECENT SESSIONS HISTORY — DB wins if available ──
