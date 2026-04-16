@@ -351,7 +351,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .badge-earned-overlay.show{display:flex}
 .beo-new{font-size:11px;color:#e8c060;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
 .beo-badge{margin-bottom:24px;animation:badgeDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
-.badge-earned-overlay .beo-badge{margin-bottom:60px;margin-top:36px}
 
 
 
@@ -1492,10 +1491,6 @@ body::before {
 .lb-tab.on { background: rgba(20,36,56,0.9) !important; color: var(--text-1) !important; border-color: rgba(255,255,255,0.12) !important; }
 
 /* ── BADGE OVERLAY ── */
-.badge-earned-overlay {
-  background: rgba(2,6,13,0.94) !important;
-  backdrop-filter: blur(24px) !important;
-}
 
 .beo-inner {
   background: var(--glass) !important;
@@ -1858,24 +1853,32 @@ body::before {
 
 
 
-/* badge overlay — zoom 2x, transparent bg, fills the wrap */
-.badge-earned-overlay .badge-wrap {
-  zoom: 2;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
+
 .badge-earned-overlay .beo-badge {
   margin-top: 24px;
   margin-bottom: 48px;
 }
 
-.badge-earned-overlay .badge-wrap.gold  { filter: drop-shadow(0 0 12px rgba(232,192,96,0.6)); }
-.badge-earned-overlay .badge-wrap.silver{ filter: drop-shadow(0 0 10px rgba(168,169,173,0.5)); }
-.badge-earned-overlay .badge-wrap.bronze{ filter: drop-shadow(0 0 10px rgba(205,127,50,0.5)); }
-.badge-earned-overlay .badge-wrap.platinum{ filter: drop-shadow(0 0 14px rgba(200,230,255,0.6)); }
 
-.badge-earned-overlay .badge-wrap{background:transparent!important}
+
+/* badge-overlay */
+.badge-earned-overlay .badge-wrap {
+  width: 110px !important;
+  height: 110px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.badge-earned-overlay .badge-wrap.gold     { filter: drop-shadow(0 0 14px rgba(232,192,96,0.7)); }
+.badge-earned-overlay .badge-wrap.silver   { filter: drop-shadow(0 0 12px rgba(168,169,173,0.6)); }
+.badge-earned-overlay .badge-wrap.bronze   { filter: drop-shadow(0 0 12px rgba(205,127,50,0.6)); }
+.badge-earned-overlay .badge-wrap.platinum { filter: drop-shadow(0 0 16px rgba(200,230,255,0.7)); }
+.badge-earned-overlay .beo-badge { margin-bottom: 24px; }
 </style>
 </head>
 <body>
@@ -6433,7 +6436,7 @@ function renderBadgesGrid(containerId) {
 function showNewBadge(badge) {
   var overlay = document.getElementById('badge-earned-overlay');
   if(!overlay) return;
-  var art = getBadgeArtHTML(badge, 140);
+  var art = getBadgeArtHTML(badge, 110);
   document.getElementById('beo-badge-art').innerHTML = art;
   // Force badge-wrap size inline — bypasses all CSS cascade issues
   var bw = document.getElementById('beo-badge-wrap');
