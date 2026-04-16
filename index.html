@@ -1714,35 +1714,75 @@ body::before {
 
 
 /* ═══════════════════════════════════════════════
-   GAME SCREEN FIXES — v14
-   - Broadcast bar responsive (no overflow)
-   - Position pill premium redesign
-   - Further height reduction
+   GAME SCREEN FIXES — v15
+   - Broadcast bar: bigger labels, values, pips — actually readable
+   - Diamond: 110px, centred, prominent
+   - Scenario text removed (question already contains context)
    ═══════════════════════════════════════════════ */
 
-/* Broadcast bar — no overflow, flex wrap on tiny screens */
+/* ── BROADCAST BAR — redesigned ── */
 .gc-broadcast {
   display: flex !important;
   flex-wrap: nowrap !important;
   overflow: hidden !important;
+  height: 64px !important;
+  margin-bottom: 8px !important;
 }
 
 .gc-bcast-seg {
   flex: 1 !important;
   min-width: 0 !important;
-  padding: 0 6px !important;
+  padding: 0 8px !important;
 }
 
 .gc-bcast-lbl {
-  font-size: 7px !important;
+  font-size: 9px !important;
+  letter-spacing: 1.5px !important;
+  color: rgba(255,255,255,0.4) !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  margin-top: 3px !important;
 }
 
 .gc-bcast-val {
-  font-size: 12px !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
   white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.gc-bcast-val.score {
+  font-size: 16px !important;
+}
+
+/* Outs pips — bigger */
+.gc-out-pip {
+  width: 11px !important;
+  height: 11px !important;
+  border-width: 2px !important;
+}
+
+.gc-out-pip.on {
+  box-shadow: 0 0 7px rgba(232,64,96,0.7) !important;
+}
+
+/* Count pips — bigger */
+.gc-count-pip {
+  width: 9px !important;
+  height: 9px !important;
+}
+
+.gc-bcast-outs {
+  gap: 5px !important;
+}
+
+.gc-bcast-count {
+  gap: 3px !important;
+}
+
+.gc-count-row {
+  gap: 3px !important;
 }
 
 /* ── POSITION PILL — premium badge ── */
@@ -1768,45 +1808,53 @@ body::before {
   display: block !important;
 }
 
-/* Shrink diamond - biggest vertical offender */
-#gc-diamond-row, .gc-diamond-row {
-  padding: 2px 0 2px !important;
-}
-
-#gc-diamond-svg, .gc-field-svg {
-  width: 60px !important;
-  height: 60px !important;
-}
-
-.gc-diamond-row {
-  gap: 6px !important;
-}
-
-/* Scenario block - very compact */
+/* ── DIAMOND CARD — bigger, centred, no scenario text ── */
 #gc-scenario, .gc-scenario {
-  margin: 4px 14px 4px !important;
-  padding: 6px 10px !important;
+  margin: 0 14px 6px !important;
+  padding: 0 !important;
   min-height: unset !important;
 }
 
-/* Remove large empty gap between scenario and question */
-#gc-question {
-  padding: 10px 14px 8px !important;
-  font-size: 17px !important;
+#gc-diamond-row, .gc-diamond-row {
+  justify-content: center !important;
+  padding: 12px 14px !important;
+  gap: 0 !important;
 }
 
-/* Choices tighter */
-#choices {
+#gc-diamond-svg, .gc-field-svg {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+/* Hide duplicate scenario text — question already has full context */
+.gc-scenario-text,
+.gc-scenario-label,
+.gc-scenario-body {
+  display: none !important;
+}
+
+/* ── QUESTION — more room now scenario text is gone ── */
+#gc-question, .gc-question {
+  padding: 10px 16px 8px !important;
+  font-size: 17px !important;
+  line-height: 1.25 !important;
+}
+
+/* Choices */
+#choices, #daily-choices {
   padding: 0 14px !important;
   gap: 5px !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .gc-choice {
   padding: 10px 12px !important;
   font-size: 14px !important;
+  line-height: 1.35 !important;
 }
 
-/* Feedback tighter */
+/* Feedback */
 #gc-panel, .gc-panel {
   margin: 6px 14px 4px !important;
   padding: 9px 12px !important;
@@ -1822,7 +1870,7 @@ body::before {
   #gc-spotlight { display: none !important; }
 }
 
-/* Top bar tighter */
+/* Top bar */
 .gc-top {
   padding: 8px 14px 4px !important;
 }
@@ -6411,7 +6459,8 @@ function getBadgeArtHTML(badge, size) {
     return '<div style="width:'+size+'px;height:'+size+'px;background:url('+badge.sheet+') '+_sp+' / '+_sz+';flex-shrink:0;display:block"></div>';
   }
   if(badge.emoji) {
-    return '<div style="width:'+size+'px;height:'+size+'px;display:flex;align-items:center;justify-content:center;font-size:'+(size*0.52)+'px;flex-shrink:0">'+badge.emoji+'</div>';
+    var bg={bronze:'#1a0c06',silver:'#0a1020',gold:'#120a00',platinum:'#050818'}[badge.tier]||'#0a1020';
+    return '<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+bg+';display:flex;align-items:center;justify-content:center;font-size:'+(size*0.42)+'px">'+badge.emoji+'</div>';
   }
   return '';
 }
