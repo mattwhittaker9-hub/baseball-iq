@@ -3181,7 +3181,7 @@ function normalizeQuestion(row){
   }
   if(row.question_type!=='multiple_choice'){
     return {
-      id:row.id,difficulty:row.difficulty,category:row.category,position:row.position,
+      id:row.id,difficulty:row.difficulty,category:row.category,
       inning:row.inning,score:row.score,count:row.count,outs:row.outs,
       runners:{first:row.runners_first,second:row.runners_second,third:row.runners_third},
       scenario:row.scenario,question_type:row.question_type,question:row.question,
@@ -3196,7 +3196,7 @@ function normalizeQuestion(row){
   const choices=raw.map((c,i)=>labels[i]+'. '+c.text);
   const newCorrectIndex=raw.findIndex(c=>c.orig===row.correct_index);
   return {
-    id:row.id,difficulty:row.difficulty,category:row.category,position:row.position,
+    id:row.id,difficulty:row.difficulty,category:row.category,position:row.position||row.pos||row.role||'',
     inning:row.inning,score:row.score,count:row.count,outs:row.outs,
     runners:{first:row.runners_first,second:row.runners_second,third:row.runners_third},
     scenario:row.scenario,question_type:row.question_type,question:row.question,
