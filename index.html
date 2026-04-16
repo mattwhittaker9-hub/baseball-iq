@@ -1808,22 +1808,31 @@ body::before {
   display: block !important;
 }
 
-/* ── DIAMOND CARD — bigger, centred, no scenario text ── */
+/* ── DIAMOND — bigger, floats clean, no card background ── */
 #gc-scenario, .gc-scenario {
-  margin: 0 14px 6px !important;
+  margin: 0 14px 4px !important;
   padding: 0 !important;
   min-height: unset !important;
 }
 
 #gc-diamond-row, .gc-diamond-row {
   justify-content: center !important;
-  padding: 12px 14px !important;
+  padding: 10px 0 !important;
   gap: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#gc-diamond-row::before, .gc-diamond-row::before {
+  display: none !important;
 }
 
 #gc-diamond-svg, .gc-field-svg {
   width: 110px !important;
   height: 110px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
 }
 
 /* Hide duplicate scenario text — question already has full context */
@@ -2267,28 +2276,55 @@ body::before {
       <div class="gc-diamond-row">
         <svg class="gc-field-svg" viewBox="0 0 100 100" width="88" height="88">
           <defs>
-            <radialgradient id="dgGrass" cx="50%" cy="60%" r="55%">
-              <stop offset="0%" stop-color="#0d2018"></stop>
-              <stop offset="100%" stop-color="#071510"></stop>
-            </radialgradient>
+            <radialGradient id="dgGrass" cx="50%" cy="65%" r="70%">
+              <stop offset="0%" stop-color="#1d4a22"/>
+              <stop offset="55%" stop-color="#163818"/>
+              <stop offset="100%" stop-color="#0d2410"/>
+            </radialGradient>
+            <radialGradient id="dgInGrass" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stop-color="#214d27"/>
+              <stop offset="100%" stop-color="#132e16"/>
+            </radialGradient>
+            <radialGradient id="dgDirt" cx="50%" cy="45%" r="55%">
+              <stop offset="0%" stop-color="#4a2e12"/>
+              <stop offset="100%" stop-color="#2e1c0a"/>
+            </radialGradient>
           </defs>
-          <rect width="100" height="100" fill="url(#dgGrass)" rx="4"></rect>
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#1a1208" opacity="0.9"></ellipse>
-          <polygon points="50,30 78,56 50,82 22,56" fill="#0a1c12" opacity="0.95"></polygon>
-          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
-          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
-          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
-          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"></line>
-          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"></line>
-          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"></line>
-          <circle cx="50" cy="58" r="3.5" fill="#1a1208" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"></circle>
-          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.55)"></polygon>
-          <rect id="daily-gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,78,56)"></rect>
-          <rect id="daily-gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,50,30)"></rect>
-          <rect id="daily-gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" transform="rotate(45,22,56)"></rect>
-          <circle id="daily-gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"></circle>
-          <circle id="daily-gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"></circle>
-          <circle id="daily-gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"></circle>
+          <!-- Outfield grass -->
+          <rect width="100" height="100" fill="url(#dgGrass)" rx="5"/>
+          <!-- Mow stripes -->
+          <rect x="0" y="6"  width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <rect x="0" y="26" width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <rect x="0" y="46" width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <rect x="0" y="66" width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <!-- Outfield wall arc — top of field (CF at top, foul poles at corners) -->
+          <path d="M 0,37 Q 50,4 100,37" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+          <!-- Warning track — brown strip just inside the wall -->
+          <path d="M 0,37 Q 50,4 100,37 L 96,41 Q 50,9 4,41 Z" fill="rgba(160,110,50,0.28)"/>
+          <!-- Infield dirt circle -->
+          <ellipse cx="50" cy="67" rx="24" ry="21" fill="url(#dgDirt)"/>
+          <!-- Infield grass diamond -->
+          <polygon points="50,86 72,64 50,42 28,64" fill="url(#dgInGrass)"/>
+          <!-- Foul lines — home through corner bases to outfield wall -->
+          <line x1="50" y1="87" x2="0"   y2="37" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+          <line x1="50" y1="87" x2="100" y2="37" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+          <!-- Baselines -->
+          <line x1="50" y1="86" x2="72" y2="64" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/>
+          <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/>
+          <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/>
+          <line x1="28" y1="64" x2="50" y2="86" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/>
+          <!-- Pitcher's mound (~60.5ft of 127ft home-to-2nd = 47.5% of distance) -->
+          <circle cx="50" cy="65" r="3" fill="#4a2e12" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+          <!-- Home plate: flat side toward pitcher (top), POINT toward catcher (bottom) -->
+          <polygon points="46,84 54,84 56,87 50,91 44,87" fill="rgba(255,255,255,0.85)"/>
+          <!-- Bases (rotated squares) -->
+          <rect id="daily-gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" transform="rotate(45,72,64)"/>
+          <rect id="daily-gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" transform="rotate(45,50,42)"/>
+          <rect id="daily-gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" transform="rotate(45,28,64)"/>
+          <!-- Runner dots -->
+          <circle id="daily-gd-r1" cx="72" cy="64" r="5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
+          <circle id="daily-gd-r2" cx="50" cy="42" r="5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
+          <circle id="daily-gd-r3" cx="28" cy="64" r="5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease"/>
         </svg>
         <div class="gc-scenario-text">
           <div class="gc-scenario-label">Situation</div>
@@ -2391,53 +2427,56 @@ body::before {
       </div>
       <div class="gc-diamond-row" id="gc-diamond-row">
         <svg class="gc-field-svg" id="gc-diamond-svg" viewBox="0 0 100 100" width="88" height="88">
-          <!-- Outfield grass gradient -->
           <defs>
-            <radialgradient id="grassGrad" cx="50%" cy="70%" r="65%">
-              <stop offset="0%" stop-color="#1a3d20"></stop>
-              <stop offset="40%" stop-color="#143018"></stop>
-              <stop offset="100%" stop-color="#0a1f0e"></stop>
-            </radialgradient>
-            <radialgradient id="inGrad" cx="50%" cy="55%" r="40%">
-              <stop offset="0%" stop-color="#1e3d24"></stop>
-              <stop offset="100%" stop-color="#122818"></stop>
-            </radialgradient>
-            <lineargradient id="stripe1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="rgba(255,255,255,0.04)"></stop>
-              <stop offset="50%" stop-color="rgba(255,255,255,0)"></stop>
-              <stop offset="100%" stop-color="rgba(255,255,255,0.04)"></stop>
-            </lineargradient>
+            <radialGradient id="grassGrad" cx="50%" cy="65%" r="70%">
+              <stop offset="0%" stop-color="#1d4a22"/>
+              <stop offset="55%" stop-color="#163818"/>
+              <stop offset="100%" stop-color="#0d2410"/>
+            </radialGradient>
+            <radialGradient id="inGrad" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stop-color="#214d27"/>
+              <stop offset="100%" stop-color="#132e16"/>
+            </radialGradient>
+            <radialGradient id="dirtGrad" cx="50%" cy="45%" r="55%">
+              <stop offset="0%" stop-color="#4a2e12"/>
+              <stop offset="100%" stop-color="#2e1c0a"/>
+            </radialGradient>
           </defs>
-          <!-- Field background -->
-          <rect width="100" height="100" fill="url(#grassGrad)" rx="4"></rect>
-          <!-- Warning track arc -->
-          <path d="M 8,85 Q 50,5 92,85" fill="none" stroke="rgba(180,140,80,0.12)" stroke-width="5"/>
-          <!-- Mow stripes on outfield -->
-          <rect x="0" y="0" width="100" height="100" fill="url(#stripe1)" rx="4" opacity="0.5"/>
-          <!-- Infield dirt — proper warm brown -->
-          <ellipse cx="50" cy="56" rx="28" ry="26" fill="#2a1c08" opacity="0.85"></ellipse>
+          <!-- Outfield grass -->
+          <rect width="100" height="100" fill="url(#grassGrad)" rx="5"/>
+          <!-- Mow stripes -->
+          <rect x="0" y="6"  width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <rect x="0" y="26" width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <rect x="0" y="46" width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <rect x="0" y="66" width="100" height="10" fill="rgba(255,255,255,0.018)"/>
+          <!-- Outfield wall: CF at top, foul poles at corners -->
+          <path d="M 0,37 Q 50,4 100,37" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.2"/>
+          <!-- Warning track strip inside the wall -->
+          <path d="M 0,37 Q 50,4 100,37 L 96,41 Q 50,9 4,41 Z" fill="rgba(160,110,50,0.28)"/>
+          <!-- Infield dirt -->
+          <ellipse cx="50" cy="67" rx="24" ry="21" fill="url(#dirtGrad)"/>
           <!-- Infield grass diamond -->
-          <polygon points="50,30 78,56 50,82 22,56" fill="url(#inGrad)" opacity="0.9"></polygon>
+          <polygon points="50,86 72,64 50,42 28,64" fill="url(#inGrad)"/>
+          <!-- Foul lines: home through corner bags to outfield wall -->
+          <line x1="50" y1="87" x2="0"   y2="37" stroke="rgba(255,255,255,0.22)" stroke-width="0.9"/>
+          <line x1="50" y1="87" x2="100" y2="37" stroke="rgba(255,255,255,0.22)" stroke-width="0.9"/>
           <!-- Baselines -->
-          <line x1="50" y1="84" x2="78" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
-          <line x1="78" y1="56" x2="50" y2="30" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
-          <line x1="50" y1="30" x2="22" y2="56" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
-          <line x1="22" y1="56" x2="50" y2="84" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"></line>
-          <!-- Foul lines -->
-          <line x1="50" y1="84" x2="0" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"></line>
-          <line x1="50" y1="84" x2="100" y2="34" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"></line>
-          <!-- Pitcher mound -->
-          <circle cx="50" cy="58" r="3.5" fill="#1e1a0e" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"></circle>
-          <!-- Home plate -->
-          <polygon points="50,81 53,84 53,88 47,88 47,84" fill="rgba(255,255,255,0.6)"></polygon>
-          <!-- Bases (empty state) -->
-          <rect id="gd-first" x="74" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,78,56)"></rect>
-          <rect id="gd-second" x="46" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,50,30)"></rect>
-          <rect id="gd-third" x="18" y="52" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" transform="rotate(45,22,56)"></rect>
-          <!-- Runner dots (hidden by default) -->
-          <circle id="gd-r1" cx="78" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"></circle>
-          <circle id="gd-r2" cx="50" cy="30" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"></circle>
-          <circle id="gd-r3" cx="22" cy="56" r="4.5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"></circle>
+          <line x1="50" y1="86" x2="72" y2="64" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+          <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+          <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+          <line x1="28" y1="64" x2="50" y2="86" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+          <!-- Pitcher mound (60.5ft of 127.3ft = 47.5% from home to 2nd) -->
+          <circle cx="50" cy="65" r="3.2" fill="#4a2e12" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+          <!-- Home plate: FLAT toward pitcher (top), POINTED toward catcher (bottom) -->
+          <polygon points="46,84 54,84 56,87 50,91 44,87" fill="rgba(255,255,255,0.85)"/>
+          <!-- Bases -->
+          <rect id="gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.45)" stroke-width="0.8" transform="rotate(45,72,64)"/>
+          <rect id="gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.45)" stroke-width="0.8" transform="rotate(45,50,42)"/>
+          <rect id="gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.45)" stroke-width="0.8" transform="rotate(45,28,64)"/>
+          <!-- Runner dots -->
+          <circle id="gd-r1" cx="72" cy="64" r="5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r2" cx="50" cy="42" r="5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="gd-r3" cx="28" cy="64" r="5" fill="#c8102e" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
         </svg>
         <div class="gc-scenario-text">
           <div class="gc-scenario-label">Situation</div>
