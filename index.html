@@ -1832,13 +1832,39 @@ body::before {
   display: none !important;
 }
 
+
+/* ── LOGO MARK ── */
+.nav-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 0 !important; /* reset, use inline span */
+  text-shadow: none !important;
+}
+
+.nav-logo svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(200,16,46,0.3));
+}
+
 </style>
 </head>
 <body>
 
 <!-- TOP NAV (desktop) -->
 <div class="top-nav" id="top-nav" style="display: flex;">
-  <div class="nav-logo">Baseball <em>IQ</em></div>
+  <div class="nav-logo" style="display:flex;align-items:center;gap:8px;cursor:pointer" onclick="showScreen('s-home')">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <path d="M12 1L23 12L12 23L1 12Z" fill="rgba(200,16,46,0.1)" stroke="#c8102e" stroke-width="1.2"/>
+      <path d="M12 5L19 12L12 19L5 12Z" fill="rgba(200,16,46,0.18)" stroke="rgba(200,16,46,0.5)" stroke-width="0.8"/>
+      <circle cx="12" cy="12" r="2.2" fill="#c8102e"/>
+      <line x1="12" y1="1" x2="12" y2="5" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+      <line x1="23" y1="12" x2="19" y2="12" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+      <line x1="12" y1="23" x2="12" y2="19" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+      <line x1="1" y1="12" x2="5" y2="12" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+    </svg>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:#f4f0eb">BASEBALL <em style="color:#c8102e;font-style:normal">IQ</em></span>
+  </div>
   <div class="nav-left">
     <button class="nav-btn active" data-screen="s-home">⚾ Home</button>
     <button class="nav-btn" data-screen="s-leaderboard">🏆 Leaderboard</button>
@@ -4142,12 +4168,13 @@ async function loadHome(){
           if(badgeWrapEl) badgeWrapEl.style.display='flex';
         }
         // Daily done status (DB is authoritative — overrides localStorage)
+        var _dbCta=document.getElementById('daily-cta'),_dbDa=document.getElementById('daily-done-area');
         if(hd.daily_done_today===true){
-          document.getElementById('daily-cta').style.display='none';
-          document.getElementById('daily-done-area').style.display='block';
+          if(_dbCta) _dbCta.style.display='none';
+          if(_dbDa) _dbDa.style.display='block';
         } else if(hd.daily_done_today===false){
-          document.getElementById('daily-cta').style.display='block';
-          document.getElementById('daily-done-area').style.display='none';
+          if(_dbCta) _dbCta.style.display='block';
+          if(_dbDa) _dbDa.style.display='none';
         }
         // Open assignments pill
         var assignPill=document.getElementById('home-assign-pill');
@@ -4174,10 +4201,10 @@ async function loadHome(){
 
   // ── DAILY CHALLENGE HERO ────────────────────────────────────────────
   const key=getTodayKey();
-  document.getElementById('daily-date-label').textContent='5 questions · Same for everyone worldwide';
+  var _ddl=document.getElementById('daily-date-label'); if(_ddl) _ddl.textContent='5 questions · Same for everyone worldwide';
   const done=JSON.parse(localStorage.getItem('biq_daily_'+key)||'null');
   const streak=getDailyStreak();
-  document.getElementById('daily-streak-num').textContent=streak;
+  var _dsn=document.getElementById('daily-streak-num'); if(_dsn) _dsn.textContent=streak;
 
   // Countdown to midnight
   (function updateCountdown(){
@@ -4201,12 +4228,11 @@ async function loadHome(){
 
   // localStorage daily state (shown immediately; DB state above overwrites if player has id)
   if(!currentUser.id){
+    var _cta=document.getElementById('daily-cta'),_da=document.getElementById('daily-done-area');
     if(done){
-      document.getElementById('daily-cta').style.display='none';
-      document.getElementById('daily-done-area').style.display='block';
+      if(_cta) _cta.style.display='none'; if(_da) _da.style.display='block';
     }else{
-      document.getElementById('daily-cta').style.display='block';
-      document.getElementById('daily-done-area').style.display='none';
+      if(_cta) _cta.style.display='block'; if(_da) _da.style.display='none';
     }
   }
 
@@ -4214,7 +4240,7 @@ async function loadHome(){
   if(done){
     const correct=done.answers.filter(a=>a==='correct').length;
     const pct=Math.round(correct/DAILY_QS*100);
-    document.getElementById('daily-done-score').textContent=correct+'/'+DAILY_QS;
+    var _dds=document.getElementById('daily-done-score'); if(_dds) _dds.textContent=correct+'/'+DAILY_QS;
     var pctEl=document.getElementById('dc-done-pct');
     if(pctEl) pctEl.textContent=pct+'%';
     var doneStreakEl=document.getElementById('dc-done-streak');
@@ -7204,7 +7230,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v14 | 2026-04-15 -->
+<!-- BUILD:phase3-v15 | 2026-04-15 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
