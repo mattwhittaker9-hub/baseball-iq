@@ -351,11 +351,11 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .badge-earned-overlay.show{display:flex}
 .beo-new{font-size:11px;color:#e8c060;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
 .beo-badge{margin-bottom:24px;animation:badgeDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
-.badge-earned-overlay .badge-wrap{width:120px;height:120px;font-size:64px}
-.badge-earned-overlay .badge-wrap.gold{box-shadow:0 0 0 4px #e8c060,0 0 40px rgba(232,192,96,0.5),0 0 80px rgba(232,192,96,0.2)}
-.badge-earned-overlay .badge-wrap.silver{box-shadow:0 0 0 4px #a8a9ad,0 0 40px rgba(168,169,173,0.4)}
-.badge-earned-overlay .badge-wrap.bronze{box-shadow:0 0 0 4px #cd7f32,0 0 40px rgba(205,127,50,0.4)}
-.badge-earned-overlay .badge-wrap.platinum{box-shadow:0 0 0 4px #c8e6ff,0 0 40px rgba(200,230,255,0.5),0 0 80px rgba(200,230,255,0.2)}
+.badge-earned-overlay .beo-badge{transform:scale(1.6);transform-origin:center;margin-bottom:40px}
+.badge-earned-overlay .badge-wrap.gold{box-shadow:0 0 0 3px #e8c060,0 0 24px rgba(232,192,96,0.5)}
+.badge-earned-overlay .badge-wrap.silver{box-shadow:0 0 0 3px #a8a9ad,0 0 24px rgba(168,169,173,0.4)}
+.badge-earned-overlay .badge-wrap.bronze{box-shadow:0 0 0 3px #cd7f32,0 0 24px rgba(205,127,50,0.4)}
+.badge-earned-overlay .badge-wrap.platinum{box-shadow:0 0 0 3px #c8e6ff,0 0 24px rgba(200,230,255,0.5)}
 @keyframes badgeDrop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1) rotate(0deg);opacity:1}}
 .beo-name{font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
 .beo-desc{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:32px;font-family:Barlow Condensed,sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase}
@@ -6405,7 +6405,7 @@ function renderBadgesGrid(containerId) {
 function showNewBadge(badge) {
   var overlay = document.getElementById('badge-earned-overlay');
   if(!overlay) return;
-  var art = getBadgeArtHTML(badge, 112);
+  var art = getBadgeArtHTML(badge, 72);
   document.getElementById('beo-badge-art').innerHTML = art;
   document.getElementById('beo-badge-wrap').className = 'badge-wrap '+badge.tier;
   document.getElementById('beo-name').textContent = badge.name;
