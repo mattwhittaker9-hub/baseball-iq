@@ -6385,7 +6385,7 @@ function getBadgeArtHTML(badge, size) {
     var _szParts = badge.sz.replace(/px/g,'').trim().split(/\s+/).map(Number);
     var _sp = _spParts.map(function(v){return (v*_scale).toFixed(1)+'px';}).join(' ');
     var _sz = _szParts.map(function(v){return (v*_scale).toFixed(1)+'px';}).join(' ');
-    return '<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;overflow:hidden;background:url('+badge.sheet+') '+_sp+';background-size:'+_sz+';flex-shrink:0"></div>';
+    return '<div style="width:'+size+'px;height:'+size+'px;background:url('+badge.sheet+') '+_sp+';background-size:'+_sz+';flex-shrink:0"></div>';
   }
   if(badge.emoji) {
     var bg={bronze:'#1a0c06',silver:'#0a1020',gold:'#120a00',platinum:'#050818'}[badge.tier]||'#0a1020';
