@@ -1606,7 +1606,7 @@ body::before {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch !important;
-  padding-bottom: 8px !important;
+  padding: 62px 0 8px !important;
 }
 
 /* Scenario/diamond block — compressed */
@@ -1636,7 +1636,10 @@ body::before {
   padding: 11px 14px !important;
   font-size: 14px !important;
   line-height: 1.35 !important;
+  border-left: 3px solid rgba(255,255,255,0.07) !important;
+  border-radius: 0 12px 12px 0 !important;
 }
+.gc-choice:active { border-left-color: var(--pos-color, rgba(200,16,46,0.6)) !important; }
 
 /* Feedback panel — compact */
 #gc-panel, .gc-panel {
@@ -1688,8 +1691,13 @@ body::before {
 }
 
 .gc-dot {
-  height: 2px !important;
+  height: 4px !important;
+  border-radius: 3px !important;
+  width: 10px !important;
 }
+.gc-dot.active { width: 18px !important; }
+.gc-dot.correct { background: #3ecf82 !important; }
+.gc-dot.wrong { background: #e84060 !important; }
 
 
 
@@ -1751,25 +1759,27 @@ body::before {
 
 /* Top bar tighter */
 .gc-top {
-  padding: 8px 14px 4px !important;
+  padding: 8px 16px 4px !important;
 }
+.gc-dots { gap: 5px !important; }
 
 /* ── SCOREBOARD — diamond-centred layout (Matt's sketch) ── */
 .gc-scoreboard {
   display: flex !important;
   align-items: center !important;
   gap: 10px !important;
-  padding: 6px 14px 4px !important;
-  margin-bottom: 2px !important;
+  padding: 4px 14px 8px !important;
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
 }
 .gc-sb-left { display: flex !important; flex-direction: column !important; gap: 5px !important; flex-shrink: 0 !important; }
 .gc-sb-pill {
-  background: rgba(255,255,255,0.05) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
-  border-radius: 18px !important;
-  padding: 5px 11px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.09) !important;
+  border-radius: 10px !important;
+  padding: 6px 14px !important;
   text-align: center !important;
-  min-width: 52px !important;
+  min-width: 58px !important;
 }
 .gc-sb-val { font-family: Barlow Condensed, sans-serif !important; font-size: 18px !important; font-weight: 900 !important; color: #fff !important; line-height: 1 !important; white-space: nowrap !important; }
 .gc-sb-score { color: #e8c060 !important; }
@@ -1777,7 +1787,7 @@ body::before {
 .gc-sb-center { flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; }
 .gc-sb-right { display: flex !important; flex-direction: column !important; gap: 7px !important; flex-shrink: 0 !important; }
 .gc-sb-bso { display: flex !important; align-items: center !important; gap: 5px !important; }
-.gc-sb-bso-lbl { font-family: Barlow Condensed, sans-serif !important; font-size: 12px !important; font-weight: 900 !important; color: rgba(255,255,255,0.4) !important; width: 10px !important; text-align: center !important; }
+.gc-sb-bso-lbl { font-family: Barlow Condensed, sans-serif !important; font-size: 13px !important; font-weight: 900 !important; color: rgba(255,255,255,0.5) !important; width: 12px !important; text-align: center !important; }
 .gc-sb-pips { display: flex !important; gap: 4px !important; align-items: center !important; }
 
 /* ── DIAMOND — 130px via CSS, centred ── */
@@ -3315,6 +3325,9 @@ function renderQ(q,prefix=''){
     catEl.style.setProperty('--pos-color', pc);
     catEl.style.boxShadow = '0 2px 24px ' + pc + '33, inset 0 -3px 0 ' + pc;
     catEl.style.borderColor = pc + '55';
+    // Propagate position color to the whole game content so choices can reference it
+    var contentEl = document.getElementById(pfx+'gc-content') || document.querySelector('.gc-content');
+    if(contentEl) contentEl.style.setProperty('--pos-color', pc);
   }
   // Legacy inning line (hidden, kept for compat)
   const innEl=document.getElementById(pfx+'gc-inning');
