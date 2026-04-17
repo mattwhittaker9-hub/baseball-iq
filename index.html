@@ -3759,6 +3759,27 @@ function showEnd(){
   const prev=JSON.parse(localStorage.getItem('biq_perfects_'+currentUser?.username)||'0');
   const newPerf=pct===100?prev+1:prev;
   if(pct===100) localStorage.setItem('biq_perfects_'+currentUser?.username,newPerf);
+
+  // ── Difficulty-based perfect game tracking (triplecrown badge) ────────────
+  if(pct===100 && currentUser) {
+    var _u = currentUser.username;
+    // Determine dominant difficulty from this game
+    var _diffs = questionDifficulties.filter(Boolean);
+    var _diffCounts = {1:0,2:0,3:0};
+    _diffs.forEach(function(d){ if(_diffCounts[d]!==undefined) _diffCounts[d]++; });
+    var _dom = Object.keys(_diffCounts).reduce(function(a,b){ return _diffCounts[b]>_diffCounts[a]?b:a; }, '1');
+    if(_dom==='1') localStorage.setItem('biq_perfect_beg_'+_u, '1');
+    if(_dom==='2') localStorage.setItem('biq_perfect_int_'+_u, '1');
+    if(_dom==='3') localStorage.setItem('biq_perfect_adv_'+_u, '1');
+  }
+
+  // ── Rally cap — win the game after getting first question wrong ───────────
+  if(currentUser && pct >= 60 && answerHistory.length > 0) {
+    var _firstAnswer = typeof answerHistory[0]==='object' ? answerHistory[0].result : answerHistory[0];
+    if(_firstAnswer === 'wrong') {
+      localStorage.setItem('biq_rally_win_'+currentUser.username, '1');
+    }
+  }
   document.getElementById('e-perfects').textContent=newPerf;
   setTimeout(()=>{ document.getElementById('end-bar-fill').style.width=pct+'%'; document.getElementById('end-bar-fill').style.background=r.color; },100);
   const dots=document.getElementById('review-dots');
@@ -3796,6 +3817,18 @@ function showEnd(){
     posHistory.push({date:getTodayKey(),pct:pct,nc:nc,tot:tot});
     if(posHistory.length>20) posHistory=posHistory.slice(-20);
     localStorage.setItem('biq_pos_'+window._isPositionDrill+'_'+currentUser.username, JSON.stringify(posHistory));
+
+    // ── Position mastery badge triggers (90%+ on a position drill) ──────────
+    if(pct >= 90) {
+      var _pos = window._isPositionDrill;
+      var _posKey = null;
+      if(_pos === 'Catcher')                                     _posKey = 'biq_pos_master_C_';
+      else if(_pos === 'Left Fielder')                           _posKey = 'biq_pos_master_LF_';
+      else if(_pos === 'Center Fielder')                         _posKey = 'biq_pos_master_CF_';
+      else if(_pos === 'Right Fielder')                          _posKey = 'biq_pos_master_RF_';
+      if(_posKey) localStorage.setItem(_posKey+currentUser.username, '1');
+    }
+
     window._isPositionDrill = null;
   }
   // Sync badges from DB, run silent audit, then only show newly earned this game
@@ -4606,6 +4639,14 @@ async function assignDrillToTeam() {
     var updated = await r.json();
     var n = Array.isArray(updated) ? updated.length : '?';
     if(statusEl) statusEl.textContent='✅ Drill assigned to '+n+' player'+(n!==1?'s':'')+'!';
+
+    // ── lineup_card badge — track how many drills coach has assigned ─────────
+    if(currentUser) {
+      var _daKey = 'biq_drills_assigned_'+currentUser.username;
+      var _daCount = parseInt(localStorage.getItem(_daKey)||'0') + 1;
+      localStorage.setItem(_daKey, String(_daCount));
+    }
+
     document.getElementById('cd-drill-name').value='';
     document.getElementById('cd-drill-pos').value='';
     setTimeout(function(){ if(statusEl) statusEl.textContent=''; loadCoachDashboard(); }, 2500);
@@ -6105,6 +6146,12 @@ function processMySide(correct, timeTaken, choice, q){
   var pts=correct?100+bonus:0;
   challengeMyAnswer={correct:correct, time:timeTaken, pts:pts};
   challengeMyScore+=pts;
+  // ── Track speed answers for Radar 100 badge (correct + under 3 seconds) ──
+  if(correct && timeTaken <= 3 && currentUser) {
+    var spKey = 'biq_speed_ans_'+currentUser.username;
+    var spCount = parseInt(localStorage.getItem(spKey)||'0') + 1;
+    localStorage.setItem(spKey, String(spCount));
+  }
 
   // Update UI
   var chEl=document.getElementById('battle-choices');
@@ -6230,6 +6277,40 @@ function showChallengeResult(){
     if(challengeIsP1){ upd.player1_score=challengeMyScore; upd.player2_score=challengeOppScore; }
     else { upd.player2_score=challengeMyScore; upd.player1_score=challengeOppScore; }
     sb.from('challenges').update(upd).eq('id',challengeRoom.id);
+  }
+
+  // ── Badge stat writes ─────────────────────────────────────────────────────
+  if(currentUser) {
+    var u = currentUser.username;
+    if(myWon) {
+      // Battle wins counter (walkoff_stadium @ 1, pine_tar_bat @ 5)
+      var bwKey = 'biq_battle_wins_'+u;
+      var bwCount = parseInt(localStorage.getItem(bwKey)||'0') + 1;
+      localStorage.setItem(bwKey, String(bwCount));
+
+      // Battle streak (closer badge @ 3 in a row)
+      var bsKey = 'biq_battle_streak_'+u;
+      var bsCount = parseInt(localStorage.getItem(bsKey)||'0') + 1;
+      localStorage.setItem(bsKey, String(bsCount));
+
+      // Big battle win — won by 200+ points
+      if(challengeMyScore - challengeOppScore >= 200) {
+        var bbKey = 'biq_big_battle_'+u;
+        var bbCount = parseInt(localStorage.getItem(bbKey)||'0') + 1;
+        localStorage.setItem(bbKey, String(bbCount));
+      }
+
+      // Walkoff — win decided on final question (bat_flip badge)
+      var lastRound = challengeRoundData[challengeRoundData.length-1];
+      if(lastRound && lastRound.my && lastRound.my.pts > 0 && lastRound.my.pts > lastRound.opp.pts) {
+        var woKey = 'biq_walkoff_'+u;
+        var woCount = parseInt(localStorage.getItem(woKey)||'0') + 1;
+        localStorage.setItem(woKey, String(woCount));
+      }
+    } else if(!tied) {
+      // Lost — reset battle streak
+      localStorage.setItem('biq_battle_streak_'+u, '0');
+    }
   }
   showScreen('s-challenge-result');
 }
@@ -6464,12 +6545,12 @@ var BADGES = [
   {id:'flaming_glove',      sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-72px -216px', tier:'gold',     name:'Flaming Glove',        desc:'500 correct answers'},
   {id:'sunflower_seeds',    sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-144px -216px',tier:'bronze',   name:'Sunflower Seeds',      desc:'Play your first game'},
   {id:'rally_cap',          sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-216px -216px',tier:'silver',   name:'Rally Cap',            desc:'Win a battle after losing the first question'},
-  // ── EMOJI ONLY — Coming soon with artwork ────────────────────────────────
-  {id:'closer',      emoji:'🔥', tier:'silver',   name:'Closer',        desc:'Win 3 battles in a row'},
-  {id:'triplecrown', emoji:'👑', tier:'platinum', name:'Triple Crown',  desc:'Perfect game on all 3 difficulties'},
-  {id:'sellout',     emoji:'🏟', tier:'silver',   name:'Sellout Crowd', desc:'Play your 50th game'},
-  {id:'pennant',     emoji:'🏆', tier:'platinum', name:'Pennant Race',  desc:'Reach #1 on your team leaderboard'},
-  {id:'raindelay',   emoji:'🌧', tier:'bronze',   name:'Rain Delay',    desc:'Come back after 7 days off and win'},
+  // ── SHEET C: badges_v3_c.png (5 badges) ─────────────────────────────────
+  {id:'closer',      sheet:'badges_v3_c.png', sz:'288px 144px', sp:'0px 0px',     tier:'silver',   name:'Closer',        desc:'Win 3 battles in a row'},
+  {id:'triplecrown', sheet:'badges_v3_c.png', sz:'288px 144px', sp:'-72px 0px',   tier:'platinum', name:'Triple Crown',  desc:'Perfect game on all 3 difficulties'},
+  {id:'sellout',     sheet:'badges_v3_c.png', sz:'288px 144px', sp:'-144px 0px',  tier:'silver',   name:'Sellout Crowd', desc:'Play your 50th game'},
+  {id:'pennant',     sheet:'badges_v3_c.png', sz:'288px 144px', sp:'-216px 0px',  tier:'platinum', name:'Pennant Race',  desc:'Reach #1 on your team leaderboard'},
+  {id:'raindelay',   sheet:'badges_v3_c.png', sz:'288px 144px', sp:'0px -72px',   tier:'bronze',   name:'Rain Delay',    desc:'Come back after 7 days off and win'},
 ];
 
 function getBadgeArtHTML(badge, size) {
@@ -7463,7 +7544,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v18-badges | 2026-04-17 -->
+<!-- BUILD:phase3-v20-badge-triggers | 2026-04-17 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
