@@ -95,7 +95,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-dot.wrong{background:#e84060;width:10px}
 .gc-exit-btn{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:22px;cursor:pointer;padding:4px;line-height:1}
 .gc-cat{position:absolute;top:calc(env(safe-area-inset-top,12px) + 38px);left:0;right:0;display:flex;justify-content:center}
-.gc-cat-pill{background:rgba(200,16,46,0.2);border:1px solid rgba(200,16,46,0.35);border-radius:20px;padding:3px 12px;font-family:Barlow Condensed,sans-serif;font-size:11px;font-weight:700;color:#f08090;letter-spacing:1.5px;text-transform:uppercase}
+.gc-cat-pill{background:linear-gradient(135deg,rgba(4,10,22,0.96),rgba(8,18,38,0.92));border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:7px 22px;font-family:Barlow Condensed,sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:4px;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(12px)}
 .gc-content{flex:1;display:flex;flex-direction:column;justify-content:flex-start;padding:80px 20px 180px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .gc-content.gc-slide-in{animation:gcSlideIn 0.32s cubic-bezier(0.4,0,0.2,1)}
 @keyframes gcSlideIn{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
@@ -1298,20 +1298,7 @@ body::before {
 
 .game-card-screen > * { position: relative; z-index: 1; }
 
-.gc-cat-pill {
-  background: rgba(0,0,0,0.5) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 3px !important;
-  padding: 4px 10px !important;
-  font-family: var(--mono) !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  color: var(--text-2) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 2px !important;
-  box-shadow: none !important;
-}
+/* position banner CSS lives in v15 block above */
 
 /* Broadcast bar */
 .gc-broadcast {
@@ -1692,8 +1679,7 @@ body::before {
 
 /* Cat pill — absolute positioned, smaller */
 #gc-cat, .gc-cat {
-  font-size: 9px !important;
-  padding: 3px 8px !important;
+  /* size controlled by pill CSS */
 }
 
 /* Dots — slim */
@@ -1740,24 +1726,25 @@ body::before {
 }
 
 /* ── POSITION PILL — premium badge ── */
+/* ── POSITION BANNER — broadcast style ── */
 #gc-cat, #daily-gc-cat {
   position: absolute !important;
   top: 10px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  background: rgba(200,16,46,0.15) !important;
-  border: 1px solid rgba(200,16,46,0.4) !important;
-  border-radius: 3px !important;
-  padding: 4px 12px !important;
-  font-family: var(--mono) !important;
-  font-size: 10px !important;
+  background: linear-gradient(135deg, rgba(4,10,22,0.96) 0%, rgba(8,18,38,0.92) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 6px !important;
+  padding: 7px 22px !important;
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 20px !important;
   font-weight: 900 !important;
-  color: rgba(255,180,180,0.9) !important;
+  color: #ffffff !important;
   text-transform: uppercase !important;
-  letter-spacing: 2.5px !important;
+  letter-spacing: 4px !important;
   white-space: nowrap !important;
-  backdrop-filter: blur(8px) !important;
-  box-shadow: none !important;
+  backdrop-filter: blur(12px) !important;
+  /* box-shadow and border-color set dynamically via JS */
   z-index: 20 !important;
   display: block !important;
 }
@@ -3277,24 +3264,39 @@ function getScenario(q){
   return q.scenario&&q.scenario.length>5?q.scenario:'';
 }
 function getCatLabel(q){
-  // Always use the specific position name — never show generic "Infield" or "Outfield"
-  const posEmoji = {
-    'Pitcher':       '⚾ Pitcher',
-    'Catcher':       '🎯 Catcher',
-    'First Baseman': '🥇 1st Base',
-    'Second Baseman':'✌️ 2nd Base',
-    'Shortstop':     '⚡ Shortstop',
-    'Third Baseman': '🔥 3rd Base',
-    'Left Fielder':  '🌿 Left Field',
-    'Center Fielder':'🎯 Center Field',
-    'Right Fielder': '💪 Right Field',
-    'Baserunner':    '💨 Baserunner',
-    'Hitter':        '🏏 Hitter'
+  const posLabels = {
+    'Pitcher':       'Pitcher',
+    'Catcher':       'Catcher',
+    'First Baseman': '1st Base',
+    'Second Baseman':'2nd Base',
+    'Shortstop':     'Shortstop',
+    'Third Baseman': '3rd Base',
+    'Left Fielder':  'Left Field',
+    'Center Fielder':'Center Field',
+    'Right Fielder': 'Right Field',
+    'Baserunner':    'Baserunner',
+    'Hitter':        'Hitter'
   };
-  if(q.position && posEmoji[q.position]) return posEmoji[q.position];
-  // Fallback to category if no position
-  const catMap={pitcher:'⚾ Pitcher',catcher:'🎯 Catcher',infield:'🧤 Infield',outfield:'🌿 Outfield',baserunner:'💨 Baserunner'};
-  return catMap[q.category]||'⚾ Baseball IQ';
+  if(q.position && posLabels[q.position]) return posLabels[q.position];
+  const catMap={pitcher:'Pitcher',catcher:'Catcher',infield:'Infield',outfield:'Outfield',baserunner:'Baserunner'};
+  return catMap[q.category]||'Baseball IQ';
+}
+// Position color palette — each spot on the field has its own identity
+var POS_COLORS = {
+  'Pitcher':       '#e8183a',
+  'Catcher':       '#2068d8',
+  'First Baseman': '#e8a018',
+  'Second Baseman':'#18c898',
+  'Shortstop':     '#4898f0',
+  'Third Baseman': '#f06018',
+  'Left Fielder':  '#38c858',
+  'Center Fielder':'#18d878',
+  'Right Fielder': '#9848e8',
+  'Baserunner':    '#18c8e8',
+  'Hitter':        '#e8c818'
+};
+function getPosColor(q){
+  return POS_COLORS[q.position] || '#c8102e';
 }
 function renderQ(q,prefix=''){
   const isDaily=prefix==='daily-';
@@ -3307,7 +3309,13 @@ function renderQ(q,prefix=''){
     dotsEl.innerHTML=Array.from({length:total},(_,i)=>`<div class="gc-dot ${i<curIdx?'done':i===curIdx?'active':'todo'}"></div>`).join('');
   }
   const catEl=document.getElementById(pfx+'gc-cat');
-  if(catEl) catEl.textContent=getCatLabel(q);
+  if(catEl){
+    catEl.textContent = getCatLabel(q);
+    var pc = getPosColor(q);
+    catEl.style.setProperty('--pos-color', pc);
+    catEl.style.boxShadow = '0 2px 24px ' + pc + '33, inset 0 -3px 0 ' + pc;
+    catEl.style.borderColor = pc + '55';
+  }
   // Legacy inning line (hidden, kept for compat)
   const innEl=document.getElementById(pfx+'gc-inning');
   if(innEl){ innEl.textContent=''; }
