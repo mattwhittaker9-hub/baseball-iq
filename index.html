@@ -3625,6 +3625,7 @@ async function startGame(){
   _currentSessionId=null;
   _shownOrder=0;
   usedIdx=[];qn=0;nc=0;tot=0;curStreak=0;bestStreak=0;answerHistory=[];questionDifficulties=[];
+  window._preCamBadges = getEarnedBadges().slice(); // snapshot before game
 
   // ── Create game_sessions row ──
   if(currentUser && currentUser.id){
@@ -3797,8 +3798,8 @@ function showEnd(){
     localStorage.setItem('biq_pos_'+window._isPositionDrill+'_'+currentUser.username, JSON.stringify(posHistory));
     window._isPositionDrill = null;
   }
-  // Check for newly earned badges (slight delay so end screen shows first)
-  setTimeout(checkAndAwardBadges, 1800);
+  // Sync badges from DB, run silent audit, then only show newly earned this game
+  syncBadgesFromDB().then(function(){ silentBadgeAudit(); setTimeout(checkAndAwardBadges, 400); });
   // Auto-submit to leaderboard if player is on a team
   if(currentUser.team_code) submitScore();
   // ── Complete game_sessions row — triggers IQ, badges, leaderboard updates server-side ──
@@ -3900,7 +3901,7 @@ function finishDaily(){
   localStorage.setItem('biq_daily_hist_'+(currentUser?.username||'guest'),JSON.stringify(hist));
   showDailyEnd(dailyAnswers,pct);
   showScreen('s-daily-end');
-  setTimeout(checkAndAwardBadges, 1800);
+  syncBadgesFromDB().then(function(){ silentBadgeAudit(); setTimeout(checkAndAwardBadges, 400); });
 }
 
 function showDailyEnd(answers,pct){
@@ -4178,7 +4179,11 @@ async function loadStats(){
   renderBadgesGrid('badges-grid'); syncStreakFromDB();
   renderPosIQGrid();
   // Await badge sync THEN check awards — prevents re-awarding already-earned badges
-  syncBadgesFromDB().then(function(){ setTimeout(checkAndAwardBadges, 300); });
+  // Sync from DB, run silent audit to mark all already-earned badges, THEN check for new ones
+  syncBadgesFromDB().then(function(){
+    silentBadgeAudit();
+    setTimeout(checkAndAwardBadges, 400);
+  });
   setTimeout(renderPosIQGrid, 200);
 
   // ── RECENT SESSIONS HISTORY — DB wins if available ──
@@ -6595,6 +6600,26 @@ function getPlayerBadgeStats() {
 
 
 // ── BADGE AWARD ENGINE ───────────────────────────────────────────────────────
+function silentBadgeAudit() {
+  // Marks all badges the player has ALREADY earned (by stats) into localStorage without showing any overlay.
+  // Run after DB sync on login and game-end so checkAndAwardBadges only fires for truly new badges.
+  if(!currentUser) return;
+  try {
+    var stats = getPlayerBadgeStats();
+    var earned = getEarnedBadges();
+    var changed = false;
+    BADGES.forEach(function(badge) {
+      if(!earned.includes(badge.id) && checkBadgeTrigger(badge, stats)) {
+        earned.push(badge.id);
+        changed = true;
+      }
+    });
+    if(changed) {
+      localStorage.setItem('biq_badges_'+currentUser.username, JSON.stringify(earned));
+    }
+  } catch(e) {}
+}
+
 function checkAndAwardBadges() {
   if(!currentUser) return;
   try {
@@ -6614,8 +6639,10 @@ function checkAndAwardBadges() {
       // Save updated earned list
       localStorage.setItem('biq_badges_' + currentUser.username, JSON.stringify(earned));
       newlyEarned.forEach(function(b){ saveBadgeToDB(b); });
-      // Show badges one at a time with stagger
-      newlyEarned.forEach(function(badge, i) {
+      // Only SHOW badges that weren't earned before this game session started
+      var preSnap = window._preCamBadges || [];
+      var trulyNew = newlyEarned.filter(function(b){ return !preSnap.includes(b.id); });
+      trulyNew.forEach(function(badge, i) {
         setTimeout(function() { showNewBadge(badge); }, i * 3500);
       });
       // Re-render the grid on the stats screen
@@ -6635,12 +6662,24 @@ async function syncBadgesFromDB() {
   try {
     var {data,error} = await sb.from('user_badges').select('badge_key').eq('player_id', currentUser.id);
     if(error || !data || !data.length) return;
-    var dbIds = data.map(function(r){return r.badge_key;});
+    // Translate DB trigger keys to client badge IDs
+    var DB_TO_CLIENT = {
+      'iq_1100':'gasshades','iq_1200':'goldchain','iq_1300':'professor',
+      'iq_1400':'hof','iq_1600':'legendstatus',
+      'perfect_game':'helmet','perfect_advanced':'icedshades','perfect_3':'nohitter',
+      'streak_3':'eyeblack','streak_5':'eyeblack','answer_streak_3':'eyeblack',
+      'daily_streak_7':'highsocks',
+      'games_1':'fitted','games_10':'batgloves','games_50':'sellout',
+      'daily_1':'gum','daily_complete':'gum','daily_complete_1':'gum',
+      'correct_50':'wristband','correct_100':'centuryclub','correct_500':'unwrittenrules',
+      'battle_wins_5':'pinetar','team_rank_1':'pennant'
+    };
+    var dbIds = data.map(function(r){ return DB_TO_CLIENT[r.badge_key] || r.badge_key; });
     var local = getEarnedBadges();
     var merged = Array.from(new Set(local.concat(dbIds)));
     if(merged.length !== local.length) {
       localStorage.setItem('biq_badges_'+currentUser.username, JSON.stringify(merged));
-      console.log('Synced '+dbIds.length+' badges from DB');
+      console.log('Synced badges from DB:', dbIds);
     }
   } catch(e) { console.warn('Badge sync error:', e); }
 }
