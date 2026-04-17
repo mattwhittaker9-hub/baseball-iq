@@ -6426,34 +6426,49 @@ function updateHomeIQ() {
 // ══════════════════════════════════════════════════════════════════════════════
 
 var BADGES = [
-  // ── SHEET 1: badges.png — Drip Collection (12) — bg-size:401px 441px ─────
-  {id:'fitted',        sheet:'badges.png',  sz:'327px 360px', sp:'-5px 0px',    tier:'bronze',   name:'Fresh Fitted',    desc:'Play your first game'},
-  {id:'gum',           sheet:'badges.png',  sz:'327px 360px', sp:'-87px 0px',  tier:'bronze',   name:'Stick of Gum',    desc:'First Daily Challenge done'},
-  {id:'eyeblack',      sheet:'badges.png',  sz:'327px 360px', sp:'-168px 0px',  tier:'bronze',   name:'Eye Black',       desc:'Get a 3-answer streak'},
-  {id:'highsocks',     sheet:'badges.png',  sz:'327px 360px', sp:'-250px 0px',  tier:'silver',   name:'High Socks',      desc:'7-day daily challenge streak'},
-  {id:'batgloves',     sheet:'badges.png',  sz:'327px 360px', sp:'-5px -131px',  tier:'silver',   name:'Batting Gloves',  desc:'Play 10 games'},
-  {id:'gasshades',     sheet:'badges.png',  sz:'327px 360px', sp:'-87px -131px',tier:'silver',   name:'Gas Station Drip',desc:'Reach IQ 1,100'},
-  {id:'wristband',     sheet:'badges.png',  sz:'327px 360px', sp:'-168px -131px',tier:'silver',   name:'Wristband',       desc:'50 correct answers'},
-  {id:'goldchain',     sheet:'badges.png',  sz:'327px 360px', sp:'-250px -131px',tier:'gold',     name:'Gold Chain',      desc:'Reach IQ 1,200'},
-  {id:'helmet',        sheet:'badges.png',  sz:'327px 360px', sp:'-5px -255px',  tier:'gold',     name:'Helmet Swag',     desc:'Perfect game (100%)'},
-  {id:'icedshades',    sheet:'badges.png',  sz:'327px 360px', sp:'-87px -255px',tier:'gold',     name:'Iced Out',        desc:'Perfect Advanced game'},
-  {id:'pinetar',       sheet:'badges.png',  sz:'327px 360px', sp:'-168px -255px',tier:'gold',     name:'Pine Tar',        desc:'Win 5 head-to-head battles'},
-  {id:'hof',           sheet:'badges.png',  sz:'327px 360px', sp:'-250px -255px',tier:'platinum', name:'Hall of Famer',   desc:'Reach IQ 1,400'},
-  // ── SHEET 2: badges2.png — Legend Tier (8) — bg-size:401px 293px ──────────
-  {id:'nohitter',      sheet:'badges2.png', sz:'327px 240px', sp:'-5px -4px',    tier:'gold',     name:'No-Hitter',       desc:'Get 3 perfect games'},
-  {id:'centuryclub',   sheet:'badges2.png', sz:'327px 240px', sp:'-87px -4px',  tier:'gold',     name:'Century Club',    desc:'100 correct answers'},
-  {id:'ironman',       sheet:'badges2.png', sz:'327px 240px', sp:'-168px -4px',  tier:'gold',     name:'Iron Man',        desc:'Play 30 days in a row'},
-  {id:'professor',     sheet:'badges2.png', sz:'327px 240px', sp:'-250px -4px',  tier:'gold',     name:'The Professor',   desc:'Reach IQ 1,300'},
-  {id:'speedemon',     sheet:'badges2.png', sz:'327px 240px', sp:'-5px -131px',  tier:'silver',   name:'Speed Demon',     desc:'Answer 5 battle Qs in under 3 seconds'},
-  {id:'walkoff',       sheet:'badges2.png', sz:'327px 240px', sp:'-87px -131px',tier:'gold',     name:'Walk-Off',        desc:'Win a battle on the final question'},
-  {id:'legendstatus',  sheet:'badges2.png', sz:'327px 240px', sp:'-168px -131px',tier:'platinum', name:'Legend Status',   desc:'Reach IQ 1,600'},
-  {id:'unwrittenrules',sheet:'badges2.png', sz:'327px 240px', sp:'-250px -131px',tier:'gold',     name:'Unwritten Rules', desc:'500 correct answers'},
-  // ── EMOJI ONLY — Milestone Badges ─────────────────────────────────────────
+  // ── SHEET A: badges_v3_a.png (20 badges) ─────────────────────────────────
+  {id:'jordans',            sheet:'badges_v3_a.png', sz:'288px 360px', sp:'0px 0px',      tier:'bronze',   name:'Fresh Kicks',          desc:'Play your first game'},
+  {id:'bush_league',        sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-72px 0px',    tier:'bronze',   name:'Bush League Bubble',   desc:'First Daily Challenge done'},
+  {id:'eye_black',          sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-144px 0px',   tier:'bronze',   name:'Eye Black',            desc:'Get a 3-answer streak'},
+  {id:'donut_cap',          sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-216px 0px',   tier:'bronze',   name:'Donut Cap',            desc:'Complete 5 games'},
+  {id:'wristband',          sheet:'badges_v3_a.png', sz:'288px 360px', sp:'0px -72px',    tier:'silver',   name:'Wristband',            desc:'50 correct answers'},
+  {id:'seven_flames',       sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-72px -72px',  tier:'silver',   name:'Seven Flames',         desc:'7-day daily streak'},
+  {id:'iron_man',           sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-144px -72px', tier:'gold',     name:'Iron Man',             desc:'30-day consecutive streak'},
+  {id:'fresh_fitted',       sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-216px -72px', tier:'silver',   name:'Fresh Fitted',         desc:'Reach IQ 1,100'},
+  {id:'radar_100',          sheet:'badges_v3_a.png', sz:'288px 360px', sp:'0px -144px',   tier:'silver',   name:'Radar 100',            desc:'Answer 5 battle Qs fast'},
+  {id:'neon_brain',         sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-72px -144px', tier:'silver',   name:'Neon Brain',           desc:'100 correct answers'},
+  {id:'bat_flip',           sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-144px -144px',tier:'gold',     name:'Bat Flip',             desc:'Win a battle on the final question'},
+  {id:'catchers_mask',      sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-216px -144px',tier:'silver',   name:"Catcher's Mask",       desc:'Master the Catcher position'},
+  {id:'drip_card',          sheet:'badges_v3_a.png', sz:'288px 360px', sp:'0px -216px',   tier:'bronze',   name:'Drip Card',            desc:'Play 10 games'},
+  {id:'high_socks',         sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-72px -216px', tier:'silver',   name:'High Socks',           desc:'3-day daily streak'},
+  {id:'gas_shades',         sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-144px -216px',tier:'silver',   name:'Gas Station Shades',   desc:'Reach IQ 1,100'},
+  {id:'gold_chain_pendant', sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-216px -216px',tier:'gold',     name:'Gold Chain Pendant',   desc:'Reach IQ 1,200'},
+  {id:'goldchain_1200',     sheet:'badges_v3_a.png', sz:'288px 360px', sp:'0px -288px',   tier:'gold',     name:'Gold Chain 1,200',     desc:'Reach IQ 1,200'},
+  {id:'melting_trophy',     sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-72px -288px', tier:'gold',     name:'Melting Trophy',       desc:'Reach IQ 1,300'},
+  {id:'pitcher_spotlight',  sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-144px -288px',tier:'gold',     name:'Pitcher in Spotlight', desc:'Get a perfect game'},
+  {id:'hof_fire',           sheet:'badges_v3_a.png', sz:'288px 360px', sp:'-216px -288px',tier:'platinum', name:'Hall of Fame Fire',    desc:'Reach IQ 1,400'},
+  // ── SHEET B: badges_v3_b.png (16 badges) ─────────────────────────────────
+  {id:'perfect_badge',      sheet:'badges_v3_b.png', sz:'288px 360px', sp:'0px 0px',      tier:'gold',     name:'Perfect Badge',        desc:'Perfect game (100%)'},
+  {id:'holy_relic',         sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-72px 0px',    tier:'platinum', name:'Holy Relic Baseball',  desc:'3 perfect games'},
+  {id:'pine_tar_bat',       sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-144px 0px',   tier:'gold',     name:'Pine Tar Bat',         desc:'Win 5 head-to-head battles'},
+  {id:'lightning_glove',    sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-216px 0px',   tier:'gold',     name:'Lightning Glove',      desc:'Master an outfield position'},
+  {id:'walkoff_stadium',    sheet:'badges_v3_b.png', sz:'288px 360px', sp:'0px -72px',    tier:'gold',     name:'Walk-Off Stadium',     desc:'Win a head-to-head battle'},
+  {id:'lineup_card',        sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-72px -72px',  tier:'silver',   name:'Lineup Card',          desc:'Coach — assign 5 drills'},
+  {id:'jackie_robinson_v2', sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-144px -72px', tier:'platinum', name:'Jackie Robinson #42',  desc:'Earned on April 15'},
+  {id:'fourth_of_july',     sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-216px -72px', tier:'gold',     name:'Fourth of July',       desc:'Earned on July 4'},
+  {id:'memorial_day',       sheet:'badges_v3_b.png', sz:'288px 360px', sp:'0px -144px',   tier:'gold',     name:'Memorial Day',         desc:'Earned on Memorial Day'},
+  {id:'christmas',          sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-72px -144px', tier:'gold',     name:'Christmas Baseball',   desc:'Earned on December 25'},
+  {id:'halloween',          sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-144px -144px',tier:'gold',     name:'Halloween Baseball',   desc:'Earned on October 31'},
+  {id:'melting_trophy_b3',  sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-216px -144px',tier:'platinum', name:'Legend Trophy',        desc:'Reach IQ 1,600'},
+  {id:'alarm_clock',        sheet:'badges_v3_b.png', sz:'288px 360px', sp:'0px -216px',   tier:'bronze',   name:'Alarm Clock',          desc:'Complete your first daily challenge'},
+  {id:'flaming_glove',      sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-72px -216px', tier:'gold',     name:'Flaming Glove',        desc:'500 correct answers'},
+  {id:'sunflower_seeds',    sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-144px -216px',tier:'bronze',   name:'Sunflower Seeds',      desc:'Play your first game'},
+  {id:'rally_cap',          sheet:'badges_v3_b.png', sz:'288px 360px', sp:'-216px -216px',tier:'silver',   name:'Rally Cap',            desc:'Win a battle after losing the first question'},
+  // ── EMOJI ONLY — Coming soon with artwork ────────────────────────────────
   {id:'closer',      emoji:'🔥', tier:'silver',   name:'Closer',        desc:'Win 3 battles in a row'},
   {id:'triplecrown', emoji:'👑', tier:'platinum', name:'Triple Crown',  desc:'Perfect game on all 3 difficulties'},
   {id:'sellout',     emoji:'🏟', tier:'silver',   name:'Sellout Crowd', desc:'Play your 50th game'},
   {id:'pennant',     emoji:'🏆', tier:'platinum', name:'Pennant Race',  desc:'Reach #1 on your team leaderboard'},
-  {id:'batflip',     emoji:'🏏', tier:'gold',     name:'Bat Flip',      desc:'Win a battle by 200+ points'},
   {id:'raindelay',   emoji:'🌧', tier:'bronze',   name:'Rain Delay',    desc:'Come back after 7 days off and win'},
 ];
 
@@ -6508,33 +6523,51 @@ function showNewBadge(badge) {
 function checkBadgeTrigger(badge, stats) {
   var s = stats;
   switch(badge.id) {
-    case 'fitted':        return s.games >= 1;
-    case 'gum':           return s.dailyCompleted >= 1;
-    case 'eyeblack':      return s.bestStreak >= 3;
-    case 'highsocks':     return s.dailyStreak >= 7;
-    case 'batgloves':     return s.games >= 10;
-    case 'gasshades':     return s.iq >= 1100;
-    case 'wristband':     return s.correct >= 50;
-    case 'goldchain':     return s.iq >= 1200;
-    case 'helmet':        return s.perfectGames >= 1;
-    case 'icedshades':    return s.perfectAdvanced >= 1;
-    case 'pinetar':       return s.battleWins >= 5;
-    case 'hof':           return s.iq >= 1400;
-    case 'nohitter':      return s.perfectGames >= 3;
-    case 'centuryclub':   return s.correct >= 100;
-    case 'ironman':       return s.consecutiveDays >= 30;
-    case 'professor':     return s.iq >= 1300;
-    case 'speedemon':     return s.speedAnswers >= 5;
-    case 'walkoff':       return s.walkoffWins >= 1;
-    case 'legendstatus':  return s.iq >= 1600;
-    case 'unwrittenrules':return s.correct >= 500;
-    case 'closer':        return s.battleStreak >= 3;
-    case 'triplecrown':   return !!(s.perfectBeginner && s.perfectIntermediate && s.perfectAdvanced);
-    case 'sellout':       return s.games >= 50;
-    case 'pennant':       return s.teamRank === 1;
-    case 'batflip':       return s.bigBattleWins >= 1;
-    case 'raindelay':     return !!s.comeback;
-    default:              return false;
+    // ── Sheet A ──────────────────────────────────────────────────────────────
+    case 'jordans':            return s.games >= 1;
+    case 'bush_league':        return s.dailyCompleted >= 1;
+    case 'eye_black':          return s.bestStreak >= 3;
+    case 'donut_cap':          return s.games >= 5;
+    case 'wristband':          return s.correct >= 50;
+    case 'seven_flames':       return s.dailyStreak >= 7;
+    case 'iron_man':           return s.consecutiveDays >= 30;
+    case 'fresh_fitted':       return s.iq >= 1100;
+    case 'radar_100':          return s.speedAnswers >= 5;
+    case 'neon_brain':         return s.correct >= 100;
+    case 'bat_flip':           return s.walkoffWins >= 1;
+    case 'catchers_mask':      return s.catcherMastery;
+    case 'drip_card':          return s.games >= 10;
+    case 'high_socks':         return s.dailyStreak >= 3;
+    case 'gas_shades':         return s.iq >= 1100;
+    case 'gold_chain_pendant': return s.iq >= 1200;
+    case 'goldchain_1200':     return s.iq >= 1200;
+    case 'melting_trophy':     return s.iq >= 1300;
+    case 'pitcher_spotlight':  return s.perfectGames >= 1;
+    case 'hof_fire':           return s.iq >= 1400;
+    // ── Sheet B ──────────────────────────────────────────────────────────────
+    case 'perfect_badge':      return s.perfectGames >= 1;
+    case 'holy_relic':         return s.perfectGames >= 3;
+    case 'pine_tar_bat':       return s.battleWins >= 5;
+    case 'lightning_glove':    return s.outfieldMastery;
+    case 'walkoff_stadium':    return s.battleWins >= 1;
+    case 'lineup_card':        return s.drillsAssigned >= 5;
+    case 'jackie_robinson_v2': return s.isJackieRobinsonDay;
+    case 'fourth_of_july':     return s.isFourthOfJuly;
+    case 'memorial_day':       return s.isMemorialDay;
+    case 'christmas':          return s.isChristmas;
+    case 'halloween':          return s.isHalloween;
+    case 'melting_trophy_b3':  return s.iq >= 1600;
+    case 'alarm_clock':        return s.dailyCompleted >= 1;
+    case 'flaming_glove':      return s.correct >= 500;
+    case 'sunflower_seeds':    return s.games >= 1;
+    case 'rally_cap':          return s.rallyWin;
+    // ── Emoji badges ─────────────────────────────────────────────────────────
+    case 'closer':             return s.battleStreak >= 3;
+    case 'triplecrown':        return !!(s.perfectBeginner && s.perfectIntermediate && s.perfectAdvanced);
+    case 'sellout':            return s.games >= 50;
+    case 'pennant':            return s.teamRank === 1;
+    case 'raindelay':          return !!s.comeback;
+    default:                   return false;
   }
 }
 
@@ -6554,7 +6587,23 @@ function getPlayerBadgeStats() {
   var walkoffWins = parseInt(localStorage.getItem('biq_walkoff_'+username)||'0');
   var perfectBeg = localStorage.getItem('biq_perfect_beg_'+username)==='1';
   var perfectInt = localStorage.getItem('biq_perfect_int_'+username)==='1';
+  var drillsAssigned = parseInt(localStorage.getItem('biq_drills_assigned_'+username)||'0');
+  var catcherMastery = localStorage.getItem('biq_pos_master_C_'+username)==='1';
+  var outfieldMastery = ['LF','CF','RF','OF'].some(function(p){ return localStorage.getItem('biq_pos_master_'+p+'_'+username)==='1'; });
+  var rallyWin = localStorage.getItem('biq_rally_win_'+username)==='1';
   var iq = loadIQScore();
+  // ── Holiday flags ──────────────────────────────────────────────────────────
+  var _now = new Date();
+  var _m = _now.getMonth() + 1, _d = _now.getDate(), _dow = _now.getDay();
+  var isJackieRobinsonDay = (_m === 4 && _d === 15);
+  var isFourthOfJuly      = (_m === 7 && _d === 4);
+  var isHalloween         = (_m === 10 && _d === 31);
+  var isChristmas         = (_m === 12 && _d === 25);
+  var isMemorialDay = (function() {
+    if(_m !== 5 || _dow !== 1) return false;
+    var next = new Date(_now); next.setDate(_d + 7);
+    return next.getMonth() + 1 !== 5; // last Monday of May
+  })();
   var comeback = false;
   var lastActive = localStorage.getItem('biq_last_active_'+username);
   if(lastActive) {
@@ -6592,6 +6641,15 @@ function getPlayerBadgeStats() {
     speedAnswers: speedAnswers,
     walkoffWins: walkoffWins,
     consecutiveDays: consecutiveDays,
+    drillsAssigned: drillsAssigned,
+    catcherMastery: catcherMastery,
+    outfieldMastery: outfieldMastery,
+    rallyWin: rallyWin,
+    isJackieRobinsonDay: isJackieRobinsonDay,
+    isFourthOfJuly: isFourthOfJuly,
+    isHalloween: isHalloween,
+    isChristmas: isChristmas,
+    isMemorialDay: isMemorialDay,
     teamRank: 99,
     comeback: comeback,
     iq: iq
@@ -6664,15 +6722,34 @@ async function syncBadgesFromDB() {
     if(error || !data || !data.length) return;
     // Translate DB trigger keys to client badge IDs
     var DB_TO_CLIENT = {
-      'iq_1100':'gasshades','iq_1200':'goldchain','iq_1300':'professor',
-      'iq_1400':'hof','iq_1600':'legendstatus',
-      'perfect_game':'helmet','perfect_advanced':'icedshades','perfect_3':'nohitter',
-      'streak_3':'eyeblack','streak_5':'eyeblack','answer_streak_3':'eyeblack',
-      'daily_streak_7':'highsocks',
-      'games_1':'fitted','games_10':'batgloves','games_50':'sellout',
-      'daily_1':'gum','daily_complete':'gum','daily_complete_1':'gum',
-      'correct_50':'wristband','correct_100':'centuryclub','correct_500':'unwrittenrules',
-      'battle_wins_5':'pinetar','team_rank_1':'pennant'
+      'iq_1100':'fresh_fitted',      'iq_1200':'gold_chain_pendant',
+      'iq_1300':'melting_trophy',    'iq_1400':'hof_fire',
+      'iq_1600':'melting_trophy_b3',
+      'perfect_game':'pitcher_spotlight', 'perfect_advanced':'pitcher_spotlight',
+      'perfect_3':'holy_relic',
+      'streak_3':'eye_black',        'streak_5':'eye_black',
+      'answer_streak_3':'eye_black',
+      'daily_streak_7':'seven_flames','daily_streak_3':'high_socks',
+      'games_1':'jordans',           'games_5':'donut_cap',
+      'games_10':'drip_card',        'games_50':'sellout',
+      'daily_1':'bush_league',       'daily_complete':'bush_league',
+      'daily_complete_1':'alarm_clock',
+      'correct_50':'wristband',      'correct_100':'neon_brain',
+      'correct_500':'flaming_glove',
+      'battle_wins_1':'walkoff_stadium', 'battle_wins_5':'pine_tar_bat',
+      'walkoff_win':'bat_flip',      'team_rank_1':'pennant',
+      'battle_streak_3':'closer',
+      // Legacy keys from old badge system — map to nearest new equivalent
+      'gasshades':'gas_shades',      'goldchain':'gold_chain_pendant',
+      'fitted':'jordans',            'gum':'bush_league',
+      'eyeblack':'eye_black',        'highsocks':'seven_flames',
+      'batgloves':'drip_card',       'helmet':'pitcher_spotlight',
+      'icedshades':'pitcher_spotlight','pinetar':'pine_tar_bat',
+      'hof':'hof_fire',              'nohitter':'holy_relic',
+      'centuryclub':'neon_brain',    'ironman':'iron_man',
+      'professor':'melting_trophy',  'speedemon':'radar_100',
+      'walkoff':'bat_flip',          'legendstatus':'melting_trophy_b3',
+      'unwrittenrules':'flaming_glove'
     };
     var dbIds = data.map(function(r){ return DB_TO_CLIENT[r.badge_key] || r.badge_key; });
     var local = getEarnedBadges();
@@ -7386,7 +7463,7 @@ function closeReview(evt) {
 
 <div id="streak-celebration" style="display:none"></div>
 <div class="gc-flag-toast" id="gc-flag-toast">Thanks! Question flagged for review.</div>
-<!-- BUILD:phase3-v17 | 2026-04-16 -->
+<!-- BUILD:phase3-v18-badges | 2026-04-17 -->
 <div id="biq-build-stamp" style="display:none"></div>
 
 
