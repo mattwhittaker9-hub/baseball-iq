@@ -102,11 +102,6 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-inning{font-family:Barlow Condensed,sans-serif;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .gc-question{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.2;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px}
 .gc-choices{display:flex;flex-direction:column;gap:7px}
-.gc-pos-badge{display:none;align-items:center;gap:7px;margin:0 0 8px 0;padding:6px 12px 6px 8px;border-radius:8px;border-left:3px solid var(--pos-color,#c8102e);background:rgba(0,0,0,0.25)}
-.gc-pos-badge.show{display:flex}
-.gc-pos-badge-icon{font-size:15px;line-height:1;flex-shrink:0}
-.gc-pos-badge-text{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.55)}
-.gc-pos-badge-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-left:2px}
 .gc-choice{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Barlow',sans-serif;width:100%;min-height:48px}
 .gc-choice:active{transform:scale(0.98)}
 .gc-ltr{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:Barlow Condensed,sans-serif;font-size:13px;font-weight:800;color:rgba(255,255,255,0.4);flex-shrink:0}
@@ -1740,11 +1735,16 @@ body::before {
 
 /* ── POSITION PILL — premium badge ── */
 /* ── POSITION BANNER — broadcast style ── */
-#gc-cat, #daily-gc-cat {
+/* Force .gc-cat back to absolute — game-card-screen > * flattens it to relative */
+.gc-cat {
   position: absolute !important;
-  top: 10px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  z-index: 50 !important;
+}
+#gc-cat, #daily-gc-cat {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
   background: linear-gradient(135deg, rgba(4,10,22,0.96) 0%, rgba(8,18,38,0.92) 100%) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 6px !important;
@@ -1758,7 +1758,6 @@ body::before {
   white-space: nowrap !important;
   backdrop-filter: blur(12px) !important;
   /* box-shadow and border-color set dynamically via JS */
-  z-index: 20 !important;
   display: block !important;
 }
 
@@ -2247,7 +2246,6 @@ body::before {
     </div>
     </div>
     <div class="gc-inning" id="daily-gc-inning" style="display:none"></div>
-    <div class="gc-pos-badge" id="daily-gc-pos-badge"></div>
     <div class="gc-question" id="daily-gc-question"></div>
     <div class="gc-choices" id="daily-choices"></div>
     <div class="gc-panel" id="daily-gc-panel">
@@ -2382,7 +2380,6 @@ body::before {
       </div>
     </div>
     </div>
-    <div class="gc-pos-badge" id="gc-pos-badge"></div>
     <div class="gc-question" id="gc-question"></div>
     <div class="gc-choices" id="choices"></div>
     <div class="gc-panel" id="gc-panel">
@@ -3335,19 +3332,6 @@ function renderQ(q,prefix=''){
     // Propagate position color to the whole game content so choices can reference it
     var contentEl = document.getElementById(pfx+'gc-content') || document.querySelector('.gc-content');
     if(contentEl) contentEl.style.setProperty('--pos-color', pc);
-  }
-  // ── IN-FLOW POSITION BADGE (mobile-safe) ──
-  var badgeEl=document.getElementById(pfx+'gc-pos-badge');
-  if(badgeEl && q.position){
-    var posIcons={'Pitcher':'⚾','Catcher':'🥅','First Baseman':'🥇','Second Baseman':'②','Shortstop':'⚡','Third Baseman':'③','Left Fielder':'◀','Center Fielder':'▲','Right Fielder':'▶','Baserunner':'🏃','Hitter':'🏏','All':'⚾'};
-    var posIcon=posIcons[q.position]||'⚾';
-    var posLabel=getCatLabel(q);
-    var pc2=getPosColor(q);
-    badgeEl.innerHTML='<span class="gc-pos-badge-icon">'+posIcon+'</span><span class="gc-pos-badge-text">Playing as</span><span class="gc-pos-badge-name" style="color:'+pc2+'">'+posLabel+'</span>';
-    badgeEl.style.setProperty('--pos-color', pc2);
-    badgeEl.classList.add('show');
-  } else if(badgeEl){
-    badgeEl.classList.remove('show');
   }
   // Legacy inning line (hidden, kept for compat)
   const innEl=document.getElementById(pfx+'gc-inning');
