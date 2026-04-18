@@ -1736,16 +1736,15 @@ body::before {
 /* ── POSITION PILL — premium badge ── */
 /* ── POSITION BANNER — broadcast style ── */
 /* Force .gc-cat back to absolute — game-card-screen > * flattens it to relative */
-/* ── POSITION PILL — restore original design, fix z-index stacking ── */
 .gc-cat {
   position: absolute !important;
-  top: calc(env(safe-area-inset-top, 12px) + 34px) !important;
+  top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  height: auto !important;
+  height: calc(env(safe-area-inset-top, 12px) + 88px) !important;
   display: flex !important;
-  justify-content: center !important;
   align-items: center !important;
+  justify-content: center !important;
   pointer-events: none !important;
   z-index: 50 !important;
 }
@@ -1755,23 +1754,23 @@ body::before {
   left: auto !important;
   transform: none !important;
   pointer-events: auto !important;
-  /* Restore original visual — only the z-index was the problem */
   font-family: 'Barlow Condensed', sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 900 !important;
-  letter-spacing: 4px !important;
-  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px !important;
+  color: rgba(255,255,255,0.92) !important;
   text-transform: uppercase !important;
   white-space: nowrap !important;
-  padding: 7px 22px !important;
-  background: linear-gradient(135deg, rgba(4,10,22,0.96) 0%, rgba(8,18,38,0.92) 100%) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  border-radius: 6px !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 5px 16px 5px 13px !important;
+  background: rgba(6, 12, 24, 0.75) !important;
+  border: none !important;
+  border-left: 3px solid var(--pos-color, #c8102e) !important;
+  border-radius: 4px !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   text-shadow: none !important;
+  box-shadow: none !important;
   display: inline-block !important;
-  /* box-shadow and border-color set dynamically by JS */
 }
 
 /* Top bar tighter */
@@ -1791,16 +1790,16 @@ body::before {
 }
 .gc-sb-left { display: flex !important; flex-direction: column !important; gap: 5px !important; flex-shrink: 0 !important; }
 .gc-sb-pill {
-  background: rgba(255,255,255,0.04) !important;
-  border: 1px solid rgba(255,255,255,0.09) !important;
-  border-radius: 10px !important;
-  padding: 6px 14px !important;
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 7px !important;
+  padding: 5px 12px !important;
   text-align: center !important;
-  min-width: 58px !important;
+  min-width: 56px !important;
 }
-.gc-sb-val { font-family: Barlow Condensed, sans-serif !important; font-size: 18px !important; font-weight: 900 !important; color: #fff !important; line-height: 1 !important; white-space: nowrap !important; }
+.gc-sb-val { font-family: 'Barlow Condensed', sans-serif !important; font-size: 15px !important; font-weight: 900 !important; color: rgba(255,255,255,0.9) !important; line-height: 1 !important; white-space: nowrap !important; }
 .gc-sb-score { color: #e8c060 !important; }
-.gc-sb-lbl { font-size: 8px !important; color: rgba(255,255,255,0.35) !important; text-transform: uppercase !important; letter-spacing: 1.5px !important; margin-top: 2px !important; }
+.gc-sb-lbl { font-size: 7px !important; color: rgba(255,255,255,0.3) !important; text-transform: uppercase !important; letter-spacing: 1.5px !important; margin-top: 2px !important; }
 .gc-sb-center { flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; }
 .gc-sb-right { display: flex !important; flex-direction: column !important; gap: 7px !important; flex-shrink: 0 !important; }
 .gc-sb-bso { display: flex !important; align-items: center !important; gap: 5px !important; }
@@ -3340,10 +3339,9 @@ function renderQ(q,prefix=''){
     catEl.textContent = getCatLabel(q);
     var pc = getPosColor(q);
     catEl.style.setProperty('--pos-color', pc);
-    catEl.style.borderLeftColor = '';
+    catEl.style.borderLeftColor = pc;
     catEl.style.color = '';
-    catEl.style.boxShadow = '0 2px 20px ' + pc + '40, inset 0 -2px 0 ' + pc + 'cc';
-    catEl.style.borderColor = pc + '44';
+    catEl.style.boxShadow = '';
     catEl.style.textShadow = '';
     // Propagate position color to the whole game content so choices can reference it
     var contentEl = document.getElementById(pfx+'gc-content') || document.querySelector('.gc-content');
