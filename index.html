@@ -1879,17 +1879,14 @@ body::before {
 .badge-earned-overlay .badge-wrap.platinum { filter: drop-shadow(0 0 16px rgba(200,230,255,0.7)); }
 .badge-earned-overlay .beo-badge { margin-bottom: 24px; }
 
-/* ═══════════════════════════════════════════════════════
-   DEFINITIVE POSITION PILL FIX — end of file, wins all
-   ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   DEFINITIVE FIXES — injected last, beats all prior rules
+   ═══════════════════════════════════════════════════════════ */
 
-/* Wrapper: full width, spans safe-area + header height, z-index 50 */
+/* ── Position pill wrapper: top:0, z-index 50, flexbox centers pill ── */
 .gc-cat {
   position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: auto !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; bottom: auto !important;
   height: calc(env(safe-area-inset-top, 12px) + 52px) !important;
   padding-top: env(safe-area-inset-top, 12px) !important;
   display: flex !important;
@@ -1899,44 +1896,101 @@ body::before {
   z-index: 50 !important;
   background: none !important;
 }
-
-/* Pill: relative so the flexbox above actually centers it */
+/* Pill: relative so flexbox centers it, original visual design */
 #gc-cat, #daily-gc-cat {
   position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  transform: none !important;
+  top: auto !important; left: auto !important; right: auto !important; transform: none !important;
   pointer-events: auto !important;
   font-family: 'Barlow Condensed', sans-serif !important;
-  font-size: 17px !important;
-  font-weight: 900 !important;
-  letter-spacing: 4px !important;
-  color: #ffffff !important;
-  text-transform: uppercase !important;
-  white-space: nowrap !important;
+  font-size: 17px !important; font-weight: 900 !important;
+  letter-spacing: 4px !important; color: #ffffff !important;
+  text-transform: uppercase !important; white-space: nowrap !important;
   padding: 6px 20px !important;
   background: linear-gradient(135deg, rgba(4,10,22,0.97) 0%, rgba(8,18,38,0.94) 100%) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 6px !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  text-shadow: none !important;
-  display: inline-block !important;
+  backdrop-filter: blur(12px) !important; -webkit-backdrop-filter: blur(12px) !important;
+  text-shadow: none !important; display: inline-block !important;
 }
-
-/* Top bar: restore safe-area padding, match wrapper height */
+/* Top bar: safe area + match wrapper height */
 .gc-top {
   padding: env(safe-area-inset-top, 12px) 16px 0 !important;
   min-height: calc(env(safe-area-inset-top, 12px) + 52px) !important;
   align-items: center !important;
 }
-
-/* Content: start below the full header zone */
+/* Content: clear the full header zone */
 #gc-content, .gc-content {
   padding-top: calc(env(safe-area-inset-top, 12px) + 58px) !important;
   padding-bottom: 100px !important;
 }
+
+/* ── Scoreboard: equal-width columns so diamond is always centered ── */
+.gc-scoreboard {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 8px 14px 8px !important;
+  gap: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+  margin-bottom: 0 !important;
+}
+/* Left col: fixed width = same as right col → diamond truly centered */
+.gc-sb-left {
+  flex: 0 0 72px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+  align-items: flex-start !important;
+}
+/* Strip the boxes — make INN/SCORE feel like BSO indicators */
+.gc-sb-pill {
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  gap: 2px !important;
+}
+.gc-sb-val {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 16px !important; font-weight: 900 !important;
+  color: rgba(255,255,255,0.88) !important;
+  line-height: 1 !important; white-space: nowrap !important;
+}
+.gc-sb-score { color: #e8c060 !important; }
+.gc-sb-lbl {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 8px !important; font-weight: 700 !important;
+  color: rgba(255,255,255,0.3) !important;
+  text-transform: uppercase !important; letter-spacing: 1.5px !important;
+  margin-top: 0 !important;
+}
+/* Center: diamond always centered between equal columns */
+.gc-sb-center {
+  flex: 1 !important;
+  display: flex !important; justify-content: center !important; align-items: center !important;
+}
+/* Right col: fixed width = same as left col */
+.gc-sb-right {
+  flex: 0 0 72px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  align-items: flex-end !important;
+}
+.gc-sb-bso {
+  display: flex !important; align-items: center !important; gap: 5px !important;
+}
+.gc-sb-bso-lbl {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 11px !important; font-weight: 900 !important;
+  color: rgba(255,255,255,0.4) !important;
+  width: 10px !important; text-align: center !important;
+}
+.gc-sb-pips { display: flex !important; gap: 4px !important; align-items: center !important; }
 </style>
 </head>
 <body>
