@@ -1958,20 +1958,29 @@ body::before {
   align-items: center !important; flex: unset !important;
 }
 
-/* Right: B S O in ONE horizontal line */
+/* Right: B S O stacked vertically, labels and pips perfectly column-aligned */
 .gc-sb-right {
-  display: flex !important; flex-direction: row !important;
-  gap: 10px !important; align-items: center !important;
-  justify-content: flex-end !important; flex: unset !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  flex: unset !important;
 }
 .gc-sb-bso {
-  display: flex !important; flex-direction: row !important;
-  align-items: center !important; gap: 4px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 5px !important;
+  width: 100% !important;
 }
 .gc-sb-bso-lbl {
   font-family: 'Barlow Condensed', sans-serif !important;
   font-size: 11px !important; font-weight: 900 !important;
-  color: rgba(255,255,255,0.4) !important; width: 10px !important; text-align: center !important;
+  color: rgba(255,255,255,0.4) !important;
+  width: 10px !important;
+  flex-shrink: 0 !important;
+  text-align: left !important;
 }
 .gc-sb-pips { display: flex !important; gap: 3px !important; align-items: center !important; }
 
@@ -2410,8 +2419,8 @@ body::before {
     </div>
     </div>
     <div class="gc-inning" id="daily-gc-inning" style="display:none"></div>
+    <div class="gc-scenario-body" id="daily-gc-scenario-body"></div>
     <div class="gc-question" id="daily-gc-question"></div>
-    <div class="gc-choices" id="daily-choices"></div>
     <div class="gc-panel" id="daily-gc-panel">
     <div class="gc-handle"></div>
     <div class="gc-panel-inner">
@@ -2544,8 +2553,8 @@ body::before {
       </div>
     </div>
     </div>
+    <div class="gc-scenario-body" id="gc-scenario-body"></div>
     <div class="gc-question" id="gc-question"></div>
-    <div class="gc-choices" id="choices"></div>
     <div class="gc-panel" id="gc-panel">
     <div class="gc-handle"></div>
     <div class="gc-panel-inner">
