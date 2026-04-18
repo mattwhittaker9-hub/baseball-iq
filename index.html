@@ -1736,15 +1736,16 @@ body::before {
 /* ── POSITION PILL — premium badge ── */
 /* ── POSITION BANNER — broadcast style ── */
 /* Force .gc-cat back to absolute — game-card-screen > * flattens it to relative */
+/* ── POSITION PILL — restore original design, fix z-index stacking ── */
 .gc-cat {
   position: absolute !important;
-  top: 0 !important;
+  top: calc(env(safe-area-inset-top, 12px) + 34px) !important;
   left: 0 !important;
   right: 0 !important;
-  height: calc(env(safe-area-inset-top, 12px) + 88px) !important;
+  height: auto !important;
   display: flex !important;
-  align-items: center !important;
   justify-content: center !important;
+  align-items: center !important;
   pointer-events: none !important;
   z-index: 50 !important;
 }
@@ -1754,23 +1755,23 @@ body::before {
   left: auto !important;
   transform: none !important;
   pointer-events: auto !important;
+  /* Restore original visual — only the z-index was the problem */
   font-family: 'Barlow Condensed', sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  letter-spacing: 3px !important;
-  color: rgba(255,255,255,0.92) !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  letter-spacing: 4px !important;
+  color: #ffffff !important;
   text-transform: uppercase !important;
   white-space: nowrap !important;
-  padding: 5px 16px 5px 13px !important;
-  background: rgba(6, 12, 24, 0.75) !important;
-  border: none !important;
-  border-left: 3px solid var(--pos-color, #c8102e) !important;
-  border-radius: 4px !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
+  padding: 7px 22px !important;
+  background: linear-gradient(135deg, rgba(4,10,22,0.96) 0%, rgba(8,18,38,0.92) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 6px !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
   text-shadow: none !important;
-  box-shadow: none !important;
   display: inline-block !important;
+  /* box-shadow and border-color set dynamically by JS */
 }
 
 /* Top bar tighter */
@@ -3339,9 +3340,10 @@ function renderQ(q,prefix=''){
     catEl.textContent = getCatLabel(q);
     var pc = getPosColor(q);
     catEl.style.setProperty('--pos-color', pc);
-    catEl.style.borderLeftColor = pc;
+    catEl.style.borderLeftColor = '';
     catEl.style.color = '';
-    catEl.style.boxShadow = '';
+    catEl.style.boxShadow = '0 2px 20px ' + pc + '40, inset 0 -2px 0 ' + pc + 'cc';
+    catEl.style.borderColor = pc + '44';
     catEl.style.textShadow = '';
     // Propagate position color to the whole game content so choices can reference it
     var contentEl = document.getElementById(pfx+'gc-content') || document.querySelector('.gc-content');
