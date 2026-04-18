@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Baseball IQ — Daily Training</title>
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;%E2%9A%BE&lt;/text&gt;&lt;/svg&gt;">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="manifest" href="https://playbaseballiq.com/manifest.json">
 <meta name="theme-color" content="#c8102e">
 <meta name="mobile-web-app-capable" content="yes">
@@ -1738,6 +1738,15 @@ body::before {
 /* Force .gc-cat back to absolute — game-card-screen > * flattens it to relative */
 .gc-cat {
   position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: calc(env(safe-area-inset-top, 12px) + 88px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
   z-index: 50 !important;
 }
 #gc-cat, #daily-gc-cat {
@@ -1745,20 +1754,23 @@ body::before {
   top: auto !important;
   left: auto !important;
   transform: none !important;
-  background: linear-gradient(135deg, rgba(4,10,22,0.96) 0%, rgba(8,18,38,0.92) 100%) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  border-radius: 6px !important;
-  padding: 7px 22px !important;
-  font-family: 'Barlow Condensed', sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 900 !important;
-  color: #ffffff !important;
+  pointer-events: auto !important;
+  font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif !important;
+  font-size: 19px !important;
+  font-weight: 400 !important;
+  letter-spacing: 6px !important;
+  color: var(--pos-color, #c8102e) !important;
   text-transform: uppercase !important;
-  letter-spacing: 4px !important;
   white-space: nowrap !important;
-  backdrop-filter: blur(12px) !important;
-  /* box-shadow and border-color set dynamically via JS */
-  display: block !important;
+  padding: 7px 24px 5px !important;
+  background: rgba(4, 9, 20, 0.82) !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  text-shadow: 0 0 18px var(--pos-color, #c8102e), 0 0 40px var(--pos-color, #c8102e) !important;
+  /* border-color and box-shadow set dynamically via JS */
+  display: inline-block !important;
 }
 
 /* Top bar tighter */
@@ -3327,8 +3339,10 @@ function renderQ(q,prefix=''){
     catEl.textContent = getCatLabel(q);
     var pc = getPosColor(q);
     catEl.style.setProperty('--pos-color', pc);
-    catEl.style.boxShadow = '0 2px 24px ' + pc + '33, inset 0 -3px 0 ' + pc;
-    catEl.style.borderColor = pc + '55';
+    catEl.style.color = pc;
+    catEl.style.boxShadow = '0 0 20px ' + pc + '44, 0 0 8px ' + pc + '66, inset 0 0 0 1px ' + pc + '55';
+    catEl.style.borderColor = pc + '66';
+    catEl.style.textShadow = '0 0 16px ' + pc + ', 0 0 36px ' + pc + '88';
     // Propagate position color to the whole game content so choices can reference it
     var contentEl = document.getElementById(pfx+'gc-content') || document.querySelector('.gc-content');
     if(contentEl) contentEl.style.setProperty('--pos-color', pc);
