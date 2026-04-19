@@ -4674,6 +4674,9 @@ async function loadLeaderboard(){
       var rows=tdata.map(function(r){
         var rankClass=r.team_rank===1?'gold':r.team_rank===2?'silver':r.team_rank===3?'bronze':'';
         var isMe=currentUser&&r.player_id===currentUser.id;
+        if(isMe && currentUser.username){
+          localStorage.setItem('biq_team_rank_'+currentUser.username, String(r.team_rank));
+        }
         return '<div class="lb-row'+(isMe?' me':'')+'">'+'<div class="lb-rank '+rankClass+'">'+r.team_rank+'</div>'+'<div><div class="lb-username">'+r.username+'</div></div>'+'<div class="lb-val" style="color:#3a8aff">'+(r.iq_score||'—')+'</div>'+'<div class="lb-val hi">'+r.score_pct+'%</div>'+'<div class="lb-val">'+r.best_streak+'</div>'+'<div class="lb-val">'+r.total_sessions+'</div>'+'</div>';
       }).join('');
       el.innerHTML=header+rows;
@@ -6978,7 +6981,7 @@ function getPlayerBadgeStats() {
     speedAnswers: speedAnswers,
     walkoffWins: walkoffWins,
     consecutiveDays: consecutiveDays,
-    teamRank: 99,
+    teamRank: parseInt(localStorage.getItem('biq_team_rank_'+username)||'99'),
     comeback: comeback,
     iq: iq
   };
