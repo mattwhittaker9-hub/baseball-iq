@@ -137,6 +137,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .gc-spotlight.pro .gc-sp-type{color:#3ecf82}
 .gc-spotlight.fan .gc-sp-type{color:#f0a030}
 .gc-spotlight.history .gc-sp-type{color:#3a8aff}
+.gc-spotlight.culture .gc-sp-type{color:#e8c060}
 .gc-sp-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#3ecf82;margin-bottom:4px}
 .gc-sp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
 .gc-sp-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:0.5px;text-transform:uppercase}
@@ -5027,7 +5028,7 @@ function showStreakCelebration(n) {
 
 // ═══════════════════════════════════════════════════════════════════════════
 // BASEBALL IQ — SPOTLIGHT FACTS LIBRARY
-// type: 'pro' | 'fan' | 'history'
+// type: 'pro' | 'fan' | 'history' | 'culture'
 // positions: which positions this is relevant to ([] = all / celebrity)
 // tags: more specific matching ('relay','bunt','framing','speed', etc.)
 // always: true = eligible for any question (celebrities/crossover facts)
@@ -5055,9 +5056,33 @@ const SPOTLIGHT_FACTS = [
  detail:'One of the most durable aces in the NL — his consistency and ability to work deep in games sets the tone.',
  positions:['Pitcher'],tags:['pitching','durability','innings']},
 
+{type:'pro',subject:'PAUL SKENES',val:'1.90 ERA',label:'2024 Rookie',
+ detail:'Burst onto the scene as arguably the most dominant debut by any starter in years — electric stuff, impeccable command.',
+ positions:['Pitcher'],tags:['pitching','command','velocity']},
+
+{type:'pro',subject:'SANDY ALCANTARA',val:'228.2 IP',label:'2022 Cy Young',
+ detail:'Led the majors in innings pitched multiple years running — his durability and four-pitch mix define modern ace standards.',
+ positions:['Pitcher'],tags:['pitching','durability','innings']},
+
+{type:'pro',subject:'CLAYTON KERSHAW',val:'3× Cy Young',label:'Hall of Fame Bound',
+ detail:'The greatest left-handed pitcher of his generation. His curveball drop remains one of the nastiest pitches ever thrown.',
+ positions:['Pitcher'],tags:['pitching','spin','sequencing']},
+
+{type:'pro',subject:'RANDY JOHNSON',val:'4,875 K',label:'Hall of Fame',
+ detail:'The Big Unit. His 6\'10\" frame and left-arm slot created an angle hitters simply could not track — 303 career wins.',
+ positions:['Pitcher'],tags:['pitching','strikeouts','legendary'],type:'history'},
+
+{type:'pro',subject:'PEDRO MARTINEZ',val:'1.74 ERA',label:'2000 Season',
+ detail:'His 2000 season is arguably the greatest pitching season in the live-ball era. Dominant doesn\'t begin to cover it.',
+ positions:['Pitcher'],tags:['pitching','command','legendary'],type:'history'},
+
 {type:'pro',subject:'SANDY KOUFAX',val:'Career',label:'Hall of Fame',
  detail:'Three Cy Young Awards. His ability to establish the fastball early before going to the curve was textbook pitch sequencing.',
  positions:['Pitcher'],tags:['pitching','sequencing','legendary'],type:'history'},
+
+{type:'pro',subject:'GREG MADDUX',val:'18× Gold Glove',label:'Hall of Fame',
+ detail:'The Professor. He never threw hard but he painted corners and worked counts better than anyone who ever played the game.',
+ positions:['Pitcher'],tags:['pitching','command','iq'],type:'history'},
 
 // ── PRO SPOTLIGHT — CATCHING ─────────────────────────────────────────────
 {type:'pro',subject:'ADLEY RUTSCHMAN',val:'Elite',label:'Framing & Defense',
@@ -5071,6 +5096,10 @@ const SPOTLIGHT_FACTS = [
 {type:'pro',subject:'SALVADOR PEREZ',val:'5× Gold Glove',label:'Royals',
  detail:'One of the most durable catchers of his era — blocking, framing, and throwing have kept him behind the plate for 10+ years.',
  positions:['Catcher'],tags:['catcher','durability','blocking']},
+
+{type:'pro',subject:'IVÁN RODRÍGUEZ',val:'.296 Career BA',label:'Hall of Fame',
+ detail:'Pudge was the gold standard behind the plate for two decades — 13 Gold Gloves and a legendary throwing arm.',
+ positions:['Catcher'],tags:['catcher','arm_strength','legendary'],type:'history'},
 
 {type:'pro',subject:'JOHNNY BENCH',val:'10 Gold Gloves',label:'Hall of Fame',
  detail:'Revolutionized how catchers hold the ball — his one-handed blocking technique is still taught at every level of the game.',
@@ -5093,6 +5122,10 @@ const SPOTLIGHT_FACTS = [
  detail:'Set the MLB rookie home run record in his first season — his power makes pitchers work around him all game.',
  positions:['First Baseman'],tags:['first_base','power','hitting']},
 
+{type:'pro',subject:'ALBERT PUJOLS',val:'700 HR',label:'Hall of Fame Bound',
+ detail:'One of only five players ever to hit 700 home runs. His legendary plate discipline made him almost impossible to retire.',
+ positions:['First Baseman'],tags:['first_base','power','legendary'],type:'history'},
+
 // ── PRO SPOTLIGHT — SECOND BASE ───────────────────────────────────────────
 {type:'pro',subject:'JOSE ALTUVE',val:'3× Gold Glove',label:'2B',
  detail:'One of the most agile infielders of his era — his footwork on the double play pivot is a master class in efficiency.',
@@ -5101,6 +5134,14 @@ const SPOTLIGHT_FACTS = [
 {type:'pro',subject:'OZZIE ALBIES',val:'.280+',label:'Switch Hitter',
  detail:'Hits from both sides, plays exceptional range in the field — one of the most complete second basemen in the NL.',
  positions:['Second Baseman'],tags:['second_base','range','versatility']},
+
+{type:'pro',subject:'MARCUS SEMIEN',val:'6× All-Star',label:'2B / SS',
+ detail:'One of the most consistent infielders of his era — his footwork on the double play turn and arm accuracy are elite.',
+ positions:['Second Baseman','Shortstop'],tags:['second_base','double_play','range']},
+
+{type:'pro',subject:'ROBERTO ALOMAR',val:'10 Gold Gloves',label:'Hall of Fame',
+ detail:'The greatest second baseman of his era — elite double-play footwork, elite arm, and an elite bat. The complete package.',
+ positions:['Second Baseman'],tags:['second_base','double_play','legendary'],type:'history'},
 
 // ── PRO SPOTLIGHT — SHORTSTOP ─────────────────────────────────────────────
 {type:'pro',subject:'BOBBY WITT JR.',val:'Elite Arm',label:'SS, Royals',
@@ -5115,9 +5156,21 @@ const SPOTLIGHT_FACTS = [
  detail:'Moved from right field to shortstop in 2024 and adapted quickly — proof that IQ and athleticism transcend position.',
  positions:['Shortstop','Right Fielder'],tags:['shortstop','range','versatility']},
 
+{type:'pro',subject:'GUNNAR HENDERSON',val:'30 HR / 25 SB',label:'2024 Season',
+ detail:'One of the most complete young shortstops in baseball — power, speed, elite range, and a cannon for an arm.',
+ positions:['Shortstop'],tags:['shortstop','power','range']},
+
+{type:'pro',subject:'DEREK JETER',val:'5× Champion',label:'Hall of Fame',
+ detail:'The Captain. His instinct on the flip play in the 2001 ALDS is one of the greatest IQ plays in World Series history.',
+ positions:['Shortstop'],tags:['shortstop','iq','legendary'],type:'history'},
+
 {type:'pro',subject:'OZZIE SMITH',val:'13 Gold Gloves',label:'Hall of Fame',
  detail:'The Wizard. His range and arm at shortstop set a standard that still defines what elite looks like at the position.',
  positions:['Shortstop'],tags:['shortstop','fielding','legendary'],type:'history'},
+
+{type:'pro',subject:'CAL RIPKEN JR.',val:'2,632',label:'Consecutive Games',
+ detail:'The Iron Man. Ripken changed the standard for what a shortstop could look like physically — power, range, durability.',
+ positions:['Shortstop'],tags:['shortstop','durability','legendary'],type:'history'},
 
 // ── PRO SPOTLIGHT — THIRD BASE ────────────────────────────────────────────
 {type:'pro',subject:'NOLAN ARENADO',val:'10 Gold Gloves',label:'3B',
@@ -5128,9 +5181,17 @@ const SPOTLIGHT_FACTS = [
  detail:'A switch-hitter who hits for power AND average — his plate discipline makes him a nightmare to pitch around.',
  positions:['Third Baseman'],tags:['third_base','hitting','discipline']},
 
+{type:'pro',subject:'MANNY MACHADO',val:'4× Gold Glove',label:'3B / SS',
+ detail:'Elite range at both third and short — his arm strength and quick release make line drives into outs routinely.',
+ positions:['Third Baseman'],tags:['third_base','arm_strength','range']},
+
 {type:'pro',subject:'BROOKS ROBINSON',val:'16 Gold Gloves',label:'Hall of Fame',
  detail:'"The Human Vacuum Cleaner." His range and reflexes at third base in the 1970 World Series are still referenced by coaches today.',
  positions:['Third Baseman'],tags:['third_base','fielding','legendary'],type:'history'},
+
+{type:'pro',subject:'MIKE SCHMIDT',val:'10 Gold Gloves',label:'Hall of Fame',
+ detail:'Arguably the greatest third baseman ever — elite defense AND 548 career home runs. Hall of Fame first ballot.',
+ positions:['Third Baseman'],tags:['third_base','power','legendary'],type:'history'},
 
 // ── PRO SPOTLIGHT — OUTFIELD ─────────────────────────────────────────────
 {type:'pro',subject:'MIKE TROUT',val:'12× All-Star',label:'CF, Angels',
@@ -5144,6 +5205,10 @@ const SPOTLIGHT_FACTS = [
 {type:'pro',subject:'JULIO RODRIGUEZ',val:'37 SB',label:'2023',
  detail:'One of the most exciting young outfielders in the game — elite speed, arm, and a knack for the big moment.',
  positions:['Center Fielder'],tags:['center_field','speed','arm_strength']},
+
+{type:'pro',subject:'RONALD ACUÑA JR.',val:'41 HR / 73 SB',label:'2023 MVP',
+ detail:'The first player in MLB history to hit 40 homers and steal 70 bases in a single season. Generational athlete.',
+ positions:['Right Fielder','Center Fielder'],tags:['outfield','speed','power']},
 
 {type:'pro',subject:'JUAN SOTO',val:'.419 OBP',label:'2023',
  detail:'The best eye at the plate in the game right now — his ability to work deep counts forces pitchers out of their game plan.',
@@ -5161,9 +5226,17 @@ const SPOTLIGHT_FACTS = [
  detail:'The Kid\'s over-the-shoulder catches in center field set the visual standard for what elite outfield play looks like.',
  positions:['Center Fielder'],tags:['center_field','route','legendary'],type:'history'},
 
+{type:'pro',subject:'WILLIE MAYS',val:'660 HR',label:'Hall of Fame',
+ detail:'The Say Hey Kid. His over-the-shoulder catch in the 1954 World Series is still called the greatest play ever made.',
+ positions:['Center Fielder'],tags:['center_field','range','legendary'],type:'history'},
+
 {type:'pro',subject:'ROBERTO CLEMENTE',val:'12 Gold Gloves',label:'Hall of Fame',
  detail:'His arm from right field was so feared that runners stopped trying to score on him. 266 outfield assists in his career.',
  positions:['Right Fielder'],tags:['right_field','arm_strength','legendary'],type:'history'},
+
+{type:'pro',subject:'BARRY BONDS',val:'73 HR',label:'2001 — All-Time Record',
+ detail:'The most feared hitter in modern baseball history. His 2001 season remains the single greatest offensive season on record.',
+ positions:['Left Fielder'],tags:['left_field','power','legendary'],type:'history'},
 
 // ── PRO SPOTLIGHT — BASERUNNING ───────────────────────────────────────────
 {type:'pro',subject:'ELLY DE LA CRUZ',val:'31.4 ft/s',label:'Sprint Speed 2024',
@@ -5178,6 +5251,10 @@ const SPOTLIGHT_FACTS = [
  detail:'Led the NL in stolen bases en route to Rookie of the Year — his reads and instincts on the basepaths are elite.',
  positions:['Baserunner'],tags:['baserunning','speed','stolen_bases']},
 
+{type:'pro',subject:'BOBBY WITT JR.',val:'31 SB',label:'2024 Season',
+ detail:'Speed, instincts, and aggressive reads — one of the most complete young players in baseball on and off the bases.',
+ positions:['Baserunner','Shortstop'],tags:['baserunning','speed','reads']},
+
 {type:'pro',subject:'RICKEY HENDERSON',val:'1,406 SB',label:'All-Time Record',
  detail:'The greatest baserunner in MLB history. His lead reads, jumps, and slide techniques are still studied at every level.',
  positions:['Baserunner'],tags:['baserunning','stolen_bases','legendary'],type:'history'},
@@ -5185,6 +5262,10 @@ const SPOTLIGHT_FACTS = [
 {type:'pro',subject:'LOU BROCK',val:'938 SB',label:'Hall of Fame',
  detail:'Held the all-time stolen base record for decades. His philosophy: the threat of stealing a base changes every pitch.',
  positions:['Baserunner'],tags:['baserunning','stolen_bases','legendary'],type:'history'},
+
+{type:'pro',subject:'TIM RAINES',val:'808 SB',label:'Hall of Fame',
+ detail:'Rock stole bases at a 85% success rate across his career — arguably the most efficient basestealer in history.',
+ positions:['Baserunner'],tags:['baserunning','stolen_bases'],type:'history'},
 
 // ── PRO SPOTLIGHT — HITTING ───────────────────────────────────────────────
 {type:'pro',subject:'SHOHEI OHTANI',val:'54 HR',label:'2024 Season',
@@ -5199,6 +5280,10 @@ const SPOTLIGHT_FACTS = [
  detail:'His plate approach is elite — he regularly works counts deep, sees more pitches per at-bat than almost anyone in the game.',
  positions:['Hitter'],tags:['hitting','discipline','pitch_selection']},
 
+{type:'pro',subject:'BRYCE HARPER',val:'.985 OPS',label:'2021 NL MVP',
+ detail:'One of the most feared switch-of-game hitters in baseball — his bat speed and ability to drive inside pitches are elite.',
+ positions:['Hitter'],tags:['hitting','power','clutch']},
+
 {type:'pro',subject:'TED WILLIAMS',val:'.406 BA',label:'1941 — Last .400 Season',
  detail:'The last player to hit .400. He was so disciplined that pitchers rarely threw him strikes — he made them come to him.',
  positions:['Hitter'],tags:['hitting','discipline','legendary'],type:'history'},
@@ -5212,113 +5297,182 @@ const SPOTLIGHT_FACTS = [
  positions:['Hitter'],tags:['hitting','contact','preparation'],type:'history'},
 
 {type:'pro',subject:'PETE ROSE',val:'4,256 Hits',label:'All-Time Record',
- detail:'Charlie Hustle. His relentless approach to every at-bat — no matter the score or situation — is what the Baseball IQ is all about.',
+ detail:'Charlie Hustle. His relentless approach to every at-bat — no matter the score or situation — is what Baseball IQ is all about.',
  positions:['Hitter'],tags:['hitting','contact','hustle'],type:'history'},
+
+{type:'pro',subject:'HANK AARON',val:'755 HR',label:'Hall of Fame',
+ detail:'The Hammer. Hit home runs with the most consistent swing ever recorded — quiet mechanics, devastating power.',
+ positions:['Hitter'],tags:['hitting','power','legendary'],type:'history'},
 
 // ── HISTORY SPOTLIGHT ─────────────────────────────────────────────────────
 {type:'history',subject:'JACKIE ROBINSON',val:'No. 42',label:'Retired Across MLB',
  detail:'The most courageous player in baseball history. His athleticism, speed, and baseball IQ paved the way for the modern game.',
  positions:[],tags:[],always:true},
 
-{type:'history',subject:'WILLIE MAYS',val:'The Catch',label:'1954 World Series',
- detail:'His over-the-shoulder catch in the 1954 World Series is still called the greatest defensive play in baseball history.',
- positions:['Center Fielder'],tags:['center_field','route','legendary'],always:true},
+{type:'history',subject:'1919 BLACK SOX',val:'8 Players',label:'World Series Fix',
+ detail:'"Say it ain\'t so, Joe." Eight players threw the World Series on purpose — the biggest scandal in baseball history.',
+ positions:[],tags:[],always:true},
+
+{type:'history',subject:'2004 RED SOX',val:'86 Years',label:'The Comeback',
+ detail:'Down 3-0 to the Yankees in the ALCS, the Red Sox won four straight to break the Curse of the Bambino. Greatest comeback ever.',
+ positions:[],tags:[],always:true},
+
+{type:'history',subject:'1927 YANKEES',val:'110 Wins',label:'Murderers Row',
+ detail:'Ruth hit 60 HRs. Gehrig hit 47. The most feared lineup in baseball history won the World Series in a sweep.',
+ positions:[],tags:[],always:true},
+
+{type:'history',subject:'DEREK JETER',val:'The Flip',label:'2001 ALCS Game 3',
+ detail:'Sprinted 100 feet to relay a dying throw home and tag Jeremy Giambi — one of the most IQ-driven plays in playoff history.',
+ positions:['Shortstop'],tags:['shortstop','iq'],always:true},
 
 {type:'history',subject:'CAL RIPKEN JR.',val:'2,632 Games',label:'Consecutive Record',
  detail:'Played 2,632 consecutive games without missing a day. His durability and preparation set the standard for professionalism.',
  positions:[],tags:['durability'],always:true},
-
-{type:'history',subject:'LO DUCA',val:'IQ Over Tools',label:'Career Catcher',
- detail:'Paul Lo Duca was never the most physically gifted catcher — but his game-calling IQ made him one of the most effective.',
- positions:['Catcher'],tags:['catcher','game_calling','iq']},
 
 // ── FAN SPOTLIGHT — POP CULTURE ───────────────────────────────────────────
 {type:'fan',subject:'BILL MURRAY',val:'',label:'Actor · Cubs Fan',
  detail:'The legend himself has cheered for the Cubs through the dark years and the dynasty. He even suited up as a vendor at Wrigley.',
  positions:[],tags:[],always:true},
 
-{type:'fan',subject:'BILLY CRYSTAL',val:'',label:'Actor · Yankees Fan',
- detail:'The comedy icon and lifelong Yankees fan actually pitched in spring training at 60 years old. Baseball is for everyone.',
+{type:'fan',subject:'TOM HANKS',val:'',label:'Actor · A League of Their Own (1992)',
+ detail:'"There\'s no crying in baseball!" Jimmy Dugan\'s line became one of the most quoted in sports movie history.',
  positions:[],tags:[],always:true},
 
 {type:'fan',subject:'KEVIN COSTNER',val:'',label:'Actor · Baseball Film Icon',
- detail:'"If you build it, he will come." Costner played a catcher, a pitcher, and a farmer — all in service of baseball.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'TOM HANKS',val:'',label:'Actor · Baseball Film Icon',
- detail:'"There\'s no crying in baseball!" Hanks made the AAGPBL famous — and reminded us the game belongs to everyone.',
+ detail:'"If you build it, he will come." Costner played a catcher in Bull Durham, a pitcher in For Love of the Game, and a farmer in Field of Dreams.',
  positions:[],tags:[],always:true},
 
 {type:'fan',subject:'CHARLIE SHEEN',val:'',label:'Actor · Major League (1989)',
- detail:'Actually trained as a pitcher for the film. His fastball reportedly hit 85 mph — not bad for Hollywood.',
+ detail:'Actually trained as a pitcher for the film. His fastball reportedly hit 85 mph on set. "Wild Thing" became an anthem.',
  positions:['Pitcher'],tags:['pitching'],always:true},
 
-{type:'fan',subject:'EDDIE VEDDER',val:'',label:'Pearl Jam · Cubs Fan',
- detail:'The Pearl Jam frontman recorded "All The Way" for the Cubs after their 2016 World Series win. The wait was worth it.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'GARTH BROOKS',val:'',label:'Country Music Icon',
- detail:'Garth Brooks actually played spring training with multiple MLB teams in the 1990s — and held his own at the plate.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'BEN AFFLECK',val:'',label:'Actor · Red Sox Fan',
- detail:'Ben grew up a die-hard Red Sox fan and was at Fenway celebrating the 2004 World Series. Boston through and through.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'JIMMY FALLON',val:'',label:'Tonight Show · Yankees Fan',
- detail:'Jimmy\'s love for the Yankees goes back to his SNL "crying Yankees fan" days. Still watching. Still hurting.',
+{type:'fan',subject:'WILL FERRELL',val:'',label:'Actor · Comedian',
+ detail:'Will Ferrell played 9 positions for 5 MLB teams in one spring training day for charity in 2015. True Baseball IQ.',
  positions:[],tags:[],always:true},
 
 {type:'fan',subject:'ADAM SANDLER',val:'',label:'Actor · Red Sox Fan',
- detail:'The comedy legend is a lifelong Sox fan who grew up idolizing Yaz. Happy Gilmore probably batted right-handed.',
+ detail:'The comedy legend is a lifelong Sox fan who grew up idolizing Carl Yastrzemski. Happy Gilmore definitely batted right-handed.',
  positions:[],tags:[],always:true},
 
 {type:'fan',subject:'JERRY SEINFELD',val:'',label:'Comedian · Mets Fan',
  detail:'"The Mets are amazin\'." Jerry\'s been watching the Mets since Shea Stadium — the team provides material either way.',
  positions:[],tags:[],always:true},
 
-{type:'fan',subject:'JOHN CUSACK',val:'',label:'Actor · Cubs Fan',
- detail:'The Chicago actor is a fixture at Wrigley. He was there for the drought and there for the 2016 celebration.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'BAD BUNNY',val:'',label:'Artist · Puerto Rico',
- detail:'Bad Bunny grew up immersed in Puerto Rican baseball culture — one of the richest baseball traditions on the planet.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'LEBRON JAMES',val:'',label:'NBA Star · Red Sox Part-Owner',
- detail:'LeBron owns a stake in the Boston Red Sox and Liverpool FC. He knows a championship organization when he sees one.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'GEORGE W. BUSH',val:'',label:'43rd President · Rangers Owner',
- detail:'Before the presidency, he co-owned the Texas Rangers. He still throws out first pitches with the best of them.',
+{type:'fan',subject:'SNOOP DOGG',val:'',label:'Artist · Dodgers Fan',
+ detail:'Snoop coaches his son\'s youth football teams AND shows up at Dodger Stadium. He understands the importance of good fundamentals.',
  positions:[],tags:[],always:true},
 
 {type:'fan',subject:'LADY GAGA',val:'',label:'Artist · Yankees Fan',
  detail:'Mother Monster grew up in NYC and has been spotted at Yankees games. Even pop stars know: you root for New York.',
  positions:[],tags:[],always:true},
 
-{type:'fan',subject:'KENNY CHESNEY',val:'',label:'Country Music Star',
- detail:'"Boys of Fall." Kenny\'s iconic anthem about high school football crossed over perfectly to baseball — the smell of the diamond is universal.',
- positions:[],tags:[],always:true},
-
-{type:'fan',subject:'JACK NICHOLSON',val:'',label:'Actor · Dodgers Fan',
- detail:'One of the most famous faces at Dodger Stadium. Jack has been courtside at Lakers games and front row at Dodger Stadium for decades.',
+{type:'fan',subject:'LEBRON JAMES',val:'',label:'NBA Star · Red Sox Part-Owner',
+ detail:'LeBron owns a stake in the Boston Red Sox and Liverpool FC. He knows a championship organization when he sees one.',
  positions:[],tags:[],always:true},
 
 {type:'fan',subject:'BILLY JOEL',val:'',label:'Piano Man · Mets Fan',
  detail:'"Piano Man" grew up on Long Island rooting for the Mets. He\'s played Shea Stadium — as a musician and as a fan.',
  positions:[],tags:[],always:true},
 
-{type:'fan',subject:'SNOOP DOGG',val:'',label:'Artist · Dodgers Fan',
- detail:'Snoop coaches his son\'s youth football teams AND shows up at Dodger Stadium. He understands the importance of good fundamentals.',
+{type:'fan',subject:'GEORGE W. BUSH',val:'',label:'43rd President · Rangers Owner',
+ detail:'Before the presidency, he co-owned the Texas Rangers. He still throws out first pitches with the best of them.',
  positions:[],tags:[],always:true},
 
-{type:'fan',subject:'WILL FERRELL',val:'',label:'Actor · Comedian',
- detail:'Will Ferrell played 9 positions for 5 different MLB teams in one spring training day for charity. True baseball IQ.',
+// ── CULTURE SPOTLIGHT — MOVIES & TV ──────────────────────────────────────
+{type:'culture',subject:'THE SANDLOT',val:'1993',label:'"You\'re killing me, Smalls."',
+ detail:'Benny "The Jet" Rodriguez steals home off Gus Bus — and goes on to play for the Dodgers. The PF Flyer scene remains one of the greatest clutch moments in baseball cinema.',
  positions:[],tags:[],always:true},
 
-{type:'fan',subject:'TIM MCGRAW',val:'',label:'Country Music Star',
- detail:'"Live Like You Were Dying" — Tim McGraw grew up playing baseball and has talked about the game shaping his perspective on life.',
+{type:'culture',subject:'THE SANDLOT',val:'1993',label:'"For-EV-er."',
+ detail:'Ham\'s line in the s\'mores scene became one of the most quoted phrases in baseball culture. Squints Palledorous\'s move at the pool is a lesson in aggressive baserunning.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'THE SANDLOT',val:'1993',label:'The Beast',
+ detail:'The English Mastiff who guarded the home run ball. In real baseball, every outfielder has their version of the Beast — the warning track, the wall, the sun.',
+ positions:['Left Fielder','Center Fielder','Right Fielder'],tags:[],always:true},
+
+{type:'culture',subject:'A LEAGUE OF THEIR OWN',val:'1992',label:'"There\'s no crying in baseball!"',
+ detail:'The AAGPBL was real — it ran from 1943 to 1954 and produced genuinely elite athletes. The Rockford Peaches played to crowds of thousands.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'A LEAGUE OF THEIR OWN',val:'1992',label:'Dottie Hinson',
+ detail:'"It\'s supposed to be hard. If it wasn\'t hard, everyone would do it. The hard is what makes it great." Jimmy Dugan to Dottie. True in every dugout.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'ROOKIE OF THE YEAR',val:'1993',label:'Henry Rowengartner',
+ detail:'Henry breaks his arm, it heals funny, and suddenly he\'s throwing 100 mph for the Cubs. Every pitcher\'s dream origin story. "Funky butt-lovin\'!"',
+ positions:['Pitcher'],tags:['pitching'],always:true},
+
+{type:'culture',subject:'ROOKIE OF THE YEAR',val:'1993',label:'The Cubs\' Big Moment',
+ detail:'Rowengartner\'s changeup to end the pennant race remains the most clutch slow-pitch moment in baseball movie history. Outsmarting hitters with off-speed — still works.',
+ positions:['Pitcher'],tags:['pitching'],always:true},
+
+{type:'culture',subject:'THE SIMPSONS',val:'S3E17 · 1992',label:'"Homer at the Bat"',
+ detail:'Mr. Burns hires nine MLB ringers to win the championship: Roger Clemens, Wade Boggs, Don Mattingly, Darryl Strawberry, Jose Canseco, Ken Griffey Jr., Steve Sax, Ozzie Smith, and Mike Scioscia.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'THE SIMPSONS',val:'S3E17 · 1992',label:'Don Mattingly\'s Sideburns',
+ detail:'"I want sideburns off, Mattingly!" Burns fires Mattingly over sideburns that don\'t exist. A masterpiece of authority and misunderstanding. Still funnier than a 3-0 count pickoff.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'THE SIMPSONS',val:'S3E17 · 1992',label:'Ozzie Smith\'s Vortex',
+ detail:'Ozzie Smith falls into a dimensional vortex at the Springfield Mystery Spot. "Oh, I don\'t think anyone\'s going to be hurt." The Wizard disappeared — and kept fielding.',
+ positions:['Shortstop'],tags:['shortstop'],always:true},
+
+{type:'culture',subject:'THE SIMPSONS',val:'S3E17 · 1992',label:'Wade Boggs',
+ detail:'Wade Boggs gets punched out at Moe\'s Tavern arguing that Pitt the Elder was a better Prime Minister than Lord Palmerston. Boggs considered it the greatest honor of his career.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'THE SIMPSONS',val:'S3E17 · 1992',label:'Homer Wins It',
+ detail:'Homer scores the winning run by getting hit by a pitch while sleepwalking. Getting hit is still a walk — and a walk is as good as a hit. Baseball IQ.',
+ positions:['Baserunner','Hitter'],tags:['baserunning'],always:true},
+
+{type:'culture',subject:'MAJOR LEAGUE',val:'1989',label:'"Wild Thing"',
+ detail:'Ricky Vaughn\'s entrance music became a real MLB tradition after the film. Bob Uecker as Harry Doyle: "Juuust a bit outside." The Indians\' comeback arc mirrors every great bullpen story.',
+ positions:['Pitcher'],tags:['pitching'],always:true},
+
+{type:'culture',subject:'MAJOR LEAGUE',val:'1989',label:'Harry Doyle',
+ detail:'"In case you haven\'t noticed, and judging by the attendance you haven\'t, the Indians have won eight in a row!" Bob Uecker was the funniest voice in baseball — on screen and off.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'FIELD OF DREAMS',val:'1989',label:'"If you build it..."',
+ detail:'"Is this heaven?" "No, it\'s Iowa." Shoeless Joe Jackson and the 1919 Black Sox reunite in a cornfield. A reminder that the game outlives all of us.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'BULL DURHAM',val:'1988',label:'"I believe in the church of baseball."',
+ detail:'Annie Savoy\'s opening monologue established Bull Durham as the most intellectually honest baseball movie ever made. Crash Davis on pitching: "It\'s a simple game — you throw the ball, you catch the ball, you hit the ball."',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'BULL DURHAM',val:'1988',label:'Crash Davis',
+ detail:'Crash Davis on the minor leagues: "This is a very simple game. You throw the ball. You hit the ball. You catch the ball." Baseball IQ distilled to its purest form.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'THE NATURAL',val:'1984',label:'Roy Hobbs',
+ detail:'"Pick me out a winner, Bobby." Roy Hobbs\' final home run lights up the stadium in one of the most iconic moments in baseball cinema. Wonderboy lives.',
+ positions:['Hitter'],tags:['hitting'],always:true},
+
+{type:'culture',subject:'MONEYBALL',val:'2011',label:'Billy Beane',
+ detail:'"It\'s a process. It\'s a process. It\'s a process." The Oakland A\'s 2002 season changed how baseball evaluates players. OBP was always the answer.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'MONEYBALL',val:'2011',label:'The 20-Game Win Streak',
+ detail:'The A\'s won 20 straight games in 2002 — still the AL record. Each win was built on process over tools. The right read, made consistently.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'BAD NEWS BEARS',val:'1976',label:'Coach Morris Buttermaker',
+ detail:'Walter Matthau coaching the worst team in Little League to near-greatness. The original "scrappy underdog with fundamentals" baseball story.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'ANGELS IN THE OUTFIELD',val:'1994',label:'"It could happen."',
+ detail:'Roger Bomman and the California Angels. A reminder that believing in your team is a fundamental part of the game — even when the roster needs divine intervention.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'EIGHT MEN OUT',val:'1988',label:'"Say it ain\'t so, Joe."',
+ detail:'The 1919 Black Sox threw the World Series. Eight players banned for life. The scandal led directly to the creation of the Commissioner of Baseball.',
+ positions:[],tags:[],always:true},
+
+{type:'culture',subject:'SEINFELD',val:'"The Boyfriend" · 1992',label:'Keith Hernandez',
+ detail:'"I\'m Keith Hernandez." The episode parodied JFK\'s "magic bullet" theory with a two-spitter in the dugout. One of the greatest guest appearances in sitcom history.',
  positions:[],tags:[],always:true},
 
 ];
@@ -5338,30 +5492,35 @@ function getSpotlightFact(q) {
   if(cat.includes('frame')) tags.push('framing');
   if(cat.includes('arm')) tags.push('arm_strength');
 
-  // Separate pro/history facts (have positions) from fan/celebrity facts (always:true)
-  var proFacts = SPOTLIGHT_FACTS.filter(function(f) { return f.positions.length > 0; });
-  var fanFacts = SPOTLIGHT_FACTS.filter(function(f) { return f.always; });
+  var proFacts     = SPOTLIGHT_FACTS.filter(function(f){ return (f.type==='pro'||f.type==='history') && f.positions.length > 0; });
+  var histFacts    = SPOTLIGHT_FACTS.filter(function(f){ return f.type==='history' && f.always; });
+  var fanFacts     = SPOTLIGHT_FACTS.filter(function(f){ return f.type==='fan' && f.always; });
+  var cultureFacts = SPOTLIGHT_FACTS.filter(function(f){ return f.type==='culture' && f.always; });
 
-  // Among pros: position+tag match, then position-only
-  var posTagMatch = proFacts.filter(function(f) {
+  // Position-matched pro facts
+  var posTagMatch = proFacts.filter(function(f){
     return f.positions.includes(pos) &&
-           (tags.length === 0 || tags.some(function(t){ return f.tags.includes(t); }));
+           (tags.length===0 || tags.some(function(t){ return f.tags.includes(t); }));
   });
-  var posMatch = proFacts.filter(function(f) { return f.positions.includes(pos); });
+  var posMatch = proFacts.filter(function(f){ return f.positions.includes(pos); });
 
-  // 75% pro fact, 25% celebrity — celebrities are a fun surprise not the default
+  // Roll: 60% pro (position-matched) | 15% history | 10% fan/celeb | 15% culture
+  var roll = Math.random();
   var pool;
-  if(Math.random() < 0.25) {
+  if(roll < 0.60) {
+    if(posTagMatch.length >= 1) pool = posTagMatch;
+    else if(posMatch.length >= 1) pool = posMatch;
+    else pool = proFacts; // any pro fact as fallback
+  } else if(roll < 0.75) {
+    pool = histFacts.length ? histFacts : cultureFacts;
+  } else if(roll < 0.85) {
     pool = fanFacts;
-  } else if(posTagMatch.length >= 1) {
-    pool = posTagMatch;
-  } else if(posMatch.length >= 1) {
-    pool = posMatch;
   } else {
-    pool = fanFacts; // fallback if no pro facts for this position
+    pool = cultureFacts;
   }
+  if(!pool || !pool.length) pool = proFacts.length ? proFacts : SPOTLIGHT_FACTS;
 
-  // Avoid repeating the same subject back-to-back
+  // Avoid back-to-back same subject
   if(pool.length > 1 && window._lastSpotlightSubject) {
     var filtered = pool.filter(function(f){ return f.subject !== window._lastSpotlightSubject; });
     if(filtered.length) pool = filtered;
@@ -5377,15 +5536,14 @@ function renderSpotlight(fact, prefix) {
   var el = document.getElementById(prefix + 'gc-spotlight');
   if(!el || !fact) return;
   el.className = 'gc-spotlight ' + (fact.type || 'pro');
-  var typeLabels = {pro:'⚡ Pro Spotlight', fan:'⚾ Fan Spotlight', history:'📖 History Spotlight'};
+  var typeLabels = {pro:'⚡ Pro Spotlight', fan:'⚾ Fan Spotlight', history:'📖 History Spotlight', culture:'🎬 Culture Spotlight'};
   var typeEl   = document.getElementById(prefix + 'gc-sp-type');
   var nameEl   = document.getElementById(prefix + 'gc-sp-name');
   var valEl    = document.getElementById(prefix + 'gc-sp-val');
   var detailEl = document.getElementById(prefix + 'gc-sp-detail');
   if(typeEl) typeEl.textContent = typeLabels[fact.type] || '⚡ Pro Spotlight';
   if(nameEl) nameEl.textContent = fact.subject;
-  // Fan facts: show their role (label) instead of a stat value — no confusion about who they are
-  if(valEl) valEl.textContent = (fact.type === 'fan') ? (fact.label || '') : (fact.val || '');
+  if(valEl) valEl.textContent = (fact.type === 'fan' || fact.type === 'culture') ? (fact.label || '') : (fact.val || '');
   if(detailEl) detailEl.textContent = fact.detail;
   el.classList.add('show');
 }
