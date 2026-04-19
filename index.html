@@ -249,30 +249,66 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .wait-pulse{animation:pulseWait 1.5s ease-in-out infinite}
 
 /* ─── ONBOARDING ─── */
+/* ── ONBOARDING v2 ── */
 #s-onboard{position:fixed;inset:0;background:#06111f;z-index:900;display:none;flex-direction:column;overflow:hidden}
 #s-onboard.active{display:flex}
-.ob-slides{display:flex;width:300%;height:100%;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
-.ob-slide{width:33.333%;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px;text-align:center}
-.ob-icon{font-size:72px;margin-bottom:20px;line-height:1}
-.ob-title{font-family:Barlow Condensed,sans-serif;font-size:34px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;line-height:1.1;margin-bottom:12px}
-.ob-title span{color:#c8102e}
-.ob-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.65;max-width:300px;margin-bottom:32px;font-family:system-ui,sans-serif}
-.ob-body strong{color:#fff;font-weight:600}
-.ob-dots{display:flex;gap:8px;margin-bottom:28px}
-.ob-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.3s}
-.ob-dot.active{background:#c8102e;width:24px;border-radius:4px}
-.ob-btn-placeholder{display:none}
-.ob-skip{background:none;border:none;color:rgba(255,255,255,0.3);font-size:14px;cursor:pointer;padding:8px;font-family:system-ui,sans-serif}
-.ob-cards-preview{display:flex;gap:8px;margin-bottom:24px;width:100%;max-width:320px}
-.ob-card-mini{flex:1;background:#0c1e30;border:1px solid #1a3050;border-radius:10px;padding:10px 8px;text-align:center}
-.ob-card-val{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;color:#fff}
-.ob-card-lbl{font-size:9px;color:#4a6a88;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
-.ob-feature-list{text-align:left;width:100%;max-width:300px;margin-bottom:28px}
-.ob-feature{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
-.ob-feature-icon{font-size:22px;flex-shrink:0;margin-top:1px}
-.ob-feature-text{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.5;font-family:system-ui,sans-serif}
-.ob-feature-text strong{color:#fff;font-size:14px;display:block;margin-bottom:2px}
-.ob-badge{display:inline-block;background:rgba(200,16,46,0.2);border:1px solid rgba(200,16,46,0.4);border-radius:20px;padding:4px 12px;font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:700;color:#f08090;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.ob2-progress{height:3px;background:rgba(255,255,255,0.08);flex-shrink:0;position:relative;z-index:2}
+.ob2-bar{height:100%;background:#c8102e;transition:width 0.4s cubic-bezier(0.4,0,0.2,1);border-radius:0 2px 2px 0}
+.ob2-step{display:none;flex-direction:column;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ob2-step.active{display:flex}
+.ob2-header{padding:20px 20px 0;flex-shrink:0}
+.ob2-back{background:none;border:none;color:rgba(255,255,255,0.35);font-size:14px;cursor:pointer;padding:0 0 12px 0;font-family:system-ui,sans-serif;display:flex;align-items:center;gap:6px;letter-spacing:0.3px}
+.ob2-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:#c8102e;text-transform:uppercase;margin-bottom:6px}
+.ob2-title{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;line-height:1.1;margin-bottom:4px}
+.ob2-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.5;font-family:system-ui,sans-serif;margin-bottom:0}
+.ob2-body{padding:16px 20px;flex:1}
+.ob2-footer{padding:16px 20px 32px;flex-shrink:0}
+.ob2-role-tiles{display:flex;flex-direction:column;gap:12px}
+.ob2-role-tile{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 20px;cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent}
+.ob2-role-tile:active{transform:scale(0.98)}
+.ob2-role-tile.selected,.ob2-role-tile:hover{border-color:#c8102e;background:rgba(200,16,46,0.08)}
+.ob2-role-icon{font-size:36px;flex-shrink:0;width:44px;text-align:center}
+.ob2-role-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;line-height:1}
+.ob2-role-desc{font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;font-family:system-ui,sans-serif}
+.ob2-role-arrow{margin-left:auto;color:rgba(255,255,255,0.25);font-size:18px;flex-shrink:0}
+.ob2-pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ob2-pos-tile{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent;min-height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ob2-pos-tile:active{transform:scale(0.96)}
+.ob2-pos-tile.selected{border-color:#c8102e;background:rgba(200,16,46,0.1);box-shadow:0 0 0 1px rgba(200,16,46,0.3)}
+.ob2-pos-abbr{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;line-height:1;letter-spacing:0.5px}
+.ob2-pos-tile.selected .ob2-pos-abbr{color:#ff6070}
+.ob2-pos-name{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-top:3px;font-family:system-ui,sans-serif}
+.ob2-pos-tile.selected .ob2-pos-name{color:rgba(255,150,160,0.8)}
+.ob2-levels-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.ob2-level-tile{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent;position:relative}
+.ob2-level-tile:active{transform:scale(0.97)}
+.ob2-level-tile.selected{border-color:#3ecf82;background:rgba(62,207,130,0.08)}
+.ob2-level-tile.selected::after{content:'✓';position:absolute;top:8px;right:10px;font-size:11px;color:#3ecf82;font-weight:700}
+.ob2-level-age{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;line-height:1}
+.ob2-level-tile.selected .ob2-level-age{color:#3ecf82}
+.ob2-level-name{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-top:3px;font-family:system-ui,sans-serif}
+.ob2-also-plays{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent;margin-bottom:4px}
+.ob2-also-plays-label{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px}
+.ob2-toggle{width:44px;height:26px;background:rgba(255,255,255,0.12);border-radius:13px;position:relative;transition:background 0.2s;flex-shrink:0}
+.ob2-toggle::after{content:'';position:absolute;width:20px;height:20px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.4)}
+.ob2-toggle.on{background:#c8102e}
+.ob2-toggle.on::after{transform:translateX(18px)}
+.ob2-team-option{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 18px 16px;margin-bottom:12px}
+.ob2-team-option-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.ob2-team-input{width:100%;box-sizing:border-box;background:#040e1a;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:11px 14px;color:#e0e8f0;font-size:15px;font-family:system-ui,sans-serif;outline:none;transition:border-color 0.15s}
+.ob2-team-input:focus{border-color:rgba(200,16,46,0.5)}
+.ob2-team-input::placeholder{color:rgba(255,255,255,0.2)}
+.ob2-btn{width:100%;background:#c8102e;border:none;border-radius:12px;padding:15px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;margin-bottom:8px}
+.ob2-btn:active{transform:scale(0.98);background:#a00d24}
+.ob2-btn:disabled{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);cursor:not-allowed}
+.ob2-btn.green{background:#1a7a3a}
+.ob2-btn.green:active{background:#156030}
+.ob2-skip-link{display:block;text-align:center;background:none;border:none;color:rgba(255,255,255,0.3);font-size:13px;cursor:pointer;padding:8px;font-family:system-ui,sans-serif;width:100%}
+.ob2-team-code-reveal{text-align:center;padding:16px;background:rgba(232,192,96,0.08);border:1px solid rgba(232,192,96,0.2);border-radius:12px;margin-top:8px}
+.ob2-team-code-val{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:900;color:#e8c060;letter-spacing:8px}
+.ob2-team-code-lbl{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;margin-top:4px;font-family:system-ui,sans-serif}
+.ob2-msg{font-size:12px;padding:6px 0;min-height:18px;font-family:system-ui,sans-serif;text-align:center}
+.ob2-msg.err{color:#e84060}.ob2-msg.ok{color:#3ecf82}
 
 /* ─── PREMIUM VISUAL SCENARIO ─── */
 .gc-scenario{flex-shrink:0;padding:0 14px;margin-bottom:8px}
@@ -3012,96 +3048,158 @@ body::before {
 </div>
 
 
-<!-- ─── ONBOARDING ─── -->
+<!-- ─── ONBOARDING v2 ─── -->
 <div id="s-onboard">
-  <div class="ob-slides" id="ob-slides">
 
-    <!-- SLIDE 1: Welcome -->
-    <div class="ob-slide">
-      <div class="ob-icon">⚾</div>
-      <div class="ob-title">Welcome to<br><span>Baseball IQ</span></div>
-      <div class="ob-body">The only app that trains your <strong>situational baseball brain</strong> — not just stats, not just rules, but real in-game decisions that separate good players from great ones.</div>
-      <div class="ob-cards-preview">
-        <div class="ob-card-mini">
-          <div class="ob-card-val">1,025+</div>
-          <div class="ob-card-lbl">Questions</div>
-        </div>
-        <div class="ob-card-mini">
-          <div class="ob-card-val">11</div>
-          <div class="ob-card-lbl">Positions</div>
-        </div>
-        <div class="ob-card-mini">
-          <div class="ob-card-val">3</div>
-          <div class="ob-card-lbl">Levels</div>
-        </div>
-      </div>
-      <div class="ob-dots">
-        <div class="ob-dot active" id="dot-0"></div>
-        <div class="ob-dot" id="dot-1"></div>
-        <div class="ob-dot" id="dot-2"></div>
-      </div>
-      <button class="ob-btn" onclick="obNext()">Let's Go →</button>
-      <button class="ob-skip" onclick="finishOnboard()">Skip intro</button>
+  <div class="ob2-progress"><div class="ob2-bar" id="ob2-bar" style="width:20%"></div></div>
+
+  <!-- STEP 1: Role -->
+  <div class="ob2-step active" id="ob2-step-role">
+    <div class="ob2-header">
+      <div class="ob2-eyebrow">⚾ Welcome to Baseball IQ</div>
+      <div class="ob2-title">Who's stepping<br>up to the plate?</div>
+      <div class="ob2-sub" style="margin-top:6px">Tell us who you are so we can set up the right experience.</div>
     </div>
-
-    <!-- SLIDE 2: How it works -->
-    <div class="ob-slide">
-      <div class="ob-icon">🧠</div>
-      <div class="ob-title">Train Your<br><span>Baseball Mind</span></div>
-      <div class="ob-feature-list">
-        <div class="ob-feature">
-          <div class="ob-feature-icon">⚡</div>
-          <div class="ob-feature-text">
-            <strong>Daily Challenge</strong>
-            Same 5 questions for everyone. Resets at midnight. Build your streak.
+    <div class="ob2-body">
+      <div class="ob2-role-tiles">
+        <div class="ob2-role-tile" id="ob2-role-player" onclick="ob2SelectRole('player')">
+          <div class="ob2-role-icon">⚾</div>
+          <div>
+            <div class="ob2-role-name">I'm a Player</div>
+            <div class="ob2-role-desc">I play the game — train my IQ, track my stats</div>
           </div>
+          <div class="ob2-role-arrow">›</div>
         </div>
-        <div class="ob-feature">
-          <div class="ob-feature-icon">⚾</div>
-          <div class="ob-feature-text">
-            <strong>Quick Game</strong>
-            12 questions, any position, any difficulty. Tap an answer, see the Statcast data.
+        <div class="ob2-role-tile" id="ob2-role-coach" onclick="ob2SelectRole('coach')">
+          <div class="ob2-role-icon">📋</div>
+          <div>
+            <div class="ob2-role-name">I'm a Coach</div>
+            <div class="ob2-role-desc">I coach a team — assign drills, track my roster</div>
           </div>
-        </div>
-        <div class="ob-feature">
-          <div class="ob-feature-icon">⚔️</div>
-          <div class="ob-feature-text">
-            <strong>Head-to-Head Battle</strong>
-            Challenge a teammate. Same questions, live. Speed earns bonus points.
-          </div>
-        </div>
-        <div class="ob-feature">
-          <div class="ob-feature-icon">🏆</div>
-          <div class="ob-feature-text">
-            <strong>Global Leaderboard</strong>
-            Compete by age group. Prove your IQ is elite.
-          </div>
+          <div class="ob2-role-arrow">›</div>
         </div>
       </div>
-      <div class="ob-dots">
-        <div class="ob-dot" id="dot-0b"></div>
-        <div class="ob-dot active" id="dot-1b"></div>
-        <div class="ob-dot" id="dot-2b"></div>
-      </div>
-      <button class="ob-btn" onclick="obNext()">Got It →</button>
-      <button class="ob-skip" onclick="finishOnboard()">Skip intro</button>
     </div>
-
-    <!-- SLIDE 3: First play -->
-    <div class="ob-slide">
-      <div class="ob-icon">🎯</div>
-      <div class="ob-title">Ready for Your<br><span>First Situation?</span></div>
-      <div class="ob-body">Every question puts you <strong>in the game</strong> — real scenarios, real decisions. Tap the right answer and learn why with MLB Statcast data.</div>
-      <div class="ob-badge">⭐ Tip: Do the Daily Challenge every day to build your streak</div>
-      <div class="ob-dots">
-        <div class="ob-dot" id="dot-0c"></div>
-        <div class="ob-dot" id="dot-1c"></div>
-        <div class="ob-dot active" id="dot-2c"></div>
-      </div>
-      <button class="ob-btn" onclick="finishOnboard()">Take the Field ⚾</button>
-    </div>
-
   </div>
+
+  <!-- STEP 2: Position (players) -->
+  <div class="ob2-step" id="ob2-step-position">
+    <div class="ob2-header">
+      <button class="ob2-back" onclick="ob2GoBack('ob2-step-role')">← Back</button>
+      <div class="ob2-eyebrow">Step 2 of 3</div>
+      <div class="ob2-title">What's your<br>position?</div>
+      <div class="ob2-sub" style="margin-top:6px">We'll start your training there.</div>
+    </div>
+    <div class="ob2-body">
+      <div class="ob2-pos-grid" id="ob2-pos-grid">
+        <div class="ob2-pos-tile" data-pos="Pitcher" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">P</div><div class="ob2-pos-name">Pitcher</div></div>
+        <div class="ob2-pos-tile" data-pos="Catcher" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">C</div><div class="ob2-pos-name">Catcher</div></div>
+        <div class="ob2-pos-tile" data-pos="First Baseman" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">1B</div><div class="ob2-pos-name">First Base</div></div>
+        <div class="ob2-pos-tile" data-pos="Second Baseman" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">2B</div><div class="ob2-pos-name">Second Base</div></div>
+        <div class="ob2-pos-tile" data-pos="Shortstop" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">SS</div><div class="ob2-pos-name">Shortstop</div></div>
+        <div class="ob2-pos-tile" data-pos="Third Baseman" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">3B</div><div class="ob2-pos-name">Third Base</div></div>
+        <div class="ob2-pos-tile" data-pos="Left Fielder" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">LF</div><div class="ob2-pos-name">Left Field</div></div>
+        <div class="ob2-pos-tile" data-pos="Center Fielder" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">CF</div><div class="ob2-pos-name">Center Field</div></div>
+        <div class="ob2-pos-tile" data-pos="Right Fielder" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">RF</div><div class="ob2-pos-name">Right Field</div></div>
+        <div class="ob2-pos-tile" data-pos="Hitter" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">DH</div><div class="ob2-pos-name">Hitter</div></div>
+        <div class="ob2-pos-tile" data-pos="Baserunner" onclick="ob2SelectPos(this,'player')"><div class="ob2-pos-abbr">BR</div><div class="ob2-pos-name">Baserunner</div></div>
+      </div>
+    </div>
+    <div class="ob2-footer">
+      <button class="ob2-btn" id="ob2-pos-btn" disabled onclick="ob2AdvanceFromPosition('player')">That's My Position →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2b: Age Groups (coaches) -->
+  <div class="ob2-step" id="ob2-step-levels">
+    <div class="ob2-header">
+      <button class="ob2-back" onclick="ob2GoBack('ob2-step-role')">← Back</button>
+      <div class="ob2-eyebrow">Step 2 of 3</div>
+      <div class="ob2-title">What ages do<br>you coach?</div>
+      <div class="ob2-sub" style="margin-top:6px">Select all that apply.</div>
+    </div>
+    <div class="ob2-body">
+      <div class="ob2-levels-grid">
+        <div class="ob2-level-tile" data-level="6-8" onclick="ob2ToggleLevel(this)">
+          <div class="ob2-level-age">6–8</div>
+          <div class="ob2-level-name">Rookie · T-Ball</div>
+        </div>
+        <div class="ob2-level-tile" data-level="9-10" onclick="ob2ToggleLevel(this)">
+          <div class="ob2-level-age">9–10</div>
+          <div class="ob2-level-name">10U</div>
+        </div>
+        <div class="ob2-level-tile" data-level="11-12" onclick="ob2ToggleLevel(this)">
+          <div class="ob2-level-age">11–12</div>
+          <div class="ob2-level-name">12U</div>
+        </div>
+        <div class="ob2-level-tile" data-level="13-14" onclick="ob2ToggleLevel(this)">
+          <div class="ob2-level-age">13–14</div>
+          <div class="ob2-level-name">14U</div>
+        </div>
+        <div class="ob2-level-tile" data-level="15-18" onclick="ob2ToggleLevel(this)">
+          <div class="ob2-level-age">15–18</div>
+          <div class="ob2-level-name">High School</div>
+        </div>
+        <div class="ob2-level-tile" data-level="College+" onclick="ob2ToggleLevel(this)">
+          <div class="ob2-level-age">18+</div>
+          <div class="ob2-level-name">College+</div>
+        </div>
+      </div>
+      <div class="ob2-also-plays" id="ob2-also-plays-toggle" onclick="ob2TogglePlays()">
+        <div class="ob2-also-plays-label">I also want to play</div>
+        <div class="ob2-toggle" id="ob2-plays-toggle"></div>
+      </div>
+    </div>
+    <div class="ob2-footer">
+      <button class="ob2-btn" id="ob2-levels-btn" onclick="ob2AdvanceFromLevels()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Coach's own position (if plays) -->
+  <div class="ob2-step" id="ob2-step-coach-pos">
+    <div class="ob2-header">
+      <button class="ob2-back" onclick="ob2GoBack('ob2-step-levels')">← Back</button>
+      <div class="ob2-eyebrow">One more thing</div>
+      <div class="ob2-title">What position<br>do you play?</div>
+      <div class="ob2-sub" style="margin-top:6px">Your personal training will start here.</div>
+    </div>
+    <div class="ob2-body">
+      <div class="ob2-pos-grid">
+        <div class="ob2-pos-tile" data-pos="Pitcher" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">P</div><div class="ob2-pos-name">Pitcher</div></div>
+        <div class="ob2-pos-tile" data-pos="Catcher" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">C</div><div class="ob2-pos-name">Catcher</div></div>
+        <div class="ob2-pos-tile" data-pos="First Baseman" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">1B</div><div class="ob2-pos-name">First Base</div></div>
+        <div class="ob2-pos-tile" data-pos="Second Baseman" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">2B</div><div class="ob2-pos-name">Second Base</div></div>
+        <div class="ob2-pos-tile" data-pos="Shortstop" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">SS</div><div class="ob2-pos-name">Shortstop</div></div>
+        <div class="ob2-pos-tile" data-pos="Third Baseman" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">3B</div><div class="ob2-pos-name">Third Base</div></div>
+        <div class="ob2-pos-tile" data-pos="Left Fielder" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">LF</div><div class="ob2-pos-name">Left Field</div></div>
+        <div class="ob2-pos-tile" data-pos="Center Fielder" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">CF</div><div class="ob2-pos-name">Center Field</div></div>
+        <div class="ob2-pos-tile" data-pos="Right Fielder" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">RF</div><div class="ob2-pos-name">Right Field</div></div>
+        <div class="ob2-pos-tile" data-pos="Hitter" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">DH</div><div class="ob2-pos-name">Hitter</div></div>
+        <div class="ob2-pos-tile" data-pos="Baserunner" onclick="ob2SelectPos(this,'coach')"><div class="ob2-pos-abbr">BR</div><div class="ob2-pos-name">Baserunner</div></div>
+      </div>
+    </div>
+    <div class="ob2-footer">
+      <button class="ob2-btn" id="ob2-cpos-btn" disabled onclick="ob2AdvanceFromCoachPos()">That's My Position →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3/4: Team -->
+  <div class="ob2-step" id="ob2-step-team">
+    <div class="ob2-header">
+      <button class="ob2-back" id="ob2-team-back" onclick="ob2TeamBack()">← Back</button>
+      <div class="ob2-eyebrow" id="ob2-team-eyebrow">Last Step</div>
+      <div class="ob2-title" id="ob2-team-title">Join your team</div>
+      <div class="ob2-sub" style="margin-top:6px" id="ob2-team-sub">Already have a code? Enter it now.</div>
+    </div>
+    <div class="ob2-body" id="ob2-team-body">
+      <!-- Populated dynamically based on role -->
+    </div>
+    <div class="ob2-footer">
+      <div class="ob2-msg" id="ob2-team-msg"></div>
+      <button class="ob2-skip-link" onclick="finishOnboard()">Skip for now →</button>
+    </div>
+  </div>
+
 </div>
 
 
@@ -6648,38 +6746,185 @@ function cancelChallenge(){
 }
 
 // ── ONBOARDING ──────────────────────────────────────────────────────────────
-var obSlide = 0;
+// ── ONBOARDING v2 ────────────────────────────────────────────────────────────
+var ob2Role=null, ob2Position=null, ob2Levels=[], ob2PlaysAlso=false, ob2CoachPos=null;
 
 function showOnboard(){
   document.getElementById('s-auth').classList.remove('active');
   document.body.style.overflow='';
+  ob2Role=null; ob2Position=null; ob2Levels=[]; ob2PlaysAlso=false; ob2CoachPos=null;
+  ob2ShowStep('ob2-step-role',20);
   document.getElementById('s-onboard').classList.add('active');
-  obSlide=0;
-  obUpdateSlide();
 }
 
-function obNext(){
-  if(obSlide < 2){ obSlide++; obUpdateSlide(); }
-  else { finishOnboard(); }
+function ob2ShowStep(stepId,progress){
+  document.querySelectorAll('.ob2-step').forEach(function(s){s.classList.remove('active');});
+  var step=document.getElementById(stepId);
+  if(step) step.classList.add('active');
+  var bar=document.getElementById('ob2-bar');
+  if(bar) bar.style.width=progress+'%';
 }
 
-function obUpdateSlide(){
-  document.getElementById('ob-slides').style.transform = 'translateX(-'+obSlide*33.333+'%)';
-  // Update all dot sets
-  [0,1,2].forEach(function(i){
-    var d0=document.getElementById('dot-'+i);
-    var d1=document.getElementById('dot-'+i+'b');
-    var d2=document.getElementById('dot-'+i+'c');
-    if(d0) d0.className='ob-dot'+(i===obSlide?' active':'');
-    if(d1) d1.className='ob-dot'+(i===obSlide?' active':'');
-    if(d2) d2.className='ob-dot'+(i===obSlide?' active':'');
-  });
+function ob2SelectRole(role){
+  ob2Role=role;
+  document.querySelectorAll('.ob2-role-tile').forEach(function(t){t.classList.remove('selected');});
+  document.getElementById('ob2-role-'+role).classList.add('selected');
+  setTimeout(function(){
+    if(role==='player') ob2ShowStep('ob2-step-position',50);
+    else ob2ShowStep('ob2-step-levels',50);
+  },200);
 }
 
-function finishOnboard(){
+function ob2ToggleLevel(tile){
+  tile.classList.toggle('selected');
+  ob2Levels=Array.from(document.querySelectorAll('.ob2-level-tile.selected')).map(function(t){return t.dataset.level;});
+}
+
+function ob2TogglePlays(){
+  ob2PlaysAlso=!ob2PlaysAlso;
+  var toggle=document.getElementById('ob2-plays-toggle');
+  if(toggle) toggle.classList.toggle('on',ob2PlaysAlso);
+}
+
+function ob2SelectPos(tile,context){
+  var grid=tile.closest('.ob2-pos-grid');
+  if(grid) grid.querySelectorAll('.ob2-pos-tile').forEach(function(t){t.classList.remove('selected');});
+  tile.classList.add('selected');
+  var pos=tile.dataset.pos;
+  if(context==='player'){
+    ob2Position=pos;
+    var btn=document.getElementById('ob2-pos-btn');
+    if(btn){btn.disabled=false; btn.textContent=pos+' →';}
+  } else {
+    ob2CoachPos=pos;
+    var cBtn=document.getElementById('ob2-cpos-btn');
+    if(cBtn){cBtn.disabled=false; cBtn.textContent=pos+' →';}
+  }
+}
+
+function ob2AdvanceFromPosition(){
+  ob2BuildTeamBody('player');
+  ob2ShowStep('ob2-step-team',80);
+}
+
+function ob2AdvanceFromLevels(){
+  if(ob2PlaysAlso) ob2ShowStep('ob2-step-coach-pos',75);
+  else{ ob2BuildTeamBody('coach'); ob2ShowStep('ob2-step-team',90); }
+}
+
+function ob2AdvanceFromCoachPos(){
+  ob2BuildTeamBody('coach');
+  ob2ShowStep('ob2-step-team',90);
+}
+
+function ob2GoBack(stepId){
+  var p=stepId==='ob2-step-role'?20:50;
+  ob2ShowStep(stepId,p);
+}
+
+function ob2TeamBack(){
+  if(ob2Role==='player') ob2ShowStep('ob2-step-position',50);
+  else if(ob2PlaysAlso) ob2ShowStep('ob2-step-coach-pos',75);
+  else ob2ShowStep('ob2-step-levels',50);
+}
+
+function ob2BuildTeamBody(role){
+  var body=document.getElementById('ob2-team-body');
+  if(!body) return;
+  var title=document.getElementById('ob2-team-title');
+  var sub=document.getElementById('ob2-team-sub');
+  if(role==='coach'){
+    if(title) title.textContent='Set up your team';
+    if(sub) sub.textContent='Create a new team or join an existing one.';
+    body.innerHTML=
+      '<div class="ob2-team-option">'+
+        '<div class="ob2-team-option-title">⚡ Create my team</div>'+
+        '<input class="ob2-team-input" id="ob2-team-name-input" placeholder="Team name (e.g. Eagles 12U)" autocomplete="off">'+
+        '<button class="ob2-btn green" style="margin-top:10px" onclick="ob2CreateTeam(event)">Create Team →</button>'+
+      '</div>'+
+      '<div class="ob2-team-option">'+
+        '<div class="ob2-team-option-title">🔑 Join an existing team</div>'+
+        '<input class="ob2-team-input" id="ob2-join-input" placeholder="Enter 6-letter code" maxlength="8" autocomplete="off" oninput="this.value=this.value.toUpperCase()">'+
+        '<button class="ob2-btn" style="margin-top:10px" onclick="ob2JoinTeam(event)">Join Team →</button>'+
+      '</div>';
+  } else {
+    if(title) title.textContent='Join your team';
+    if(sub) sub.textContent='Got a code from your coach? Enter it now.';
+    body.innerHTML=
+      '<div class="ob2-team-option">'+
+        '<div class="ob2-team-option-title">🔑 Enter team code</div>'+
+        '<input class="ob2-team-input" id="ob2-join-input" placeholder="Enter 6-letter code" maxlength="8" autocomplete="off" oninput="this.value=this.value.toUpperCase()">'+
+        '<button class="ob2-btn" style="margin-top:10px" onclick="ob2JoinTeam(event)">Join Team →</button>'+
+      '</div>';
+  }
+}
+
+async function ob2JoinTeam(evt){
+  var input=document.getElementById('ob2-join-input');
+  var code=(input?input.value.trim().toUpperCase():'');
+  var msg=document.getElementById('ob2-team-msg');
+  if(code.length<4){
+    if(msg){msg.className='ob2-msg err';msg.textContent='Please enter a valid team code.';}
+    return;
+  }
+  var btn=evt.target; btn.disabled=true; btn.textContent='Joining...';
+  var res=await sb.from('teams').select('*').eq('code',code).limit(1);
+  if(!res.data||!res.data.length){
+    if(msg){msg.className='ob2-msg err';msg.textContent='Code not found. Check with your coach.';}
+    btn.disabled=false; btn.textContent='Join Team →'; return;
+  }
+  var team=res.data[0];
+  await sb.from('players').update({team_code:code,team_name:team.name}).eq('user_id',currentUser.user_id);
+  currentUser.team_code=code; currentUser.team_name=team.name;
+  localStorage.setItem('biq_user',JSON.stringify(currentUser));
+  if(msg){msg.className='ob2-msg ok';msg.textContent='Joined! Welcome to '+team.name+'.';}
+  setTimeout(function(){finishOnboard();},900);
+}
+
+async function ob2CreateTeam(evt){
+  var nameInput=document.getElementById('ob2-team-name-input');
+  var name=(nameInput?nameInput.value.trim():'');
+  var msg=document.getElementById('ob2-team-msg');
+  if(!name){
+    if(msg){msg.className='ob2-msg err';msg.textContent='Please enter a team name.';}
+    return;
+  }
+  var btn=evt.target; btn.disabled=true; btn.textContent='Creating...';
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code='';
+  for(var i=0;i<6;i++) code+=chars[Math.floor(Math.random()*chars.length)];
+  var res=await sb.from('teams').insert([{code:code,name:name,coach_id:currentUser.user_id}]).select();
+  if(res.error){
+    if(msg){msg.className='ob2-msg err';msg.textContent='Error: '+res.error.message;}
+    btn.disabled=false; btn.textContent='Create Team →'; return;
+  }
+  await sb.from('players').update({team_code:code,team_name:name}).eq('user_id',currentUser.user_id);
+  currentUser.team_code=code; currentUser.team_name=name;
+  localStorage.setItem('biq_user',JSON.stringify(currentUser));
+  var body=document.getElementById('ob2-team-body');
+  if(body) body.insertAdjacentHTML('afterbegin',
+    '<div class="ob2-team-code-reveal">'+
+      '<div class="ob2-team-code-val">'+code+'</div>'+
+      '<div class="ob2-team-code-lbl">Share this code with your players</div>'+
+    '</div>');
+  if(msg){msg.className='ob2-msg ok';msg.textContent='Team created! Share that code with your players.';}
+  setTimeout(function(){finishOnboard();},2200);
+}
+
+async function finishOnboard(){
+  var updates={onboarded:true, is_coach:ob2Role==='coach'};
+  if(ob2Role==='player'&&ob2Position) updates.primary_position=ob2Position;
+  if(ob2Role==='coach'){
+    if(ob2Levels.length) updates.coach_levels=ob2Levels.join(',');
+    if(ob2PlaysAlso&&ob2CoachPos) updates.primary_position=ob2CoachPos;
+  }
+  try{
+    await sb.from('players').update(updates).eq('user_id',currentUser.user_id);
+    Object.assign(currentUser,updates);
+    localStorage.setItem('biq_user',JSON.stringify(currentUser));
+  }catch(e){console.warn('Onboard save:',e);}
   document.getElementById('s-onboard').classList.remove('active');
   localStorage.setItem('biq_onboarded','1');
-  // Start daily challenge directly to give them a first win
   showScreen('s-home');
 }
 
