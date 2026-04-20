@@ -126,19 +126,52 @@ Squeeze (R3): 1B=Crash | 3B=Crash | SS=Cover 3rd | 2B=Cover 1st | P=Plate Covera
 10.3 Bunt-Spin Penalty: If a 180° spin is required for the lead out, audible to the Sure Out at 1st.
 
 SECTION 11 — 1ST & 3RD DEFENSIVE SYSTEM
-THE THROUGH: Catcher fires 100% to 2nd for the tag. Authority = Catcher.
-THE CUT: Catcher fires to 2nd; SS/2B cuts at Grass Line. Authority = Catcher.
-THE SNAP: Catcher fakes throw to 2nd, fires to 3rd. Authority = Catcher.
-THE DISENGAGE: Pitcher steps off back of rubber. Authority = Pitcher.
+All 1st & 3rd defensive scenarios are Tag Plays. Because the batter has not put the ball in play, no runners are forced to advance.
 
-Cut Geometry: Infielder cuts the ball 10–12 feet in front of the bag, not at the mound.
-Balk-Proof Protocol: Pitcher must step off the BACK of the rubber before any move. Feinting to 2nd while on the rubber is a balk.
+THE THROUGH: Catcher fires 100% to 2nd for the TAG. Authority = Catcher.
+THE CUT: Catcher fires to 2nd; SS/2B cuts at the Grass Line. Authority = Catcher.
+THE SNAP: Catcher fakes 2nd, fires to 3rd for the TAG. Authority = Catcher.
+THE DISENGAGE: Pitcher steps off back of rubber; kills all momentum. Authority = Pitcher.
+
+11.1 Grass Line Geometry: The infielder cuts the ball 10–12 feet in front of the bag, not at the mound.
+11.2 The "Steal" Tag Rule: Scout's Scrutiny: In any steal attempt, the fielder must tag the runner, not just touch the bag. This is a common Tier 1 logic error in youth ball.
+11.3 Tactical Triggers: If R3 is the winning/tying run, THE THROUGH is a tactical failure. Challenge R3 with THE CUT or THE SNAP.
+
+SECTION 12 — DROPPED THIRD STRIKE (THE LANE RULE)
+Governed by MLB Rule 5.05a. This is a Force Out at 1st base.
+
+12.1 Legal Triggers: Uncaught strike three is live ONLY if:
+  1. 1st base is unoccupied.
+  2. OR there are 2 outs (even if 1B is occupied).
+12.2 The Lane Rule Physics:
+  Fair Territory Catch: Catcher steps Inside (toward mound); 1B takes the Inside Corner.
+  Foul Territory Catch: Catcher steps Outside (toward dugout); 1B takes the Outside Corner.
+12.3 The "Glove-Tag" Audible: If the ball is at the catcher's feet, tag the batter. This removes the risk of an errant throw or a runner-lane interference call.
+
+SECTION 13 — INFIELD FLY RULE (IFR)
+The "Ordinary Effort" rule (MLB 5.09).
+
+13.1 Mandatory Conditions: 1. R1/R2 (or Loaded); 2. < 2 outs; 3. Fair fly catchable with "Ordinary Effort."
+13.2 Force Removal: Once IFR is called, the batter is out and the force is removed. Runners advance at their own risk.
+13.3 The "Ghost" Rule:
+  On the Bag: If the ball hits a runner standing on the bag, the runner is SAFE.
+  Off the Bag: If it hits them while off the bag, they are OUT.
+  Scout's Scrutiny: This is the only play in baseball where the bag is a "Safe Haven" from a batted ball.
+
+SECTION 14 — THE 3-FOOT RUNNER LANE
+The "Last 45 Feet" rule for throws from behind the runner.
+
+14.1 Geometry: A 3-foot wide box in foul territory starting 45 feet from 1st base.
+14.2 The Quality Throw Test: A runner is only out if they are out of the lane AND they interfere with a "Quality Throw."
+  Scout's Scrutiny: If the catcher throws the ball into the stands, the runner is safe regardless of where they were running. The defense cannot be rewarded for a non-competitive throw.
+14.3 Ball in the Back: If the runner is in fair territory and hit by a catchable throw, the ball is dead and the runner is OUT.
 
 SECTION 15 — RUNDOWN PROTOCOL (THE PICKLE)
 15.1 One-Throw Mandate: Sprint at 100%. Max one throw.
-15.2 The Push: Always drive the runner back toward the base they originated from.
-15.3 The Peel-Off: Fielder must exit the baseline toward Fair Territory immediately after throwing to avoid Obstruction.
-15.4 Ball-in-Air Signal: Keep ball out of the glove (Ear-High) so the receiver can see it clearly.
+15.2 Dart Throw (Mechanical Priority): Hold the ball out of the glove at ear-height throughout the chase. No wind-up.
+  Logic: This visual cue allows the receiver to "time" their break into the lane.
+15.3 The Peel-Off (MLB 6.01h): After releasing the ball, the fielder must exit the baseline toward Fair Territory immediately.
+15.4 The Push: Always drive the runner back toward their original base (the "Safe" base).
 
 SECTION 16 — PITCHER FIELDING & BACKUPS
 16.1 The 3-1 Coverage: Run the "J" Path. Receive ball before reaching the bag.
