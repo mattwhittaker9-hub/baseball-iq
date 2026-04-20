@@ -218,15 +218,54 @@ SECTION 20 — PITCH & HITTER IQ
   Scout's Scrutiny (The Foul-Off Reset): Repeating the same pitch/location after a foul ball is a high-risk gamble. The foul proves the hitter has timed the velocity. Reset their clock by changing the speed or the eye level.
 
 SECTION 21 — TAG-UP CALCULUS
-21.1 Shallow Read (Extending the String): On shallow flies (LF/Short CF), walk off (Recovery Lead) to play for the drop.
-21.2 Deep Read (Anchoring): Stay anchored until first touch. Long throw favors runner speed.
-21.3 Momentum Variable: If fielder is moving toward plate (Pro-hop), the throw is "Heavy"—Stay. If backpedaling, throw is "Light"—Go.
-21.4 The Feet: RF/CF fly = Left foot on bag. LF/Corner fly = Right foot on bag (better visual).
+Tagging up is a situational calculation of Distance vs. Arm vs. Speed.
+
+21.1 Shallow Read (Extending the String): On shallow fly balls (LF or Short CF), the throw is statistically too short to beat.
+  The Action: Walk off toward home (the Recovery Lead) to play for the drop. If caught, you have enough "string" to return safely.
+  Scout's Scrutiny: Standing on the bag on a shallow fly is "Passive Play." Extending the string is "Aggressive-Passive"—you score the second the ball hits the grass.
+21.2 Deep Read (Anchoring): On deep fly balls (RF or Deep CF), the distance (250ft+) favors the runner's linear speed over the outfielder's arm.
+  The Action: Stay anchored until the ball is first touched.
+21.3 Momentum Variable:
+  The Heavy Throw: Fielder is charging/pro-hopping toward the plate. Stay.
+  The Light Throw: Fielder is backpedaling or turned away. Go.
+21.4 Foul Ball Read: Generally, stay on foul fly balls. Only challenge if the catcher/infielder is deep in the dugout or bullpen with their back completely turned.
+21.5 Footwork (The Push-Off):
+  LF Line/Corner: Use the Right Foot on the bag. This keeps the body open to the field so the runner can see the catch over their left shoulder without twisting.
+  All Other Locations: Use the Left Foot as the push-off (standard track-start posture).
+
+SECTION 22 — UNIVERSAL BASEBALL LAWS
+22.1 Chalk Law: Any ball touching the foul lines or the base is FAIR.
+  The Rolling Rule: A ball that hits foul dirt but rolls fair before passing 1st or 3rd is Fair. Conversely, a ball that is fair but rolls foul before passing 1st or 3rd is Foul.
+22.2 The Overrun (The "Attempt" Law):
+  The Law: Turning toward 2nd base after overrunning 1st does not make you "live." The legal trigger is the Attempt to advance.
+  Scout's Scrutiny: Return with Neutral Shoulders (facing the mound). Any stutter-step, shoulder-pop, or lean toward 2nd will be ruled an "Attempt" by the umpire, making you liable to be tagged out.
+22.3 Dual Occupation (Two Runners, One Base):
+  Standard: Lead runner is entitled to the bag; trailing runner is OUT if tagged.
+  The Force Exception: If the lead runner is Forced to advance, they lose the right to their original bag. In this case, the lead runner is OUT if tagged.
 
 SECTION 23 — OVERTHROW AWARDS
-23.1 Fielder Standard: Two bases from Time of Release (TOR).
-23.2 Pitcher on Rubber: One base from TOP (Wild pitch/Pickoff).
-23.3 Infield First Play: Two bases from Time of Pitch (TOP).
+Awards are triggered the moment a ball goes into "Dead Ball" territory (stands/dugout).
+
+23.1 Fielder Standard: Award is two bases from the runner's position at the Time of Release (TOR).
+23.2 Pitcher on Rubber: Award is one base from the Time of Pitch (TOP).
+  Logic: Penalizes a wild pitch or engaged pickoff less severely.
+23.3 Infield First Play Exception (MLB 5.06b4G): If the overthrow is the first play by an infielder, the award is two bases from the Time of Pitch (TOP), not release.
+23.4 Step-Off Transformation: Once a pitcher disengages (steps off), they are legally a Fielder. Any overthrow becomes a two-base award from TOR.
+
+SECTION 24 — THE 7-MAN ROTATION (SOP)
+The "Handoff" system ensuring no base is ever left empty.
+
+24.1 The Opposite Bag Rule: On any ball hit to the outfield, if one middle infielder (SS or 2B) moves toward the ball as a relay/cutoff, the other must rotate to anchor the bag.
+24.2 The 1B Anchor Rule: On deep gap/wall hits, the 1st Baseman abandons 1st to cover 2nd base, as both MIFs are out in the tandem relay (Section 9).
+24.3 Pitcher Shadowing Formula (The Default):
+  No Runners: Shadow 2nd.
+  Runner on 1st: Shadow 3rd.
+  Runner on 2nd or 3rd: Shadow Home Plate.
+24.4 Reactive Shadowing (The Move):
+  Scout's Scrutiny (The 24.3 vs 16.2 Reconciliation): Section 24.3 defines the Pre-Pitch Target (the bag you are likely to back up). Section 16.2 defines the Active Movement once the ball is in flight.
+  Example: With R1, the pitcher defaults toward 3rd (24.3). If the ball is hit to RF, the pitcher reacts to shadow 3rd (16.2). If the ball is hit to LF, the pitcher reacts to shadow Home Plate to support the primary scoring threat.
+24.5 Authority Hierarchy: The Catcher directs all throws home. The Anchor (SS/2B) directs all other throws.
+  The Command: "FOUR-FOUR!" (Home) or "CUT-TWO!" (Intercept and throw to 2nd).
 
 SECTION 25 — THE SLIDE RULE (SAFETY)
 25.1 Bona Fide Slide: Must begin before the bag, reach the bag, and stay on the bag.
