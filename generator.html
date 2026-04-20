@@ -2,811 +2,163 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baseball IQ — Question Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diamond IQ — Question Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#06111f;color:#e8f4ff;font-family:system-ui,sans-serif;padding:24px;min-height:100vh}
-h1{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:1px}
-.sub{font-size:12px;color:#4a6a88;margin-bottom:24px}
-.card{background:#0c1828;border:1px solid #162840;border-radius:14px;padding:20px;margin-bottom:16px}
-label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a88;margin-bottom:6px}
-select,input[type=text]{width:100%;background:#071520;border:1px solid #1a3050;border-radius:8px;padding:10px 12px;color:#e8f4ff;font-size:14px;margin-bottom:14px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn{width:100%;background:#c8102e;border:none;border-radius:10px;padding:14px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;letter-spacing:1px;cursor:pointer;transition:opacity 0.15s}
-.btn:disabled{opacity:0.4;cursor:not-allowed}
-.btn-secondary{background:#0a1e30;border:1px solid #1a3050;color:#5a8aaa;font-size:15px;padding:10px;margin-top:8px}
-.status{padding:12px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.5;display:none}
-.status.info{display:block;background:#061828;border:1px solid #1a3050;color:#5a8aaa}
-.status.ok{display:block;background:#041a10;border:1px solid #1a4a22;color:#3ecf82}
-.status.err{display:block;background:#1a0408;border:1px solid #5a1020;color:#f08090}
-.status.warn{display:block;background:#1a1208;border:1px solid #5a4010;color:#e8c060}
-.q-card{background:#071520;border:1px solid #0a2840;border-radius:10px;padding:14px;margin-bottom:10px}
-.q-card.rejected{border-color:#5a1020;opacity:0.5;display:none}
-.q-pos{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c8102e;margin-bottom:4px}
-.q-scenario{font-size:12px;color:#4a7888;margin-bottom:6px;font-style:italic}
-.q-question{font-size:14px;font-weight:700;color:#fff;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif}
-.q-choices{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.q-choice{background:#0a1828;border-radius:6px;padding:8px 10px;font-size:12px;color:#aaa}
-.q-choice.correct{background:#041a10;border:1px solid #1a4a22;color:#3ecf82;font-weight:700}
-.q-expl{font-size:11px;color:#4a6a88;margin-top:8px;padding-top:8px;border-top:1px solid #0a2040;line-height:1.5}
-.q-verify{font-size:11px;margin-top:6px;padding:6px 8px;border-radius:6px;background:#020c18;color:#5a8aaa}
-.q-verify.pass{background:#020e06;color:#3ecf82}
-.q-verify.fail{background:#0e0204;color:#e84060}
-.progress-bar{height:4px;background:#0a2040;border-radius:2px;margin:8px 0;overflow:hidden;display:none}
-.progress-fill{height:100%;background:#c8102e;border-radius:2px;transition:width 0.4s}
-.count-badge{display:inline-block;background:#c8102e;color:#fff;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;font-family:'Barlow Condensed',sans-serif;margin-left:8px}
-.pass-badge{background:#0a3018;color:#3ecf82;border:1px solid #1a5028}
-.fail-badge{background:#3a0810;color:#e84060;border:1px solid #6a1020}
-.step-badge{display:inline-block;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-left:6px}
+body{background:#06111f;color:#e8e0d0;font-family:'Barlow Condensed','Arial Narrow',sans-serif;min-height:100vh;padding:20px}
+.wrap{max-width:700px;margin:0 auto}
+.hdr{background:#0f1e35;border-radius:12px 12px 0 0;padding:18px 22px;border-bottom:1px solid rgba(200,168,75,.2);display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:#c8a84b}.logo span{color:#fff}
+.sub{font-size:10px;letter-spacing:2px;color:#7a8fa8;text-transform:uppercase;margin-top:2px}
+.ctrl{background:#0a1628;padding:14px 22px;border-bottom:1px solid rgba(200,168,75,.2);display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.clbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7a8fa8;display:block;margin-bottom:5px}
+select{background:#0f1e35;border:1px solid rgba(200,168,75,.25);color:#e8e0d0;padding:8px 12px;border-radius:6px;font-size:14px;font-family:inherit;cursor:pointer}
+.gbtn{background:#c8a84b;color:#0a1628;border:none;padding:10px 22px;border-radius:6px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.gbtn:hover{background:#e0b85a}.gbtn:disabled{background:#1a2a3a;color:#4a5a6a;cursor:not-allowed}
+.vlog{background:#060e1a;padding:10px 22px;border-bottom:1px solid rgba(200,168,75,.15);font-size:11px;font-family:'Courier New',monospace;color:#7a8fa8;min-height:36px;max-height:80px;overflow-y:auto}
+.lok{color:#4caf78}.lfail{color:#e05c3a}.linfo{color:#c8a84b}
+.spin{display:none;padding:40px;text-align:center;color:#7a8fa8;background:#0a1628}.spin.on{display:block}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#c8a84b;margin:0 4px;animation:p 1.2s ease-in-out infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes p{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1.2)}}
+.qout{display:none;background:#0a1628;padding:22px}.qout.on{display:block}
+.qmeta{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.qb{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:4px;font-weight:700}
+.bp{background:rgba(200,168,75,.15);color:#c8a84b;border:1px solid rgba(200,168,75,.3)}
+.bt{background:rgba(90,180,224,.15);color:#5ab4e0;border:1px solid rgba(90,180,224,.3)}
+.bs{background:rgba(74,175,120,.15);color:#4caf78;border:1px solid rgba(74,175,120,.3)}
+.qsc{font-size:19px;font-weight:700;line-height:1.4;margin-bottom:6px}
+.qst{font-size:15px;color:#7a8fa8;font-style:italic;margin-bottom:20px}
+.qch{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.cb{background:#0f1e35;border:1px solid rgba(200,168,75,.2);color:#e8e0d0;padding:13px 16px;border-radius:8px;text-align:left;font-size:15px;font-family:inherit;cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:all .15s;width:100%}
+.cb:hover{border-color:#c8a84b;background:rgba(200,168,75,.08)}
+.cb.ok{background:rgba(74,175,120,.15);border-color:#4caf78}
+.cb.no{background:rgba(224,92,58,.1);border-color:rgba(224,92,58,.4)}
+.cl{font-weight:700;color:#c8a84b;min-width:18px;font-size:16px}
+.exp{display:none}.exp.on{display:block}
+.ec{background:rgba(74,175,120,.1);border-left:3px solid #4caf78;padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:12px}
+.ew{background:rgba(14,25,42,.6);border-left:3px solid rgba(224,92,58,.4);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:8px}
+.elbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.elbl.ok{color:#4caf78}.elbl.no{color:#e05c3a}
+.etxt{font-size:14px;line-height:1.5;color:#e8e0d0}
+.acts{display:flex;gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(200,168,75,.15)}
+.apass{background:#1a4a2a;color:#80ffb0;border:none;padding:10px 20px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.aflag{background:#4a1a0a;color:#ffb090;border:none;padding:10px 20px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.anext{background:transparent;color:#c8a84b;border:1px solid rgba(200,168,75,.3);padding:10px 20px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.sbar{background:#060e1a;border-radius:0 0 12px 12px;padding:8px 22px;border-top:1px solid rgba(200,168,75,.15);display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#4a5a6a;flex-wrap:wrap;gap:4px}
+.sok{color:#4caf78}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<h1>⚾ Question Generator <span class="count-badge" id="db-count">—</span></h1>
-<div class="sub">Two-pass system: Generate → Umpire verifies each question → Only clean questions reach the database.</div>
-
-<div class="card">
-  <div class="row">
-    <div>
-      <label>Position</label>
-      <select id="sel-pos" onchange="autoCategory()">
-        <option value="Pitcher">Pitcher</option>
-        <option value="Catcher">Catcher</option>
-        <option value="First Baseman">First Baseman</option>
-        <option value="Second Baseman">Second Baseman</option>
-        <option value="Shortstop">Shortstop</option>
-        <option value="Third Baseman">Third Baseman</option>
-        <option value="Left Fielder">Left Fielder</option>
-        <option value="Center Fielder">Center Fielder</option>
-        <option value="Right Fielder">Right Fielder</option>
-        <option value="Baserunner">Baserunner</option>
-        <option value="Hitter">Hitter (Situational Hitting)</option>
-      </select>
-    </div>
-    <div>
-      <label>Category</label>
-      <select id="sel-cat">
-        <option value="pitcher">pitcher</option>
-        <option value="catcher">catcher</option>
-        <option value="infield">infield</option>
-        <option value="outfield">outfield</option>
-        <option value="baserunner">baserunner</option>
-        <option value="hitter">hitter</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div>
-      <label>Difficulty</label>
-      <select id="sel-diff">
-        <option value="1">1 — Beginner</option>
-        <option value="2">2 — Intermediate</option>
-        <option value="3">3 — Advanced</option>
-        <option value="mixed" selected>Mixed</option>
-      </select>
-    </div>
-    <div>
-      <label>Batch size</label>
-      <select id="sel-count">
-        <option value="5">5 questions</option>
-        <option value="10" selected>10 questions</option>
-        <option value="15">15 questions</option>
-      </select>
-    </div>
-  </div>
-  <label>Focus area (optional)</label>
-  <input type="text" id="sel-focus" placeholder="e.g. bunt coverage, rundowns, first-and-third steals...">
-  <button class="btn" id="gen-btn" onclick="generate()">⚾ Generate + Verify</button>
-  <button class="btn" style="background:#0a1e30;border:1px solid #1a3050;color:#5a8aaa;font-size:15px;padding:10px;margin-top:8px" onclick="showAudit()">🔍 Audit Existing Questions</button>
+<div class="wrap">
+<div class="hdr">
+  <div><div class="logo">Diamond <span>IQ</span></div><div class="sub">Question Generator v3.0</div></div>
+  <div style="font-size:11px;color:#4caf78;letter-spacing:1px">Engine v5.2 Live</div>
 </div>
-
-<div id="status" class="status"></div>
-<div class="progress-bar" id="prog-wrap"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-<div id="preview"></div>
-<div id="insert-area" style="display:none">
-  <button class="btn" id="insert-btn" onclick="insertAll()">⬆ Insert Verified Questions</button>
-  <button class="btn btn-secondary" onclick="clearAll()">✕ Clear</button>
-</div>
-
-<div id="audit-area" style="display:none">
-  <div class="card">
-    <label>Audit Position (or all)</label>
-    <select id="audit-pos">
-      <option value="all">All Positions</option>
-      <option value="Pitcher">Pitcher</option>
-      <option value="Catcher">Catcher</option>
-      <option value="First Baseman">First Baseman</option>
-      <option value="Second Baseman">Second Baseman</option>
-      <option value="Shortstop">Shortstop</option>
-      <option value="Third Baseman">Third Baseman</option>
-      <option value="Left Fielder">Left Fielder</option>
-      <option value="Center Fielder">Center Fielder</option>
-      <option value="Right Fielder">Right Fielder</option>
-      <option value="Baserunner">Baserunner</option>
+<div class="ctrl">
+  <div><label class="clbl">Position</label>
+    <select id="psel">
+      <option value="auto">Auto</option>
+      <option>Pitcher</option><option>Catcher</option><option>First Baseman</option>
+      <option>Second Baseman</option><option>Shortstop</option><option>Third Baseman</option>
+      <option>Left Fielder</option><option>Center Fielder</option><option>Right Fielder</option>
+      <option>Baserunner</option><option>Hitter</option>
     </select>
-    <button class="btn" id="audit-btn" onclick="runAudit()">Run Audit</button>
   </div>
-  <div id="audit-status" class="status"></div>
-  <div class="progress-bar" id="audit-prog-wrap"><div class="progress-fill" id="audit-prog-fill" style="width:0%"></div></div>
-  <div id="audit-results"></div>
-  <div id="audit-delete-area" style="display:none">
-    <button class="btn" style="background:#6a0010" id="audit-delete-btn" onclick="deleteFailedQuestions()">Delete All Failed Questions</button>
+  <div><label class="clbl">Tier</label>
+    <select id="tsel">
+      <option value="auto">Auto</option>
+      <option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option>
+    </select>
+  </div>
+  <button class="gbtn" id="gbtn" onclick="gen()">Generate</button>
+</div>
+<div class="vlog" id="vlog"><span class="linfo">Engine v5.2 loaded. Worker connected. Ready.</span></div>
+<div class="spin" id="spin"><div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div style="margin-top:12px;font-size:13px">Generating against the engine...</div></div>
+<div class="qout" id="qout">
+  <div class="qmeta" id="qmeta"></div>
+  <div class="qsc" id="qsc"></div>
+  <div class="qst" id="qst"></div>
+  <div class="qch" id="qch"></div>
+  <div class="exp" id="exp"></div>
+  <div class="acts">
+    <button class="apass" onclick="doPass()">Pass</button>
+    <button class="aflag" onclick="doFlag()">Flag</button>
+    <button class="anext" onclick="gen()">Next</button>
   </div>
 </div>
-
+<div class="sbar">
+  <span>Engine: <span class="sok">v5.2</span></span>
+  <span>Worker: <span class="sok">baseball-iq-badges</span></span>
+  <span>Generated: <span id="sgc">0</span> | Passed: <span id="spc">0</span> | Flagged: <span id="sfc">0</span></span>
+</div>
+</div>
 <script>
-var WORKER='https://baseball-iq-rules.mattwhittaker9.workers.dev/';
-var SB='https://kcisieenoznaorioagqq.supabase.co';
-var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
-var generated=[];
-
-var CAT_MAP={'Pitcher':'pitcher','Catcher':'catcher','First Baseman':'infield','Second Baseman':'infield','Shortstop':'infield','Third Baseman':'infield','Left Fielder':'outfield','Center Fielder':'outfield','Right Fielder':'outfield','Baserunner':'baserunner','Hitter':'hitter'};
-
-var ROLE_DESC={
-  'Pitcher':'Fields comebackers, covers first base when 1B charges, backs up first base on ground balls to infielders, backs up HOME PLATE on wild pitches and passed balls. On wild pitches the LEFT FIELDER backs up third -- NOT the pitcher. The pitcher does NOT serve as relay/cutoff man and does NOT back up third base.',
-  'Catcher':'Frames pitches, blocks balls in dirt, throws to bases, covers home plate. NEVER leaves home unprotected when runners are in scoring position. Backs up first base only when no runners are on base.',
-  'First Baseman':'Receives throws at first, scoops low throws, holds runners, covers bunt plays. The SHORTSTOP and SECOND BASEMAN are the relay/cutoff men from the outfield -- the First Baseman is NOT a relay or cutoff man.',
-  'Second Baseman':'Turns double plays (4-6-3), covers second on steals from left side, is the relay man for throws from right field and right-center field. Covers first on bunt plays.',
-  'Shortstop':'Turns double plays (6-4-3), covers second on steals from right side, is the PRIMARY relay man for throws from left field and center field. Covers third on certain plays.',
-  'Third Baseman':'Charges bunts, fields slow rollers barehanded, plays the hot corner. Relay/cutoff man for certain left field throws. Does NOT field balls in right field territory.',
-  'Left Fielder':'Catches fly balls, communicates with center fielder (center has priority on everything). Throws through the cutoff man. Backs up third on throws.',
-  'Center Fielder':'Has priority over ALL other outfielders -- calls off anyone he can reach. The captain of the outfield. Covers the most ground. Communicates direction to corner outfielders.',
-  'Right Fielder':'Catches fly balls, has the strongest arm (key for throwing home). Center fielder has priority over right fielder on shared balls. Throws through the cutoff man.',
-  'Baserunner':'Reads the ball off the bat, watches the third base coach, knows the outs, tags on fly balls, leads off bases. Does NOT make fielding plays -- only baserunning decisions.',
-  'Hitter':'The batter at the plate. Questions cover: what pitch to look for in a given count, situational hitting with runners on base, two-strike adjustments, hit-and-run as the batter, bunt situations, and plate discipline. First-person voice as the hitter stepping in. Do NOT include fielding or baserunning decisions -- only decisions made at the plate.'
+const W='https://baseball-iq-badges.mattwhittaker9.workers.dev/generate';
+const POS=['Pitcher','Catcher','First Baseman','Second Baseman','Shortstop','Third Baseman','Left Fielder','Center Fielder','Right Fielder','Baserunner','Hitter'];
+const BAN=['this protects you','communication is key','it is important to','always remember','what is the correct play','in this situation'];
+let gc=0,pc=0,fc=0,curQ=null;
+const E={
+'Pitcher':'CUTOFF ASSIGNMENTS (ABSOLUTE): LF->Home=3B cutoff. LF->3rd=SS cutoff. CF->Home=1B cutoff. CF->3rd=SS cutoff. RF->Home=1B cutoff. RF->3rd=2B cutoff. CUT/THROUGH always called by TARGET BASE PLAYER (Catcher for home, 3B for third). BASE RULES: B1=Force play hunt the bag no read no hesitation. B2=Line drive freeze+one hard step back. B3=Two outs go on contact. B4=Fly ball <2 outs anchor until first touch. B5=R3 ground ball infield back=go on contact, infield in=read through mound, bases loaded=automatic. FORCE RULE: R2 alone is NOT forced. Force only when batter puts ball in play AND runner behind pushing. R1+R2=both forced. R2 only=NOT forced. PITCHER GOLDEN RULES: Complete Stop=discernible pause shoulders settled. Rolling stop=automatic balk. LHP 45-degree rule=lead foot must cross 45-degree plane toward 1st. Disengagement limit=max 2 per PA, 3rd failed attempt=balk. J-Path=trigger is any ball hit right of mound. Sprint toward foul line, receive before bag, inside corner right foot. Handoff Read: 1B stays=pitcher backs up. 1B ranges=pitcher anchors bag. Shadowing=30-45ft behind bag. Home on all OF throws. 3rd on deep RF/CF throws only. Arc Move WP/PB: R3=sprint to home. R2 only=control point halfway, read runner. Comebacker: Bases Loaded=throw home force. R1 Only=1-6-3 DP. R1+R2 tie game=throw 3rd lead force. Bunt: R1=field middle. R2=field 3B line. Wheel=field middle. Squeeze=plate coverage.',
+'Catcher':'CUT/THROUGH on throws home is called by CATCHER ONLY. BASE RULES: B1=Force hunt the bag. B3=Two outs go on contact. B4=Fly ball anchor until first touch. FORCE RULE: R2 alone NOT forced. Force requires batter AND runner behind pushing. CATCHER GOLDEN RULES: Level 1A=calls CUT or THROUGH on ALL throws home. Silence=THROUGH. 1st and 3rd defense ALL scenarios are TAG plays because batter has not put ball in play. THE THROUGH=fire 100% to 2nd for the tag. THE CUT=fire to 2nd SS/2B cuts at grass line 10-12 feet from bag. THE SNAP=fake 2nd fire to 3rd for the tag. THE DISENGAGE=pitcher steps off. Steal tag rule=fielder MUST physically TAG the runner, touching bag alone is NOT an out on a steal. Dropped third strike: fair territory=catcher steps inside 1B takes inside corner. Foul territory=outside. Only live if 1B open OR 2 outs.',
+'First Baseman':'CUTOFF ASSIGNMENTS: CF->Home=1B cutoff Catcher commands. RF->Home=1B cutoff Catcher commands. These are ONLY throws where 1B is cutoff. BASE RULES: B1=Force hunt the bag not the runner. FORCE RULE: R2 alone NOT forced. 1B GOLDEN RULES: Cutoff on CF and RF throws home=get in the lane give target Catcher calls CUT or THROUGH. Tandem relay anchor=on deep gap/wall hits 1B ABANDONS 1st base to cover 2nd because both MIFs are in relay. Bunt=cover 1st base in ALL configs. J-Path receiver=inside corner right foot ball before body. Reverse Force Hazard=if 1B touches bag first force on R1 is removed. Pro play=throw to 2nd first (3-6-1) to keep force alive.',
+'Second Baseman':'CUTOFF ASSIGNMENTS: RF->3rd=2B cutoff 3B commands. Right Side Rule=RF/RCF ball SS covers 2nd bag 2B acts as cutoff. BASE RULES: B1=Force hunt the bag. B2=Line drive freeze+step back. B3=Two outs go. FORCE RULE: R2 alone NOT forced. 2B GOLDEN RULES: Cutoff on RF throws to 3rd ONLY not home. Right Side Rule=RF/RCF ball SS covers 2nd 2B to cutoff spot. Tandem RF/RCF wall=2B is Lead Relay Hands SS is Trailing Relay Boss calls the base. Tandem LF/LCF wall=2B is Trailing Relay Boss SS is Lead Relay Hands. Bunt=cover 1st base ALL configs. Opposite Bag Rule=if 2B goes to cutoff SS anchors 2nd. 2B/SS Level 1B authority=call KILL/HOLD/BACK only NEVER call CUT or THROUGH that is target base players call.',
+'Shortstop':'CUTOFF ASSIGNMENTS: LF->3rd=SS cutoff 3B commands. CF->3rd=SS cutoff 3B commands. Right Side Rule=RF/RCF ball SS covers 2nd bag 2B acts as cutoff. CUT LAW=TARGET BASE PLAYER has final word. 3B calls CUT or THROUGH on throws to 3rd. Catcher calls CUT or THROUGH on throws home. SS NEVER calls CUT or THROUGH. BASE RULES: B1=Force hunt bag. B2=Line drive freeze+step back. B3=Two outs go. FORCE RULE: R2 alone NOT forced. SS GOLDEN RULES: Cutoff on LF and CF throws to THIRD BASE not home never home. Right Side Rule=RF/RCF ball SS covers 2nd bag 2B is cutoff. Tandem LF/LCF=SS is Lead Relay Hands 2B is Trailing Relay Boss. Tandem RF/RCF=SS is Trailing Relay Boss 2B is Lead Relay Hands. Bunt R1=cover 2nd. R2=shadow 2nd. Wheel=cover 3rd. Squeeze=cover 3rd. Squeeze Backside Rule=SS covers 3rd not 2nd because 3B crashes home. KILL command=Level 1B calls KILL/HOLD/BACK on mid-sequence runner mistakes. Opposite Bag Rule=SS anchors 2nd when 2B goes to cutoff on right side.',
+'Third Baseman':'CUTOFF ASSIGNMENTS: LF->Home=3B is the CUTOFF Catcher commands. LF->3rd=3B is COMMANDER calls CUT or THROUGH. CF->3rd=3B is COMMANDER. RF->3rd=3B is COMMANDER. BASE RULES: B1=Force hunt bag. B2=Line drive freeze+step back. FORCE RULE: R2 alone NOT forced. 3B GOLDEN RULES: Commander on ALL throws to 3rd base=calls CUT or THROUGH on LF CF and RF throws to 3rd. Cutoff on LF throws HOME=get in relay lane between LF and home Catcher calls CUT or THROUGH. Bunt R2 Cardinal Rule=3B STAYS HOME never vacate 3rd with R2 only it is a system failure. Bunt R1=charge. Wheel=crash. Squeeze=crash home. Hot Corner=read the slash do not crash if batter fakes bunt and pulls back.',
+'Left Fielder':'CUTOFF ASSIGNMENTS: LF throw home=3B is cutoff Catcher commands. LF throw to 3rd=SS is cutoff 3B commands. BASE RULES: B3=Two outs go on contact. B4=Fly ball anchor until first touch. LF GOLDEN RULES: Throw home=aim for 3B cutoff mans chest Catcher calls CUT or THROUGH. Throw to 3rd=aim for SS cutoff mans chest 3B calls CUT or THROUGH. Tandem LF/LCF wall=SS is Lead relay Hands 2B is Trailing relay Boss calls base. Tag-up=shallow fly walk off toward home Recovery Lead play for drop. Deep fly=anchor until FIRST TOUCH. Momentum=fielder pro-hop is Heavy throw runner holds. Fielder backpedaling is Light throw runner goes. Slice hangs 0.5 seconds longer than hook. LF corner=right foot on bag for push-off.',
+'Center Fielder':'CUTOFF ASSIGNMENTS: CF throw home=1B is cutoff Catcher commands. CF throw to 3rd=SS is cutoff 3B commands. BASE RULES: B3=Two outs go on contact. B4=Fly ball anchor until first touch. CF GOLDEN RULES: Level 2 authority=absolute call-off on all outfield fly balls CF calls MINE corners peel off. Gap Drag=CF dictates depth and spacing of LF and RF. Tandem RF/RCF=2B Lead SS Trailer. Tandem LF/LCF=SS Lead 2B Trailer. Tag-up deep=anchor until first touch. Tag-up shallow=Recovery Lead walk off toward home. Momentum=pro-hop Heavy throw runner stays. Backpedaling Light throw runner goes. Wind Rule=Wind In 3 steps in. Wind Out 5 steps back.',
+'Right Fielder':'CUTOFF ASSIGNMENTS: RF throw home=1B is cutoff Catcher commands. RF throw to 3rd=2B is cutoff 3B commands. BASE RULES: B3=Two outs go on contact. B4=Fly ball anchor until first touch. RF GOLDEN RULES: Throw home=aim for 1B cutoff mans chest Catcher calls CUT or THROUGH. Throw to 3rd=aim for 2B cutoff mans chest 3B calls CUT or THROUGH. Tandem RF/RCF wall=2B is Lead Relay Hands SS is Trailing Relay Boss calls base. RF Anomaly=regular depth R2 tag-up to 3rd is 45 percent success rate. Momentum=pro-hop Heavy throw runner stays. Backpedaling Light throw runner goes. Left foot on bag for standard push-off.',
+'Baserunner':'BASE RULES: B1=Force play runner FORCED to advance hunt the bag no read no hesitation. Force ONLY when batter puts ball in play AND runner behind pushing. R2 alone NOT forced without R1. B2=Line drive freeze AND one hard step back toward bag. B3=Two outs run on contact no tagging. B4=Fly ball less than 2 outs anchored until ball is FIRST TOUCHED not caught. B5=R3 ground ball infield back=go on contact, infield in=read through mound, bases loaded=automatic forced. BASERUNNER GOLDEN RULES: Secondary lead=front foot landing is trigger 2 hard shuffles. Two outs=extend lead. Margin under 3=3 shuffles. Margin 5 plus=2 shuffles no ego outs. R1 fly ball=shallow hold, deep/gap halfway, wall tag if backpedaling, 2 outs gone. Overrun law=legal trigger is Attempt not direction of turn. Return with neutral shoulders. Shoulder pop or lean=ruled attempt. Tag-up first touch rule=can leave moment ball is FIRST TOUCHED not when secured. Line drive step-back=freeze plus ONE hard step back. Dual occupation=lead runner entitled to bag trailing runner out if tagged.',
+'Hitter':'BASE RULES: B3=Two outs go on contact. Hit and run=swing at anything protect runner. HITTER GOLDEN RULES: Pitch tunneling=all pitches look identical first 20-25 feet forces early commitment. Foul-off reset=never same pitch/location twice after foul foul proves hitter timed velocity reset by changing speed or eye level. High heat sets up low curve. 0-2 count=expect waste pitch 2-3 inches off do not chase. Two-strike=expand zone protect plate contact over power. Hit and run=protect the runner swing at anything. Secondary scaling=tight game under 3 margin is 3 shuffles blowout 5 plus margin is 2 shuffles.'
 };
-
-// The umpire system prompt -- strict rules used in verification pass
-var UMPIRE_SYSTEM=`You are a certified baseball umpire and rules expert who has studied the Official Baseball Rules (OBR) for 20 years. You have also studied the Intangibles Baseball IQ program used to evaluate professional players. Your job is to verify youth baseball quiz questions for factual accuracy.
-
-═══════════════════════════════════════
-FORCE PLAY RULES
-═══════════════════════════════════════
-A force play exists ONLY when the batter becomes a runner and forces other runners to advance.
-- Runner on 1st only → force at 2nd only
-- Runners on 1st and 2nd → force at 2nd and 3rd
-- Bases loaded → force at all four bases including home
-- Runner on 2nd only → NO force anywhere
-- Runner on 3rd only → NO force anywhere
-- Runners on 1st and 3rd → force at 2nd ONLY. NO force at 3rd. NO force at home.
-- Runners on 2nd and 3rd → NO force anywhere
-- Runners on 2nd and 3rd → NO force anywhere
-
-═══════════════════════════════════════
-CUTOFF AND RELAY ASSIGNMENTS
-═══════════════════════════════════════
-SINGLE TO LEFT FIELD: SS covers 2nd. 2B backs up. Pitcher backs up 2nd from behind.
-SINGLE TO CENTER FIELD: SS covers 2nd (if ball goes left of center) or 2B covers 2nd (if right of center).
-SINGLE TO RIGHT FIELD: 2B covers 2nd. SS backs up.
-
-EXTRA BASE HIT / DOUBLE-CUT RELAY:
-- Ball to LEFT FIELD or LEFT-CENTER: SS is lead relay. 2B is trail relay.
-- Ball to RIGHT FIELD or RIGHT-CENTER: 2B is lead relay. SS is trail relay.
-- 1B is NEVER a relay or cutoff man on extra base hits. NEVER.
-- 3B is NEVER a relay man from right field.
-
-CUTOFF TO HOME (throw from outfield):
-- Throw from LEFT FIELD to home: 3B is cutoff man.
-- Throw from CENTER FIELD to home: 1B or 3B depending on system, but pitcher often serves as second cut.
-- Throw from RIGHT FIELD to home: 1B is cutoff man (lines up between RF and home).
-
-BACKING UP BASES:
-- Left fielder backs up 3rd base on ALL throws to third (steals, wild pitches, relay throws).
-- Right fielder backs up 1st base on throws from the left side.
-- Center fielder backs up 2nd base on most plays.
-- Pitcher backs up HOME PLATE on extra base hits and relay plays when a play at home is expected.
-- Pitcher backs up 3RD BASE on throws from right field going to third (after backing up home initial position).
-- On a WILD PITCH or PASSED BALL: pitcher's primary job is to back up HOME PLATE. LEFT FIELDER backs up third. Pitcher does NOT back up third on wild pitches.
-- Catcher NEVER leaves home plate unprotected when runners are in scoring position (runner on 2nd or 3rd).
-- Catcher backs up 1ST BASE on ALL ground balls when no runners are on base, or runner on 1st only. This is the CATCHER's job, not the pitcher's. The pitcher does NOT back up first base on ground balls -- that is the catcher's responsibility when no runners are on.
-- Pitcher backs up 1st base ONLY on ground balls to the RIGHT SIDE (1B or 2B charging), where the pitcher must cover the bag itself because 1B has left. On ground balls to the LEFT SIDE (3B, SS) with no runners on, the pitcher has no backup responsibility at first -- the catcher handles that.
-- Do NOT mark correct any answer that says the pitcher backs up first base on a left-side ground ball with no runners on. That is the catcher's job.
-
-═══════════════════════════════════════
-PITCHER RESPONSIBILITIES (commonly confused)
-═══════════════════════════════════════
-- Ground ball to right side: pitcher immediately breaks toward 1st to cover in case 1B can't get there.
-- Bunt with 1B charging: pitcher covers 1st base.
-- Wild pitch / passed ball: pitcher breaks toward HOME PLATE to back it up. LF backs up 3rd.
-- Extra base hit with runner on 1st: pitcher starts toward home (expected play) but must read and shift to 3rd if throw goes there.
-- Pickoff to 1B: pitcher backs up 1st behind the bag.
-- Pickoff at 1B with runner on 3rd (1st and 3rd): pitcher backs up HOME after throw to 1st.
-- Comebacker with runner on 3rd and 1 out, 1st and 3rd situation: throw to 2nd starts the double play, NOT straight home unless runner on 3rd is charging. Per Intangibles IQ: check runner at 3rd, then throw to first for the sure out if winning run is on 3rd with one out.
-
-═══════════════════════════════════════
-BASERUNNING RULES (from Intangibles IQ + OBR)
-═══════════════════════════════════════
-- Runner on 2nd, two outs: take a wider secondary lead (walking lead) to create better angle home on contact.
-- Runner on 1st, 1st and 3rd, fly ball, less than 2 outs: TAG UP to either advance or draw a cutoff. Going halfway risks being doubled off. Per Intangibles: tag up is correct.
-- Balk called but pitcher still throws: ball is DEAD. Runner on 2nd automatically advances to 3rd. Hitter does not swing.
-- Runner misses first base (hits a double): defense can appeal with ball live by tagging runner or touching 1st; OR if ball is dead, pitcher steps off rubber and throws to 1st. Tagging runner standing on 2nd while ball is live is also valid.
-- No doubles defense: outfielders play a few steps deeper than normal, shading toward foul lines. NOT shallow.
-
-═══════════════════════════════════════
-INFIELD FLY RULE
-═══════════════════════════════════════
-Called when: runners on 1st and 2nd (or bases loaded), fewer than 2 outs, fair fly ball that an infielder can catch with ordinary effort. NOT called on line drives or bunts. Batter is automatically out. Runners may advance at their own risk but do not have to.
-Common wrong answer: it is NOT called with runner on 1st only.
-
-═══════════════════════════════════════
-DROPPED THIRD STRIKE
-═══════════════════════════════════════
-- Runner on 1st, fewer than 2 outs: batter is automatically out. No running.
-- 1st base unoccupied at time of pitch, any count of outs: batter may run to 1st.
-- 2 outs, any base situation: batter may always run on dropped 3rd strike.
-
-═══════════════════════════════════════
-HITTING COUNTS AND APPROACH (from Intangibles IQ)
-═══════════════════════════════════════
-- Best hitter's counts: 0-0, 1-0, 2-0, 2-1, 3-1. Hitter is ahead -- likely to see fastball, can be selective.
-- Two-strike approach: widen stance, shorten swing, cover full plate, make contact.
-- Runner on 2nd, no outs: hitter should drive the ball to right side to advance the runner.
-- Runner on 3rd, infield in, 1 out: look for pitch to elevate for fly ball.
-- Runner on 3rd, infield back, 1 out: make solid contact up the middle, air or ground.
-
-═══════════════════════════════════════
-BUNT SITUATIONS (from Intangibles IQ)
-═══════════════════════════════════════
-- Runners on 1st and 2nd, bunt: throw to THIRD. Keeping tying run off third is priority over a double play that may not happen.
-- Bunt hard back to pitcher, runners on 1st and 2nd, visiting team winning by 1, late game: throw to THIRD (keep tying run off third), NOT second for double play attempt.
-- Wheel play: 3B charges, SS breaks to cover 3rd, 2B covers 2nd, 1B holds. Used to get force out at 3rd.
-
-═══════════════════════════════════════
-FIRST AND THIRD DEFENSE (from Team Florida + coaching sources)
-═══════════════════════════════════════
-Options for the catcher on a stolen base attempt (runner on 1st steals 2nd):
-1. Throw through to 2nd to get the stealing runner (risk: runner on 3rd scores)
-2. Fake throw to 2nd then fire to 3rd to catch aggressive runner
-3. Cut play: pitcher cuts the catcher's throw partway and looks runner back to 3rd
-Key principle: DECEPTION. Never telegraph what you're going to do. Decision depends on score, outs, runner speed, arm strength.
-
-═══════════════════════════════════════
-OUTFIELD POSITIONING
-═══════════════════════════════════════
-- Center fielder has absolute priority over all other outfielders on any ball he can reach.
-- No doubles defense: outfielders play deeper and shade toward foul lines. Not shallow.
-- Foul fly ball, winning run on 3rd, less than 2 outs: outfielder catches it ONLY if confident he can throw the runner out from that spot. Otherwise let it drop.
-- Runner on 2nd, 2 outs, tie game, lead-off hitter up: outfield plays straight away, normal depth. Two outs means play the hitter.
-
-═══════════════════════════════════════
-
-BUNT COVERAGE ASSIGNMENTS (from 12U/13U Playbook + Georgia Elite Defensive Playbook)
-═══════════════════════════════════════════════════════════════════════
-SITUATION: No runners OR runner on 1st only
-- 3B charges hard down the line
-- 1B charges hard down the line  
-- 2B rotates to cover 1st base
-- SS rotates to cover 2nd base
-- P covers middle of infield (any bunt past catcher not fielded by 1B or 3B)
-- C covers home plate area, calls who fields ball and where throw goes
-- Throw usually goes to 1st base for the sure out
-
-SITUATION: Runner on 2nd only
-- 3B holds at third (can't leave runner unguarded)
-- 1B charges
-- P covers 3rd base line bunts
-- SS covers 2nd base
-- 2B covers 1st base
-- Key: Hold the runner at 2nd, get out at 1st
-
-SITUATION: Runners on 1st and 2nd (sacrifice bunt -- most important)
-- 3B charges hard (responsible for balls bunted to left side)
-- 1B charges hard (responsible for balls bunted to right side)
-- P fields any bunt up the middle or left side beyond catcher
-- 2B rotates to cover 1st base
-- SS rotates to cover 2nd base
-- THROW: Per Intangibles IQ -- throw to THIRD BASE to keep tying run off third.
-  NOT second base for double play attempt. The out at third (force) is the priority.
-- WHEEL PLAY: SS breaks early to cover 3rd, 3B charges late -- designed to catch offense off guard
-
-SITUATION: Runner on 3rd (squeeze bunt defense)
-- 3B charges hard
-- 1B charges hard
-- P charges hard -- MUST get to the ball fast
-- SS covers 2nd, 2B covers 1st
-- Catcher covers home -- cannot leave home plate
-- Throw usually goes to 1st. If runner breaks from 3rd early, catcher covers plate.
-
-CATCHER'S ROLE ON ALL BUNTS:
-- Catcher is the "traffic cop" -- calls who fields the ball ("you, you, you!") 
-  and where the throw goes ("one!", "two!", "three!")
-- Catcher NEVER fields a bunt that the pitcher or corner infielder can reach
-- Catcher covers home plate area at all times
-
-PITCHER'S ROLE ON BUNTS:
-- If ball is bunted to the LEFT (3rd base) side and 3B fields it: pitcher continues to 3rd base 
-  to cover the now-vacated bag
-- If ball is bunted to the RIGHT (1st base) side: pitcher covers 1st base if 1B has charged
-- Pitcher fields any bunt directly back at him, or up the middle out of catcher's reach
-
-POP FLY / FLY BALL PRIORITY ORDER (from Perry Hill Infield System)
-═══════════════════════════════════════════════════════════════════════
-1. CF has absolute priority over ALL fielders. No exceptions.
-2. LF has priority over all infielders but yields to CF.
-3. RF has priority over all infielders but yields to CF.
-4. SS has first priority among infielders.
-5. 2B has second infield priority.
-6. 3B has third infield priority.
-7. 1B has fourth infield priority.
-8. Catcher goes for pop-ups in his area until called off.
-9. Pitcher is LAST priority -- catches fly ball only in emergency, otherwise 
-   directs traffic by pointing and calling the fielder's name.
-
-CALLING FOR THE BALL: Infielder calls "I've got it!" three times.
-Outfielder always wins over infielder when they both call.
-
-PULL HITTER POSITIONING — CRITICAL (very commonly gets confused)
-═══════════════════════════════════════════════════════════════════════
-LEFT-HANDED HITTER pulls to the RIGHT SIDE of the field (first base side, right field).
-  - 3B shades TOWARD SECOND BASE (away from the third base line)
-  - SS shifts toward second base (covering the gap)
-  - 1B and 2B shade toward the right field line
-  - 3B is the LAST person who should be near the line for a lefty pull hitter
-  - RF shades toward the line, LF plays normal or shades left-center
-
-RIGHT-HANDED HITTER pulls to the LEFT SIDE of the field (third base side, left field).
-  - 3B shades TOWARD THE LINE (third base line)
-  - SS shifts toward the 5-6 hole
-  - 1B plays off the bag, 2B shades toward second
-  - LF shades toward the line, RF plays normal
-
-OPPOSITE FIELD HITTER:
-  - Left-handed opposite field hitter hits to LEFT field → 3B stays at line, SS stays
-  - Right-handed opposite field hitter hits to RIGHT field → 1B stays in, 2B shades right
-
-COMMON ERROR TO CATCH: A question saying "3B shades to the line for a left-handed pull hitter" is WRONG.
-A question saying "3B shades away from the line for a right-handed pull hitter" is also WRONG.
-
-INFIELD SITUATIONAL RULES (from Perry Hill Infield System)
-═══════════════════════════════════════════════════════════════════════
-DOUBLE PLAYS:
-- Double play balls make themselves -- they are NOT made. Made by how ball is hit, direction, runner speed.
-- 2B feeds SS on balls hit to 2B: underhand no-spin toss on ball hit right at him; 
-  backhand toss on balls hit behind him toward 1st.
-- SS to 2B pivot: approach with hands up and in, right foot near back inside corner of base.
-
-FIRST BASEMAN:
-- On ground balls to right side: 1B breaks to bag, sets up to receive throw.
-- Bunt with runner on 1st only: 1B charges hard, responsible for right side bunts.
-- Bunt with runners on 1st and 2nd: 1B charges in straight line toward home plate.
-- 1B holds runner: right foot against base, inside edge, toes beyond front inside corner.
-
-SHORTSTOP:
-- First priority among infielders on pop flies.
-- Determines who covers second base on steal attempts -- SS decides.
-- Relay man for LF and CF throws.
-
-THIRD BASEMAN:
-- On bunt situations: charges hard, responsible for left side bunts.
-- On bunt with runner on 2nd: DOES NOT charge -- must protect 3rd.
-- Relay/cutoff for certain LF throws going home (lines up between LF and home).
-
-OUTFIELD SITUATIONAL RULES (from multiple coaching sources)
-═══════════════════════════════════════════════════════════════════════
-BACKING UP BASES (every outfielder has a job on every play):
-- LF backs up ALL throws to 3rd base (steals, relay throws, wild pitches).
-- RF backs up ALL throws to 1st base from left side of infield.
-- CF backs up 2nd base on most plays.
-- Outfielders sprint to backup position BEFORE the play happens, not after.
-
-NO DOUBLES DEFENSE:
-- Outfielders play a FEW STEPS DEEPER than normal. NOT shallow.
-- Shade toward foul lines.
-- Priority: nothing gets over their head or down the line.
-
-FOUL FLY BALL WITH WINNING RUN ON 3RD, LESS THAN 2 OUTS:
-- Outfielder catches it ONLY if confident he can throw runner out from that spot.
-- If unsure, let it drop -- runner cannot score on a foul fly ball.
-
-COMMUNICATION:
-- Nearest outfielder to the one making a play calls the base and depth: "Two! Two! In! In!"
-- Center fielder is captain -- calls off both corner outfielders.
-
-THROWING THROUGH CUTOFF MAN:
-- Outfielders throw THROUGH the relay man, chest-to-head high.
-- On line throws: relay man lets it go.
-- Off-line or no play at lead base: relay man cuts and redirects.
-- Outfielder yells "GO!" if throw should go through, says nothing otherwise.
-
-HITTING / SITUATIONAL HITTING RULES
-═══════════════════════════════════════
-- Best hitter counts: 0-0, 1-0, 2-0, 2-1, 3-1. Hitter ahead, look for fastball, be selective.
-- Pitcher ahead: 0-2, 1-2, 2-2. Two-strike approach: protect plate, shorten swing, hit to all fields.
-- 3-0 count: almost always take unless coach gives explicit green light. NEVER swing 3-0 without permission.
-- Hit-and-run: batter MUST swing and try to hit ball on the ground to protect the runner.
-- Suicide squeeze: batter MUST bunt regardless of pitch location. No take allowed.
-- Safety squeeze: batter bunts ONLY IF runner on third breaks for home. Read the runner first.
-- Runner on 2nd, no outs: try to drive ball to RIGHT side of field to advance the runner to third.
-- Runner on 3rd, infield in, less than 2 outs: look for pitch to elevate for a fly ball.
-- Runner on 3rd, infield back: make solid contact in any direction.
-- Two-strike adjustment: widen stance, shorten swing, protect full plate, do NOT try to pull for power.
-- Working the count: always good strategy. More pitches = more information for the hitter.
-- 3-1 count: hitter is ahead, good pitch to drive. Be selective but aggressive on a hittable pitch.
-
-DEFENSIVE POSITIONING ACCURACY CHECK:
-- Always verify: LEFT-handed pull hitters pull to the RIGHT SIDE. 3B shades AWAY from line.
-- Always verify: RIGHT-handed pull hitters pull to the LEFT SIDE. 3B shades TOWARD line.
-- A question with 3B shading to the line for a LEFT-HANDED pull hitter = AUTOMATIC FAIL.
-- A question with 3B shading away from the line for a RIGHT-HANDED pull hitter = AUTOMATIC FAIL.
-
-QUESTION QUALITY RULES
-══════════════════════════════════════
-FORMAT CHECK (check these FIRST before factual accuracy):
-- Every answer choice MUST end with a period, question mark, or exclamation mark. If any choice does not end with sentence-ending punctuation, FAIL the question immediately.
-- No choice may end with a dangling word like: the, a, an, to, at, in, on, or, and, but, for, fir, eve, cor, ne, le, etc. These indicate a truncated sentence. FAIL immediately.
-- No choice may exceed 15 words. FAIL if any choice is overly long.
-══════════════════════════════════════
-ORIGINAL
-═══════════════════════════════════════
-- All four choices must be meaningfully DIFFERENT. Two choices describing the same play = automatic FAIL.
-- Explanation must match the stated correct answer exactly. Mismatch = FAIL.
-- Wrong answers must be plausibly wrong, not absurd.
-- Scenario must be physically possible given the runner and out configuration stated.
-- REALISM: Must be a situation that occurs in real baseball at any level from youth through high school. Challenging and counterintuitive situations are encouraged. Only flag as FAIL if physically impossible or a pro-only rule exception that never occurs in amateur baseball.
-- EXPLANATION QUALITY: Must read like a coach teaching after the play. Vague or circular = FAIL.
-- ANSWER CLARITY: Correct answer must be clearly the best option.
-- TEACHING VALUE: Difficult questions revealing something most players don't already know are the most valuable. Do not penalize for being challenging -- only for being wrong, unclear, or unrealistic.
-
-Review each question and return a JSON array with one object per question:
-{"index": <0-based index>, "pass": <true if factually correct AND all choices distinct, false if any error>, "issue": "<blank if pass=true, otherwise a SHORT specific description of the exact error>"}
-
-Return ONLY the JSON array. No other text.`;
-
-function autoCategory(){document.getElementById('sel-cat').value=CAT_MAP[document.getElementById('sel-pos').value]||'infield';}
-function status(msg,type){var el=document.getElementById('status');el.textContent=msg;el.className='status '+(type||'info');}
-function prog(pct){var w=document.getElementById('prog-wrap');var f=document.getElementById('prog-fill');if(pct===null){w.style.display='none';return;}w.style.display='block';f.style.width=pct+'%';}
-
-fetch(SB+'/rest/v1/questions?select=id',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Prefer':'count=exact','Range':'0-0'}}).then(r=>{var c=r.headers.get('content-range');if(c)document.getElementById('db-count').textContent=c.split('/')[1]+' questions';});
-
-async function callClaude(messages, system, maxTokens){
-  var body={model:'claude-sonnet-4-20250514',max_tokens:maxTokens||4000,messages:messages};
-  if(system) body.system=system;
-  var r=await fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-  var d=await r.json();
-  if(d.error) throw new Error(d.error.message);
-  return d.content[0].text;
-}
-
-async function generate(){
-  var pos=document.getElementById('sel-pos').value;
-  var cat=document.getElementById('sel-cat').value;
-  var diff=document.getElementById('sel-diff').value;
-  var count=parseInt(document.getElementById('sel-count').value);
-  var focus=document.getElementById('sel-focus').value.trim();
-  document.getElementById('gen-btn').disabled=true;
-  document.getElementById('preview').innerHTML='';
-  document.getElementById('insert-area').style.display='none';
-  generated=[];
-
-  var diffStr=diff==='mixed'?'Mix of difficulty 1, 2, and 3':'All difficulty '+diff;
-  var focusStr=focus?'Focus specifically on: '+focus+'.':'Cover varied realistic game situations.';
-  var roleDesc=ROLE_DESC[pos]||'';
-
-  // ── PASS 1: GENERATE ─────────────────────────────────────────────────────
-  prog(5);
-  status('Pass 1 of 2 -- Generating '+count+' questions for '+pos+'...','info');
-
-  var genPrompt='Generate '+count+' baseball IQ questions for the '+pos+' position.\n\n'+
-'MISSION: This app teaches baseball players and their coaches to make smarter decisions on the field. Questions should range from fundamental to advanced - the challenging ones that reveal something most players do not know are the most valuable. The explanation is the most important part: write it like a coach teaching after the play, in plain language that makes the answer clear.\n\n'+
-'POSITION ROLE (stay strictly within these bounds):\n'+roleDesc+'\n\n'+
-'Settings: Category="'+cat+'". '+diffStr+'. '+focusStr+'\n\n'+
-'CRITICAL RULES:\n'+
-'- First-person voice as the '+pos+'\n'+
-'- Scenarios must be common youth baseball situations -- things that happen multiple times per season\n'+
-'- RANDOMIZE which choice is correct -- vary it across A, B, C, and D\n'+
-'- All 4 choices must be plausible, youth-friendly, and COMPLETE SENTENCES.\n'+'- Every choice MUST end with a period, question mark, or exclamation mark.\n'+'- Every choice must be under 12 words. If it runs long, trim it but keep it complete.\n'+'- NEVER end a choice with a preposition, article, or conjunction (e.g. never end with: the, a, an, to, at, in, on, or, and, but, for, with, from).\n'+'- BAD EXAMPLE: "Throw to third to get the lead runner before stepping on fir" — NEVER DO THIS.\n'+'- GOOD EXAMPLE: "Throw to third, then step on first." — Complete thought, ends with period.\n'+
-'- Factually accurate per the Official Baseball Rules -- especially force plays, cutoffs, catcher positioning\n'+
-'- EXPLANATION: Write it like a coach teaching the player after the play. If the correct answer is surprising or counterintuitive, explain clearly why. Use plain language. 2-3 sentences max.\n'+
-'- Never repeat scenarios\n\n'+
-'Return ONLY a valid JSON array of '+count+' objects:\n'+
-'{\n'+
-'  "difficulty": <1|2|3>,\n'+
-'  "category": "'+cat+'",\n'+
-'  "position": "'+pos+'",\n'+
-'  "inning": "<e.g. Top 4th>",\n'+
-'  "score": "<e.g. Tie game>",\n'+
-'  "outs": <0|1|2>,\n'+
-'  "count": "<e.g. 1-2>",\n'+
-'  "runners_first": <true|false>,\n'+
-'  "runners_second": <true|false>,\n'+
-'  "runners_third": <true|false>,\n'+
-'  "scenario": "<situation max 25 words>",\n'+
-'  "question": "<the question max 15 words>",\n'+
-'  "question_type": "multiple_choice",\n'+
-'  "choice_a": "<option A max 12 words>",\n'+
-'  "choice_b": "<option B max 12 words>",\n'+
-'  "choice_c": "<option C max 12 words>",\n'+
-'  "choice_d": "<option D max 12 words>",\n'+
-'  "correct_index": <0=A, 1=B, 2=C, 3=D -- VARY THIS across questions>,\n'+
-'  "explanation": "<2-3 sentences, factually accurate per OBR>",\n'+
-'  "statcast_stat": "<e.g. 78%>",\n'+
-'  "statcast_blurb": "<max 15 words>"\n'+
-'}\n\nReturn nothing but the JSON array.';
-
-  var rawQs=[];
+function log(m,c=''){const el=document.getElementById('vlog');el.innerHTML+=`<span class="${c}">${m}</span> `;el.scrollTop=el.scrollHeight;}
+function setlog(m,c=''){document.getElementById('vlog').innerHTML=`<span class="${c}">${m}</span>`;}
+function wc(s){return(s||'').trim().split(/\s+/).length;}
+async function gen(){
+  document.getElementById('qout').classList.remove('on');
+  document.getElementById('spin').classList.add('on');
+  document.getElementById('gbtn').disabled=true;
+  const pv=document.getElementById('psel').value;
+  const tv=document.getElementById('tsel').value;
+  const pos=pv==='auto'?POS[Math.floor(Math.random()*POS.length)]:pv;
+  const tier=tv==='auto'?String(Math.ceil(Math.random()*3)):tv;
+  setlog(`Generating ${pos} | Tier ${tier}...`,'linfo');
   try{
-    prog(20);
-    var genText=await callClaude([{role:'user',content:genPrompt}],null,8000);
-    rawQs=JSON.parse(genText.replace(/```json|```/g,'').trim());
-    // Pass 1 filter: basic field presence
-    rawQs=rawQs.filter(function(q){
-      return q.choice_a&&q.choice_b&&q.choice_c&&q.choice_d&&q.scenario&&q.question&&
-             typeof q.correct_index==='number'&&q.correct_index>=0&&q.correct_index<=3;
-    });
-    // Format validator: reject any question with incomplete/truncated choices
-    var badWords = /\s(a|an|the|to|at|in|on|or|and|but|for|with|from|of|by|as|is|are|was|be|this|that|it)$/i;
-    rawQs = rawQs.filter(function(q) {
-      var choices = [q.choice_a, q.choice_b, q.choice_c, q.choice_d];
-      for(var i = 0; i < choices.length; i++) {
-        var c = (choices[i]||'').trim();
-        // Must end with sentence-ending punctuation
-        if(!/[.?!]$/.test(c)) return false;
-        // Must not be empty or too short
-        if(c.length < 5) return false;
-        // Must not have trailing incomplete words (caught above but double-check)
-        if(c.length > 60) return false; // anything over 60 chars is too long
-      }
-      return true;
-    });
-    console.log('After format validation: ' + rawQs.length + ' questions passed');
-    prog(40);
-    status('Pass 1 done -- '+rawQs.length+' questions generated. Running umpire verification...','info');
-  }catch(e){
-    status('Generation error: '+e.message,'err');
-    prog(null);
-    document.getElementById('gen-btn').disabled=false;
-    return;
-  }
-
-  if(!rawQs.length){
-    status('No valid questions generated. Try again.','err');
-    prog(null);
-    document.getElementById('gen-btn').disabled=false;
-    return;
-  }
-
-  // ── PASS 2: VERIFY ────────────────────────────────────────────────────────
-  status('Pass 2 of 2 -- Umpire reviewing each question for factual accuracy...','info');
-  prog(55);
-
-  // Build verification payload -- send question + answer + explanation to umpire
-  var verifyPayload=rawQs.map(function(q,i){
-    var choices=[q.choice_a,q.choice_b,q.choice_c,q.choice_d];
-    var ltrs=['A','B','C','D'];
-    return 'Question '+i+' ('+q.position+', runners: 1st='+q.runners_first+' 2nd='+q.runners_second+' 3rd='+q.runners_third+', outs='+q.outs+'):\n'+
-      'Scenario: '+q.scenario+'\n'+
-      'Question: '+q.question+'\n'+
-      'Choices: '+choices.map(function(c,j){return ltrs[j]+') '+c;}).join(' | ')+'\n'+
-      'Stated correct answer: '+ltrs[q.correct_index]+') '+choices[q.correct_index]+'\n'+
-      'Explanation: '+q.explanation;
-  }).join('\n\n---\n\n');
-
-  var verifyResults=[];
-  try{
-    var verifyText=await callClaude([{role:'user',content:verifyPayload}],UMPIRE_SYSTEM,2000);
-    verifyResults=JSON.parse(verifyText.replace(/```json|```/g,'').trim());
-  }catch(e){
-    // If verification fails, show all questions but flagged as unverified
-    console.warn('Verification parse error:',e.message);
-    verifyResults=rawQs.map(function(_,i){return{index:i,pass:null,issue:'Verification unavailable'};});
-  }
-
-  prog(90);
-
-  // Merge results
-  var passCount=0, failCount=0;
-  generated=[];
-  rawQs.forEach(function(q,i){
-    var vr=verifyResults.find(function(v){return v.index===i;})||{pass:null,issue:'Not reviewed'};
-    q._verified=vr;
-    if(vr.pass===true){passCount++;generated.push(q);}
-    else{failCount++;}
-  });
-
-  prog(100);
-  setTimeout(function(){prog(null);},500);
-
-  var msg='✅ '+passCount+' passed verification';
-  if(failCount) msg+=' · ❌ '+failCount+' rejected';
-  status(msg, failCount>passCount?'warn':'ok');
-
-  renderPreview(rawQs, verifyResults);
-  if(generated.length) document.getElementById('insert-area').style.display='block';
-  document.getElementById('gen-btn').disabled=false;
+    const res=await fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({position:pos,tier,engine_data:E[pos]||E['Pitcher']})});
+    const q=await res.json();
+    if(q.error){setlog('Error: '+q.error,'lfail');document.getElementById('spin').classList.remove('on');document.getElementById('gbtn').disabled=false;return;}
+    q.position=pos;q.tier=tier;curQ=q;
+    let pass=true;
+    const cw=wc(q.correct_exp);
+    if(cw>15){log('FAIL: '+cw+' words','lfail');pass=false;}else{log('Gate 2: word count OK','lok');}
+    const txt=((q.correct_exp||'')+' '+Object.values(q.wrong_exps||{}).join(' ')).toLowerCase();
+    const hit=BAN.find(b=>txt.includes(b));
+    if(hit){log('FAIL: banned phrase','lfail');pass=false;}else{log('Gate 3: voice clean','lok');}
+    if(pass)log('All gates passed','lok');
+    render(q);gc++;document.getElementById('sgc').textContent=gc;
+  }catch(e){setlog('Error: '+e.message,'lfail');document.getElementById('spin').classList.remove('on');document.getElementById('gbtn').disabled=false;}
 }
-
-function renderPreview(qs, verifyResults){
-  var ltrs=['A','B','C','D'];
-  document.getElementById('preview').innerHTML=qs.map(function(q,i){
-    var choices=[q.choice_a,q.choice_b,q.choice_c,q.choice_d];
-    var vr=verifyResults.find(function(v){return v.index===i;})||{pass:null,issue:'Not reviewed'};
-    var passStr=vr.pass===true?'✅ PASS':vr.pass===false?'❌ FAIL':'⚪ UNVERIFIED';
-    var verifyClass=vr.pass===true?'pass':vr.pass===false?'fail':'';
-    var cardClass=vr.pass===false?'q-card rejected':'q-card';
-    return '<div class="'+cardClass+'" id="qcard-'+i+'" style="'+(vr.pass===false?'border-color:#5a1020;background:#0a0208':'')+'">'+
-      '<div class="q-pos">'+(i+1)+'. '+q.position+' · Diff '+q.difficulty+' · Correct=<b>'+ltrs[q.correct_index]+'</b> · '+(q.runners_first?'1B ':'')+( q.runners_second?'2B ':'')+( q.runners_third?'3B ':'')+q.outs+' outs</div>'+
-      '<div class="q-scenario">'+q.scenario+'</div>'+
-      '<div class="q-question">'+q.question+'</div>'+
-      '<div class="q-choices">'+choices.map(function(ch,ci){return '<div class="q-choice'+(ci===q.correct_index?' correct':'')+'">'+ltrs[ci]+'. '+ch+'</div>';}).join('')+'</div>'+
-      '<div class="q-expl">'+(q.explanation||'')+'</div>'+
-      '<div class="q-verify '+verifyClass+'">'+passStr+(vr.issue?' -- '+vr.issue:'')+'</div>'+
-    '</div>';
-  }).join('');
-
-  // Show rejected questions collapsed but visible
-  qs.forEach(function(q,i){
-    var vr=verifyResults.find(function(v){return v.index===i;})||{pass:null};
-    if(vr.pass===false){
-      var el=document.getElementById('qcard-'+i);
-      if(el) el.style.display='block';
-    }
-  });
+function render(q){
+  document.getElementById('spin').classList.remove('on');
+  document.getElementById('qmeta').innerHTML=`<span class="qb bp">${q.position}</span><span class="qb bt">Tier ${q.tier}</span><span class="qb bs">${q.source||''}</span>`;
+  document.getElementById('qsc').textContent=q.scenario||'';
+  document.getElementById('qst').textContent=q.stem||'';
+  const ch=document.getElementById('qch');ch.innerHTML='';
+  (q.choices||[]).forEach(c=>{const b=document.createElement('button');b.className='cb';b.innerHTML=`<span class="cl">${c.letter}</span><span>${c.text}</span>`;b.onclick=()=>reveal(c.letter,q);ch.appendChild(b);});
+  document.getElementById('exp').classList.remove('on');document.getElementById('exp').innerHTML='';
+  document.getElementById('qout').classList.add('on');document.getElementById('gbtn').disabled=false;
 }
-
-async function insertAll(){
-  if(!generated.length)return;
-  var btn=document.getElementById('insert-btn');
-  btn.disabled=true;
-  status('Checking for duplicates...','info');
-  prog(10);
-
-  // Pull existing scenarios from DB to deduplicate
-  var existingScenarios=new Set();
-  try{
-    var er=await fetch(SB+'/rest/v1/questions?select=scenario',{
-      headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Range':'0-999'}
-    });
-    var existing=await er.json();
-    existing.forEach(function(q){ existingScenarios.add((q.scenario||'').trim().toLowerCase().substring(0,60)); });
-  }catch(e){ console.warn('Could not fetch existing scenarios for dedup check'); }
-
-  // Filter out duplicates
-  var beforeCount=generated.length;
-  var deduped=generated.filter(function(q){
-    var key=(q.scenario||'').trim().toLowerCase().substring(0,60);
-    return !existingScenarios.has(key);
-  });
-  var dupCount=beforeCount-deduped.length;
-  if(dupCount>0) status('Removed '+dupCount+' duplicate scenario(s). Inserting '+deduped.length+' unique questions...','warn');
-  else status('Inserting '+deduped.length+' verified unique questions...','info');
-
-  if(!deduped.length){ status('All questions were duplicates -- nothing to insert.','err'); btn.disabled=false; prog(null); return; }
-
-  prog(20);
-  var rows=deduped.map(function(q){
-    return{
-      difficulty:q.difficulty,category:q.category,position:q.position,
-      inning:q.inning,score:q.score,outs:parseInt(q.outs),count:q.count,
-      runners_first:!!q.runners_first,runners_second:!!q.runners_second,runners_third:!!q.runners_third,
-      scenario:q.scenario,question:q.question,question_type:'multiple_choice',
-      choice_a:q.choice_a,choice_b:q.choice_b,choice_c:q.choice_c,choice_d:q.choice_d,
-      correct_index:q.correct_index,
-      explanation:q.explanation,
-      statcast_stat:q.statcast_stat||null,statcast_blurb:q.statcast_blurb||null
-    };
-  });
-  try{
-    var r=await fetch(SB+'/rest/v1/questions',{method:'POST',
-      headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
-      body:JSON.stringify(rows)});
-    prog(100);
-    if(r.ok){
-      status('✅ Inserted '+deduped.length+' verified unique questions!','ok');
-      fetch(SB+'/rest/v1/questions?select=id',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Prefer':'count=exact','Range':'0-0'}}).then(function(r2){var c=r2.headers.get('content-range');if(c)document.getElementById('db-count').textContent=c.split('/')[1]+' questions';});
-      generated=[];
-      document.getElementById('insert-area').style.display='none';
-    }else{var err=await r.json();status('Insert failed: '+JSON.stringify(err).substring(0,120),'err');}
-  }catch(e){status('Network error: '+e.message,'err');}
-  btn.disabled=false;
-  setTimeout(function(){prog(null);},1000);
+function reveal(chosen,q){
+  document.querySelectorAll('.cb').forEach(b=>{b.onclick=null;const l=b.querySelector('.cl').textContent;if(l===q.correct)b.classList.add('ok');else if(l===chosen&&chosen!==q.correct)b.classList.add('no');});
+  const el=document.getElementById('exp');
+  let h=`<div class="ec"><div class="elbl ok">Correct — ${q.correct}</div><div class="etxt">${q.correct_exp||''}</div></div>`;
+  (q.choices||[]).filter(c=>c.letter!==q.correct).forEach(c=>{h+=`<div class="ew"><div class="elbl no">Wrong — ${c.letter}</div><div class="etxt">${(q.wrong_exps||{})[c.letter]||''}</div></div>`;});
+  el.innerHTML=h;el.classList.add('on');
 }
-
-
-function showAudit(){
-  document.getElementById('audit-area').style.display='block';
-  document.getElementById('audit-area').scrollIntoView({behavior:'smooth'});
-}
-
-var failedIds=[];
-
-async function runAudit(){
-  var pos=document.getElementById('audit-pos').value;
-  var btn=document.getElementById('audit-btn');
-  btn.disabled=true;
-  failedIds=[];
-  document.getElementById('audit-results').innerHTML='';
-  document.getElementById('audit-delete-area').style.display='none';
-
-  function astatus(msg,type){var el=document.getElementById('audit-status');el.textContent=msg;el.className='status '+(type||'info');}
-  function aprog(pct){var w=document.getElementById('audit-prog-wrap');var f=document.getElementById('audit-prog-fill');if(pct===null){w.style.display='none';return;}w.style.display='block';f.style.width=pct+'%';}
-
-  astatus('Fetching questions from database...','info');
-  aprog(5);
-
-  var url=SB+'/rest/v1/questions?select=id,position,scenario,question,choice_a,choice_b,choice_c,choice_d,correct_index,explanation,runners_first,runners_second,runners_third,outs&question_type=eq.multiple_choice';
-  if(pos!=='all') url+='&position=eq.'+encodeURIComponent(pos);
-
-  var questions=[];
-  try{
-    var r=await fetch(url,{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Range':'0-999'}});
-    questions=await r.json();
-  }catch(e){astatus('Fetch error: '+e.message,'err');btn.disabled=false;aprog(null);return;}
-
-  if(!questions.length){astatus('No questions found.','warn');btn.disabled=false;aprog(null);return;}
-  astatus('Fetched '+questions.length+' questions. Verifying in batches of 10...','info');
-
-  var BATCH=10;
-  var allResults=[];
-  var batches=[];
-  for(var i=0;i<questions.length;i+=BATCH) batches.push(questions.slice(i,i+BATCH));
-
-  for(var bi=0;bi<batches.length;bi++){
-    aprog(Math.round((bi/batches.length)*85)+5);
-    astatus('Verifying batch '+(bi+1)+' of '+batches.length+'...','info');
-    var batch=batches[bi];
-    var ltrs=['A','B','C','D'];
-    var payload=batch.map(function(q,i){
-      var choices=[q.choice_a,q.choice_b,q.choice_c,q.choice_d];
-      var sep=' | ';return 'Question '+i+' ('+q.position+', 1st='+q.runners_first+' 2nd='+q.runners_second+' 3rd='+q.runners_third+', outs='+q.outs+'):'+"\n"+'Scenario: '+q.scenario+"\n"+'Question: '+q.question+"\n"+'Choices: '+choices.map(function(c,j){return ltrs[j]+') '+c;}).join(sep)+"\n"+'Correct: '+ltrs[q.correct_index]+') '+choices[q.correct_index]+"\n"+'Explanation: '+q.explanation;
-    }).join('\n\n---\n\n');
-
-    try{
-      var vText=await callClaude([{role:'user',content:payload}],UMPIRE_SYSTEM,2000);
-      var vResults=JSON.parse(vText.replace(/```json|```/g,'').trim());
-      vResults.forEach(function(vr){
-        var q=batch[vr.index];
-        if(q){
-          allResults.push({q:q,pass:vr.pass,issue:vr.issue||''});
-          if(vr.pass===false) failedIds.push(q.id);
-        }
-      });
-    }catch(e){
-      batch.forEach(function(q){allResults.push({q:q,pass:null,issue:'Verification error'});});
-    }
-  }
-
-  aprog(100);
-  setTimeout(function(){aprog(null);},500);
-
-  var passed=allResults.filter(function(r){return r.pass===true;}).length;
-  var failed=allResults.filter(function(r){return r.pass===false;}).length;
-  var ltrs=['A','B','C','D'];
-  var msg='Audit complete: passed='+passed+', failed='+failed;
-  astatus(msg,failed>0?'warn':'ok');
-
-  var failHtml=allResults.filter(function(r){return r.pass===false;}).map(function(r){
-    var q=r.q; var choices=[q.choice_a,q.choice_b,q.choice_c,q.choice_d];
-    return '<div class="q-card" style="border-color:#5a1020;background:#080208"><div class="q-pos">'+q.position+' - '+q.id.substring(0,8)+'</div><div class="q-scenario">'+q.scenario+'</div><div class="q-question">'+q.question+'</div><div class="q-choices">'+choices.map(function(ch,ci){return '<div class="q-choice'+(ci===q.correct_index?' correct':'')+'">'+ltrs[ci]+'. '+ch+'</div>';}).join('')+'</div><div class="q-expl">'+q.explanation+'</div><div class="q-verify fail">FAIL: '+r.issue+'</div></div>';
-  }).join('');
-
-  document.getElementById('audit-results').innerHTML=failHtml||'<div style="color:#3ecf82;padding:12px">No issues found!</div>';
-  if(failedIds.length) document.getElementById('audit-delete-area').style.display='block';
-  btn.disabled=false;
-}
-
-async function deleteFailedQuestions(){
-  if(!failedIds.length)return;
-  var btn=document.getElementById('audit-delete-btn');
-  btn.disabled=true;
-  var deleted=0;
-  for(var i=0;i<failedIds.length;i++){
-    try{
-      await fetch(SB+'/rest/v1/questions?id=eq.'+failedIds[i],{method:'DELETE',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Prefer':'return=minimal'}});
-      deleted++;
-    }catch(e){console.warn('Delete failed',failedIds[i]);}
-  }
-  document.getElementById('audit-status').textContent='Deleted '+deleted+' questions.';
-  document.getElementById('audit-status').className='status ok';
-  document.getElementById('audit-results').innerHTML='';
-  document.getElementById('audit-delete-area').style.display='none';
-  failedIds=[];
-  btn.disabled=false;
-  fetch(SB+'/rest/v1/questions?select=id',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Prefer':'count=exact','Range':'0-0'}}).then(function(r2){var c=r2.headers.get('content-range');if(c)document.getElementById('db-count').textContent=c.split('/')[1]+' questions';});
-}
-
-function clearAll(){document.getElementById('preview').innerHTML='';document.getElementById('insert-area').style.display='none';generated=[];document.getElementById('status').className='status';}
+function doPass(){pc++;document.getElementById('spc').textContent=pc;log('Passed','lok');gen();}
+function doFlag(){fc++;document.getElementById('sfc').textContent=fc;log('Flagged','lfail');alert('Flagged. Generating next.');gen();}
 </script>
 </body>
 </html>
