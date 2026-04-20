@@ -176,7 +176,11 @@ SECTION 15 — RUNDOWN PROTOCOL (THE PICKLE)
 SECTION 16 — PITCHER FIELDING & BACKUPS
 A pitcher is the 5th infielder. Their movement after release is the "Safety" for the rest of the defense.
 
-16.1 The 3-1 Coverage (The J-Path): Sprint toward the foul line, then turn parallel. Receive ball before the bag. Touch the inside corner with the right foot.
+16.1 The 3-1 Coverage (The J-Path):
+  The Trigger: Any ball hit to the right of the Pitcher's mound.
+  The SOP: Sprint on contact toward the foul line. Receive ball before the bag. Touch the inside corner with the right foot.
+  The Handoff Read: If the 1B stays home and fields the ball, the Pitcher becomes the backup. If the 1B ranges toward the ball, the Pitcher completes the J-Path to anchor the bag.
+  Scout's Scrutiny: Better to be there and not be needed than to be needed and not be there. Sprint until the 1B waves you off or the out is recorded.
 16.2 Shadowing (The 30-Foot Buffer): Stay 30–45 feet behind the target bag to account for the "bounce" of an overthrow. Shadow Home on all OF throws; shadow 3rd on deep RF/CF throws.
 16.3 WP/PB: The "Arc Move":
   With R3: Sprint directly to home plate.
