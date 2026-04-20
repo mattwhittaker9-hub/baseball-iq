@@ -157,7 +157,29 @@ function reveal(chosen,q){
   (q.choices||[]).filter(c=>c.letter!==q.correct).forEach(c=>{h+=`<div class="ew"><div class="elbl no">Wrong — ${c.letter}</div><div class="etxt">${(q.wrong_exps||{})[c.letter]||''}</div></div>`;});
   el.innerHTML=h;el.classList.add('on');
 }
-function doPass(){pc++;document.getElementById('spc').textContent=pc;log('Passed','lok');gen();}
+async function doPass(){
+  if(!curQ){gen();return;}
+  log('Saving to Supabase...','linfo');
+  document.getElementById('gbtn').disabled=true;
+  try{
+    const res=await fetch('https://baseball-iq-badges.mattwhittaker9.workers.dev/save',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(curQ)
+    });
+    const d=await res.json();
+    if(d.success){
+      pc++;
+      document.getElementById('spc').textContent=pc;
+      log('Saved to DB — ID:'+d.id.slice(0,8),'lok');
+    } else {
+      log('Save failed: '+(d.error||'unknown'),'lfail');
+    }
+  }catch(e){
+    log('Save error: '+e.message,'lfail');
+  }
+  gen();
+}
 function doFlag(){fc++;document.getElementById('sfc').textContent=fc;log('Flagged','lfail');alert('Flagged. Generating next.');gen();}
 </script>
 </body>
