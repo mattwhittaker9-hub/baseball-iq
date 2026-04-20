@@ -174,21 +174,48 @@ SECTION 15 — RUNDOWN PROTOCOL (THE PICKLE)
 15.4 The Push: Always drive the runner back toward their original base (the "Safe" base).
 
 SECTION 16 — PITCHER FIELDING & BACKUPS
-16.1 The 3-1 Coverage: Run the "J" Path. Receive ball before reaching the bag.
-16.2 Shadowing: 30–45 feet behind the bag. Shadow Home on all OF throws. Shadow 3rd on deep RF/CF throws only.
-16.3 WP/PB Coverage:
-  R3: Sprint to Home.
-  R2 Only (The Arc Move): Move to a point halfway between mound and home. Read the "Burner"—if he goes, cover home; if he stays, back up the throw to 3rd.
+A pitcher is the 5th infielder. Their movement after release is the "Safety" for the rest of the defense.
+
+16.1 The 3-1 Coverage (The J-Path): Sprint toward the foul line, then turn parallel. Receive ball before the bag. Touch the inside corner with the right foot.
+16.2 Shadowing (The 30-Foot Buffer): Stay 30–45 feet behind the target bag to account for the "bounce" of an overthrow. Shadow Home on all OF throws; shadow 3rd on deep RF/CF throws.
+16.3 WP/PB: The "Arc Move":
+  With R3: Sprint directly to home plate.
+  With R2 Only: Move to a "Control Point" halfway between mound and home.
+  Scout's Scrutiny (The Orange County Burner): Don't be a statue. The Arc Move keeps your feet moving so you can finish the sprint to the plate if R2 rounds 3rd, or rotate to back up the throw to 3rd if they anchor.
 16.4 Comebacker Matrix:
-  Bases Loaded (0/1 out): Throw Home (Force).
+  Bases Loaded: Throw Home (Force Out).
   R1 Only: Start the 1-6-3 DP.
-  R1+R2 (Tie Game): Throw to 3rd (Lead Force).
+  R1/R2 (Tie Game): Throw to 3rd (Lead Force). The Inning Killer: The 1-5-3 DP (P-to-3B-to-1B) is the high-IQ play to end the threat.
 
 SECTION 17 — PITCHER PICKOFF MECHANICS
-17.1 The Complete Stop: Discerning pause and shoulders settled. No rolling stops.
-17.2 LHP 45-Degree Rule: Lead foot must cross the 45-degree plane toward 1st base.
-17.3 2B Pickoff: Daylight Rule (Timing) or Inside Move (Spin). Legal feints are permitted to 2nd only while on the rubber.
-17.4 Disengagement Limit: Max two attempts per plate appearance. 3rd attempt must result in an out or it's a balk.
+17.1 The Complete Stop: Discernible pause with hands together and shoulders settled. Rolling stop = automatic balk.
+17.2 LHP 45-Degree Rule: Lead foot must cross the 45° plane toward 1st.
+17.3 2B Pickoff Dynamics: Daylight Rule (timing) or Inside Move (spin).
+17.4 Disengagement Limit (2026 Law): Max two disengagements per plate appearance. A third attempt that fails to record an out is a balk.
+  Scout's Scrutiny (The 3-1 Count Gamble): While not an absolute law, throwing over on a 3-1 count is generally low-IQ. In a high-walk-probability count, the pitcher's rhythm and focus should be 100% on the strike zone. Only gamble here against an elite "base-thief" in a high-leverage inning.
+
+SECTION 18 — APPEAL PLAYS & THE FOURTH OUT
+18.1 Legal Appeal Procedure (MLB 5.09c): 1. Ball must be Live; 2. Pitcher must step off the back of the rubber; 3. Throw to the base; 4. State the appeal.
+18.2 The Fourth Out Insurance: Appeal a missed base to replace a previous 3rd out. This can negate a run that scored on a timing play.
+18.3 Tag-Up Appeal (The First Touch): A runner is safe if they leave the moment the ball is first touched, even if it isn't secured for several seconds.
+
+SECTION 19 — WEATHER & FIELD CONDITIONS
+These are Tier 3 (Tactician) Environmental Variables.
+
+19.1 Sun Shield & Lost Protocol: Glove web shield. If lost, arms up + scream "SUN!" CF (Level 2) takes over.
+19.2 The 3/5 Wind Rule: Wind In = 3 steps IN. Wind Out = 5 steps BACK.
+19.3 Surface Physics: Wet Outfield No-Dive Law. Hydroplaning risk is too high. Stay on your feet and stay behind the ball.
+19.4 Temperature & Density: Cold (<60°F) air is heavy; ball dies. Hot (>85°F) air is thin; ball carries.
+  Scout's Scrutiny: In the app, these variables should dictate depth adjustments. If it's 90° at the Great Park, the "No Doubles" depth (Section 6.4) must move back an additional 5 feet.
+
+SECTION 20 — PITCH & HITTER IQ
+20.1 Pitch Tunneling (20-Foot Rule): All pitches must travel through the same "window" for the first 20–25 feet to force an early commitment from the hitter.
+20.2 Secondary Scaling:
+  The Shuffle: A side-step movement taken by the runner during the pitcher's delivery to gain momentum for an advance.
+  Tight Game: 3 Shuffles (Aggressive).
+  Blowout (5+ Lead): 2 Shuffles (Safe/Stationary).
+20.3 The 0-2 Waste Pitch: Aim 2–3 inches off the plate. A "meatball" on 0-2 is a mental error.
+  Scout's Scrutiny (The Foul-Off Reset): Repeating the same pitch/location after a foul ball is a high-risk gamble. The foul proves the hitter has timed the velocity. Reset their clock by changing the speed or the eye level.
 
 SECTION 21 — TAG-UP CALCULUS
 21.1 Shallow Read (Extending the String): On shallow flies (LF/Short CF), walk off (Recovery Lead) to play for the drop.
