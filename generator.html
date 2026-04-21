@@ -180,7 +180,22 @@ async function doPass(){
   }
   gen();
 }
-function doFlag(){fc++;document.getElementById('sfc').textContent=fc;log('Flagged','lfail');alert('Flagged. Generating next.');gen();}
+async function doFlag(){
+  if(!curQ){gen();return;}
+  const reason=prompt('Flag reason (optional):','voice|rule|wrong_answers|other')||'';
+  fc++;document.getElementById('sfc').textContent=fc;
+  log('Flagging...','linfo');
+  try{
+    const payload=Object.assign({},curQ,{flag_reason:reason});
+    const res=await fetch('https://baseball-iq-badges.mattwhittaker9.workers.dev/flag',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+    });
+    const d=await res.json();
+    if(d.success){log('Flagged — saved ID:'+d.id.slice(0,8),'lfail');}
+    else{log('Flag save failed: '+(d.error||'unknown'),'lfail');}
+  }catch(e){log('Flag error: '+e.message,'lfail');}
+  gen();
+}
 </script>
 </body>
 </html>
