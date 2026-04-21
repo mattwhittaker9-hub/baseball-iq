@@ -3805,7 +3805,7 @@ function handleAnswer(i,q,prefix=''){
   });
   if(!ok) chEl.querySelectorAll('.gc-choice')[i].classList.add('gc-wrong');
   if(navigator.vibrate) navigator.vibrate(ok?40:[60,30,60]);
-  showCardFeedback(ok,q,prefix);
+  q._chosenIdx=i;showCardFeedback(ok,q,prefix);
   if(prefix) {
     recordDailyAnswer(ok);
     // Track for daily wrong review
@@ -3867,7 +3867,7 @@ function showCardFeedback(ok,q,prefix=''){
   if(icon){icon.textContent=ok?'✅':'❌';icon.className='gc-result-icon '+(ok?'ok':'bad');}
   if(title) title.textContent=ok?"That's the play!":'Not quite...';
   if(sub) sub.textContent=ok?'Correct read':'Wrong read';
-  if(expl) expl.textContent=q.explanation||'';
+  if(expl){const _ltrs=['A','B','C','D'];const _cl=_ltrs[typeof q._chosenIdx==='number'?q._chosenIdx:q.correct_index];expl.textContent=ok?(q.explanation||''):((q['wrong_why_'+_cl.toLowerCase()]||q.explanation)||'');}
   // Spotlight — always show, pick best match for this question
   try {
     var fact = getSpotlightFact(q);
