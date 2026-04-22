@@ -73,6 +73,15 @@ select{background:#0f1e35;border:1px solid rgba(200,168,75,.25);color:#e8e0d0;pa
       <option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option>
     </select>
   </div>
+  <div><label class="clbl">Level</label>
+    <select id="lsel">
+      <option value="auto">Auto</option>
+      <option value="foundation">Foundation (8-12)</option>
+      <option value="development">Development (13-15)</option>
+      <option value="competitive">Competitive (16-18)</option>
+      <option value="elite">Elite (18+)</option>
+    </select>
+  </div>
   <button class="gbtn" id="gbtn" onclick="gen()">Generate</button>
 </div>
 <div class="vlog" id="vlog"><span class="linfo">Engine v5.2 loaded. Worker connected. Ready.</span></div>
@@ -124,9 +133,12 @@ async function gen(){
   const tv=document.getElementById('tsel').value;
   const pos=pv==='auto'?POS[Math.floor(Math.random()*POS.length)]:pv;
   const tier=tv==='auto'?String(Math.ceil(Math.random()*3)):tv;
-  setlog(`Generating ${pos} | Tier ${tier}...`,'linfo');
+  const lv=document.getElementById('lsel').value;
+  const LEVELS=['foundation','development','competitive','elite'];
+  const age_level=lv==='auto'?LEVELS[Math.floor(Math.random()*LEVELS.length)]:lv;
+  setlog(`Generating ${pos} | Tier ${tier} | ${age_level}...`,'linfo');
   try{
-    const res=await fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({position:pos,tier,engine_data:E[pos]||E['Pitcher']})});
+    const res=await fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({position:pos,tier,age_level,engine_data:E[pos]||E['Pitcher']})});
     const q=await res.json();
     if(q.error){setlog('Error: '+q.error,'lfail');document.getElementById('spin').classList.remove('on');document.getElementById('gbtn').disabled=false;return;}
     q.position=pos;q.tier=tier;curQ=q;
@@ -142,7 +154,7 @@ async function gen(){
 }
 function render(q){
   document.getElementById('spin').classList.remove('on');
-  document.getElementById('qmeta').innerHTML=`<span class="qb bp">${q.position}</span><span class="qb bt">Tier ${q.tier}</span><span class="qb bs">${q.source||''}</span>`;
+  document.getElementById('qmeta').innerHTML=`<span class="qb bp">${q.position}</span><span class="qb bt">Tier ${q.tier}</span><span class="qb bs">${q.age_level||''}</span><span class="qb bs">${q.source||''}</span>`;
   document.getElementById('qsc').textContent=q.scenario||'';
   document.getElementById('qst').textContent=q.stem||'';
   const ch=document.getElementById('qch');ch.innerHTML='';
