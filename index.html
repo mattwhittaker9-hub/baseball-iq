@@ -4184,7 +4184,14 @@ async function startDaily(){window._dailyFullHistory=[];
     return;
   }
   dailyQn=0;dailyAnswers=[];dailyAnswered=false;
-  showScreen('s-daily-game');
+  function _resetStreakUI(){
+  var vig=document.getElementById('clutch-vignette'); if(vig){vig.style.opacity='0';vig.style.animation='';}
+  var fill=document.getElementById('clutch-pf'); if(fill) fill.style.width='0%';
+  var lbl=document.getElementById('clutch-pl'); if(lbl) lbl.style.opacity='0';
+  var card=document.querySelector('.daily-gc-card')||document.querySelector('.gc-card');
+  if(card) card.style.animation='';
+}
+showScreen('s-daily-game');
   _dStreak=0;_resetStreakUI();
   nextDailyQ();
 }
@@ -4240,13 +4247,7 @@ function _updateStreakUI(pct,streak){
   }
 }
 
-function _resetStreakUI(){
-  var vig=document.getElementById('clutch-vignette'); if(vig){vig.style.opacity='0';vig.style.animation='';}
-  var fill=document.getElementById('clutch-pf'); if(fill) fill.style.width='0%';
-  var lbl=document.getElementById('clutch-pl'); if(lbl) lbl.style.opacity='0';
-  var card=document.querySelector('.daily-gc-card')||document.querySelector('.gc-card');
-  if(card) card.style.animation='';
-}
+
 
 function _showWalkoff(){
   var o=document.getElementById('lu-overlay');
