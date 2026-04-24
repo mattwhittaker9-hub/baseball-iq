@@ -23,7 +23,7 @@ function addPill(){
   var lbl=LL[CM.currentLevel]?LL[CM.currentLevel].name:CM.currentLevel;
   var pill=document.createElement("span");pill.className="level-pill";pill.id="level-pill";
   pill.innerHTML='<span class="level-pill-dot"></span>'+lbl;
-  var tgts=["#nav-iq",".nav-iq",".iq-badge",".player-iq","#player-iq",".header-iq",".nav-score",".top-bar"];
+  var tgts=["#nav-username",".nav-left","#top-nav",".iq-hero-right",".iq-hero"];
   for(var i=0;i<tgts.length;i++){var el=document.querySelector(tgts[i]);if(el){el.appendChild(pill);break;}}
 }
 function wrapFn(name,cb){
