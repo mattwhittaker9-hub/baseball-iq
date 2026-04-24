@@ -4214,7 +4214,7 @@ function recordDailyAnswer(ok){
 function _updateStreakUI(pct,streak){
   // Vignette
   var vig=document.getElementById('clutch-vignette');
-  if(!vig){ vig=document.createElement('div'); vig.id='clutch-vignette'; vig.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:500;transition:opacity 0.6s ease;'; document.body.appendChild(vig); }
+  if(!vig){ vig=document.createElement('div'); vig.id='clutch-vignette'; vig.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:400;transition:opacity 0.6s ease;'; document.body.appendChild(vig); }
   var alpha=(pct/100)*0.55;
   vig.style.opacity=String(alpha);
   vig.style.background='radial-gradient(ellipse at center,transparent 35%,rgba(160,20,20,'+alpha+') 100%)';
@@ -4222,7 +4222,7 @@ function _updateStreakUI(pct,streak){
   // Pressure bar
   var pw=document.getElementById('clutch-pw');
   if(!pw){
-    pw=document.createElement('div');pw.id='clutch-pw';pw.style.cssText='position:fixed;bottom:70px;left:0;right:0;padding:0 16px;z-index:400;';
+    pw=document.createElement('div');pw.id='clutch-pw';pw.style.cssText='position:fixed;bottom:70px;left:0;right:0;padding:0 16px;z-index:300;pointer-events:none;';
     pw.innerHTML='<div style="height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden"><div id="clutch-pf" style="height:100%;border-radius:2px;background:linear-gradient(90deg,#c8a84b,#e05050);transition:width 0.5s ease;width:0%"></div></div><div id="clutch-pl" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c8a84b;text-align:right;margin-top:3px;font-family:Barlow Condensed,sans-serif;opacity:0;transition:opacity 0.3s"></div>';
     document.body.appendChild(pw);
   }
