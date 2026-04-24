@@ -4164,6 +4164,7 @@ async function startDaily(){window._dailyFullHistory=[];
   if(window._dailyFullHistory && window._dailyFullHistory.length) {
     populateWrongReview('daily-wrong-review-list','daily-wrong-review-count','daily-wrong-review-section', window._dailyFullHistory);
   }
+  if(window._setDailyMode)window._setDailyMode(false);
   showScreen('s-daily-end');
     return;
   }
@@ -4180,6 +4181,7 @@ async function startDaily(){window._dailyFullHistory=[];
   }
   dailyQn=0;dailyAnswers=[];dailyAnswered=false;
   showScreen('s-daily-game');
+  if(window._setDailyMode)window._setDailyMode(true);
   nextDailyQ();
 }
 
