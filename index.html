@@ -5859,9 +5859,7 @@ function updateCoachPosBanner() {
 }
 
 function initNav(){
-  if(window.innerWidth >= 601) {
-    document.getElementById('top-nav').style.display='flex';
-  }
+  document.getElementById('top-nav').style.display='flex';
   document.getElementById('bottom-nav').classList.add('bnav-visible');
   var uname = document.getElementById('nav-username');
   if(uname) uname.textContent=currentUser.username;
