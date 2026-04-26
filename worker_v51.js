@@ -1,4 +1,4 @@
-// Baseball IQ Worker v5.1 — Rules Baked In
+// Baseball IQ Worker v5.2 — Rules Baked In + Timing Fix
 // /generate (two-stage with situation bank), /save, /flag, badge generation
 
 const CORS_HEADERS = {
@@ -607,10 +607,11 @@ ABSOLUTE BASEBALL BASICS — VIOLATING THESE = DISCARD AND RESTART:
 - Steal = TAG play. Must physically tag runner. Touching bag alone is not an out.
 - All answers/explanations: 15 words maximum.
 - Wrong answers: active real mistakes only. Never passive. Never impossible.
-- Never write a question where the play is already over.
+TIMING RULE — THIS IS THE MOST IMPORTANT INSTRUCTION:
+The scenario FREEZES at the moment BEFORE the decision must be made. The ball is in the air, or just off the bat, or the runner is breaking — and the question asks what YOU do RIGHT NOW. The scenario never describes what happened after the decision. Never say "the shortstop threw to second and the runner was out." Say "grounder to short — runner breaking from first. What do you do?" The play is live. The outcome has not happened yet. You are frozen at the decision point. Write the scenario like you hit pause at the exact moment the player must choose.
 
 OUTPUT: ONLY this JSON. No other text. No markdown:
-{"scenario":"1-2 punchy sentences with out count stated","stem":"one direct question — dugout voice","source":"Section X.X rule name","choices":[{"letter":"A","text":"under 12 words"},{"letter":"B","text":"under 12 words"},{"letter":"C","text":"under 12 words"},{"letter":"D","text":"under 12 words"}],"correct":"A","correct_exp":"under 15 words dugout voice with rule","wrong_exps":{"B":"under 12 words active","C":"under 12 words active","D":"under 12 words active"},"situation_id":"${situation?.id||''}","source_game_pk":${situation?.source_game_pk||0}}`;
+{"scenario":"1-2 punchy present-tense sentences — frozen at the decision moment, out count stated","stem":"one direct question — dugout voice","source":"Section X.X rule name","choices":[{"letter":"A","text":"under 12 words"},{"letter":"B","text":"under 12 words"},{"letter":"C","text":"under 12 words"},{"letter":"D","text":"under 12 words"}],"correct":"A","correct_exp":"under 15 words dugout voice with rule","wrong_exps":{"B":"under 12 words active","C":"under 12 words active","D":"under 12 words active"},"situation_id":"${situation?.id||''}","source_game_pk":${situation?.source_game_pk||0}}`;
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
