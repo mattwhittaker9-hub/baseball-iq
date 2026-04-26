@@ -6040,9 +6040,10 @@ if ('serviceWorker' in navigator) {
       // Try localStorage cache first for speed
       const cached=JSON.parse(localStorage.getItem('biq_user')||'null');
       if(cached && cached.user_id){
-        currentUser=cached;
-        initNav();
-        showScreen('s-home');
+        // Pre-fill login but don't auto-skip — let user confirm
+        const emailField=document.getElementById('login-email');
+        if(emailField && cached.email) emailField.value=cached.email;
+        showScreen('s-auth');
         updateCoachPosBanner();
         // Refresh profile in background to catch any updates
         sb.from('players').select('*').eq('user_id',session.user.id).limit(1).then(({data:profile})=>{
