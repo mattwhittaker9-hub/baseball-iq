@@ -1,4 +1,4 @@
-// Baseball IQ Worker v5.2 — Rules Baked In + Timing Fix
+// Baseball IQ Worker v5.3 — All 28 Sections + Timing Fix
 // /generate (two-stage with situation bank), /save, /flag, badge generation
 
 const CORS_HEADERS = {
@@ -295,7 +295,51 @@ SECTION 27 — INTERFERENCE & OBSTRUCTION
 27.2 Batter's Interference: Batter hinders catcher's throw on a steal. Result: Runner is OUT.
 27.3 Obstruction: Fielder without the ball hinders a runner's path. Award base beyond.
 
-Version 5.1 | Sections 1–11, 15–17, 21, 23, 25–27 | Project Lead: Whittaker
+
+SECTION 28 — OUTFIELDER BACKUP ASSIGNMENTS
+Geography drives backup responsibility. Each outfielder backs up the base directly in their line.
+
+28.1 Base Backup by Position:
+- LF: Backs up 3rd base. Wild throws to 3rd can skip into left field territory.
+- CF: Backs up 2nd base. Wild throws to 2nd go straight to center field.
+- RF: Backs up 1st base. Wild throws to 1st skip into right field territory.
+
+28.2 Pickoff Backup:
+- Catcher pickoff to 2nd: CF backs up 2nd.
+- Catcher pickoff to 3rd: LF backs up 3rd.
+- Pitcher pickoff to 1st: RF backs up 1st.
+
+28.3 Outfielder Mutual Backup:
+- On all batted balls, the two non-fielding outfielders back up the fielder making the play.
+- LF and RF shade toward CF on CF plays. CF shades toward the ball-side outfielder on corner plays.
+
+28.4 Nuance Note:
+Backup depth and angle adjust based on runner position, throw strength, and game situation.
+These are foundation assignments — situational reads layer on top.
+
+Version 5.2 | Sections 1–11, 15–17, 21, 23, 25–28 | Project Lead: Whittaker
+SECTION 28 — OUTFIELDER BACKUP ASSIGNMENTS
+Geography drives backup responsibility. Each outfielder backs up the base directly in their line.
+
+28.1 Base Backup by Position:
+- LF: Backs up 3rd base. Wild throws to 3rd can skip into left field territory.
+- CF: Backs up 2nd base. Wild throws to 2nd go straight to center field.
+- RF: Backs up 1st base. Wild throws to 1st skip into right field territory.
+
+28.2 Pickoff Backup:
+- Catcher pickoff to 2nd: CF backs up 2nd.
+- Catcher pickoff to 3rd: LF backs up 3rd.
+- Pitcher pickoff to 1st: RF backs up 1st.
+
+28.3 Outfielder Mutual Backup:
+- On all batted balls, the two non-fielding outfielders back up the fielder making the play.
+- LF and RF shade toward CF on CF plays. CF shades toward the ball-side outfielder on corner plays.
+
+28.4 Nuance Note:
+Backup depth and angle adjust based on runner position, throw strength, and game situation.
+These are foundation assignments — situational reads layer on top.
+
+
 Last Update: April 2026`;
 const BAKED_GOLDEN = `# DIAMOND IQ — GOLDEN RULES BY POSITION & CATEGORY
 ### Position-Specific Concept Library | April 2026
