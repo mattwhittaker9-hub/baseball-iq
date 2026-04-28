@@ -4186,6 +4186,7 @@ async function startDaily(){window._dailyFullHistory=[];
 function buildDailyProgress(){ /* legacy - handled by renderQ */ }
 function updateDailyProgress(){ /* legacy - handled by renderQ */ }
 function recordDailyAnswer(ok){
+  if(window._onDailyAnswerDirect) window._onDailyAnswerDirect(ok===true||ok==='correct');
   dailyAnswers.push(ok?'correct':'wrong');
   var bar=document.getElementById('daily-gc-bar');
   if(bar) bar.style.width=Math.round(dailyAnswers.length/DAILY_QS*100)+'%';
