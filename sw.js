@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baseball-iq-v10';
+const CACHE_NAME = 'baseball-iq-v11';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
