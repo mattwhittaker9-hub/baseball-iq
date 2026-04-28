@@ -826,6 +826,11 @@ TIMING RULE — THIS IS THE MOST IMPORTANT INSTRUCTION:
 The scenario FREEZES at the moment BEFORE the decision must be made. The ball is in the air, or just off the bat, or the runner is breaking — and the question asks what YOU do RIGHT NOW. The scenario never describes what happened after the decision. Never say "the shortstop threw to second and the runner was out." Say "grounder to short — runner breaking from first. What do you do?" The play is live. The outcome has not happened yet. You are frozen at the decision point. Write the scenario like you hit pause at the exact moment the player must choose.
 
 
+RUNNER POSITION RULE:
+Always describe runners WHERE THEY ARE at the decision moment — not where they started. A runner who was on first when the ball was hit is approaching second by the time the decision must be made. Never say "runner rounding first" on a play where the decision happens after the runner has advanced. State runner positions accurately for the moment the play is frozen.
+
+NEVER USE REAL PLAYER NAMES. Use generic descriptions — "the runner," "the batter," "the lead runner."
+
 GOLD STANDARD EXAMPLES — THIS IS WHAT PASSING LOOKS LIKE:
 These are real approved questions from the app. Study the voice, the tension, the wrong answers, and the explanation. Every question you write must hit this bar.
 
