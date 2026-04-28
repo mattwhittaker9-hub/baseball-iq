@@ -215,7 +215,7 @@ function doLevelDown(){
 }
 window._clutchDismiss=function(){var o=document.getElementById("lu-overlay");if(o)o.classList.remove("show");};
 window._clutchMode=CM;
-window._onDailyAnswerDirect=function(ok){if(window._dailyModeActive)onDailyAnswer(ok);};window._setDailyMode=function(on){
+window._onDailyAnswerDirect=function(ok){onDailyAnswer(ok);};window._setDailyMode=function(on){
   _isDailyMode=!!on;
   if(!on)resetDailyPressure();
   else{_dailyStreak=0;setTimeout(ensurePressureBar,300);}
