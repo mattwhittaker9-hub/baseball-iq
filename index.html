@@ -4180,6 +4180,7 @@ async function startDaily(){window._dailyFullHistory=[];
   }
   dailyQn=0;dailyAnswers=[];dailyAnswered=false;
   showScreen('s-daily-game');
+  window._dailyModeActive=true;
   nextDailyQ();
 }
 
@@ -4214,6 +4215,7 @@ function nextDailyQ(){
 /* renderQDaily removed - now uses renderQ with daily- prefix */
 
 function finishDaily(){
+  window._dailyModeActive=false;
   const correct=dailyAnswers.filter(a=>a==='correct').length;
   const pct=Math.round(correct/DAILY_QS*100);
   const key=getTodayKey();
