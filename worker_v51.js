@@ -825,6 +825,64 @@ ABSOLUTE BASEBALL BASICS — VIOLATING THESE = DISCARD AND RESTART:
 TIMING RULE — THIS IS THE MOST IMPORTANT INSTRUCTION:
 The scenario FREEZES at the moment BEFORE the decision must be made. The ball is in the air, or just off the bat, or the runner is breaking — and the question asks what YOU do RIGHT NOW. The scenario never describes what happened after the decision. Never say "the shortstop threw to second and the runner was out." Say "grounder to short — runner breaking from first. What do you do?" The play is live. The outcome has not happened yet. You are frozen at the decision point. Write the scenario like you hit pause at the exact moment the player must choose.
 
+
+GOLD STANDARD EXAMPLES — THIS IS WHAT PASSING LOOKS LIKE:
+These are real approved questions from the app. Study the voice, the tension, the wrong answers, and the explanation. Every question you write must hit this bar.
+
+EXAMPLE 1 (Baserunner):
+Scenario: "Runner on second, nobody out. Ground ball hit toward the second baseman."
+Question: "Runner on second, nobody out. Ground ball hit toward the 2B — that ball is behind you. The fielder must turn away. What is your read?"
+A: Hold — the 2B might field it and look you back
+B: Go — ball behind you means the fielder turns away and you advance ✓
+C: Read for one step and then decide
+D: Wait for the ball to get through before breaking
+Explanation: "Ball's behind you, fielder's gotta turn his back. He can't see you — that's your green light. Go to third."
+
+EXAMPLE 2 (Pitcher):
+Scenario: "Runner on first, nobody out. The hitter squares to bunt, then pulls back to hack."
+Question: "Runner on first, nobody out. He squared to bunt then yanked it back to swing. What do you throw?"
+A: Aim for his hands or the dirt — do not give him a cookie in a hacking mindset ✓
+B: Attack the zone with your best fastball — he tipped his hand
+C: Throw a first-pitch strike regardless — he reset the count
+D: Throw outside — he is likely pulling so avoid his power zone
+Explanation: "Runner squared, then went back to hack? He's committed now — throw him heat up in the zone or down in the dirt. Middle fastball is what he's looking for. Make him chase or beat him."
+
+EXAMPLE 3 (Right Fielder):
+Scenario: "First and second, nobody out. Ball in the right field corner — you field it off the wall. Runner on second is going to third."
+Question: "First and second, nobody out. Ball in the RF corner off the wall — runner on second going to third. Who do you hit?"
+A: Fire directly to third — fastest play on the runner
+B: Hit the shortstop — he handles all relay throws from the right side
+C: Hit the first baseman — he is your cutoff on all throws
+D: Fire through the second baseman — he is your cutoff on throws to third ✓
+Explanation: "On RF throws using the tandem relay system: 2B is your Lead Relay, SS is the Trailing Relay 15-20 feet behind. Throw hard and low to 2B. The SS trails with a full view of the play and calls the target base."
+
+EXAMPLE 4 (Left Fielder):
+Scenario: "Tie game, bottom of the ninth, one out. Runner on second. Fly ball to medium depth left field. You have the best arm in the league."
+Question: "Tie game, ninth inning, one out. Fly ball to medium LF — you have a cannon. Runner on second is taking an aggressive extended lead. What does he know that you need to know?"
+A: He knows LF is shallow so the throw is shorter
+B: He knows LF has the shortest throw to third regardless of arm strength ✓
+C: He knows you cannot throw accurately on the run
+D: He knows the third base coach will wave him home
+Explanation: "Runner's testing you because left field's the shortest throw to third. You've got the gun, so he's gambling. Catch it on your crow hop moving in, and he's done. This is the moment."
+
+EXAMPLE 5 (Center Fielder):
+Scenario: "Nobody on, nobody out. Ball crushed deep to center — it is going over your head."
+Question: "Nobody on, nobody out. Ball crushed deep to center — going over your head. What is the wrong first move?"
+A: Drop-step — turn your hips and get on your horse
+B: A false step forward before going back ✓
+C: Turning your back to the infield to sprint
+D: Getting on your horse immediately without reading direction
+Explanation: "Ball's over your head, don't creep in first. That false step kills you — you're already behind and chasing. Drop-step, turn, and run. That's it."
+
+WHAT MAKES THESE GOOD:
+- Voice sounds like the dugout, not a textbook. Short sentences. Present tense. Direct.
+- The scenario creates a real read — something happened that requires a decision RIGHT NOW.
+- Wrong answers are real mistakes players actually make — not random options.
+- The explanation teaches WHY, not just confirms the answer.
+- Never use real player names.
+- Never ask "where do you go?" or "where do you position yourself?" as the stem — that is too vague and boring.
+- The question stem must be specific to the situation and make the player think.
+
 OUTPUT: ONLY this JSON. No other text. No markdown:
 {"scenario":"1-2 punchy present-tense sentences — frozen at the decision moment, out count stated","stem":"one direct question — dugout voice","source":"Section X.X rule name","choices":[{"letter":"A","text":"under 12 words"},{"letter":"B","text":"under 12 words"},{"letter":"C","text":"under 12 words"},{"letter":"D","text":"under 12 words"}],"correct":"A","correct_exp":"under 15 words dugout voice with rule","wrong_exps":{"B":"under 12 words active","C":"under 12 words active","D":"under 12 words active"},"situation_id":"${situation?.id||''}","source_game_pk":${situation?.source_game_pk||0}}`;
 
