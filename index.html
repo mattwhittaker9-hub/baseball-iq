@@ -2695,7 +2695,7 @@ body::before {
   </div>
 
   <!-- Upgrade Card -->
-  <div id="pro-upgrade-card" class="upgrade-card">
+  <div id="pro-upgrade-card" class="upgrade-card"><div id="pro-toast" style="display:none;background:#1a2535;border:1px solid #c8a84b;color:#c8a84b;padding:12px 20px;border-radius:8px;text-align:center;font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;margin-bottom:16px">&#128340; Pro coming soon — stay tuned!</div>
     <div class="upgrade-hero">
       <div style="margin-bottom:12px"><span class="pro-badge">⭐ Baseball IQ Pro</span></div>
       <div class="upgrade-price">$4.99</div>
@@ -6155,14 +6155,14 @@ function loadProScreen(){
 
 document.getElementById('upgrade-monthly-btn').addEventListener('click',()=>{
   if(STRIPE_MONTHLY_URL.includes('MONTHLY_LINK_HERE')){
-    alert('Stripe payment links coming soon! Drop your email at support@playbaseballiq.com to be notified.');
+    var t=document.getElementById('pro-toast');if(t){t.style.display='block';setTimeout(function(){t.style.display='none';},3000);}
     return;
   }
   window.open(STRIPE_MONTHLY_URL,'_blank');
 });
 document.getElementById('upgrade-yearly-btn').addEventListener('click',()=>{
   if(STRIPE_YEARLY_URL.includes('YEARLY_LINK_HERE')){
-    alert('Stripe payment links coming soon! Drop your email at support@playbaseballiq.com to be notified.');
+    var t=document.getElementById('pro-toast');if(t){t.style.display='block';setTimeout(function(){t.style.display='none';},3000);}
     return;
   }
   window.open(STRIPE_YEARLY_URL,'_blank');
