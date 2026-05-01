@@ -4134,6 +4134,8 @@ async function startDaily(){window._dailyFullHistory=[];
   }
   dailyQn=0;dailyAnswers=[];dailyAnswered=false;
   showScreen('s-daily-game');
+  window._dailyActive=true;
+  window._ds=0;
   window._dailyModeActive=true;
   nextDailyQ();
 }
@@ -4141,6 +4143,12 @@ async function startDaily(){window._dailyFullHistory=[];
 function buildDailyProgress(){ /* legacy - handled by renderQ */ }
 function updateDailyProgress(){ /* legacy - handled by renderQ */ }
 function recordDailyAnswer(ok){
+  if(!window._dailyActive){
+    // Reset any leftover UI on non-daily screens
+    var _wo=document.getElementById('_spwo');if(_wo)_wo.remove();
+    var _spf=document.getElementById('_spf');if(_spf)_spf.style.width='0';
+    return;
+  }
   // STREAK PRESSURE — self-contained, zero external dependencies
   (function(){
     var correct=(ok===true||ok==='correct');
@@ -4210,6 +4218,7 @@ function nextDailyQ(){
 /* renderQDaily removed - now uses renderQ with daily- prefix */
 
 function finishDaily(){
+  window._dailyActive=false;
   window._dailyModeActive=false;
   const correct=dailyAnswers.filter(a=>a==='correct').length;
   const pct=Math.round(correct/DAILY_QS*100);
