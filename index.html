@@ -7178,7 +7178,7 @@ function renderBadgesGrid(containerId) {
   el.innerHTML = BADGES.map(function(b) {
     var isEarned = earned.includes(b.id);
     var art = getBadgeArtHTML(b, 72);
-    return '<div class="badge-item" onclick="showBadgeDetail(''+b.id+'')">'+
+    return '<div class="badge-item" data-badge-id="'+b.id+'">'+
       '<div class="badge-wrap '+(isEarned?b.tier:'locked')+'">'+
         art+
         (!isEarned ? '<span class="badge-locked-icon">🔒</span>' : '')+
@@ -7186,6 +7186,10 @@ function renderBadgesGrid(containerId) {
       '<div class="badge-name '+(isEarned?'':'locked')+'">'+b.name+'</div>'+
     '</div>';
   }).join('');
+  el.onclick = function(e) {
+    var item = e.target.closest('.badge-item');
+    if(item && item.dataset.badgeId) showBadgeDetail(item.dataset.badgeId);
+  };
 }
 
 function showNewBadge(badge) {
