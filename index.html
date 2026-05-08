@@ -8089,6 +8089,7 @@ function closeReview(evt) {
 
 
 
+<script>
 function showBadgeDetail(badgeId) {
   var badge = BADGES.find(function(b){ return b.id === badgeId; });
   if(!badge) return;
@@ -8104,6 +8105,7 @@ function showBadgeDetail(badgeId) {
   if(statusEl){ statusEl.textContent = earned ? '✅ Earned' : '🔒 Locked'; statusEl.style.color = earned ? '#3ecf82' : '#5a7a98'; }
   modal.style.display = 'flex';
 }
+</script>
 <script src="/clutch.js"></script>
 
 <div id="badge-detail-modal" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9800;align-items:center;justify-content:center;padding:24px">
