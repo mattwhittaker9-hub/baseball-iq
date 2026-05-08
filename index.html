@@ -17,8 +17,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}
-body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:72px}
-.app{max-width:680px;margin:0 auto;padding:16px 14px 80px}
+body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:160px}
+.app{max-width:680px;margin:0 auto;padding:16px 14px 170px}
 .screen{display:none}.screen.active{display:block;min-height:300px}
 button{cursor:pointer;font-family:'Barlow',sans-serif}
 
@@ -36,12 +36,28 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .logout-btn:hover{color:#e84060}
 
 /* ─── BOTTOM NAV (mobile) ─── */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#071520;border-top:1px solid #162840;z-index:100;padding:6px 0 env(safe-area-inset-bottom,0)}.bottom-nav.bnav-visible{display:block}
-.bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
-.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
-.bnav-btn.active{color:#c8102e}
-.bnav-icon{font-size:22px;line-height:1;display:block}
-.bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#040d18;border-top:1px solid rgba(255,255,255,0.06);z-index:100;padding:0}.bottom-nav.bnav-visible{display:block}
+.bnav-inner{display:grid;grid-template-columns:repeat(3,1fr);max-width:680px;margin:0 auto;padding:10px 8px calc(16px + env(safe-area-inset-bottom,0px));gap:10px 4px}
+.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:transparent;border:none;padding:0;color:rgba(255,255,255,0.3);transition:all 0.2s;cursor:pointer}
+.bnav-btn.active{color:rgba(255,255,255,0.9)}
+.bnav-icon{display:block;line-height:1}
+.bnav-label{font-family:Barlow Condensed,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.bnav-tile{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:all 0.2s}
+.bnav-tile::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,0.15) 0%,transparent 60%);z-index:1;pointer-events:none}
+.bnav-btn:not(.active) .bnav-tile{filter:saturate(0.2) brightness(0.45);box-shadow:none}
+.bnav-tile-home  {background:linear-gradient(140deg,#051508 0%,#0d3a18 55%,#1a8040 100%);box-shadow:0 3px 12px rgba(30,160,80,0.4);border:1px solid rgba(30,160,80,0.25)}
+.bnav-tile-board {background:linear-gradient(140deg,#120900 0%,#4a3000 55%,#c89010 100%);box-shadow:0 3px 12px rgba(200,144,16,0.4);border:1px solid rgba(200,144,16,0.25)}
+.bnav-tile-team  {background:linear-gradient(140deg,#001420 0%,#083a58 55%,#0a9ac8 100%);box-shadow:0 3px 12px rgba(10,154,200,0.4);border:1px solid rgba(10,154,200,0.25)}
+.bnav-tile-stats {background:linear-gradient(140deg,#041208 0%,#0c3e1c 55%,#18c855 100%);box-shadow:0 3px 12px rgba(24,200,85,0.4);border:1px solid rgba(24,200,85,0.25)}
+.bnav-tile-battle{background:linear-gradient(140deg,#140505 0%,#520a0a 55%,#c81020 100%);box-shadow:0 3px 12px rgba(200,16,32,0.4);border:1px solid rgba(200,16,32,0.25)}
+.bnav-tile-pro   {background:linear-gradient(140deg,#120800 0%,#502800 55%,#d88c08 100%);box-shadow:0 3px 12px rgba(216,140,8,0.4);border:1px solid rgba(216,140,8,0.25)}
+.bnav-sprite{display:block;position:relative;z-index:2;width:44px;height:46px;background-image:url('icons.png');background-size:176px 96px;background-repeat:no-repeat}
+.bnav-home  {background-position:0px 0px}
+.bnav-board {background-position:-44px 0px}
+.bnav-team  {background-position:-88px 0px}
+.bnav-stats {background-position:-132px 0px}
+.bnav-battle{background-position:-44px -48px}
+.bnav-pro   {background-position:-88px -48px}
 
 /* ─── AUTH ─── */
 :root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
@@ -3365,27 +3381,27 @@ body::before {
 <nav class="bottom-nav bnav-visible" id="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" data-screen="s-home">
-      <span class="bnav-icon"><div class="bnav-sprite bnav-home"></div></span>
+      <div class="bnav-tile bnav-tile-home"><div class="bnav-sprite bnav-home"></div></div>
       <span class="bnav-label">Home</span>
     </button>
     <button class="bnav-btn" data-screen="s-leaderboard">
-      <span class="bnav-icon"><div class="bnav-sprite bnav-board"></div></span>
-      <span class="bnav-label">Board</span>
+      <div class="bnav-tile bnav-tile-board"><div class="bnav-sprite bnav-board"></div></div>
+      <span class="bnav-label">Ranks</span>
     </button>
     <button class="bnav-btn" data-screen="s-team">
-      <span class="bnav-icon"><div class="bnav-sprite bnav-team"></div></span>
+      <div class="bnav-tile bnav-tile-team"><div class="bnav-sprite bnav-team"></div></div>
       <span class="bnav-label">Team</span>
     </button>
     <button class="bnav-btn" data-screen="s-stats">
-      <span class="bnav-icon"><div class="bnav-sprite bnav-stats"></div></span>
+      <div class="bnav-tile bnav-tile-stats"><div class="bnav-sprite bnav-stats"></div></div>
       <span class="bnav-label">Stats</span>
     </button>
-    <button class="bnav-btn" data-screen="s-challenge" style="color:#6aabdc">
-      <span class="bnav-icon"><div class="bnav-sprite bnav-battle"></div></span>
+    <button class="bnav-btn" data-screen="s-challenge">
+      <div class="bnav-tile bnav-tile-battle"><div class="bnav-sprite bnav-battle"></div></div>
       <span class="bnav-label">Battle</span>
     </button>
-    <button class="bnav-btn" data-screen="s-pro" style="color:#c89020">
-      <span class="bnav-icon"><div class="bnav-sprite bnav-pro"></div></span>
+    <button class="bnav-btn" data-screen="s-pro">
+      <div class="bnav-tile bnav-tile-pro"><div class="bnav-sprite bnav-pro"></div></div>
       <span class="bnav-label">Pro</span>
     </button>
   </div>
