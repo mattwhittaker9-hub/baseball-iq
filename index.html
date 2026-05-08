@@ -6079,63 +6079,18 @@ if ('serviceWorker' in navigator) {
 }
 
 // ─── INIT ───
-// Check for existing Supabase auth session on load
+// Always show login screen. Never auto-sign-in from stored sessions.
 (async()=>{
-  try {
-    const{data:{session}}=await sb.auth.getSession();
-    if(session){
-      // Try localStorage cache first for speed
-      const cached=JSON.parse(localStorage.getItem('biq_user')||'null');
-      if(cached && cached.user_id){
-        // Pre-fill login but don't auto-skip — let user confirm
-        const emailField=document.getElementById('login-email');
-        if(emailField && cached.email) emailField.value=cached.email;
-        showScreen('s-auth');
-        updateCoachPosBanner();
-        // Refresh profile in background to catch any updates
-        sb.from('players').select('*').eq('user_id',session.user.id).limit(1).then(({data:profile})=>{
-          if(profile?.length){
-            currentUser={...currentUser,...profile[0],email:session.user.email};
-            localStorage.setItem('biq_user',JSON.stringify(currentUser));
-          }
-        }).catch(()=>{});
-        return;
-      }
-      // No valid cache — fetch fresh profile
-      const{data:profile}=await sb.from('players').select('*').eq('user_id',session.user.id).limit(1);
-      if(profile?.length){
-        currentUser={...profile[0],email:session.user.email};
-        localStorage.setItem('biq_user',JSON.stringify(currentUser));
-        initNav();
-        showScreen('s-home');
-        updateCoachPosBanner();
-      } else {
-        // Profile missing — go to auth
-        showScreen('s-auth');
-      }
+  try { await sb.auth.signOut(); } catch(e) {}
+  localStorage.removeItem('biq_user');
+  sb.auth.onAuthStateChange(async(event,session)=>{
+    if(event==='PASSWORD_RECOVERY'){showScreen('s-auth');}
+    if(event==='SIGNED_OUT'){currentUser=null;localStorage.removeItem('biq_user');showScreen('s-auth');}
+    if(event==='SIGNED_IN'&&session&&!currentUser){
+      const{data:p}=await sb.from('players').select('*').eq('user_id',session.user.id).limit(1);
+      if(p?.length){currentUser={...p[0],email:session.user.email};localStorage.setItem('biq_user',JSON.stringify(currentUser));initNav();showScreen('s-home');updateCoachPosBanner();}
     }
-    // Handle auth state changes
-    sb.auth.onAuthStateChange(async(event,session)=>{
-      if(event==='PASSWORD_RECOVERY'){showScreen('s-auth');}
-      if(event==='SIGNED_OUT'){currentUser=null;localStorage.removeItem('biq_user');showScreen('s-auth');}
-      if((event==='SIGNED_IN'||event==='INITIAL_SESSION')&&session&&!currentUser){
-        const cached=JSON.parse(localStorage.getItem('biq_user')||'null');
-        if(cached&&cached.user_id){
-          currentUser=cached;initNav();showScreen('s-home');updateCoachPosBanner();
-          sb.from('players').select('*').eq('user_id',session.user.id).limit(1).then(({data:p})=>{
-            if(p?.length){currentUser={...currentUser,...p[0],email:session.user.email};localStorage.setItem('biq_user',JSON.stringify(currentUser));}
-          }).catch(()=>{});
-        } else {
-          const{data:p}=await sb.from('players').select('*').eq('user_id',session.user.id).limit(1);
-          if(p?.length){currentUser={...p[0],email:session.user.email};localStorage.setItem('biq_user',JSON.stringify(currentUser));initNav();showScreen('s-home');updateCoachPosBanner();}
-        }
-      }
-    });
-  } catch(e) {
-    console.error('Auth init error:', e);
-    // Don't leave users stuck — show auth screen
-    if(!currentUser) showScreen('s-auth');
-  }
+  });
 })();
 
 async function createTeam(){
