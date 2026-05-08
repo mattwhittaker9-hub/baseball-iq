@@ -3865,7 +3865,8 @@ function showCardFeedback(ok,q,prefix=''){
   const hint=document.getElementById(pfx+'gc-hint');
   const panel=document.getElementById(pfx+'gc-panel');
   if(icon){icon.textContent=ok?'✅':'❌';icon.className='gc-result-icon '+(ok?'ok':'bad');}
-  if(title) title.textContent=ok?"That's the play!":'Not quite...';
+  if(title) var _okMsgs=["Attaboy!","That's the play!","Good read!","Heads up ball!","You saw it!","Smart play!","That's baseball!","Nice read!","You know the game!","That's fundamentals!"];
+  title.textContent=ok?_okMsgs[Math.floor(Math.random()*_okMsgs.length)]:'Not quite...';
   if(sub) sub.textContent=ok?'Correct read':'Wrong read';
   if(expl){const _ltrs=['A','B','C','D'];const _cl=_ltrs[typeof q._chosenIdx==='number'?q._chosenIdx:q.correct_index];expl.textContent=ok?(q.explanation||''):((q['wrong_why_'+_cl.toLowerCase()]||q.explanation)||'');}
   // Spotlight — always show, pick best match for this question
@@ -4260,6 +4261,11 @@ function finishDaily(){
   window._dailyActive=false;
   window._ds=0;
   window._dailyModeActive=false;
+  // Clean up streak pressure elements
+  ['_spw','_spl','_spv','_spwo'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.remove();
+  });
   const correct=dailyAnswers.filter(a=>a==='correct').length;
   const pct=Math.round(correct/DAILY_QS*100);
   const key=getTodayKey();
