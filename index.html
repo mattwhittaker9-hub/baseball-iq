@@ -17,8 +17,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}
-body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:160px}
-.app{max-width:680px;margin:0 auto;padding:16px 14px 170px}
+body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:20px}
+.app{max-width:680px;margin:0 auto;padding:16px 14px 20px}
 .screen{display:none}.screen.active{display:block;min-height:300px}
 button{cursor:pointer;font-family:'Barlow',sans-serif}
 
@@ -36,7 +36,7 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .logout-btn:hover{color:#e84060}
 
 /* ─── BOTTOM NAV (mobile) ─── */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#040d18;border-top:1px solid rgba(255,255,255,0.06);z-index:100;padding:0}.bottom-nav.bnav-visible{display:block}
+.bottom-nav{display:none!important;position:fixed;bottom:0;left:0;right:0;background:#040d18;border-top:1px solid rgba(255,255,255,0.06);z-index:100;padding:0}.bottom-nav.bnav-visible{display:none!important}
 .bnav-inner{display:grid;grid-template-columns:repeat(3,1fr);max-width:680px;margin:0 auto;padding:10px 8px calc(16px + env(safe-area-inset-bottom,0px));gap:10px 4px}
 .bnav-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:transparent;border:none;padding:0;color:rgba(255,255,255,0.3);transition:all 0.2s;cursor:pointer}
 .bnav-btn.active{color:rgba(255,255,255,0.9)}
@@ -2092,6 +2092,24 @@ body::before {
   letter-spacing: 1.5px !important; line-height: 1.4 !important;
   text-align: center !important;
 }
+
+/* ─── HOME NAV GRID (2×4) ─── */
+.home-nav-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;padding-bottom:20px}
+.hnav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:20px 8px 16px;cursor:pointer;position:relative;overflow:hidden;transition:all 0.15s;-webkit-tap-highlight-color:transparent}
+.hnav-btn:active{transform:scale(0.97)}
+.hnav-btn.active{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18)}
+.hnav-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#c8102e;border-radius:0 0 2px 2px}
+.hng-sprite{display:block;width:64px;height:66px;background-image:url('icons.png');background-size:256px 140px;background-repeat:no-repeat}
+.hng-home  {background-position:0px 0px}
+.hng-train {background-position:-192px -70px}
+.hng-rules {background-position:0px -70px}
+.hng-battle{background-position:-64px -70px}
+.hng-board {background-position:-64px 0px}
+.hng-team  {background-position:-128px 0px}
+.hng-stats {background-position:-192px 0px}
+.hng-pro   {background-position:-128px -70px}
+.hng-label{font-family:Barlow Condensed,sans-serif;font-size:14px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+.hnav-btn.active .hng-label{color:#fff}
 </style>
 </head>
 <body>
@@ -2371,23 +2389,40 @@ body::before {
     <div id="cpb-desc" style="font-size:11px;color:#3a6a88;margin-top:2px">—</div>
   </div>
 
-  <!-- Feature Cards Row -->
-  <div class="home-feature-row">
-    <div class="hfr-card hfr-train" onclick="showScreen(&#39;s-train&#39;)">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-train"></div></div>
-      <div class="hfr-name">Train</div>
-      <div class="hfr-sub">By position</div>
-    </div>
-    <div class="hfr-card hfr-chief" onclick="showScreen(&#39;s-rules&#39;)">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-rules"></div></div>
-      <div class="hfr-name">Crew Chief</div>
-      <div class="hfr-sub">Check the book</div>
-    </div>
-    <div class="hfr-card hfr-battle" onclick="showScreen(&#39;s-challenge&#39;)">
-      <div class="hfr-icon"><div class="icon-sprite icon-hfr icon-battle"></div></div>
-      <div class="hfr-name">Battle</div>
-      <div class="hfr-sub">Head-to-head</div>
-    </div>
+  <!-- Home Nav Grid (2×4) -->
+  <div class="home-nav-grid">
+    <button class="hnav-btn active" data-screen="s-home" onclick="showScreen('s-home')">
+      <div class="hng-sprite hng-home"></div>
+      <span class="hng-label">Home</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-train" onclick="showScreen('s-train')">
+      <div class="hng-sprite hng-train"></div>
+      <span class="hng-label">Train</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-rules" onclick="showScreen('s-rules')">
+      <div class="hng-sprite hng-rules"></div>
+      <span class="hng-label">Crew Chief</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-challenge" onclick="showScreen('s-challenge')">
+      <div class="hng-sprite hng-battle"></div>
+      <span class="hng-label">Battle</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-leaderboard" onclick="showScreen('s-leaderboard')">
+      <div class="hng-sprite hng-board"></div>
+      <span class="hng-label">Ranks</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-team" onclick="showScreen('s-team')">
+      <div class="hng-sprite hng-team"></div>
+      <span class="hng-label">Team</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-stats" onclick="showScreen('s-stats')">
+      <div class="hng-sprite hng-stats"></div>
+      <span class="hng-label">Stats</span>
+    </button>
+    <button class="hnav-btn" data-screen="s-pro" onclick="showScreen('s-pro')">
+      <div class="hng-sprite hng-pro"></div>
+      <span class="hng-label">Pro</span>
+    </button>
   </div>
 </div>
 
@@ -3525,7 +3560,7 @@ function showScreen(id){
   document.querySelectorAll('.game-card-screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.body.style.overflow=id==='s-auth'?'hidden':'';
-  document.querySelectorAll('.nav-btn,.bnav-btn').forEach(b=>{
+  document.querySelectorAll('.nav-btn,.bnav-btn,.hnav-btn').forEach(b=>{
     b.classList.toggle('active',b.dataset.screen===id);
   });
   if(id==='s-leaderboard') loadLeaderboard();
