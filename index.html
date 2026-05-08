@@ -1,7 +1,53 @@
-var css2=document.getElementById('_wocss');if(!css2){css2=document.createElement('style');css2.id='_wocss';css2.textContent='@keyframes _wobang{0%{transform:scale(0) rotate(-30deg);opacity:0}60%{transform:scale(1.3) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}}@keyframes _woflash{0%,100%{opacity:1}50%{opacity:0.3}}@keyframes _wofloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}@keyframes _wocon{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}';document.head.appendChild(css2);}
-var colors=['#c8a84b','#e05050','#fff','#f0d060','#3ecf82','#60d0f0'];
-for(var ci=0;ci<50;ci++){(function(i){var c=document.createElement('div');c.style.cssText='position:fixed;top:-10px;left:'+(Math.random()*100)+'vw;width:'+(5+Math.random()*9)+'px;height:'+(5+Math.random()*9)+'px;background:'+colors[i%colors.length]+';border-radius:'+(Math.random()>0.5?'50%':'3px')+';z-index:10001;animation:_wocon '+(1.2+Math.random()*2.5)+'s '+(Math.random())+'s ease-in forwards;pointer-events:none;';o.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},4000);})(ci);}
-o.innerHTML+='<div style="text-align:center;position:relative;z-index:1;padding:20px">'+'<div style="font-size:100px;display:block;animation:_wobang 0.7s cubic-bezier(0.34,1.56,0.64,1) both,_wofloat 2s 1s ease-in-out infinite">⚾</div>'+'<div style="font-family:Barlow Condensed,sans-serif;font-size:11px;letter-spacing:8px;color:#e05050;font-weight:700;margin:16px 0 6px;animation:_woflash 0.8s 0.7s 4">WALK-OFF</div>'+'<div style="font-family:Barlow Condensed,sans-serif;font-size:56px;font-weight:900;letter-spacing:3px;color:#c8a84b;line-height:1;text-shadow:0 0 50px rgba(200,168,75,0.9),0 0 100px rgba(200,168,75,0.4)">PERFECT</div>'+'<div style="font-family:Barlow Condensed,sans-serif;font-size:56px;font-weight:900;letter-spacing:3px;color:#fff;line-height:1;margin-bottom:8px">SESSION</div>'+'<div style="font-family:Barlow Condensed,sans-serif;font-size:14px;letter-spacing:4px;color:#7a8fa8;margin-bottom:32px">5 FOR 5 · YOU CALLED EVERY PLAY</div>'+'<button id="_spwo_btn" style="background:linear-gradient(135deg,#c8a84b,#f0d060);color:#0a1628;border:none;padding:18px 56px;border-radius:12px;font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;letter-spacing:3px;cursor:pointer;box-shadow:0 8px 40px rgba(200,168,75,0.6);text-transform:uppercase">Let\'s Go ›</button>'+'</div>';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(1,2,8,0.45) 0%,rgba(1,2,8,0.08) 30%,rgba(1,2,8,0.30) 65%,rgba(1,2,8,0.82) 100%);z-index:0;pointer-events:none}
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://playbaseballiq.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Baseball IQ — Daily Training</title>
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;%E2%9A%BE&lt;/text&gt;&lt;/svg&gt;">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="https://playbaseballiq.com/manifest.json">
+<meta name="theme-color" content="#c8102e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Baseball IQ">
+<link rel="apple-touch-icon" href="https://playbaseballiq.com/icons/apple-touch-icon.png?v=2">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{font-family:'Barlow',sans-serif;background:#06111f;color:#f0ece4;min-height:100vh;padding-bottom:72px}
+.app{max-width:680px;margin:0 auto;padding:16px 14px 80px}
+.screen{display:none}.screen.active{display:block;min-height:300px}
+button{cursor:pointer;font-family:'Barlow',sans-serif}
+
+/* ─── TOP NAV (desktop) ─── */
+.top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:10px 0}
+.nav-logo{font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#fff}
+.nav-logo em{color:#c8102e;font-style:normal}
+.nav-left{display:flex;gap:6px}
+.nav-btn{background:transparent;border:1px solid #1a3050;border-radius:5px;padding:8px 16px;font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:700;color:#4a6a88;text-transform:uppercase;letter-spacing:1px;transition:all 0.2s}
+.nav-btn:hover{border-color:#3a5a78;color:#a0c0d8}
+.nav-btn.active{background:#102030;border-color:#c8102e;color:#f08090}
+.user-pill{display:flex;align-items:center;gap:8px;background:#0c1e30;border:1px solid #162840;border-radius:20px;padding:6px 12px;font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:600;color:#8ab4d4}
+.user-pill span{color:#f08090}
+.logout-btn{background:transparent;border:none;color:#6a8a9a;font-size:11px;font-family:Barlow Condensed,sans-serif;font-weight:600;padding:2px 6px;transition:color 0.2s;cursor:pointer}
+.logout-btn:hover{color:#e84060}
+
+/* ─── BOTTOM NAV (mobile) ─── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#071520;border-top:1px solid #162840;z-index:100;padding:6px 0 env(safe-area-inset-bottom,0)}.bottom-nav.bnav-visible{display:block}
+.bnav-inner{display:flex;justify-content:space-around;max-width:680px;margin:0 auto}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;padding:8px 4px;color:#3a5a78;transition:color 0.2s}
+.bnav-btn.active{color:#c8102e}
+.bnav-icon{font-size:22px;line-height:1;display:block}
+.bnav-label{font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+
+/* ─── AUTH ─── */
+:root{--electric-green:#3ecf82;--clay-light:#923818;--clay-dark:#6E2C12;--glass-bg:rgba(1,12,4,0.80);--input-bg:rgba(0,6,2,0.85)}
+/* ─── STADIUM AUTH ─── */
+#s-auth{background:#010204 url('./background.jpg') center 20%/cover no-repeat;font-family:'Barlow',sans-serif;color:white;flex-direction:column;align-items:center;overflow-y:auto;overflow-x:hidden;position:fixed;inset:0;z-index:1001}
+#s-auth::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(1,2,8,0.45) 0%,rgba(1,2,8,0.08) 30%,rgba(1,2,8,0.30) 65%,rgba(1,2,8,0.82) 100%);z-index:0;pointer-events:none}
 #s-auth>*{position:relative;z-index:1}
 #s-auth.active{display:flex}
 .stadium-glow{position:absolute;top:0;width:100%;height:40%;background:radial-gradient(circle at 18% 4%,rgba(255,235,120,0.10),transparent 50%),radial-gradient(circle at 82% 4%,rgba(255,235,120,0.10),transparent 50%);z-index:2;pointer-events:none}
@@ -2695,7 +2741,7 @@ body::before {
   </div>
 
   <!-- Upgrade Card -->
-  <div id="pro-upgrade-card" class="upgrade-card"><div id="pro-toast" style="display:none;background:#1a2535;border:1px solid #c8a84b;color:#c8a84b;padding:12px 20px;border-radius:8px;text-align:center;font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;margin-bottom:16px">&#128340; Pro coming soon!</div>
+  <div id="pro-upgrade-card" class="upgrade-card"><div id="pro-toast" style="display:none;background:#1a2535;border:1px solid #c8a84b;color:#c8a84b;padding:12px 20px;border-radius:8px;text-align:center;font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;margin-bottom:16px">Pro coming soon!</div>
     <div class="upgrade-hero">
       <div style="margin-bottom:12px"><span class="pro-badge">⭐ Baseball IQ Pro</span></div>
       <div class="upgrade-price">$4.99</div>
@@ -4143,12 +4189,7 @@ async function startDaily(){window._dailyFullHistory=[];
 function buildDailyProgress(){ /* legacy - handled by renderQ */ }
 function updateDailyProgress(){ /* legacy - handled by renderQ */ }
 function recordDailyAnswer(ok){
-  if(!window._dailyActive){
-    // Reset any leftover UI on non-daily screens
-    var _wo=document.getElementById('_spwo');if(_wo)_wo.remove();
-    var _spf=document.getElementById('_spf');if(_spf)_spf.style.width='0';
-    return;
-  }
+  if(!window._dailyActive)return;
   // STREAK PRESSURE — self-contained, zero external dependencies
   (function(){
     var correct=(ok===true||ok==='correct');
@@ -4181,13 +4222,11 @@ function recordDailyAnswer(ok){
       if(s>=5){setTimeout(function(){
         if(document.getElementById('_spwo'))return;
         var o=document.createElement('div');o.id='_spwo';
-        o.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(5,9,16,0.97);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;overflow:hidden;';
-        var css3=document.getElementById('_wocss3');if(!css3){css3=document.createElement('style');css3.id='_wocss3';css3.textContent='@keyframes _wb3{0%{transform:scale(0) rotate(-30deg);opacity:0}60%{transform:scale(1.25) rotate(4deg)}100%{transform:scale(1) rotate(0);opacity:1}}@keyframes _wfl3{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}@keyframes _wc3{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}@keyframes _wflsh3{0%,100%{opacity:1}50%{opacity:0.2}}';document.head.appendChild(css3);}
-        var cols3=['#c8a84b','#e05050','#ffffff','#f0d060','#3ecf82'];
-        for(var ci=0;ci<60;ci++){(function(i){var c=document.createElement('div');c.style.cssText='position:absolute;top:-20px;left:'+(Math.random()*100)+'%;width:'+(4+Math.random()*10)+'px;height:'+(4+Math.random()*10)+'px;background:'+cols3[i%cols3.length]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';animation:_wc3 '+(1.5+Math.random()*2.5)+'s '+(Math.random()*.8)+'s ease-in forwards;pointer-events:none;';o.appendChild(c);})(ci);}
-        o.innerHTML+='<div style="text-align:center;position:relative;z-index:2"><div style="font-size:96px;display:block;animation:_wb3 .6s cubic-bezier(.34,1.56,.64,1) both,_wfl3 2s 1s ease-in-out infinite">&#x26BE;</div><div style="font-family:Barlow Condensed,sans-serif;font-size:10px;letter-spacing:8px;color:#e05050;font-weight:700;margin:16px 0 4px;animation:_wflsh3 .6s .6s 5">W A L K - O F F</div><div style="font-family:Barlow Condensed,sans-serif;font-size:60px;font-weight:900;letter-spacing:2px;color:#c8a84b;line-height:1;text-shadow:0 0 60px rgba(200,168,75,.9)">PERFECT</div><div style="font-family:Barlow Condensed,sans-serif;font-size:60px;font-weight:900;letter-spacing:2px;color:#fff;line-height:1.1;margin-bottom:6px">SESSION</div><div style="font-family:Barlow Condensed,sans-serif;font-size:13px;letter-spacing:4px;color:#7a8fa8;margin-bottom:32px">5 FOR 5 &bull; YOU CALLED EVERY PLAY</div><button id="_spwo_btn" style="background:linear-gradient(135deg,#c8a84b,#f0d060);color:#0a1628;border:none;padding:18px 56px;border-radius:12px;font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;letter-spacing:3px;cursor:pointer;box-shadow:0 8px 40px rgba(200,168,75,.6);text-transform:uppercase">LET\'S GO &#x203a;</button></div>';
+        o.style.cssText='position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,rgba(5,9,16,0.97),rgba(10,14,24,0.97));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;';
+        o.innerHTML='<div style="font-size:72px;margin-bottom:16px">🏆</div><div style="font-family:Barlow Condensed,sans-serif;font-size:42px;font-weight:900;letter-spacing:6px;color:#c8a84b;margin-bottom:8px">PERFECT SESSION</div><div style="font-family:Barlow Condensed,sans-serif;font-size:14px;letter-spacing:3px;color:#7a8fa8;margin-bottom:40px">5 FOR 5. WALK-OFF.</div><button id="_spwo_btn" style="background:#c8a84b;color:#0a1628;border:none;padding:14px 40px;border-radius:8px;font-family:Barlow Condensed,sans-serif;font-size:17px;font-weight:700;letter-spacing:2px;cursor:pointer">LET\'S GO ›</button>';
         document.body.appendChild(o);
-        document.getElementById('_spwo_btn').onclick=function(){o.remove();window._ds=0;var f=document.getElementById('_spf'),l=document.getElementById('_spl'),v=document.getElementById('_spv');if(f)f.style.width='0';if(l){l.textContent='';l.style.opacity='0';}if(v)v.style.opacity='0';};
+        document.getElementById('_spwo_btn').onclick=function(){document.getElementById('_spwo').remove();};
+        if(navigator.vibrate)navigator.vibrate([200,100,200,100,400]);
       },400);}
     }
   })();
@@ -4219,6 +4258,7 @@ function nextDailyQ(){
 
 function finishDaily(){
   window._dailyActive=false;
+  window._ds=0;
   window._dailyModeActive=false;
   const correct=dailyAnswers.filter(a=>a==='correct').length;
   const pct=Math.round(correct/DAILY_QS*100);
