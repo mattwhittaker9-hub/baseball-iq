@@ -6073,15 +6073,14 @@ document.getElementById('share-session-btn').addEventListener('click',shareSessi
 document.getElementById('share-daily-btn').addEventListener('click',shareDailyResult);
 
 
-// ─── SERVICE WORKER — UNREGISTER (caching caused more problems than it solved) ───
+// ─── SERVICE WORKER REGISTRATION ────────────────────────────────────────────
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function(regs) {
-    regs.forEach(function(r) { r.unregister(); });
-  });
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
 }
 
 // ─── INIT ───
 // Always show login screen. Never auto-sign-in from stored sessions.
+showScreen('s-auth');
 (async()=>{
   try { await sb.auth.signOut(); } catch(e) {}
   localStorage.removeItem('biq_user');
