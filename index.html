@@ -6073,9 +6073,11 @@ document.getElementById('share-session-btn').addEventListener('click',shareSessi
 document.getElementById('share-daily-btn').addEventListener('click',shareDailyResult);
 
 
-// ─── SERVICE WORKER REGISTRATION ────────────────────────────────────────────
+// ─── SERVICE WORKER — UNREGISTER (caching caused more problems than it solved) ───
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
+  navigator.serviceWorker.getRegistrations().then(function(regs) {
+    regs.forEach(function(r) { r.unregister(); });
+  });
 }
 
 // ─── INIT ───
