@@ -6081,6 +6081,8 @@ if ('serviceWorker' in navigator) {
 // ─── INIT ───
 // Always show login screen. Never auto-sign-in from stored sessions.
 showScreen('s-auth');
+document.getElementById('top-nav').style.display='none';
+document.getElementById('bottom-nav').classList.remove('bnav-visible');
 (async()=>{
   try { await sb.auth.signOut(); } catch(e) {}
   localStorage.removeItem('biq_user');
