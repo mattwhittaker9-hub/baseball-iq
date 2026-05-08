@@ -743,13 +743,16 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .cat-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,#1a5adc,#3ecf82);transition:width 0.6s ease}
 .cat-pct{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#e8f4ff;min-width:38px;text-align:right}
 .daily-history{background:#0c1828;border:1px solid #162840;border-radius:14px;padding:16px;margin-bottom:10px}
-.badges-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px}
-.badge-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
-.badge-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;background:#0a1828;border:1.5px solid #1a3050}
-.badge-wrap.gold{background:rgba(232,192,96,0.1);border-color:rgba(232,192,96,0.4)}
-.badge-wrap.silver{background:rgba(160,184,200,0.1);border-color:rgba(160,184,200,0.3)}
-.badge-wrap.bronze{background:rgba(200,120,64,0.1);border-color:rgba(200,120,64,0.3)}
-.badge-wrap.locked{opacity:0.25;filter:grayscale(1)}
+.badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:12px}
+.badge-item{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
+.badge-wrap{width:80px;height:80px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#0a1828;border:1.5px solid #1a3050;overflow:hidden;position:relative;flex-shrink:0}
+.badge-wrap.gold{background:rgba(232,192,96,0.12);border-color:rgba(232,192,96,0.5);box-shadow:0 0 14px rgba(232,192,96,0.25)}
+.badge-wrap.silver{background:rgba(160,184,200,0.12);border-color:rgba(160,184,200,0.4);box-shadow:0 0 10px rgba(160,184,200,0.2)}
+.badge-wrap.bronze{background:rgba(200,120,64,0.12);border-color:rgba(200,120,64,0.4);box-shadow:0 0 10px rgba(200,120,64,0.2)}
+.badge-wrap.platinum{background:rgba(200,230,255,0.1);border-color:rgba(200,230,255,0.5);box-shadow:0 0 16px rgba(200,230,255,0.3)}
+.badge-wrap.locked{opacity:0.2;filter:grayscale(1)}
+.badge-name{font-family:Barlow Condensed,sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,0.7);text-align:center;letter-spacing:0.3px;text-transform:uppercase;line-height:1.2;max-width:80px}
+.badge-name.locked{color:rgba(255,255,255,0.2)}
 .pos-iq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
 
 /* ═══════════════════════════════════════════
@@ -7174,8 +7177,8 @@ function renderBadgesGrid(containerId) {
   var earned = getEarnedBadges();
   el.innerHTML = BADGES.map(function(b) {
     var isEarned = earned.includes(b.id);
-    var art = getBadgeArtHTML(b, 68);
-    return '<div class="badge-item">'+
+    var art = getBadgeArtHTML(b, 72);
+    return '<div class="badge-item" onclick="showBadgeDetail(''+b.id+'')">'+
       '<div class="badge-wrap '+(isEarned?b.tier:'locked')+'">'+
         art+
         (!isEarned ? '<span class="badge-locked-icon">🔒</span>' : '')+
@@ -8085,5 +8088,31 @@ function closeReview(evt) {
 <div id="biq-build-stamp" style="display:none"></div>
 
 
+
+function showBadgeDetail(badgeId) {
+  var badge = BADGES.find(function(b){ return b.id === badgeId; });
+  if(!badge) return;
+  var earned = getEarnedBadges().includes(badgeId);
+  var modal = document.getElementById('badge-detail-modal');
+  var artEl = document.getElementById('bdm-art');
+  var nameEl = document.getElementById('bdm-name');
+  var descEl = document.getElementById('bdm-desc');
+  var statusEl = document.getElementById('bdm-status');
+  if(artEl) artEl.innerHTML = '<div style="width:96px;height:96px;border-radius:20px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0a1828;border:2px solid '+(earned?'rgba(232,192,96,0.4)':'rgba(255,255,255,0.1)')+'">' + getBadgeArtHTML(badge, 88) + '</div>';
+  if(nameEl) nameEl.textContent = badge.name;
+  if(descEl) descEl.textContent = badge.desc;
+  if(statusEl){ statusEl.textContent = earned ? '✅ Earned' : '🔒 Locked'; statusEl.style.color = earned ? '#3ecf82' : '#5a7a98'; }
+  modal.style.display = 'flex';
+}
 <script src="/clutch.js"></script>
+
+<div id="badge-detail-modal" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9800;align-items:center;justify-content:center;padding:24px">
+  <div style="background:#0c1828;border:1px solid #1a3050;border-radius:20px;padding:28px 24px;max-width:300px;width:100%;text-align:center;position:relative">
+    <button onclick="document.getElementById('badge-detail-modal').style.display='none'" style="position:absolute;top:12px;right:14px;background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;line-height:1">✕</button>
+    <div id="bdm-art" style="display:flex;justify-content:center;margin-bottom:16px"></div>
+    <div id="bdm-status" style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px"></div>
+    <div id="bdm-name" style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px"></div>
+    <div id="bdm-desc" style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5;font-family:'Barlow',sans-serif"></div>
+  </div>
+</div>
 </body></html>
