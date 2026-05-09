@@ -4464,19 +4464,27 @@ function saveSessionStats(pct,nc,tot,answers,streak,cat){
   sessions.unshift({date:getTodayKey(),pct,nc,tot,streak,cat,answers});
   if(sessions.length>100) sessions.pop();
   localStorage.setItem(key,JSON.stringify(sessions));
-  // Also save aggregate to Supabase so stats persist across devices
+  // Save to Supabase by incrementing DB values (not localStorage count which resets on clear)
   if(currentUser.user_id){
-    const totalQ=(sessions.reduce((a,s)=>a+(s.tot||0),0));
-    const totalC=(sessions.reduce((a,s)=>a+(s.nc||0),0));
-    const avgPct=sessions.length?Math.round(sessions.reduce((a,s)=>a+s.pct,0)/sessions.length):0;
-    const bestStrk=Math.max(...sessions.map(s=>s.streak||0));
+    const newSessions = (currentUser.total_sessions||0) + 1;
+    const newQ = (currentUser.total_questions||0) + tot;
+    const newC = (currentUser.total_correct||0) + nc;
+    const newAvg = newQ > 0 ? Math.round((newC/newQ)*100) : 0;
+    const newBest = Math.max(streak, currentUser.best_streak||0);
     sb.from('players').update({
-      total_sessions:sessions.length,
-      total_questions:totalQ,
-      total_correct:totalC,
-      avg_score:avgPct,
-      best_streak:bestStrk
-    }).eq('user_id',currentUser.user_id).then(()=>{});
+      total_sessions: newSessions,
+      total_questions: newQ,
+      total_correct: newC,
+      avg_score: newAvg,
+      best_streak: newBest
+    }).eq('user_id',currentUser.user_id).then(()=>{
+      currentUser.total_sessions = newSessions;
+      currentUser.total_questions = newQ;
+      currentUser.total_correct = newC;
+      currentUser.avg_score = newAvg;
+      currentUser.best_streak = newBest;
+      localStorage.setItem('biq_user', JSON.stringify(currentUser));
+    });
   }
 }
 
@@ -7075,7 +7083,7 @@ function calculateSessionDelta(answersArr, difficultiesArr) {
   return Math.max(-150, Math.min(200, delta));
 }
 
-async function saveIQScore(newScore) {
+async async function saveIQScore(newScore) {
   if(!currentUser) return;
   localStorage.setItem('biq_iq_'+currentUser.username, newScore);
   currentUser.iq_score = newScore;
