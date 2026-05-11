@@ -7085,7 +7085,7 @@ function calculateSessionDelta(answersArr, difficultiesArr) {
 
 async function saveIQScore(newScore) {
   if(!currentUser) return;
-  // Founder protection: IQ never goes below current value
+  // IQ never decreases — founder protection
   const protected_score = Math.max(newScore, currentUser.iq_score||1000);
   localStorage.setItem('biq_iq_'+currentUser.username, protected_score);
   currentUser.iq_score = protected_score;
