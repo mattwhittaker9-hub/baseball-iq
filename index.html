@@ -2384,7 +2384,7 @@ body::before {
 
   <!-- Coach Position Assignment Banner -->
   <div id="coach-pos-banner" style="display:none;background:#071828;border:1px solid #1a3a5a;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:none">
-    <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a8aff;margin-bottom:3px">⚾ Coach has assigned you</div>
+    <div id="cpb-title" style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3a8aff;margin-bottom:3px">⚾ Your training focus</div>
     <div style="display:flex;justify-content:space-between;align-items:center">
       <div id="cpb-pos" style="font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:17px;font-weight:900;color:#fff">—</div>
       <div id="cpb-mix" style="font-size:11px;color:#4a8aaa">—</div>
@@ -3141,8 +3141,8 @@ body::before {
     <div class="ob2-header">
       <button class="ob2-back" onclick="ob2GoBack('ob2-step-role')">← Back</button>
       <div class="ob2-eyebrow">Step 2 of 3</div>
-      <div class="ob2-title">What's your<br>position?</div>
-      <div class="ob2-sub" style="margin-top:6px">We'll start your training there.</div>
+      <div class="ob2-title">What positions<br>do you play?</div>
+      <div class="ob2-sub" style="margin-top:6px">Select all that apply — we'll train you across them.</div>
     </div>
     <div class="ob2-body">
       <div class="ob2-pos-grid" id="ob2-pos-grid">
@@ -5954,6 +5954,8 @@ function updateCoachPosBanner() {
       general: '25% '+pos+' · 40% baserunning · 35% other'
     };
     var posText = pos + (sec ? ' + '+sec : '');
+    var titleEl=document.getElementById('cpb-title');
+    if(titleEl) titleEl.textContent=(currentUser.team_code&&!currentUser.is_coach)?'⚾ Coach has assigned you':'⚾ Your training focus';
     document.getElementById('cpb-pos').textContent = posText;
     document.getElementById('cpb-mix').textContent = mixLabels[mix] || mix;
     document.getElementById('cpb-desc').textContent = mixDescs[mix] || '';
@@ -6849,15 +6851,26 @@ function ob2TogglePlays(){
 }
 
 function ob2SelectPos(tile,context){
-  var grid=tile.closest('.ob2-pos-grid');
-  if(grid) grid.querySelectorAll('.ob2-pos-tile').forEach(function(t){t.classList.remove('selected');});
-  tile.classList.add('selected');
   var pos=tile.dataset.pos;
   if(context==='player'){
-    ob2Position=pos;
+    if(tile.classList.contains('selected')){
+      tile.classList.remove('selected');
+      ob2Positions=ob2Positions.filter(function(p){return p!==pos;});
+    } else {
+      tile.classList.add('selected');
+      ob2Positions.push(pos);
+    }
+    ob2Position=ob2Positions[0]||'';
     var btn=document.getElementById('ob2-pos-btn');
-    if(btn){btn.disabled=false; btn.textContent=pos+' →';}
+    if(btn){
+      if(ob2Positions.length===0){btn.disabled=true;btn.textContent='Select a Position →';}
+      else if(ob2Positions.length===1){btn.disabled=false;btn.textContent=ob2Positions[0]+' →';}
+      else{btn.disabled=false;btn.textContent=ob2Positions.length+' Positions Selected →';}
+    }
   } else {
+    var grid=tile.closest('.ob2-pos-grid');
+    if(grid) grid.querySelectorAll('.ob2-pos-tile').forEach(function(t){t.classList.remove('selected');});
+    tile.classList.add('selected');
     ob2CoachPos=pos;
     var cBtn=document.getElementById('ob2-cpos-btn');
     if(cBtn){cBtn.disabled=false; cBtn.textContent=pos+' →';}
@@ -6975,7 +6988,10 @@ async function ob2CreateTeam(evt){
 
 async function finishOnboard(){
   var updates={onboarded:true, is_coach:ob2Role==='coach'};
-  if(ob2Role==='player'&&ob2Position) updates.primary_position=ob2Position;
+  if(ob2Role==='player'&&ob2Positions.length){
+    updates.primary_position=ob2Positions[0];
+    if(ob2Positions.length>1) updates.secondary_position=ob2Positions.slice(1).join(',');
+  } else if(ob2Role==='player'&&ob2Position) updates.primary_position=ob2Position;
   if(ob2Role==='coach'){
     if(ob2Levels.length) updates.coach_levels=ob2Levels.join(',');
     if(ob2PlaysAlso&&ob2CoachPos) updates.primary_position=ob2CoachPos;
