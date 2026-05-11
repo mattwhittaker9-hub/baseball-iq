@@ -6045,7 +6045,9 @@ document.getElementById('send-reset-btn').addEventListener('click',async()=>{
 
 document.getElementById('register-btn').addEventListener('click',async()=>{
   const btn=document.getElementById('register-btn');
-  const u=document.getElementById('reg-username').value.trim();
+  const uRaw=document.getElementById('reg-username').value.trim();
+  const u=uRaw.includes('@')?uRaw.split('@')[0]:uRaw;
+  if(uRaw!==u) document.getElementById('reg-username').value=u;
   const email=document.getElementById('reg-email').value.trim();
   const password=document.getElementById('reg-password').value;
   const isMom=parentType==='mom';
