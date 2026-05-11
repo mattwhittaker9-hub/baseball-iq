@@ -2119,12 +2119,12 @@ body::before {
 .battle-hdr-icon{font-size:42px;line-height:1}
 .battle-hdr-title{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:2px;line-height:1}
 .battle-hdr-sub{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#5a7a98;text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
-.battle-create-btn{width:100%;background:linear-gradient(135deg,#c8102e 0%,#8a0a1f 100%);border:none;border-radius:14px;padding:18px 20px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:20px;box-shadow:0 4px 24px rgba(200,16,46,0.35)}
+.battle-create-btn{width:100%;background:linear-gradient(135deg,#1a0408 0%,#6a0a18 50%,#a81020 100%);border:none;border-radius:14px;padding:18px 20px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:20px;box-shadow:0 4px 24px rgba(200,16,46,0.35)}
 .battle-join-card{display:flex;gap:10px;margin-bottom:16px}
 .battle-code-input{flex:1;background:#0c1828;border:1.5px solid #1a3050;border-radius:12px;padding:14px 16px;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:6px;text-align:center;text-transform:uppercase;outline:none}
 .battle-code-input:focus{border-color:#c8102e}
 .battle-code-input::placeholder{letter-spacing:2px;color:#3a5a78;font-size:13px;font-weight:700}
-.battle-join-btn{background:#c8102e;border:none;border-radius:12px;padding:14px 20px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:1px;cursor:pointer;white-space:nowrap}
+.battle-join-btn{background:linear-gradient(135deg,#7a4a00,#c89020);border:none;border-radius:12px;padding:14px 20px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:1px;cursor:pointer;white-space:nowrap}
 .battle-history-section{margin-top:16px}
 .battle-history-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}</style>
 </head>
@@ -2991,13 +2991,13 @@ body::before {
 <!-- ─── CHALLENGE HUB ─── -->
 <div id="s-challenge" class="screen">
   <div class="battle-hdr">
-    <div class="battle-hdr-icon">⚔️</div>
+    <div class="battle-hdr-icon"><div class="hng-sprite hng-battle" style="width:44px;height:46px;background-size:176px 96px"></div></div>
     <div>
       <div class="battle-hdr-title">Battle</div>
       <div class="battle-hdr-sub">Head-to-Head · Speed Wins</div>
     </div>
   </div>
-  <button class="battle-create-btn" onclick="createChallenge()">⚔️ &nbsp;Create a Challenge</button>
+  <button class="battle-create-btn" onclick="createChallenge()">Create a Challenge</button>
   <div class="ch-divider">
     <div class="ch-divider-line"></div>
     <div class="ch-divider-text">or enter a code</div>
@@ -3040,7 +3040,7 @@ body::before {
   <div class="settings-box">
     <div style="font-size:11px;color:#3a5a78;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Match Settings</div>
     <div class="settings-row"><span class="settings-key">Questions</span><span class="settings-val">5</span></div>
-    <div class="settings-row"><span class="settings-key">Time per question</span><span class="settings-val">10 sec</span></div>
+    <div class="settings-row"><span class="settings-key">Time per question</span><span class="settings-val">25 sec</span></div>
     <div class="settings-row"><span class="settings-key">Speed bonus</span><span class="settings-val gold">Up to +50 pts</span></div>
     <div class="settings-row"><span class="settings-key">Correct answer</span><span class="settings-val">100 pts</span></div>
   </div>
@@ -3057,7 +3057,7 @@ body::before {
           <circle cx="23" cy="23" r="19" fill="none" stroke="#162840" stroke-width="4"></circle>
           <circle cx="23" cy="23" r="19" fill="none" stroke="#e8c060" stroke-width="4" stroke-dasharray="119" id="battle-timer-arc" stroke-dashoffset="0" stroke-linecap="round"></circle>
         </svg>
-        <div class="timer-val" id="battle-timer-val">10</div>
+        <div class="timer-val" id="battle-timer-val">25</div>
       </div>
       <div class="battle-scoreboard">
         <div class="bs-player">
@@ -3075,9 +3075,11 @@ body::before {
     <div class="opp-status" id="battle-opp-status"></div>
     <div class="opp-progress"><div class="opp-progress-fill" id="battle-opp-progress" style="width:0%"></div></div>
   </div>
-  <div style="padding:0 16px;flex:1;display:flex;flex-direction:column;overflow:hidden">
-    <div class="gc-inning" id="battle-context" style="margin-bottom:8px"></div>
+  <div style="padding:0 16px;flex:1;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch">
+    <div class="gc-inning" id="battle-context" style="margin-bottom:6px"></div>
+    <div id="battle-scenario-box" style="display:none;background:#0c1828;border:1px solid #1a3050;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-family:'Barlow',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5"></div>
     <div class="battle-question" id="battle-question">Loading...</div>
+    <div id="battle-read-countdown" style="display:none;text-align:center;padding:12px 0;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#5a7a98;letter-spacing:1px;text-transform:uppercase"></div>
     <div id="battle-choices"></div>
   </div>
 </div>
@@ -6369,7 +6371,7 @@ var challengeTimer=null, challengeQuestionStart=null;
 var challengeMyAnswer=null, challengeOppAnswer=null;
 var challengeAnswerReceived=false, challengeOppAnswered=false;
 var challengeIsP1=false, challengeOppName='Opponent';
-var CHALLENGE_QS=5, CHALLENGE_TIME=10;
+var CHALLENGE_QS=5, CHALLENGE_TIME=25;
 
 // Generate 4-char code
 function genCode(){
@@ -6594,15 +6596,21 @@ function renderBattleQuestion(){
   document.getElementById('battle-opp-status').textContent='';
   document.getElementById('battle-opp-progress').style.width='0%';
 
-  // Context line
+  // Context line (inn/score/outs)
   var ctx=getContextLine(q);
+  document.getElementById('battle-context').textContent=ctx;
+
+  // Scenario in its own box
   var scen=getScenario(q);
-  document.getElementById('battle-context').textContent=ctx+(ctx&&scen?' · ':'')+scen;
+  var scenBox=document.getElementById('battle-scenario-box');
+  if(scenBox){ if(scen){scenBox.textContent=scen;scenBox.style.display='block';}else{scenBox.style.display='none';} }
+
   document.getElementById('battle-question').textContent=q.question;
 
-  // Build choices
+  // Build choices but hide during read phase
   var chEl=document.getElementById('battle-choices');
   chEl.innerHTML='';
+  chEl.style.visibility='hidden';
   if(q.question_type==='multiple_choice'){
     var ltrs=['A','B','C','D'];
     q.choices.forEach(function(ch,i){
@@ -6622,8 +6630,21 @@ function renderBattleQuestion(){
     chEl.appendChild(row);
   }
 
-  // Start timer
-  startBattleTimer(q);
+  // Read phase: 4-second countdown then choices appear + timer starts
+  var cdEl=document.getElementById('battle-read-countdown');
+  var readLeft=4;
+  if(cdEl){cdEl.textContent='Choices in '+readLeft+'...';cdEl.style.display='block';}
+  var readTimer=setInterval(function(){
+    readLeft--;
+    if(readLeft>0){
+      if(cdEl) cdEl.textContent='Choices in '+readLeft+'...';
+    } else {
+      clearInterval(readTimer);
+      if(cdEl) cdEl.style.display='none';
+      chEl.style.visibility='visible';
+      startBattleTimer(q);
+    }
+  },1000);
 }
 
 // ── TIMER ─────────────────────────────────────────────────────────────────────
