@@ -4464,25 +4464,15 @@ function saveSessionStats(pct,nc,tot,answers,streak,cat){
   sessions.unshift({date:getTodayKey(),pct,nc,tot,streak,cat,answers});
   if(sessions.length>100) sessions.pop();
   localStorage.setItem(key,JSON.stringify(sessions));
-  // Increment DB from currentUser values (not localStorage which resets on clear)
+  // Increment DB from currentUser values — survives localStorage clears
   if(currentUser.user_id){
     const newSessions=(currentUser.total_sessions||0)+1;
     const newQ=(currentUser.total_questions||0)+tot;
     const newC=(currentUser.total_correct||0)+nc;
     const newAvg=newQ>0?Math.round((newC/newQ)*100):0;
     const newBest=Math.max(streak,currentUser.best_streak||0);
-    sb.from('players').update({
-      total_sessions:newSessions,
-      total_questions:newQ,
-      total_correct:newC,
-      avg_score:newAvg,
-      best_streak:newBest
-    }).eq('user_id',currentUser.user_id).then(()=>{
-      currentUser.total_sessions=newSessions;
-      currentUser.total_questions=newQ;
-      currentUser.total_correct=newC;
-      currentUser.avg_score=newAvg;
-      currentUser.best_streak=newBest;
+    sb.from('players').update({total_sessions:newSessions,total_questions:newQ,total_correct:newC,avg_score:newAvg,best_streak:newBest}).eq('user_id',currentUser.user_id).then(()=>{
+      currentUser.total_sessions=newSessions;currentUser.total_questions=newQ;currentUser.total_correct=newC;currentUser.avg_score=newAvg;currentUser.best_streak=newBest;
       localStorage.setItem('biq_user',JSON.stringify(currentUser));
     });
   }
@@ -7085,11 +7075,11 @@ function calculateSessionDelta(answersArr, difficultiesArr) {
 
 async function saveIQScore(newScore) {
   if(!currentUser) return;
-  // IQ never decreases — founder protection
-  const protected_score = Math.max(newScore, currentUser.iq_score||1000);
+  const protected_score=Math.max(newScore,currentUser.iq_score||1000);
   localStorage.setItem('biq_iq_'+currentUser.username, protected_score);
   currentUser.iq_score = protected_score;
   localStorage.setItem('biq_user', JSON.stringify(currentUser));
+  // Save to Supabase
   if(currentUser.user_id) {
     await sb.from('players').update({iq_score: protected_score}).eq('user_id', currentUser.user_id);
   }
