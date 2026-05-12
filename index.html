@@ -3191,25 +3191,30 @@ body::before {
 
 <!-- ─── ROUND RESULT OVERLAY ─── -->
 <div class="round-overlay" id="round-overlay">
-  <div class="ro-icon" id="ro-icon">🎯</div>
-  <div class="ro-title" id="ro-title">You got it first!</div>
-  <div class="ro-sub" id="ro-sub">Round 1 complete</div>
-  <div class="ro-times" style="width:100%;max-width:340px">
-    <div class="ro-player">
+  <div class="ro-eyebrow" id="ro-eyebrow">Round 1 of 5</div>
+  <div class="ro-icon" id="ro-icon">⚡</div>
+  <div class="ro-title" id="ro-title">YOU GOT IT!</div>
+  <div class="ro-sub" id="ro-sub">Answered first</div>
+  <div class="ro-times" style="width:100%;max-width:360px">
+    <div class="ro-player" id="ro-my-card">
       <div class="ro-player-name">You</div>
       <div class="ro-player-time" id="ro-my-time" style="color:#3ecf82">2.8s</div>
-      <div class="ro-player-pts" id="ro-my-pts">+142 pts</div>
+      <div class="ro-player-pts" id="ro-my-pts" style="color:#3ecf82">+125 pts</div>
     </div>
-    <div class="ro-player">
-      <div class="ro-player-name" id="ro-opp-name-disp">Opponent</div>
-      <div class="ro-player-time" id="ro-opp-time" style="color:#e84060">Wrong</div>
-      <div class="ro-player-pts" id="ro-opp-pts">+0 pts</div>
+    <div class="ro-vs-divider">VS</div>
+    <div class="ro-player" id="ro-opp-card">
+      <div class="ro-player-name" id="ro-opp-name">Opponent</div>
+      <div class="ro-player-time" id="ro-opp-time" style="color:#e84060">7.1s</div>
+      <div class="ro-player-pts" id="ro-opp-pts" style="color:#e84060">+60 pts</div>
     </div>
   </div>
-  <div class="ro-score" id="ro-score">240 : 180</div>
+  <div class="ro-score-row">
+    <div class="ro-score-mine" id="ro-score-mine">250</div>
+    <div class="ro-score-sep">—</div>
+    <div class="ro-score-theirs" id="ro-score-theirs">120</div>
+  </div>
   <button class="ro-next" id="ro-next-btn" onclick="nextBattleQuestion()">Next Question →</button>
 </div>
-
 <!-- ─── CHALLENGE RESULT ─── -->
 <div id="s-challenge-result" class="cr-screen">
   <div class="cr-hero">
