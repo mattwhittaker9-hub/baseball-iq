@@ -2156,12 +2156,12 @@ body::before {
 /* ─── CR SCREEN HIDE FIX ─── */
 #s-challenge-result{display:none}
 #s-challenge-result.show{display:flex}
-/* ─── BATTLE POSITION LABEL (inline, not absolute) ─── */
-.battle-pos-row{display:flex;justify-content:flex-start;padding:8px 16px 2px;flex-shrink:0}
-#battle-gc-cat{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;color:#fff;text-transform:uppercase;padding:4px 12px;background:rgba(6,12,24,0.8);border:none;border-left:3px solid var(--pos-color,#c8102e);border-radius:0 4px 4px 0;display:inline-block;backdrop-filter:blur(8px)}
+/* ─── BATTLE POSITION LABEL — centered, bright, above field ─── */
+.battle-pos-row{display:flex;justify-content:center;align-items:center;padding:10px 16px 4px;flex-shrink:0}
+#battle-gc-cat{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:4px;color:#ffffff;text-transform:uppercase;padding:5px 18px;background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.5);border-radius:6px;display:inline-block;text-shadow:0 0 20px rgba(255,255,255,0.3)}
 
-/* ─── BATTLE SCENARIO: bigger text in field block ─── */
-#battle-gc-scenario-body{font-family:'Barlow',sans-serif !important;font-size:13px !important;font-weight:500 !important;color:rgba(255,255,255,0.65) !important;text-transform:none !important;letter-spacing:0 !important;line-height:1.5 !important;text-align:center !important;padding:8px 12px !important;display:block !important}
+/* ─── BATTLE SCENARIO: hidden in field block — shown once before question ─── */
+#battle-gc-scenario-body{display:none !important}
 
 /* ─── BATTLE SCENARIO CARD above question ─── */
 .battle-scenario-card{background:rgba(6,14,26,0.7);border:1px solid rgba(255,255,255,0.08);border-left:3px solid rgba(255,255,255,0.15);border-radius:0 10px 10px 0;padding:10px 14px;margin:0 0 10px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);line-height:1.5;display:none}
@@ -6862,7 +6862,7 @@ function processMySide(correct, timeTaken, choice, q){
   if(challengeChannel){
     challengeChannel.send({type:'broadcast',event:'answer',payload:{
       player_id:currentUser.user_id,
-      correct:correct, time:timeTaken, pts:pts
+      correct:correct, time:timeTaken, pts:pts, cumScore:challengeMyScore
     }});
   }
   tryShowRoundResult(q);
@@ -6872,7 +6872,9 @@ function handleOppAnswer(payload){
   if(challengeOppAnswered) return;
   challengeOppAnswered=true;
   challengeOppAnswer={correct:payload.correct, time:payload.time, pts:payload.pts||0};
-  challengeOppScore+=challengeOppAnswer.pts;
+  // Use cumulative score if available (handles dropped packets)
+  if(payload.cumScore!=null) challengeOppScore=payload.cumScore;
+  else challengeOppScore+=challengeOppAnswer.pts;
   document.getElementById('battle-opp-status').textContent=payload.correct?'✅ '+challengeOppName+' answered correctly!':'❌ '+challengeOppName+' answered wrong';
   document.getElementById('battle-opp-progress').style.width='100%';
   tryShowRoundResult(null);
