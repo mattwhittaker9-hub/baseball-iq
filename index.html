@@ -2119,22 +2119,34 @@ body::before {
 
 /* ─── HOME NAV GRID (2×4) ─── */
 .home-nav-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;padding-bottom:20px}
-.hnav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:20px 8px 16px;cursor:pointer;position:relative;overflow:hidden;transition:all 0.15s;-webkit-tap-highlight-color:transparent}
+.hnav-btn{
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);
+  border-radius:16px;padding:0;cursor:pointer;position:relative;
+  overflow:hidden;transition:all 0.15s;-webkit-tap-highlight-color:transparent;
+  aspect-ratio:1
+}
 .hnav-btn:active{transform:scale(0.97)}
 .hnav-btn.active{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18)}
 .hnav-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#c8102e;border-radius:0 0 2px 2px}
-.hng-sprite{display:block;width:64px;height:66px;background-image:url('icons.png');background-size:256px 140px;background-repeat:no-repeat}
-.hng-home  {background-position:0px 0px}
-.hng-train {background-position:-192px -70px}
-.hng-rules {background-position:0px -70px}
-.hng-battle{background-position:-64px -70px}
-.hng-board {background-position:-64px 0px}
-.hng-team  {background-position:-128px 0px}
-.hng-stats {background-position:-192px 0px}
-.hng-pro   {background-position:-128px -70px}
-.hng-label{font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5)}
-.hnav-btn.active .hng-label{color:#fff}
-
+/* Sprite fills entire tile using percentage-based positions (4 cols × 2 rows) */
+.hng-sprite{
+  display:block;width:100%;height:100%;
+  background-image:url('icons.png');
+  background-size:400% 200%;
+  background-repeat:no-repeat;
+  border-radius:inherit
+}
+.hng-home  {background-position:0% 0%}
+.hng-board {background-position:33.33% 0%}
+.hng-team  {background-position:66.67% 0%}
+.hng-stats {background-position:100% 0%}
+.hng-rules {background-position:0% 100%}
+.hng-battle{background-position:33.33% 100%}
+.hng-pro   {background-position:66.67% 100%}
+.hng-train {background-position:100% 100%}
+/* Hide labels — icons speak for themselves */
+.hng-label{display:none}
 /* ─── BATTLE SCREEN ─── */
 .battle-hdr{display:flex;align-items:center;gap:14px;padding:4px 0 20px}
 .battle-hdr-icon{font-size:42px;line-height:1}
