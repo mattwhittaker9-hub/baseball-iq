@@ -2118,35 +2118,48 @@ body::before {
 }
 
 /* ─── HOME NAV GRID (2×4) ─── */
-.home-nav-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;padding-bottom:20px}
+.home-nav-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,180px));
+  justify-content:center;
+  gap:10px;
+  margin-top:12px;
+  padding-bottom:20px
+}
 .hnav-btn{
-  display:flex;align-items:center;justify-content:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:9px;padding:16px 8px 14px;
   background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);
-  border-radius:16px;padding:0;cursor:pointer;position:relative;
-  overflow:hidden;transition:all 0.15s;-webkit-tap-highlight-color:transparent;
-  aspect-ratio:1
+  border-radius:16px;cursor:pointer;position:relative;overflow:hidden;
+  transition:all 0.15s;-webkit-tap-highlight-color:transparent
 }
 .hnav-btn:active{transform:scale(0.97)}
 .hnav-btn.active{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18)}
 .hnav-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#c8102e;border-radius:0 0 2px 2px}
-/* Sprite fills entire tile using percentage-based positions (4 cols × 2 rows) */
+/* Sprite: 110px wide × 114px tall, uniform 1.71875× scale, pixel-perfect positions */
 .hng-sprite{
-  display:block;width:100%;height:100%;
+  display:block;width:110px;height:114px;flex-shrink:0;
   background-image:url('icons.png');
-  background-size:400% 200%;
-  background-repeat:no-repeat;
-  border-radius:inherit
+  background-size:440px 241px;
+  background-repeat:no-repeat
 }
-.hng-home  {background-position:0% 0%}
-.hng-board {background-position:33.33% 0%}
-.hng-team  {background-position:66.67% 0%}
-.hng-stats {background-position:100% 0%}
-.hng-rules {background-position:0% 100%}
-.hng-battle{background-position:33.33% 100%}
-.hng-pro   {background-position:66.67% 100%}
-.hng-train {background-position:100% 100%}
-/* Hide labels — icons speak for themselves */
-.hng-label{display:none}
+.hng-home  {background-position:0px 0px}
+.hng-board {background-position:-110px 0px}
+.hng-team  {background-position:-220px 0px}
+.hng-stats {background-position:-330px 0px}
+.hng-rules {background-position:0px -120px}
+.hng-battle{background-position:-110px -120px}
+.hng-pro   {background-position:-220px -120px}
+.hng-train {background-position:-330px -120px}
+/* Clean label — Barlow Condensed, small */
+.hng-label{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.45)
+}
+.hnav-btn.active .hng-label{color:rgba(255,255,255,0.9)}
 /* ─── BATTLE SCREEN ─── */
 .battle-hdr{display:flex;align-items:center;gap:14px;padding:4px 0 20px}
 .battle-hdr-icon{font-size:42px;line-height:1}
