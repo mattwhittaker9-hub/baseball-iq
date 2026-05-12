@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baseball IQ — Question Review</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#02060d;--card:#0a1628;--card2:#0d1e33;--border:rgba(255,255,255,0.08);
+  --red:#c8102e;--green:#3ecf82;--yellow:#e8c060;--blue:#3a9bd5;
+  --text:#e8f4ff;--muted:#5a7a98;--font:'Barlow Condensed',system-ui,sans-serif
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
+a{color:var(--blue)}
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;width:340px;text-align:center}
+.login-box h1{font-size:24px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.login-box p{color:var(--muted);font-size:13px;margin-bottom:24px}
+.login-box input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-family:var(--font);font-size:14px;margin-bottom:10px}
+.btn{border:none;cursor:pointer;font-family:var(--font);font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:8px;padding:10px 20px}
+.btn-red{background:var(--red);color:#fff;font-size:14px}
+.btn-green{background:var(--green);color:#02060d;font-size:13px}
+.btn-yellow{background:var(--yellow);color:#02060d;font-size:13px}
+.btn-ghost{background:rgba(255,255,255,0.07);color:var(--text);font-size:13px}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn:hover{opacity:0.85}
+.btn:active{transform:scale(0.97)}
+#app{display:none;flex-direction:column;min-height:100vh}
+#topbar{background:var(--card);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+#topbar h1{font-size:18px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.tb-right{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--muted)}
+.stat-pill{background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700}
+.stat-pill .num{color:var(--green)}
+.stat-pill .lbl{color:var(--muted);margin-left:4px}
+#filters{background:var(--card2);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.flt{display:flex;flex-direction:column;gap:4px}
+.flt label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.flt select,.flt input{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-family:var(--font);font-size:13px;min-width:130px}
+#filter-btn{align-self:flex-end}
+#clear-btn{align-self:flex-end;background:none;border:none;color:var(--muted);font-family:var(--font);font-size:12px;cursor:pointer;text-decoration:underline}
+#main{padding:20px;flex:1}
+#toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.showing{font-size:12px;color:var(--muted)}
+#pagination{display:flex;gap:8px;align-items:center}
+.pg-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:6px;font-family:var(--font);font-size:13px;cursor:pointer}
+.pg-btn:disabled{opacity:0.3;cursor:not-allowed}
+.pg-info{font-size:12px;color:var(--muted)}
+#q-list{display:flex;flex-direction:column;gap:12px}
+/* Question Card */
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.15s}
+.q-card.approved{border-color:rgba(62,207,130,0.35)}
+.q-card.needs_revision{border-color:rgba(232,192,96,0.35)}
+.q-card.rejected{border-color:rgba(200,16,46,0.35);opacity:0.65}
+.q-header{padding:14px 16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer}
+.q-status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.dot-unreviewed{background:var(--muted)}
+.dot-approved{background:var(--green)}
+.dot-needs_revision{background:var(--yellow)}
+.dot-rejected{background:var(--red)}
+.q-meta{flex:1;min-width:0}
+.q-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.tag{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px}
+.tag-pos{background:rgba(58,155,213,0.2);color:var(--blue)}
+.tag-diff{background:rgba(62,207,130,0.15);color:var(--green)}
+.tag-diff-2{background:rgba(232,192,96,0.15);color:var(--yellow)}
+.tag-diff-3{background:rgba(200,16,46,0.15);color:var(--red)}
+.tag-sit{background:rgba(255,255,255,0.07);color:var(--muted)}
+.tag-flag{background:rgba(200,16,46,0.2);color:var(--red)}
+.q-question{font-size:14px;font-weight:600;line-height:1.4;margin-bottom:2px}
+.q-scenario{font-size:12px;color:var(--muted);font-style:italic}
+.q-chevron{color:var(--muted);font-size:16px;flex-shrink:0;transition:transform 0.2s}
+.q-card.open .q-chevron{transform:rotate(180deg)}
+.q-body{display:none;border-top:1px solid var(--border);padding:16px}
+.q-card.open .q-body{display:block}
+.q-section{margin-bottom:16px}
+.q-section h3{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.choice{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px}
+.choice.correct{border-color:rgba(62,207,130,0.5);background:rgba(62,207,130,0.07)}
+.choice label{font-size:10px;font-weight:700;color:var(--green);display:block;margin-bottom:2px}
+.field-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:10px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:6px;font-family:var(--font);font-size:13px;width:100%}
+.field textarea{resize:vertical;min-height:70px;line-height:1.4}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);outline:none}
+.q-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding-top:12px;border-top:1px solid var(--border)}
+.save-indicator{font-size:11px;color:var(--green);margin-left:auto}
+.empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+#toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-size:13px;font-weight:700;z-index:999;display:none;animation:fadeIn 0.2s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.choices{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}.q-header{padding:12px}.q-body{padding:12px}}
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>⚾ Question Review</h1>
+    <p>Baseball IQ Admin</p>
+    <input type="email" id="le" placeholder="Email">
+    <input type="password" id="lp" placeholder="Password" style="margin-bottom:16px">
+    <button class="btn btn-red" style="width:100%" onclick="doLogin()">Sign In</button>
+    <div id="lerr" style="color:var(--red);font-size:12px;margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app">
+  <div id="topbar">
+    <h1>⚾ Question Review</h1>
+    <div class="tb-right">
+      <div class="stat-pill"><span class="num" id="stat-total">—</span><span class="lbl">total</span></div>
+      <div class="stat-pill"><span class="num" id="stat-unreview">—</span><span class="lbl">unreviewed</span></div>
+      <div class="stat-pill"><span class="num" id="stat-approved">—</span><span class="lbl">approved</span></div>
+      <div class="stat-pill"><span class="num" id="stat-flags">—</span><span class="lbl">flagged</span></div>
+      <span id="user-email" style="font-size:12px;color:var(--muted)"></span>
+      <button class="btn btn-ghost btn-sm" onclick="doLogout()">Sign Out</button>
+    </div>
+  </div>
+
+  <div id="filters">
+    <div class="flt"><label>Status</label>
+      <select id="f-status">
+        <option value="">All statuses</option>
+        <option value="unreviewed">Unreviewed</option>
+        <option value="approved">Approved</option>
+        <option value="needs_revision">Needs Revision</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+    <div class="flt"><label>Position</label>
+      <select id="f-pos">
+        <option value="">All positions</option>
+        <option>Pitcher</option><option>Catcher</option>
+        <option>First Baseman</option><option>Second Baseman</option>
+        <option>Shortstop</option><option>Third Baseman</option>
+        <option>Left Fielder</option><option>Center Fielder</option>
+        <option>Right Fielder</option><option>Baserunner</option><option>Hitter</option>
+      </select>
+    </div>
+    <div class="flt"><label>Difficulty</label>
+      <select id="f-diff">
+        <option value="">All levels</option>
+        <option value="1">1 — Beginner</option>
+        <option value="2">2 — Intermediate</option>
+        <option value="3">3 — Advanced</option>
+      </select>
+    </div>
+    <div class="flt"><label>Situation</label>
+      <select id="f-sit">
+        <option value="">All situations</option>
+        <option value="cutoffs_relays">Cutoffs / Relays</option>
+        <option value="base_coverage">Base Coverage</option>
+        <option value="backing_up">Backing Up</option>
+        <option value="force_vs_tag">Force vs Tag</option>
+        <option value="bunt_defense">Bunt Defense</option>
+        <option value="rundowns">Rundowns</option>
+        <option value="first_and_third">First & Third</option>
+        <option value="fly_ball_reads">Fly Ball Reads</option>
+        <option value="ground_ball_reads">Ground Ball Reads</option>
+        <option value="line_drive_reads">Line Drive Reads</option>
+        <option value="baserunning_reads">Baserunning Reads</option>
+        <option value="tagging_up">Tagging Up</option>
+        <option value="stealing">Stealing</option>
+        <option value="pitcher_fielding">Pitcher Fielding</option>
+        <option value="catcher_decisions">Catcher Decisions</option>
+        <option value="hitting_approach">Hitting Approach</option>
+        <option value="count_game_management">Count / Game Mgmt</option>
+        <option value="score_inning_awareness">Score / Inning Awareness</option>
+        <option value="communication">Communication</option>
+        <option value="priority_calls">Priority Calls</option>
+      </select>
+    </div>
+    <div class="flt"><label>Confidence</label>
+      <select id="f-conf">
+        <option value="">All confidence</option>
+        <option value="universal">Universal</option>
+        <option value="standard">Standard</option>
+        <option value="coach_preference">Coach Preference</option>
+        <option value="context_dependent">Context Dependent</option>
+        <option value="debatable">Debatable</option>
+      </select>
+    </div>
+    <div class="flt"><label>Flagged ≥</label>
+      <input type="number" id="f-flag" placeholder="0" min="0" style="width:80px">
+    </div>
+    <div class="flt"><label>Search</label>
+      <input type="text" id="f-search" placeholder="keyword…" style="min-width:180px">
+    </div>
+    <button class="btn btn-red btn-sm" id="filter-btn" onclick="applyFilters()">Filter</button>
+    <button id="clear-btn" onclick="clearFilters()">Clear</button>
+  </div>
+
+  <div id="main">
+    <div id="toolbar">
+      <div class="showing" id="showing-text">Loading…</div>
+      <div id="pagination">
+        <button class="pg-btn" id="pg-prev" onclick="changePage(-1)" disabled>← Prev</button>
+        <span class="pg-info" id="pg-info">Page 1</span>
+        <button class="pg-btn" id="pg-next" onclick="changePage(1)">Next →</button>
+      </div>
+    </div>
+    <div id="q-list"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const SB_URL = 'https://kcisieenoznaorioagqq.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaXNpZWVub3puYW9yaW9hZ3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI2MTQsImV4cCI6MjA5MDIwODYxNH0.yGa1Mc9N1X1tmnQvVy7arTQSZT8w0YJn_wNNEW0mQDg';
+const ADMIN_EMAILS = ['matthew@playbaseballiq.com','coachm@playbaseballiq.com'];
+const PAGE_SIZE = 25;
+
+const sb = supabase.createClient(SB_URL, SB_KEY);
+let currentPage = 0, totalCount = 0, currentFilters = {};
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+async function doLogin(){
+  const email = document.getElementById('le').value.trim();
+  const pass = document.getElementById('lp').value;
+  const {data,error} = await sb.auth.signInWithPassword({email,password:pass});
+  if(error){ document.getElementById('lerr').textContent = error.message; return; }
+  if(!ADMIN_EMAILS.includes(data.user.email)){
+    await sb.auth.signOut();
+    document.getElementById('lerr').textContent = 'Not authorized as admin.';
+    return;
+  }
+  initApp(data.user);
+}
+
+async function doLogout(){
+  await sb.auth.signOut();
+  location.reload();
+}
+
+function initApp(user){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='flex';
+  document.getElementById('user-email').textContent = user.email;
+  loadStats();
+  applyFilters();
+}
+
+sb.auth.getSession().then(({data:{session}})=>{
+  if(session && ADMIN_EMAILS.includes(session.user.email)) initApp(session.user);
+});
+
+// ── STATS ─────────────────────────────────────────────────────────────────────
+async function loadStats(){
+  const {count:total} = await sb.from('questions').select('*',{count:'exact',head:true}).eq('is_active',true);
+  const {count:unreview} = await sb.from('questions').select('*',{count:'exact',head:true}).eq('reviewed_status','unreviewed').eq('is_active',true);
+  const {count:approved} = await sb.from('questions').select('*',{count:'exact',head:true}).eq('reviewed_status','approved').eq('is_active',true);
+  const {count:flags} = await sb.from('questions').select('*',{count:'exact',head:true}).gt('flag_count',0).eq('is_active',true);
+  document.getElementById('stat-total').textContent = total||0;
+  document.getElementById('stat-unreview').textContent = unreview||0;
+  document.getElementById('stat-approved').textContent = approved||0;
+  document.getElementById('stat-flags').textContent = flags||0;
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────────
+function applyFilters(){
+  currentFilters = {
+    status: document.getElementById('f-status').value,
+    pos: document.getElementById('f-pos').value,
+    diff: document.getElementById('f-diff').value,
+    sit: document.getElementById('f-sit').value,
+    conf: document.getElementById('f-conf').value,
+    flag: document.getElementById('f-flag').value,
+    search: document.getElementById('f-search').value.trim()
+  };
+  currentPage = 0;
+  loadQuestions();
+}
+
+function clearFilters(){
+  ['f-status','f-pos','f-diff','f-sit','f-conf'].forEach(id=>document.getElementById(id).value='');
+  ['f-flag','f-search'].forEach(id=>document.getElementById(id).value='');
+  applyFilters();
+}
+
+function changePage(dir){
+  currentPage += dir;
+  loadQuestions();
+}
+
+// ── LOAD QUESTIONS ────────────────────────────────────────────────────────────
+async function loadQuestions(){
+  document.getElementById('showing-text').textContent = 'Loading…';
+  document.getElementById('q-list').innerHTML = '';
+
+  let q = sb.from('questions').select(
+    'id,position,question,scenario,difficulty,age_level,choice_a,choice_b,choice_c,choice_d,correct_answer,correct_index,explanation,reviewed_status,situation_type,skill_focus,confidence_level,baseball_notes,reviewed_by,reviewed_at,flag_count',
+    {count:'exact'}
+  ).eq('is_active',true);
+
+  const f = currentFilters;
+  if(f.status) q = q.eq('reviewed_status',f.status);
+  if(f.pos)    q = q.eq('position',f.pos);
+  if(f.diff)   q = q.eq('difficulty',parseInt(f.diff));
+  if(f.sit)    q = q.eq('situation_type',f.sit);
+  if(f.conf)   q = q.eq('confidence_level',f.conf);
+  if(f.flag)   q = q.gte('flag_count',parseInt(f.flag));
+  if(f.search) q = q.ilike('question','%'+f.search+'%');
+
+  q = q.order('flag_count',{ascending:false})
+       .order('reviewed_status',{ascending:true})
+       .range(currentPage*PAGE_SIZE, currentPage*PAGE_SIZE+PAGE_SIZE-1);
+
+  const {data,error,count} = await q;
+  if(error){ showToast('Error: '+error.message,'red'); return; }
+
+  totalCount = count||0;
+  const totalPages = Math.ceil(totalCount/PAGE_SIZE);
+  document.getElementById('showing-text').textContent =
+    `Showing ${currentPage*PAGE_SIZE+1}–${Math.min((currentPage+1)*PAGE_SIZE,totalCount)} of ${totalCount} questions`;
+  document.getElementById('pg-info').textContent = `Page ${currentPage+1} of ${Math.max(1,totalPages)}`;
+  document.getElementById('pg-prev').disabled = currentPage===0;
+  document.getElementById('pg-next').disabled = (currentPage+1)>=totalPages;
+
+  const list = document.getElementById('q-list');
+  if(!data||data.length===0){
+    list.innerHTML='<div class="empty">No questions match these filters.</div>';
+    return;
+  }
+  data.forEach(q=>list.appendChild(renderCard(q)));
+}
+
+// ── RENDER CARD ───────────────────────────────────────────────────────────────
+const diffLabel = {1:'Beginner',2:'Intermediate',3:'Advanced'};
+const diffClass = {1:'tag-diff',2:'tag-diff-2',3:'tag-diff-3'};
+
+function renderCard(q){
+  const card = document.createElement('div');
+  card.className = 'q-card '+(q.reviewed_status||'unreviewed');
+  card.id = 'card-'+q.id;
+
+  const correctLetter = q.correct_answer
+    ? ['a','b','c','d'].find(l=>q['choice_'+l]===q.correct_answer)||'?'
+    : ['a','b','c','d'][q.correct_index||0]||'?';
+
+  const tagsHtml = [
+    q.position ? `<span class="tag tag-pos">${q.position}</span>` : '',
+    q.difficulty ? `<span class="tag ${diffClass[q.difficulty]||'tag-sit'}">${diffLabel[q.difficulty]||q.difficulty}</span>` : '',
+    q.situation_type ? `<span class="tag tag-sit">${q.situation_type.replace(/_/g,' ')}</span>` : '',
+    q.flag_count>0 ? `<span class="tag tag-flag">⚑ ${q.flag_count} flag${q.flag_count>1?'s':''}</span>` : ''
+  ].join('');
+
+  card.innerHTML = `
+    <div class="q-header" onclick="toggleCard('${q.id}')">
+      <div class="q-status-dot dot-${q.reviewed_status||'unreviewed'}"></div>
+      <div class="q-meta">
+        <div class="q-tags">${tagsHtml}</div>
+        <div class="q-question">${q.question||'(no question text)'}</div>
+        ${q.scenario ? `<div class="q-scenario">${q.scenario}</div>` : ''}
+      </div>
+      <div class="q-chevron">▾</div>
+    </div>
+    <div class="q-body">
+      <!-- Choices -->
+      <div class="q-section">
+        <h3>Answer Choices</h3>
+        <div class="choices">
+          ${['a','b','c','d'].map(l=>`
+            <div class="choice ${correctLetter===l?'correct':''}">
+              <label>${l.toUpperCase()}${correctLetter===l=' ✓':''}</label>
+              <input type="text" id="ch-${l}-${q.id}" value="${esc(q['choice_'+l]||'')}" placeholder="Choice ${l.toUpperCase()}">
+            </div>
+          `).join('')}
+        </div>
+        <div class="field" style="margin-top:10px">
+          <label>Correct Answer (letter)</label>
+          <select id="correct-${q.id}">
+            ${['a','b','c','d'].map(l=>`<option value="${l}" ${correctLetter===l?'selected':''}>${l.toUpperCase()}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+
+      <!-- Question text + scenario -->
+      <div class="q-section">
+        <h3>Question &amp; Scenario</h3>
+        <div class="field-row">
+          <div class="field" style="grid-column:1/-1">
+            <label>Question</label>
+            <textarea id="q-text-${q.id}" rows="2">${esc(q.question||'')}</textarea>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label>Scenario</label>
+            <textarea id="q-scenario-${q.id}" rows="2">${esc(q.scenario||'')}</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation -->
+      <div class="q-section">
+        <h3>Explanation</h3>
+        <div class="field">
+          <textarea id="q-explain-${q.id}" rows="3" placeholder="Why this answer is correct…">${esc(q.explanation||'')}</textarea>
+        </div>
+      </div>
+
+      <!-- Tagging -->
+      <div class="q-section">
+        <h3>Tagging</h3>
+        <div class="field-row">
+          <div class="field">
+            <label>Situation Type</label>
+            <select id="q-sit-${q.id}">
+              <option value="">— none —</option>
+              ${['cutoffs_relays','base_coverage','backing_up','force_vs_tag','bunt_defense','rundowns','first_and_third','fly_ball_reads','ground_ball_reads','line_drive_reads','baserunning_reads','tagging_up','stealing','pitcher_fielding','catcher_decisions','hitting_approach','count_game_management','score_inning_awareness','communication','priority_calls']
+                .map(s=>`<option value="${s}" ${q.situation_type===s?'selected':''}>${s.replace(/_/g,' ')}</option>`).join('')}
+            </select>
+          </div>
+          <div class="field">
+            <label>Confidence Level</label>
+            <select id="q-conf-${q.id}">
+              <option value="">— none —</option>
+              ${['universal','standard','coach_preference','context_dependent','debatable']
+                .map(c=>`<option value="${c}" ${q.confidence_level===c?'selected':''}>${c.replace(/_/g,' ')}</option>`).join('')}
+            </select>
+          </div>
+          <div class="field">
+            <label>Skill Focus</label>
+            <input type="text" id="q-skill-${q.id}" value="${esc(q.skill_focus||'')}" placeholder="e.g. read and react">
+          </div>
+          <div class="field">
+            <label>Difficulty</label>
+            <select id="q-diff-${q.id}">
+              <option value="">— none —</option>
+              <option value="1" ${q.difficulty==1?'selected':''}>1 — Beginner</option>
+              <option value="2" ${q.difficulty==2?'selected':''}>2 — Intermediate</option>
+              <option value="3" ${q.difficulty==3?'selected':''}>3 — Advanced</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="q-section">
+        <h3>Baseball Notes (internal)</h3>
+        <div class="field">
+          <textarea id="q-notes-${q.id}" rows="2" placeholder="Internal notes, edge cases, reasoning…">${esc(q.baseball_notes||'')}</textarea>
+        </div>
+      </div>
+
+      ${q.reviewed_by ? `<div style="font-size:11px;color:var(--muted);margin-bottom:12px">Last reviewed by ${q.reviewed_by}${q.reviewed_at?' on '+new Date(q.reviewed_at).toLocaleDateString():''}</div>` : ''}
+
+      <div class="q-actions">
+        <button class="btn btn-green btn-sm" onclick="setStatus('${q.id}','approved')">✓ Approve</button>
+        <button class="btn btn-yellow btn-sm" onclick="setStatus('${q.id}','needs_revision')">⚢ Needs Revision</button>
+        <button class="btn btn-sm" style="background:rgba(200,16,46,0.2);color:var(--red);border:1px solid rgba(200,16,46,0.3)" onclick="setStatus('${q.id}','rejected')">✗ Reject</button>
+        <button class="btn btn-ghost btn-sm" onclick="saveQuestion('${q.id}')">💾 Save Changes</button>
+        <span class="save-indicator" id="save-ok-${q.id}"></span>
+      </div>
+    </div>
+  `;
+  return card;
+}
+
+function toggleCard(id){
+  const card = document.getElementById('card-'+id);
+  card.classList.toggle('open');
+}
+
+// ── SAVE / STATUS ──────────────────────────────────────────────────────────────
+async function saveQuestion(id){
+  const correctLetter = document.getElementById('correct-'+id).value;
+  const choiceA = document.getElementById('ch-a-'+id).value;
+  const choiceB = document.getElementById('ch-b-'+id).value;
+  const choiceC = document.getElementById('ch-c-'+id).value;
+  const choiceD = document.getElementById('ch-d-'+id).value;
+  const correctAnswer = {a:choiceA,b:choiceB,c:choiceC,d:choiceD}[correctLetter];
+  const correctIndex = ['a','b','c','d'].indexOf(correctLetter);
+
+  const updates = {
+    question:    document.getElementById('q-text-'+id).value,
+    scenario:    document.getElementById('q-scenario-'+id).value,
+    explanation: document.getElementById('q-explain-'+id).value,
+    choice_a:    choiceA,
+    choice_b:    choiceB,
+    choice_c:    choiceC,
+    choice_d:    choiceD,
+    correct_answer: correctAnswer,
+    correct_index:  correctIndex,
+    situation_type: document.getElementById('q-sit-'+id).value||null,
+    confidence_level: document.getElementById('q-conf-'+id).value||null,
+    skill_focus: document.getElementById('q-skill-'+id).value||null,
+    difficulty:  document.getElementById('q-diff-'+id).value ? parseInt(document.getElementById('q-diff-'+id).value) : null,
+    baseball_notes: document.getElementById('q-notes-'+id).value||null,
+  };
+
+  const {error} = await sb.from('questions').update(updates).eq('id',id);
+  if(error){ showToast('Save failed: '+error.message,'red'); return; }
+  const ind = document.getElementById('save-ok-'+id);
+  if(ind){ ind.textContent='✓ Saved'; setTimeout(()=>{ind.textContent=''},2000); }
+  showToast('Saved','green');
+}
+
+async function setStatus(id, status){
+  const {data:{session}} = await sb.auth.getSession();
+  const {error} = await sb.from('questions').update({
+    reviewed_status: status,
+    reviewed_by: session?.user?.email||'admin',
+    reviewed_at: new Date().toISOString()
+  }).eq('id',id);
+  if(error){ showToast('Error: '+error.message,'red'); return; }
+
+  const card = document.getElementById('card-'+id);
+  if(card){
+    card.className = 'q-card open '+status;
+    const dot = card.querySelector('.q-status-dot');
+    if(dot) dot.className = 'q-status-dot dot-'+status;
+  }
+  showToast(status==='approved'?'Approved ✓':status==='rejected'?'Rejected':'Marked for revision','green');
+  loadStats();
+}
+
+// ── UTILS 
+function esc(s){ return (s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function showToast(msg, color){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  t.style.borderColor = color==='red'?'rgba(200,16,46,0.5)':'rgba(62,207,130,0.4)';
+  t.style.color = color==='red'?'var(--red)':'var(--green(';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>{ t.style.display='none'; }, 2200);
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter' && e.target.id==='f-search') applyFilters();
+});
+</script>
+</body>
+</html>
