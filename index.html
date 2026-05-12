@@ -231,36 +231,57 @@ button{cursor:pointer;font-family:'Barlow',sans-serif}
 .battle-tf.bc-dim{opacity:0.3;pointer-events:none}
 
 /* ROUND RESULT OVERLAY */
-.round-overlay{position:fixed;inset:0;background:rgba(6,17,31,0.96);z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.round-overlay{position:fixed;inset:0;background:rgba(2,6,13,0.97);z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
 .round-overlay.show{display:flex}
-.ro-icon{font-size:48px;margin-bottom:8px}
-.ro-title{font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.ro-sub{font-size:13px;color:#4a6a88;margin-bottom:18px}
-.ro-times{display:flex;gap:12px;width:100%;max-width:340px;margin-bottom:18px}
-.ro-player{flex:1;background:#0c1e30;border-radius:12px;padding:14px}
-.ro-player-name{font-size:11px;color:#3a5a78;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.ro-player-time{font-family:Barlow Condensed,sans-serif;font-size:26px;font-weight:900;margin-bottom:2px}
-.ro-player-pts{font-size:11px;color:#5a7a98}
-.ro-score{font-family:Barlow Condensed,sans-serif;font-size:42px;font-weight:900;color:#fff;letter-spacing:6px;margin-bottom:18px}
-.ro-next{background:#c8102e;border:none;border-radius:12px;padding:14px 32px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;color:#fff;cursor:pointer;letter-spacing:2px;text-transform:uppercase}
+.ro-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#3a5a78;margin-bottom:8px}
+.ro-icon{font-size:52px;margin-bottom:10px;animation:roPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes roPop{0%{transform:scale(0) rotate(-20deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+.ro-title{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:2px;margin-bottom:2px;line-height:1;text-shadow:0 0 40px rgba(255,255,255,0.2)}
+.ro-sub{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#3a5a78;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.ro-times{display:flex;gap:10px;width:100%;max-width:360px;margin-bottom:16px}
+.ro-player{flex:1;background:rgba(12,30,48,0.8);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 10px;position:relative;overflow:hidden}
+.ro-player.winner{border-color:rgba(62,207,130,0.4);background:rgba(12,40,24,0.8)}
+.ro-player.loser{opacity:0.6}
+.ro-player-name{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:#3a5a78;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.ro-player-time{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;line-height:1;margin-bottom:4px}
+.ro-player-pts{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px}
+.ro-vs-divider{display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:#3a5a78;flex-shrink:0;padding:0 4px}
+.ro-score-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;width:100%;max-width:360px}
+.ro-score-mine{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:#3ecf82;line-height:1;letter-spacing:-1px}
+.ro-score-sep{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#3a5a78}
+.ro-score-theirs{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:#e8f4ff;line-height:1;letter-spacing:-1px}
+.ro-next{background:linear-gradient(135deg,#c8102e,#a00c25);border:none;border-radius:12px;padding:14px 40px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:#fff;cursor:pointer;letter-spacing:2px;text-transform:uppercase;box-shadow:0 4px 20px rgba(200,16,46,0.4)}
 
 /* CHALLENGE RESULT */
-.cr-trophy{font-size:56px;margin-bottom:8px}
-.cr-title{font-family:Barlow Condensed,sans-serif;font-size:30px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.cr-sub{font-size:13px;color:#4a6a88;margin-bottom:12px}
-.cr-score{font-family:Barlow Condensed,sans-serif;font-size:48px;font-weight:900;color:#fff;letter-spacing:8px;margin:8px 0 16px}
-.cr-breakdown{background:#0c1e30;border-radius:12px;padding:14px;margin-bottom:14px;width:100%}
-.cr-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #0d1e30;font-size:12px}
+.cr-screen{position:fixed;inset:0;background:#02060d;z-index:601;display:none;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cr-screen.show{display:flex}
+.cr-hero{padding:32px 24px 20px;text-align:center;position:relative;overflow:hidden}
+.cr-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,16,46,0.15) 0%,transparent 70%);pointer-events:none}
+.cr-trophy{font-size:72px;margin-bottom:8px;display:block;animation:crTrophyIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;position:relative;z-index:1}
+@keyframes crTrophyIn{0%{transform:scale(0) rotate(-30deg);opacity:0}100%{transform:scale(1) rotate(0deg);opacity:1}}
+.cr-result-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#c8102e;margin-bottom:6px;position:relative;z-index:1}
+.cr-title{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;text-transform:uppercase;letter-spacing:2px;margin-bottom:2px;line-height:1;position:relative;z-index:1}
+.cr-title.win{color:#3ecf82;text-shadow:0 0 40px rgba(62,207,130,0.4)}
+.cr-title.lose{color:#e84060;text-shadow:0 0 40px rgba(232,64,96,0.3)}
+.cr-title.tie{color:#e8c060;text-shadow:0 0 40px rgba(232,192,96,0.3)}
+.cr-sub{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#3a5a78;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;position:relative;z-index:1}
+.cr-scorebox{display:flex;align-items:center;justify-content:center;gap:16px;background:rgba(12,22,38,0.8);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px 24px;margin:0 24px 20px;position:relative;z-index:1}
+.cr-score-mine{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;color:#3ecf82;line-height:1;letter-spacing:-1px}
+.cr-score-sep{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#3a5a78}
+.cr-score-theirs{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;color:#e8f4ff;line-height:1;letter-spacing:-1px}
+.cr-score-lbl{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;color:#3a5a78;text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
+.cr-breakdown{background:rgba(12,22,38,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:14px;margin:0 24px 16px;overflow:hidden}
+.cr-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
 .cr-row:last-child{border:none}
-.cr-q{color:#4a6a88;flex:1}
-.cr-pts{font-family:Barlow Condensed,sans-serif;font-size:14px;font-weight:700;width:60px;text-align:right}
+.cr-q{color:#5a7a98;flex:1;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.5px}
+.cr-pts{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900}
 .cr-pts.win{color:#3ecf82}
 .cr-pts.lose{color:#e84060}
 .cr-pts.tie{color:#5a7a98}
-.cr-btns{display:flex;gap:8px;width:100%}
-.cr-btn{flex:1;border:none;border-radius:12px;padding:13px;font-family:Barlow Condensed,sans-serif;font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
-.cr-btn.primary{background:#c8102e;color:#fff}
-.cr-btn.secondary{background:#0c1e30;border:1px solid #1a3050;color:#8ab4d4}
+.cr-btns{display:flex;gap:10px;padding:0 24px 32px}
+.cr-btn{flex:1;border:none;border-radius:13px;padding:15px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
+.cr-btn.primary{background:linear-gradient(135deg,#c8102e,#a00c25);color:#fff;box-shadow:0 4px 20px rgba(200,16,46,0.35)}
+.cr-btn.secondary{background:rgba(12,22,38,0.8);border:1px solid rgba(255,255,255,0.1);color:#8ab4d4}
 @keyframes pulseWait{0%,100%{opacity:0.3}50%{opacity:1}}
 .wait-pulse{animation:pulseWait 1.5s ease-in-out infinite}
 
@@ -2131,7 +2152,10 @@ body::before {
 #battle-cat-wrap{display:flex;justify-content:flex-start;margin-bottom:0;background:none;height:auto;pointer-events:auto;position:relative;padding:10px 16px 0}
 #battle-cat-wrap #battle-gc-cat{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#fff;text-transform:uppercase;padding:5px 14px;background:rgba(6,12,24,0.75);border:none;border-left:3px solid var(--pos-color,#c8102e);border-radius:4px;display:inline-block}
 #s-challenge-battle .gc-scenario{margin:6px 14px 6px!important;padding:0!important}
-#s-challenge-battle .gc-scoreboard{padding:4px 14px 8px!important}</style>
+#s-challenge-battle .gc-scoreboard{padding:4px 14px 8px!important}
+/* ─── CR SCREEN HIDE FIX ─── */
+#s-challenge-result{display:none}
+#s-challenge-result.show{display:flex}</style>
 </head>
 <body>
 
@@ -3187,22 +3211,34 @@ body::before {
 </div>
 
 <!-- ─── CHALLENGE RESULT ─── -->
-<div id="s-challenge-result" class="screen">
-  <div style="text-align:center;padding:10px 0 16px">
+<div id="s-challenge-result" class="cr-screen">
+  <div class="cr-hero">
+    <div class="cr-result-tag" id="cr-result-tag">Head-to-Head Battle</div>
     <div class="cr-trophy" id="cr-trophy">🏆</div>
-    <div class="cr-title" id="cr-title">Victory!</div>
-    <div class="cr-sub" id="cr-sub">5 questions · Head-to-head</div>
-    <div class="cr-score" id="cr-score">480:290</div>
+    <div class="cr-title win" id="cr-title">VICTORY</div>
+    <div class="cr-sub" id="cr-sub">5 questions · Beat your opponent</div>
+  </div>
+  <div class="cr-scorebox">
+    <div style="text-align:center">
+      <div class="cr-score-mine" id="cr-score-mine">480</div>
+      <div class="cr-score-lbl">You</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+      <div class="cr-score-sep">:</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:#3a5a78;letter-spacing:1.5px;text-transform:uppercase">pts</div>
+    </div>
+    <div style="text-align:center">
+      <div class="cr-score-theirs" id="cr-score-theirs">290</div>
+      <div class="cr-score-lbl" id="cr-opp-name-result">Opponent</div>
+    </div>
   </div>
   <div class="cr-breakdown" id="cr-breakdown"></div>
   <div class="cr-btns">
     <button class="cr-btn primary" onclick="rematchChallenge()">Rematch ⚔️</button>
     <button class="cr-btn secondary" onclick="shareChallengeResult()">📤 Share</button>
   </div>
-  <button class="play-btn" onclick="showScreen(&#39;s-home&#39;)" style="margin-top:8px;background:#0c1e30;border:1px solid #1a3050;color:#5a7a98">← Back to Home</button>
+  <button style="width:100%;padding:12px;background:none;border:none;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#3a5a78;cursor:pointer;letter-spacing:1px;margin-bottom:16px" onclick="var cr=document.getElementById('s-challenge-result');if(cr)cr.classList.remove('show');showScreen('s-home')">← Back to Home</button>
 </div>
-
-
 <!-- ─── ONBOARDING v2 ─── -->
 <div id="s-onboard">
 
@@ -3660,6 +3696,7 @@ function normalizeQuestion(row){
 
 // ─── NAVIGATION ───
 function showScreen(id){
+  var cr=document.getElementById('s-challenge-result');if(cr)cr.classList.remove('show');
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.game-card-screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -6684,7 +6721,8 @@ function renderBattleQuestion(){
   // Build choices but hide during read phase
   var chEl=document.getElementById('battle-choices');
   chEl.innerHTML='';
-  chEl.style.visibility='hidden';
+  chEl.style.opacity='0';
+  chEl.style.pointerEvents='none';
   if(q.question_type==='multiple_choice'){
     var ltrs=['A','B','C','D'];
     q.choices.forEach(function(ch,i){
@@ -6715,7 +6753,9 @@ function renderBattleQuestion(){
     } else {
       clearInterval(readTimer);
       if(cdEl) cdEl.style.display='none';
-      chEl.style.visibility='visible';
+      chEl.style.opacity='1';
+      chEl.style.pointerEvents='';
+      chEl.style.transition='opacity 0.2s ease';
       startBattleTimer(q);
     }
   },1000);
@@ -6833,20 +6873,42 @@ function tryShowRoundResult(q){
 
 function showRoundResult(myA, oppA){
   var myWon=myA.correct&&(!oppA.correct||(myA.correct&&myA.time<oppA.time));
-  var tied=myA.correct&&oppA.correct;
-  document.getElementById('ro-icon').textContent=myA.correct?'🎯':'💨';
-  document.getElementById('ro-title').textContent=myA.correct?(tied?'You both got it!':'Nice!'):'Not quite...';
-  document.getElementById('ro-sub').textContent='Round '+(challengeQn+1)+' of '+CHALLENGE_QS;
-  document.getElementById('ro-my-time').textContent=myA.correct?myA.time.toFixed(1)+'s':'Wrong';
+  var tied=myA.correct&&oppA.correct&&Math.abs(myA.time-oppA.time)<0.2;
+  var roundNum=challengeQn+1;
+  // Eyebrow
+  document.getElementById('ro-eyebrow').textContent='Round '+roundNum+' of '+CHALLENGE_QS;
+  // Icon — fire if won fast, sword if won, ghost if lost
+  var icon = myWon ? (myA.time<5?'⚡':'⚔️') : (myA.correct&&tied?'🤝':'💀');
+  document.getElementById('ro-icon').textContent=icon;
+  // Title
+  var title = myWon ? (myA.time<3?'BLAZING FAST!':myA.time<6?'GOT IT!':'YOU WIN IT') : (myA.correct&&tied?'TOO CLOSE!':'MISSED IT');
+  document.getElementById('ro-title').textContent=title;
+  // Sub
+  var sub = myWon ? (oppA.correct?'Faster than your opponent':'Opponent got it wrong') : (myA.correct?'Both got it':'Wrong answer');
+  document.getElementById('ro-sub').textContent=sub;
+  // My card
+  var myCard=document.getElementById('ro-my-card');
+  if(myCard){ myCard.classList.toggle('winner',myWon); myCard.classList.toggle('loser',!myA.correct); }
+  document.getElementById('ro-my-time').textContent=myA.correct?myA.time.toFixed(1)+'s':'✗ Wrong';
   document.getElementById('ro-my-time').style.color=myA.correct?'#3ecf82':'#e84060';
-  document.getElementById('ro-my-pts').textContent=myA.pts>0?'+'+myA.pts+' pts':'No points';
-  document.getElementById('ro-opp-name-disp').textContent=challengeOppName;
-  document.getElementById('ro-opp-time').textContent=oppA.correct?oppA.time.toFixed(1)+'s':'Wrong';
-  document.getElementById('ro-opp-time').style.color=oppA.correct?'#3ecf82':'#e84060';
-  document.getElementById('ro-opp-pts').textContent=oppA.pts>0?'+'+oppA.pts+' pts':'No points';
-  document.getElementById('ro-score').textContent=challengeMyScore+' : '+challengeOppScore;
+  document.getElementById('ro-my-pts').textContent=myA.pts>0?'+'+myA.pts+' pts':'0 pts';
+  document.getElementById('ro-my-pts').style.color=myA.pts>0?'#3ecf82':'#5a7a98';
+  // Opp card
+  var oppCard=document.getElementById('ro-opp-card');
+  if(oppCard){ oppCard.classList.toggle('winner',!myWon&&oppA.correct); oppCard.classList.toggle('loser',!oppA.correct); }
+  document.getElementById('ro-opp-name').textContent=challengeOppName||'Opponent';
+  document.getElementById('ro-opp-time').textContent=oppA.correct?oppA.time.toFixed(1)+'s':'✗ Wrong';
+  document.getElementById('ro-opp-time').style.color=oppA.correct?'#e8f4ff':'#e84060';
+  document.getElementById('ro-opp-pts').textContent=oppA.pts>0?'+'+oppA.pts+' pts':'0 pts';
+  document.getElementById('ro-opp-pts').style.color=oppA.pts>0?'#e8f4ff':'#5a7a98';
+  // Score
+  document.getElementById('ro-score-mine').textContent=challengeMyScore;
+  document.getElementById('ro-score-theirs').textContent=challengeOppScore;
+  document.getElementById('ro-score-mine').style.color=challengeMyScore>=challengeOppScore?'#3ecf82':'#e84060';
+  // Next button text
   var isLast=challengeQn>=CHALLENGE_QS-1;
-  document.getElementById('ro-next-btn').textContent=isLast?'See Results 🏆':'Next Question →';
+  var nextBtn=document.querySelector('#round-overlay .ro-next');
+  if(nextBtn) nextBtn.textContent=isLast?'See Results 🏆':'Next Question →';
   document.getElementById('round-overlay').classList.add('show');
 }
 
@@ -6874,11 +6936,21 @@ function showChallengeResult(){
   document.getElementById('round-overlay').classList.remove('show');
   var myWon=challengeMyScore>challengeOppScore;
   var tied=challengeMyScore===challengeOppScore;
-  document.getElementById('cr-trophy').textContent=myWon?'🏆':tied?'🤝':'💪';
-  document.getElementById('cr-title').textContent=myWon?'Victory!':tied?'Tie Game!':'Good Battle!';
-  document.getElementById('cr-sub').textContent='vs '+challengeOppName+' · '+CHALLENGE_QS+' questions';
-  document.getElementById('cr-score').textContent=challengeMyScore+':'+challengeOppScore;
-  document.getElementById('cr-title').style.color=myWon?'#3ecf82':tied?'#e8c060':'#f0ece4';
+  // Trophy + dramatic heading
+  document.getElementById('cr-trophy').textContent=myWon?'🏆':tied?'🤝':'💀';
+  var titleEl=document.getElementById('cr-title');
+  titleEl.textContent=myWon?'VICTORY':tied?'TIE GAME':'DEFEAT';
+  titleEl.className='cr-title '+(myWon?'win':tied?'tie':'lose');
+  document.getElementById('cr-result-tag').textContent='Head-to-Head vs '+challengeOppName;
+  document.getElementById('cr-sub').textContent=CHALLENGE_QS+' questions · Battle complete';
+  // Split scores
+  document.getElementById('cr-score-mine').textContent=challengeMyScore;
+  document.getElementById('cr-score-theirs').textContent=challengeOppScore;
+  if(!myWon&&!tied) document.getElementById('cr-score-mine').style.color='#e84060';
+  document.getElementById('cr-opp-name-result').textContent=challengeOppName||'Opponent';
+  // Show cr-screen (not via showScreen — it's fixed overlay)
+  var crScreen=document.getElementById('s-challenge-result');
+  if(crScreen){ crScreen.classList.add('show'); }
 
   // Breakdown
   var bd=document.getElementById('cr-breakdown');
@@ -6897,7 +6969,7 @@ function showChallengeResult(){
     else { upd.player2_score=challengeMyScore; upd.player1_score=challengeOppScore; }
     sb.from('challenges').update(upd).eq('id',challengeRoom.id);
   }
-  showScreen('s-challenge-result');
+  // screen shown above via classList.add('show')
 }
 
 function shareChallengeResult(){
@@ -6909,6 +6981,7 @@ function shareChallengeResult(){
 }
 
 function rematchChallenge(){
+  var cr=document.getElementById('s-challenge-result');if(cr)cr.classList.remove('show');
   if(challengeChannel){
     challengeChannel.send({type:'broadcast',event:'rematch_request',payload:{from:currentUser.username}});
   }
