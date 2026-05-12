@@ -56,7 +56,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .choice{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px}
 .choice.correct{border-color:rgba(62,207,130,0.5);background:rgba(62,207,130,0.07)}
-.choice label{font-size:10px;font-weight:700;color:var(--green);display:block;margin-bottom:2px}
+.choice label{font-size:10px;font-weight:700;color:var(--green);display:block;margin-bottom:2px}.choice textarea{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;padding:5px 8px;border-radius:6px;resize:none;line-height:1.4;min-height:44px}
 .frow{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:10px}
 .field{display:flex;flex-direction:column;gap:4px}
 .field label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
@@ -220,7 +220,7 @@ function renderCard(q){
     </div>
     <div class="q-body">
       <div class="q-sec"><h3>Choices</h3>
-        <div class="choices">${['a','b','c','d'].map(l=>`<div class="choice ${cl===l?'correct':''}"><label>${l.toUpperCase()}${cl===l?' \u2713':''}</label><input type="text" id="ch-${l}-${q.id}" value="${esc(q['choice_'+l]||'')}"></div>`).join('')}</div>
+        <div class="choices">${['a','b','c','d'].map(l=>`<div class="choice ${cl===l?'correct':''}"><label>${l.toUpperCase()}${cl===l?' \u2713':''}</label><textarea id="ch-${l}-${q.id}" rows="2">${esc(q['choice_'+l]||''||'')}</textarea></div>`).join('')}</div>
         <div class="field" style="margin-top:10px"><label>Correct (letter)</label>
           <select id="cor-${q.id}">${['a','b','c','d'].map(l=>`<option value="${l}"${cl===l?' selected':''}>${l.toUpperCase()}</option>`).join('')}</select>
         </div>
