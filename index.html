@@ -2155,7 +2155,18 @@ body::before {
 #s-challenge-battle .gc-scoreboard{padding:4px 14px 8px!important}
 /* ─── CR SCREEN HIDE FIX ─── */
 #s-challenge-result{display:none}
-#s-challenge-result.show{display:flex}</style>
+#s-challenge-result.show{display:flex}
+/* ─── BATTLE POSITION LABEL (inline, not absolute) ─── */
+.battle-pos-row{display:flex;justify-content:flex-start;padding:8px 16px 2px;flex-shrink:0}
+#battle-gc-cat{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;color:#fff;text-transform:uppercase;padding:4px 12px;background:rgba(6,12,24,0.8);border:none;border-left:3px solid var(--pos-color,#c8102e);border-radius:0 4px 4px 0;display:inline-block;backdrop-filter:blur(8px)}
+
+/* ─── BATTLE SCENARIO: bigger text in field block ─── */
+#battle-gc-scenario-body{font-family:'Barlow',sans-serif !important;font-size:13px !important;font-weight:500 !important;color:rgba(255,255,255,0.65) !important;text-transform:none !important;letter-spacing:0 !important;line-height:1.5 !important;text-align:center !important;padding:8px 12px !important;display:block !important}
+
+/* ─── BATTLE SCENARIO CARD above question ─── */
+.battle-scenario-card{background:rgba(6,14,26,0.7);border:1px solid rgba(255,255,255,0.08);border-left:3px solid rgba(255,255,255,0.15);border-radius:0 10px 10px 0;padding:10px 14px;margin:0 0 10px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);line-height:1.5;display:none}
+.battle-scenario-card.has-scenario{display:block}
+</style>
 </head>
 <body>
 
@@ -3104,7 +3115,7 @@ body::before {
     <div class="opp-status" id="battle-opp-status"></div>
     <div class="opp-progress"><div class="opp-progress-fill" id="battle-opp-progress" style="width:0%"></div></div>
   </div>
-  <div class="gc-cat" id="battle-cat-wrap" style="position:relative;height:auto;padding:10px 16px 0"><div class="gc-cat-pill" id="battle-gc-cat">⚾ Position</div></div>
+  <div class="battle-pos-row" id="battle-cat-wrap"><div id="battle-gc-cat">⚾ POSITION</div></div>
 <div class="gc-scenario" id="battle-gc-scenario">
     <div class="gc-scoreboard">
       <div class="gc-sb-left">
@@ -3180,7 +3191,7 @@ body::before {
     <div class="gc-inning" id="battle-gc-inning" style="display:none"></div>
     <div class="gc-scenario-body" id="battle-gc-scenario-body"></div>
   <div style="padding:0 16px;flex:1;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch">
-    <div class="battle-question" id="battle-question">Loading...</div>
+    <div class="battle-scenario-card" id="battle-scenario-display"></div><div class="battle-question" id="battle-question">Loading...</div>
     <div id="battle-read-countdown" style="display:none;text-align:center;padding:10px 0;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#5a7a98;letter-spacing:1px;text-transform:uppercase"></div>
     <div id="battle-choices"></div>
   </div>
@@ -6719,6 +6730,14 @@ function renderBattleQuestion(){
   // Use renderQ with battle- prefix for full field/position/scenario visualization
   renderQ(q,'battle-');
   document.getElementById('battle-question').textContent=q.question;
+  // Show scenario in the card above the question (give it twice)
+  var scenCard=document.getElementById('battle-scenario-display');
+  if(scenCard&&q.scenario){
+    scenCard.textContent=q.scenario;
+    scenCard.className='battle-scenario-card has-scenario';
+  } else if(scenCard){
+    scenCard.className='battle-scenario-card';
+  }
 
   // Build choices but hide during read phase
   var chEl=document.getElementById('battle-choices');
