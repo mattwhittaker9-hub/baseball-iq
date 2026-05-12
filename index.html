@@ -2126,7 +2126,12 @@ body::before {
 .battle-code-input::placeholder{letter-spacing:2px;color:#3a5a78;font-size:13px;font-weight:700}
 .battle-join-btn{background:linear-gradient(135deg,#7a4a00,#c89020);border:none;border-radius:12px;padding:14px 20px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:1px;cursor:pointer;white-space:nowrap}
 .battle-history-section{margin-top:16px}
-.battle-history-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}</style>
+.battle-history-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:#3a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+/* ─── BATTLE POSITION LABEL ─── */
+#battle-cat-wrap{display:flex;justify-content:flex-start;margin-bottom:0;background:none;height:auto;pointer-events:auto;position:relative;padding:10px 16px 0}
+#battle-cat-wrap #battle-gc-cat{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#fff;text-transform:uppercase;padding:5px 14px;background:rgba(6,12,24,0.75);border:none;border-left:3px solid var(--pos-color,#c8102e);border-radius:4px;display:inline-block}
+#s-challenge-battle .gc-scenario{margin:6px 14px 6px!important;padding:0!important}
+#s-challenge-battle .gc-scoreboard{padding:4px 14px 8px!important}</style>
 </head>
 <body>
 
@@ -3075,11 +3080,87 @@ body::before {
     <div class="opp-status" id="battle-opp-status"></div>
     <div class="opp-progress"><div class="opp-progress-fill" id="battle-opp-progress" style="width:0%"></div></div>
   </div>
+  <div class="gc-cat" id="battle-cat-wrap" style="position:relative;height:auto;padding:10px 16px 0"><div class="gc-cat-pill" id="battle-gc-cat">⚾ Position</div></div>
+<div class="gc-scenario" id="battle-gc-scenario">
+    <div class="gc-scoreboard">
+      <div class="gc-sb-left">
+        <div class="gc-sb-pill"><div class="gc-sb-val" id="battle-gc-b-inning">—</div><div class="gc-sb-lbl">INN</div></div>
+        <div class="gc-sb-pill"><div class="gc-sb-val gc-sb-score" id="battle-gc-b-score">—</div><div class="gc-sb-lbl">SCORE</div></div>
+      </div>
+      <div class="gc-sb-center">
+        <svg class="gc-field-svg" viewBox="0 0 100 100" width="88" height="88" style="filter:drop-shadow(0 3px 16px rgba(0,0,0,0.75))">
+          <defs>
+            <radialGradient id="battle-gG" cx="50%" cy="72%" r="78%"><stop offset="0%" stop-color="#1c4820"/><stop offset="45%" stop-color="#143a18"/><stop offset="100%" stop-color="#0c2410"/></radialGradient>
+            <radialGradient id="battle-iG" cx="50%" cy="55%" r="60%"><stop offset="0%" stop-color="#1f4c25"/><stop offset="100%" stop-color="#122d15"/></radialGradient>
+            <radialGradient id="battle-dG" cx="50%" cy="50%" r="58%"><stop offset="0%" stop-color="#5e3515"/><stop offset="100%" stop-color="#3a1f08"/></radialGradient>
+          </defs>
+          <!-- Foul territory: dark green base fills the full rectangle -->
+          <rect width="100" height="100" fill="#0d2410" rx="5"/>
+          <!-- Fair territory wedge: brighter green -->
+          <path d="M 50,93 L 0,38 Q 50,2 100,38 Z" fill="url(#battle-gG)"/>
+          <!-- Mow stripes in fair territory only (bounded by foul lines) -->
+          <clipPath id="battle-fairClip"><path d="M 50,93 L 0,38 Q 50,2 100,38 Z"/></clipPath>
+          <g clip-path="url(#battle-fairClip)">
+            <rect x="0" y="4"  width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="20" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="36" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="52" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <rect x="0" y="68" width="100" height="8" fill="rgba(255,255,255,0.022)"/>
+            <!-- Warning track -->
+            <path d="M 0,38 Q 50,2 100,38 L 95,43 Q 50,8 5,43 Z" fill="#7a4e22" opacity="0.7"/>
+            <!-- Infield dirt -->
+            <ellipse cx="50" cy="67" rx="25" ry="22" fill="url(#battle-dG)"/>
+            <!-- Infield grass -->
+            <polygon points="50,86 72,64 50,42 28,64" fill="url(#battle-iG)"/>
+          </g>
+          <!-- Outfield wall arc -->
+          <path d="M 0,38 Q 50,2 100,38" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+          <!-- Foul lines: crisp white chalk -->
+          <line x1="50" y1="93" x2="0"   y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+          <line x1="50" y1="93" x2="100" y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+          <!-- Baselines -->
+          <line x1="50" y1="87" x2="72" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="72" y1="64" x2="50" y2="42" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="50" y1="42" x2="28" y2="64" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <line x1="28" y1="64" x2="50" y2="87" stroke="rgba(255,255,255,0.45)" stroke-width="0.8"/>
+          <!-- Pitcher mound + rubber -->
+          <circle cx="50" cy="65" r="3.2" fill="#5e3515" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+          <rect x="47.5" y="64" width="5" height="2" rx="0.3" fill="rgba(255,255,255,0.55)"/>
+          <!-- Batter boxes -->
+          <rect x="40" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <rect x="53" y="82" width="7" height="9" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <!-- On-deck circles in foul territory -->
+          <circle cx="27" cy="87" r="3.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+          <circle cx="73" cy="87" r="3.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+          <!-- Backstop arc behind home plate -->
+          <path d="M 39,96 Q 50,99 61,96" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <!-- Home plate -->
+          <polygon points="46,84 54,84 56,87 50,92 44,87" fill="rgba(255,255,255,0.92)"/>
+          <!-- Bases -->
+          <rect id="battle-gd-first"  x="68" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,72,64)"/>
+          <rect id="battle-gd-second" x="46" y="38" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,50,42)"/>
+          <rect id="battle-gd-third"  x="24" y="60" width="8" height="8" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="1" transform="rotate(45,28,64)"/>
+          <!-- Runner dots -->
+          <circle id="battle-gd-r1" cx="72" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="battle-gd-r2" cx="50" cy="42" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+          <circle id="battle-gd-r3" cx="28" cy="64" r="5.5" fill="#e8183a" opacity="0" style="transition:opacity 0.2s ease,transform 0.3s ease"/>
+        </svg>
+      </div>
+      <div class="gc-sb-right">
+        <div class="gc-sb-bso"><span class="gc-sb-bso-lbl">B</span><div class="gc-sb-pips" id="battle-gc-balls-row"><div class="gc-count-pip"></div><div class="gc-count-pip"></div><div class="gc-count-pip"></div></div></div>
+        <div class="gc-sb-bso"><span class="gc-sb-bso-lbl">S</span><div class="gc-sb-pips" id="battle-gc-strikes-row"><div class="gc-count-pip"></div><div class="gc-count-pip"></div></div></div>
+        <div class="gc-sb-bso"><span class="gc-sb-bso-lbl">O</span><div class="gc-sb-pips" id="battle-gc-b-outs"><div class="gc-out-pip"></div><div class="gc-out-pip"></div></div></div>
+      </div>
+    </div>
+    </div>
+    <div class="gc-inning" id="battle-gc-inning" style="display:none"></div>
+    <div class="gc-scenario-body" id="battle-gc-scenario-body"></div>
+  <div id="battle-gc-scenario-body" style="display:none"></div>
+  <div id="battle-gc-question" style="display:none"></div>
+  <div id="battle-gc-content" style="display:none"></div>
   <div style="padding:0 16px;flex:1;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch">
-    <div class="gc-inning" id="battle-context" style="margin-bottom:6px"></div>
-    <div id="battle-scenario-box" style="display:none;background:#0c1828;border:1px solid #1a3050;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-family:'Barlow',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5"></div>
     <div class="battle-question" id="battle-question">Loading...</div>
-    <div id="battle-read-countdown" style="display:none;text-align:center;padding:12px 0;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#5a7a98;letter-spacing:1px;text-transform:uppercase"></div>
+    <div id="battle-read-countdown" style="display:none;text-align:center;padding:10px 0;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#5a7a98;letter-spacing:1px;text-transform:uppercase"></div>
     <div id="battle-choices"></div>
   </div>
 </div>
@@ -6596,15 +6677,8 @@ function renderBattleQuestion(){
   document.getElementById('battle-opp-status').textContent='';
   document.getElementById('battle-opp-progress').style.width='0%';
 
-  // Context line (inn/score/outs)
-  var ctx=getContextLine(q);
-  document.getElementById('battle-context').textContent=ctx;
-
-  // Scenario in its own box
-  var scen=getScenario(q);
-  var scenBox=document.getElementById('battle-scenario-box');
-  if(scenBox){ if(scen){scenBox.textContent=scen;scenBox.style.display='block';}else{scenBox.style.display='none';} }
-
+  // Use renderQ with battle- prefix for full field/position/scenario visualization
+  renderQ(q,'battle-');
   document.getElementById('battle-question').textContent=q.question;
 
   // Build choices but hide during read phase
