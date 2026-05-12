@@ -1825,7 +1825,7 @@ body::before {
   pointer-events: none !important;
   z-index: 50 !important;
 }
-#gc-cat, #daily-gc-cat {
+#gc-cat, #daily-gc-cat, #battle-gc-cat {
   position: relative !important;
   top: auto !important;
   left: auto !important;
@@ -3179,9 +3179,6 @@ body::before {
     </div>
     <div class="gc-inning" id="battle-gc-inning" style="display:none"></div>
     <div class="gc-scenario-body" id="battle-gc-scenario-body"></div>
-  <div id="battle-gc-scenario-body" style="display:none"></div>
-  <div id="battle-gc-question" style="display:none"></div>
-  <div id="battle-gc-content" style="display:none"></div>
   <div style="padding:0 16px;flex:1;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch">
     <div class="battle-question" id="battle-question">Loading...</div>
     <div id="battle-read-countdown" style="display:none;text-align:center;padding:10px 0;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#5a7a98;letter-spacing:1px;text-transform:uppercase"></div>
@@ -3784,7 +3781,7 @@ function getPosColor(q){
 }
 function renderQ(q,prefix=''){
   const isDaily=prefix==='daily-';
-  const pfx=isDaily?'daily-':'';
+  const pfx=prefix||'';
   // Dots
   const dotsEl=document.getElementById(pfx+'gc-dots');
   if(dotsEl){
